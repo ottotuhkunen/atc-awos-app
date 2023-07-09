@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=800, initial-scale=0.7"/>
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="0" />
+        <title>Helsingin sää ❄️💦</title>
+        <link rel="icon" href="src/favicon.ico">
+        <link rel="stylesheet" href="src/master.css">
+        <script type="text/javascript" src="src/date.js"></script>
+        <script type="text/javascript" src="src/data.js"></script>
+        <script type="text/javascript" src="src/nav.js"></script>
+        <script type="text/javascript" src="src/config.js"></script>
+        <script type="text/javascript" src="src/autoconfig.js"></script>
+        <script type="text/javascript" src="src/fetchInfo.js"></script>
+        <script type="text/javascript" src="src/windcomponents.js"></script>
+        <link rel="stylesheet" href="https://use.typekit.net/nju1yva.css">
+        <meta name="robots" content="noindex">
+    </head>
+    <body onload="getDate(); loadConfig(); loadFMI();" style="background-color: rgb(232,232,232);">
+        <div class="topnav">
+            <img alt="Logo" src="src/vatsca.png" style="height: 60px; float: left; padding: 0px 5px;">
+            <div class="topmenuField atisButton" onclick="openDepATIS();" ><p>DEP</p><h1 id="atisID">//</h1></div>
+            <div class="topmenuField atisButton arr" onclick="openArrATIS();"><p>ARR</p><h1 id="atisID2">//</h1></div>
+            <div class="topmenuField qnhField" id="qnh" onclick="qnhClick();">//</div>
+            <div class="topmenuField qfeField">QFE<span id="qfe" style="float: right;">//</span><hr>TRL<span id="trl" style="float: right;">//</span></div>
+            <div class="topmenuField imcvmcField" id="imcVmc">VMC</div>
+            <div class="topmenuField dateField" id="dateField">//</div>
+            <div class="topmenuField timeField" id="timeField">//</div>
+            <div class="topmenuField secondField" id="secondField">://</div>
+            <div class="topmenuField modeselector" id="modeselector" style="cursor: not-allowed;">
+                <img alt="mode" src="src/daynight.png" style="padding-top: 8px;"><br>
+                Day/night
+            </div>
+        </div>
+        <div class="leftnav">
+            <button id="mainButton" class="mainbuttons mainbuttonActive">
+                <img src="src/main.png" style="width: 65px; height: auto;" alt="rwy" onclick="saveConfig(); location.reload();">Main
+            </button>
+            <div id="menuTriangle1" class="menuTriangle" style="display: block;"></div>
+            <!--
+            <button class="mainbuttons">
+                <img src="src/rwymenu.png" style="width: 60px; height: auto;" alt="rwy"><br><br>04R-22L
+            </button>
+            <button class="mainbuttons">
+                <img src="src/rwymenu.png" style="width: 60px; height: auto;" alt="rwy"><br><br>15-33
+            </button>
+            <button class="mainbuttons">
+                <img src="src/rwymenu.png" style="width: 60px; height: auto;" alt="rwy"><br><br>04L-22R
+            </button>
+            <button id="metrepButton" class="mainbuttons mainbuttonInactive" style="font-size: 8pt; cursor: not-allowed;">
+                <img src="src/metrep.png" style="width: 35px; height: auto;" alt="rwy" onclick="metrep();"><br><br>MET REPORT
+            </button>
+            <div id="menuTriangle2" class="menuTriangle"></div>
+            <button id="adSelectionButton" class="mainbuttons mainbuttonInactive" style="font-size: 9pt;" onclick="airport_selector.style.display='block';">
+                AIRPORT<br>SELECTION
+            </button>
+            <div id="menuTriangle3" class="menuTriangle"></div>
+            -->
+            <button id="setupButton" class="mainbuttons mainbuttonInactive" onclick="setup();">
+                <img src="src/settings.png" style="width: 50px; height: auto;" alt="rwy" onclick="setup();"><br>Setup
+            </button>
+            <div id="menuTriangle2" class="menuTriangle"></div>
+	    <p style="color: red; font-weight: bold; font-size: 14pt; position: absolute; bottom: 0; padding: 12pt;">Simulator<br>use only!</p>
+        </div>
+        <div class="container" id="container">
+            <!-- Generator: Adobe Illustrator 26.5.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+            <svg style="user-select: none;" id="mainSvg" preserveAspectRatio="xMinYMin meet" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1106.47 787.76">
+                <style type="text/css">
+                    .st0{fill:#B5B5B5;}
+                    .st1{fill:#2C393D;}
+                    .st2{fill:#DADADA;}
+                    .st3{fill:#B9B8BA;}
+                    .st4{font-family:'Verdana';}
+                    .st5{font-size:20px;}
+                    .st6{font-size:29px;}
+                    .st7{fill:#DADADA;}
+                    .st8{font-family:'Verdana';}
+                    .st9{font-size:29px;}
+                    .st10{fill:none;stroke:#000000;stroke-miterlimit:10; transform-box: fill-box; transform-origin: center;}
+                    .st11{fill:#D80000;}
+                    .st12{font-family:'Verdana';}
+                    .st13{font-size:18px;}
+                    .st14{fill:#F09B36;stroke:#000000;stroke-miterlimit:10;display: none;}
+                    .rwycc1{fill:#515151;}
+	                .rwycc2{font-size:16px;}
+                    .rwycc3{fill:none;stroke:#B5B5B5;stroke-miterlimit:10;}
+                    .st15{fill:#4397C3;stroke:#000000;stroke-miterlimit:10;display: none;}
+                    .st16{text-anchor: end;}
+                    .st17{font-size:17px; fill:#404040; font-weight: bold;}
+                </style>
+                <!-- Runway background  -->
+                <rect id="rwy04L" x="221.5" y="128.52" transform="matrix(0.7637 0.6456 -0.6456 0.7637 277.0305 -85.853)" class="st0" width="68.58" height="413.93"/>
+                <rect id="rwy04R" x="534.53" y="128.52" transform="matrix(0.7637 0.6456 -0.6456 0.7637 351.0047 -287.9446)" class="st0" width="68.58" height="413.93"/>
+                <rect id="rwy15" x="630.2" y="127.48" transform="matrix(0.866 -0.5 0.5 0.866 -78.196 377.0538)" class="st0" width="68.58" height="413.93"/>
+                <use id="bringToFront04R22L" xlink:href="#rwy04R" style="display: none;"/>
+                <g id="windDisplays">
+                    <g id="windDisp22R">
+                        <rect x="184.12" y="5.03" class="st1" width="157.26" height="109.15"/>
+                        <path id="display22R" class="st2" d="M335.71,112.41h-145.9c-2.16,0-3.9-1.75-3.9-3.9V10.96c0-2.16,1.75-3.9,3.9-3.9h145.9c2.16,0,3.9,1.75,3.9,3.9v97.54C339.62,110.66,337.87,112.41,335.71,112.41z"/>
+                        <text id="22R_maxDir" transform="matrix(1 0 0 1 189.2582 32.16)" class="st3 st4 st5">//</text>
+                        <text id="22R_components" transform="matrix(1 0 0 1 190.6661 101.2776)" class="st3 st4 st5">//</text>
+                        <text id="22R_minSpd" transform="matrix(1 0 0 1 332 101.2777)" class="st3 st4 st5 st16">//</text>
+                        <text id="22R_maxSpd" transform="matrix(1 0 0 1 332 32.1601)" class="st3 st4 st5 st16">//</text>
+                        <text id="22R_windSpd" transform="matrix(1 0 0 1 332 69.2345)" class="st3 st4 st6 st16">//</text>
+                        <text id="22R_windDir" transform="matrix(1 0 0 1 190.666 69.2345)" class="st3 st4 st6">//</text>
+                        <text id="22R_number" transform="matrix(-0.7637 -0.6456 0.6456 -0.7637 405.5832 202.6685)" class="st7 st8 st6">22R</text>
+                    </g>
+                    <g id="windDisp15">
+                        <rect x="534.03" y="5.16" class="st1" width="157.26" height="109.15"/>
+                        <path id="display15" class="st2" d="M685.63,112.54h-145.9c-2.16,0-3.9-1.75-3.9-3.9V11.1c0-2.16,1.75-3.9,3.9-3.9h145.9c2.16,0,3.9,1.75,3.9,3.9v97.54C689.53,110.8,687.79,112.54,685.63,112.54z"/>
+                        <text id="15_maxDir" transform="matrix(1 0 0 1 539.1749 32.2923)" class="st3 st4 st5">//</text>
+                        <text id="15_components" transform="matrix(1 0 0 1 540.5828 101.41)" class="st3 st4 st5">//</text>
+                        <text id="15_minSpd" transform="matrix(1 0 0 1 682 101.41)" class="st3 st4 st5 st16">//</text>
+                        <text id="15_maxSpd" transform="matrix(1 0 0 1 682 32.2924)" class="st3 st4 st5 st16">//</text>
+                        <text id="15_windSpd" transform="matrix(1 0 0 1 682 69.3669)" class="st3 st4 st6 st16">//</text>
+                        <text id="15_windDir" transform="matrix(1 0 0 1 540.5827 69.3669)" class="st3 st4 st6">//</text>
+                        <text id="15_number" transform="matrix(-0.866 0.5 -0.5 -0.866 583.3942 154.5063)" class="st7 st8 st9">15</text>
+                    </g>
+                    <g id="windDisp22L">
+                        <rect x="865.62" y="114.31" class="st1" width="157.26" height="109.15"/>
+                        <path id="display22L" class="st2" d="M1017.22,221.69h-145.9c-2.16,0-3.9-1.75-3.9-3.9v-97.54c0-2.16,1.75-3.9,3.9-3.9h145.9c2.16,0,3.9,1.75,3.9,3.9v97.54C1021.12,219.94,1019.37,221.69,1017.22,221.69z"/>
+                        <text id="22L_maxDir" transform="matrix(1 0 0 1 870.7602 141.4394)" class="st3 st4 st5">//</text>
+                        <text id="22L_components" transform="matrix(1 0 0 1 872.1681 210.557)" class="st3 st4 st5">//</text>
+                        <text id="22L_minSpd" transform="matrix(1 0 0 1 1014 210.5571)" class="st3 st4 st5 st16">//</text>
+                        <text id="22L_maxSpd" transform="matrix(1 0 0 1 1014 141.4395)" class="st3 st4 st5 st16">//</text>
+                        <text id="22L_windSpd" transform="matrix(1 0 0 1 1014 178.5139)" class="st3 st4 st6 st16">//</text>
+                        <text id="22L_windDir" transform="matrix(1 0 0 1 872.168 178.5139)" class="st3 st4 st6">//</text>
+                        <text id="22L_number" transform="matrix(-0.7637 -0.6456 0.6456 -0.7637 717.7607 200.2368)" class="st7 st8 st6">22L</text>
+                    </g>
+                    <g id="windDisp33">
+                        <rect x="944.25" y="387.66" class="st1" width="157.26" height="109.15"/>
+                        <path id="display33" class="st2" d="M1095.85,495.04h-145.9c-2.16,0-3.9-1.75-3.9-3.9V393.6c0-2.16,1.75-3.9,3.9-3.9h145.9c2.16,0,3.9,1.75,3.9,3.9v97.54C1099.75,493.3,1098,495.04,1095.85,495.04z"/>
+                        <text id="33_maxDir" transform="matrix(1 0 0 1 949.3926 414.7924)" class="st3 st4 st5">//</text>
+                        <text id="33_components" transform="matrix(1 0 0 1 950.8004 483.91)" class="st3 st4 st5">//</text>
+                        <text id="33_minSpd" transform="matrix(1 0 0 1 1093 483.91)" class="st3 st4 st5 st16">//</text>
+                        <text id="33_maxSpd" transform="matrix(1 0 0 1 1093 414.7924)" class="st3 st4 st5 st16">//</text>
+                        <text id="33_windSpd" transform="matrix(1 0 0 1 1093 451.8669)" class="st3 st4 st6 st16">//</text>
+                        <text id="33_windDir" transform="matrix(1 0 0 1 950.8004 451.8669)" class="st3 st4 st6">//</text>
+                        <text id="33_number" transform="matrix(0.866 -0.5 0.5 0.866 748.8817 515.663)" class="st7 st8 st9">33</text>
+                    </g>
+                    <g id="windDisp04R">
+                        <rect x="510.12" y="516.13" class="st1" width="157.26" height="109.15"/>
+                        <path id="display04R" class="st2" d="M661.71,623.51h-145.9c-2.16,0-3.9-1.75-3.9-3.9v-97.54c0-2.16,1.75-3.9,3.9-3.9h145.9c2.16,0,3.9,1.75,3.9,3.9v97.54C665.62,621.77,663.87,623.51,661.71,623.51z"/>
+                        <text id="04R_maxDir" transform="matrix(1 0 0 1 515.2562 543.2629)" class="st3 st4 st5">//</text>
+                        <text id="04R_components" transform="matrix(1 0 0 1 516.6641 612.3806)" class="st3 st4 st5">//</text>
+                        <text id="04R_minSpd" transform="matrix(1 0 0 1 660 612.3806)" class="st3 st4 st5 st16">//</text>
+                        <text id="04R_maxSpd" transform="matrix(1 0 0 1 660 543.263)" class="st3 st4 st5 st16">//</text>
+                        <text id="04R_windSpd" transform="matrix(1 0 0 1 660 580.3375)" class="st3 st4 st6 st16">//</text>
+                        <text id="04R_windDir" transform="matrix(1 0 0 1 516.6639 580.3375)" class="st3 st4 st6">//</text>
+                        <text id="04R_number" transform="matrix(0.7663 0.6425 -0.6425 0.7663 419.1322 468.4684)" class="st7 st8 st6">04R</text>
+                    </g>
+                    <g id="windDisp04L">
+                        <rect x="184.12" y="516.13" class="st1" width="157.26" height="109.15"/>
+                        <path id="display04L" class="st2" d="M335.71,623.51h-145.9c-2.16,0-3.9-1.75-3.9-3.9v-97.54c0-2.16,1.75-3.9,3.9-3.9h145.9c2.16,0,3.9,1.75,3.9,3.9v97.54C339.62,621.77,337.87,623.51,335.71,623.51z"/>
+                        <text id="04L_maxDir" transform="matrix(1 0 0 1 189.2582 543.2629)" class="st3 st4 st5">//</text>
+                        <text id="04L_components" transform="matrix(1 0 0 1 190.6661 612.3806)" class="st3 st4 st5">//</text>
+                        <text id="04L_minSpd" transform="matrix(1 0 0 1 332 612.3806)" class="st3 st4 st5 st16">//</text>
+                        <text id="04L_maxSpd" transform="matrix(1 0 0 1 332 543.263)" class="st3 st4 st5 st16">//</text>
+                        <text id="04L_windSpd" transform="matrix(1 0 0 1 332 580.3375)" class="st3 st4 st6 st16">//</text>
+                        <text id="04L_windDir" transform="matrix(1 0 0 1 190.666 580.3375)" class="st3 st4 st6">//</text>
+                        <text id="04L_number" transform="matrix(0.7663 0.6425 -0.6425 0.7663 106.8372 470.1752)" class="st7 st8 st6">04L</text>
+                    </g>
+                </g>
+                <g id="windArrows">
+                    <polygon id="arrow22R" class="st10" points="234.23,129.75 257.94,160.34 246.76,160.34 246.76,227.28 234.23,227.28 
+                        221.94,227.28 221.94,160.16 210.53,160.16"/>
+                    <!-- EXTRA: <polygon id="arrow15" class="st10" points="471.35,63.65 495.06,94.24 483.88,94.24 483.88,161.18 471.35,161.18 459.06,161.18 
+                        459.06,94.06 447.65,94.06"/>-->
+                    <polygon id="arrow22L" class="st10" points="792.53,112.41 816.24,143 805.06,143 805.06,209.94 792.53,209.94 780.24,209.94 
+                        780.24,142.82 768.82,142.82"/>
+                    <polygon id="arrow33" class="st10" points="872.14,399.89 895.85,430.48 884.67,430.48 884.67,497.42 872.14,497.42 859.85,497.42 
+                        859.85,430.3 848.43,430.3"/>
+                    <polygon id="arrow04R" class="st10" points="433.24,539.62 456.94,570.21 445.76,570.21 445.76,637.15 433.24,637.15 
+                        420.94,637.15 420.94,570.04 409.53,570.04"/>
+                    <polygon id="arrow04L" class="st10" points="98.93,536.46 122.64,567.05 111.46,567.05 111.46,633.99 98.93,633.99 86.64,633.99 
+                        86.64,566.87 75.23,566.87"/>
+                </g>
+                <g id="infoWindow4" style="display: none;">
+                    <rect id="infoWindowBox4" x="4.59" y="654.35" class="st10" width="499.06" height="111.53"/>
+                    <text id="infoWindowText4" transform="matrix(1 0 0 1 219.3946 757.4055)" class="st11 st12 st13">
+                        <tspan id="infoWindow4_line1" class="st12 st13">...</tspan>
+                    </text>
+                </g>
+                <g id="infoWindow3" style="display: none;">
+                    <rect id="infoWindowBox3" x="749.29" y="625.28" class="st10" width="343.52" height="111.53"/>
+                    <text id="infoWindowText3" transform="matrix(1 0 0 1 761.2416 649.9836)" class="st12 st13">
+                        <tspan id="infoWindow3_line1" class="st12 st13">...</tspan>
+                        <tspan id="infoWindow3_line2" class="st12 st13" x="0" dy="1.4em">...</tspan>
+                        <tspan id="infoWindow3_line3" class="st12 st13" x="0" dy="1.4em">...</tspan>
+                    </text>
+                </g>
+                <g id="infoWindow2" style="display: none;">
+                    <rect id="infoWindowBox2" x="749.3" y="7.9" class="st10" width="343.5" height="96.5"/>
+                    <text id="infoWindowText2" transform="matrix(1 0 0 1 761.2416 32.5886)">
+                        <tspan id="infoWindow2_line1" class="st12 st13">...</tspan>
+                        <tspan id="infoWindow2_line2" class="st12 st13" x="0" dy="1.4em">...</tspan>
+                        <tspan id="infoWindow2_line3" class="st12 st13" x="0" dy="1.4em">...</tspan>
+                    </text>
+                </g>
+                <g id="infoWindow1" style="display: none;">
+                    <rect id="infoWindowBox1" x="4.6" y="233" class="st10" width="202.2" height="96.5"/>
+                    <text id="infoWindowText1" transform="matrix(1 0 0 1 16.5416 257.748)" class="st12 st13">
+                        <tspan id="infoWindow1_line1" class="st12 st13">...</tspan>
+                        <tspan id="infoWindow1_line2" class="st12 st13" x="0" dy="1.4em">...</tspan>
+                        <tspan id="infoWindow1_line3" class="st12 st13" x="0" dy="1.4em">...</tspan>
+                    </text>
+                </g>
+
+                <g id="RWYCC_windows" style="display: none;">
+                    <text id="04L_RWYCC_3" transform="matrix(1 0 0 1 372.1522 303.1568)" class="rwycc1 st4 rwycc2">//</text>
+                    <rect id="04L_RWYCC_3_box" x="355.1" y="286.2" class="rwycc3" width="60.5" height="21.8"/>
+                    <text id="04L_RWYCC_2" transform="matrix(1 0 0 1 310.188 374.5832)" class="rwycc1 st4 rwycc2">//</text>
+                    <rect id="04L_RWYCC_2_box" x="293.1" y="357.7" class="rwycc3" width="60.5" height="21.8"/>
+                    <text id="04L_RWYCC_1" transform="matrix(1 0 0 1 246.3961 450.3479)" class="rwycc1 st4 rwycc2">//</text>
+                    <rect id="04L_RWYCC_1_box" x="229.3" y="433.4" class="rwycc3" width="60.5" height="21.8"/>
+
+                    <text id="04R_RWYCC_3" transform="matrix(1 0 0 1 597.5308 393.0346)" class="rwycc1 st4 rwycc2">//</text>
+                    <rect id="04R_RWYCC_3_box" x="580.5" y="376.1" class="rwycc3" width="60.5" height="21.8"/>
+                    <text id="04R_RWYCC_2" transform="matrix(1 0 0 1 562.3544 434.581)" class="rwycc1 st4 rwycc2">//</text>
+                    <rect id="04R_RWYCC_2_box" x="545.3" y="417.7" class="rwycc3" width="60.5" height="21.8"/>
+                    <text id="04R_RWYCC_1" transform="matrix(1 0 0 1 525.9851 477.3921)" class="rwycc1 st4 rwycc2">//</text>
+                    <rect id="04R_RWYCC_1_box" x="508.9" y="460.5" class="rwycc3" width="60.5" height="21.8"/>
+
+                    <text id="15_RWYCC_3" transform="matrix(1 0 0 1 775.5638 405.633)" class="rwycc1 st4 rwycc2">//</text>
+                    <rect id="15_RWYCC_3_box" x="758.5" y="388.7" class="rwycc3" width="60.5" height="21.8"/>
+                    <text id="15_RWYCC_2" transform="matrix(1 0 0 1 745.3137 353.6613)" class="rwycc1 st4 rwycc2">//</text>
+                    <rect id="15_RWYCC_2_box" x="728.3" y="336.7" class="rwycc3" width="60.5" height="21.8"/>
+                    <text id="15_RWYCC_1" transform="matrix(1 0 0 1 716.0602 302.4469)" class="rwycc1 st4 rwycc2">//</text>
+                    <rect id="15_RWYCC_1_box" x="699" y="285.5" class="rwycc3" width="60.5" height="21.8"/>
+                </g>
+
+                <g id="RVR_values_04L" style="display: none;">
+                    <text id="rvr_04L_1" transform="matrix(1 0 0 1 175.7031 409.7856)" x="17pt" text-anchor="middle" class="st8 st17">//</text>
+                    <text id="rvr_04L_2" transform="matrix(1 0 0 1 234.7299 342.573)" x="17pt" text-anchor="middle" class="st8 st17">//</text>
+                    <text id="rvr_04L_3" transform="matrix(1 0 0 1 290.2601 277.3279)" x="17pt" text-anchor="middle" class="st8 st17">//</text>
+                </g>
+                <g id="RVR_values_04R" style="display: none;">
+                    <text id="rvr_04R_1" transform="matrix(1 0 0 1 480.5155 420.3719)" x="17pt" text-anchor="middle" class="st8 st17">//</text>
+                    <text id="rvr_04R_2" transform="matrix(1 0 0 1 517.843 376.7004)" x="17pt" text-anchor="middle" class="st8 st17">//</text>
+                    <text id="rvr_04R_3" transform="matrix(1 0 0 1 557.4194 331.8281)" x="17pt" text-anchor="middle" class="st8 st17">//</text>
+                </g>
+                <g id="RVR_values_15" style="display: none;">
+                    <text id="rvr_15_3" transform="matrix(1 0 0 1 691.8097 424.4056)" x="17pt" text-anchor="middle" class="st8 st17">//</text>
+                    <text id="rvr_15_2" transform="matrix(1 0 0 1 666.2073 379.4292)" x="17pt" text-anchor="middle" class="st8 st17">//</text>
+                    <text id="rvr_15_1" transform="matrix(1 0 0 1 641.608 335.4032)" x="17pt" text-anchor="middle" class="st8 st17">//</text>
+                </g>
+
+                <g id="trianglesArrival">
+                    <polygon id="arr04L" class="st14" points="129.76,529.93 84.88,492.3 
+                        118.83,497.39"/>
+                    <polygon id="arr22R" class="st14" points="382.1,141.13 426.84,178.95 
+                        392.9,173.72"/>
+                    <polygon id="arr22L" class="st14" points="694.78,141.5 739.51,179.31 
+                        705.58,174.09"/>
+                    <polygon id="arr15" class="st14" points="524.72,150.49 575.45,121.2 
+                        559.04,151.36"/>
+                    <polygon id="arr33" class="st14" points="804.5,518.81 753.78,548.09 
+                        770.18,517.94"/>
+                    <polygon id="arr04R" class="st14" points="442.46,530.34 397.57,492.7 
+                        431.52,497.79"/>
+                </g>
+                <g id="trianglesDeparture">
+                    <polygon id="dep04R" class="st15" points="489.32,474.9 444.43,437.26 
+                        478.39,442.35"/>
+                    <polygon id="dep04L" class="st15" points="176.05,475.18 131.16,437.55 
+                        165.11,442.64"/>
+                    <polygon id="dep22R" class="st15" points="335.59,195.72 380.48,233.35 
+                        346.52,228.26"/>
+                    <polygon id="dep22L" class="st15" points="649.28,194.94 694.17,232.57 
+                        660.22,227.48"/>
+                    <polygon id="dep33" class="st15" points="767.7,455.07 716.98,484.36 
+                        733.38,454.2"/>
+                    <polygon id="dep15" class="st15" points="563.18,217.1 613.9,187.81 
+                        597.5,217.96"/>
+                </g>
+            </svg>
+            <div id="setupDiv" style="display: none;">
+                <div id="setupContainer1" style="width: 300px; position: absolute;">
+                    <h2>Runway combination</h2>
+                    <button class="runwayButton" onclick="openV();"><strong>OPEN V</strong><br>DEP 22R<br>ARR 15</button>
+                    <button class="runwayButton" onclick="openVQjet();"><strong>OPEN V QJET</strong><br>DEP 22R, 22L<br>ARR 15</button><br>
+                    <button class="runwayButton" onclick="para22();"><strong>PARA 22</strong><br>DEP 22R<br>ARR 22L</button>
+                    <button class="runwayButton" onclick="para22Qjet();"><strong>PARA 22 QJET</strong><br>DEP 22R, 22L<br>ARR 22L</button><br>
+                    <button class="runwayButton" onclick="para04();"><strong>PARA 04</strong><br>DEP 04R<br>ARR 04L</button>
+                    <button class="runwayButton" onclick="para04Prop();"><strong>PARA 04 PROP</strong><br>DEP 04R, 15<br>ARR 04L</button><br><br>
+                    <button class="runwayButton" onclick="openT();"><strong>OPEN T (LVP)</strong><br>DEP 15<br>ARR 22R</button>
+                    <button class="runwayButton" onclick="openA();"><strong>OPEN A (LVP)</strong><br>DEP 15<br>ARR 04L</button><br>
+                    <button class="runwayButton" onclick="soir04();"><strong>SOIR 04</strong><br>DEP 04R<br>ARR 04L, 04R</button>
+                    <button class="runwayButton" onclick="soir22();"><strong>SOIR 22</strong><br>DEP 22R<br>ARR 22L, 22R</button><br>
+                </div>
+                <div id="setupContainer2" style="width: 300px; position: absolute; left: 310px;">
+                    <h2>Manual selection</h2>
+                    <h3>04L<input class="checkbox" type="checkbox" id="checkboxDep04L" name="checkboxDep04L" onclick="dep04L();">DEP<input class="checkbox" type="checkbox" id="checkboxArr04L" name="checkboxArr04L" onclick="arr04L();">ARR</h3>
+                    <h3>04R<input class="checkbox" type="checkbox" id="checkboxDep04R" name="checkboxDep04R" onclick="dep04R()">DEP<input class="checkbox" type="checkbox" id="checkboxArr04R" name="checkboxArr04R" onclick="arr04R();">ARR</h3>
+                    <h3>15&nbsp;&nbsp;<input class="checkbox" type="checkbox" id="checkboxDep15" name="checkboxDep15" onclick="dep15();">DEP<input class="checkbox" type="checkbox" id="checkboxArr15" name="checkboxArr15" onclick="arr15();">ARR</h3>
+                    <h3>33&nbsp;&nbsp;<input class="checkbox" type="checkbox" id="checkboxDep33" name="checkboxDep33" onclick="dep33();">DEP<input class="checkbox" type="checkbox" id="checkboxArr33" name="checkboxArr33" onclick="arr33();">ARR</h3>
+                    <h3>22L<input class="checkbox" type="checkbox" id="checkboxDep22L" name="checkboxDep22L" onclick="dep22L();">DEP<input class="checkbox" type="checkbox" id="checkboxArr22L" name="checkboxArr22L" onclick="arr22L();">ARR</h3>
+                    <h3>22R<input class="checkbox" type="checkbox" id="checkboxDep22R" name="checkboxDep22R" onclick="dep22R();">DEP<input class="checkbox" type="checkbox" id="checkboxArr22R" name="checkboxArr22R" onclick="arr22R();">ARR</h3>
+                </div>
+                <div id="setupContainer3" style="position: absolute; top: 400px;">
+                    <p>Please, do <b>NOT</b> distribute this weather app to users not related to Vatsim Scandinavia.</p>
+                    <p>The link to this app may change from time to time - you will find this page from our Wiki site.</p><br>
+                    <p>This app is for simulation purposes only!
+                </div>
+                
+                <!--<h2>Runway availability</h2>
+                <button id="toggle_04R_22L" value="" class="runwayButton" onclick="close_04R_22L();"><strong>04R/22L</strong><br>OPEN</button>
+                <button id="toggle_15_33" value="" class="runwayButton" onclick="close_15_33();"><strong>15/33</strong><br>OPEN</button>
+                <button id="toggle_04L_22R" value="" class="runwayButton" style="margin-bottom: 100px;" onclick="close_04L_22R();"><strong>04L/22R</strong><br>OPEN</button>
+                -->
+            </div>
+
+            <div id="atisDiv" style="display: none;">
+                <div id="atisDeporArr" style="background: linear-gradient(#bbd4f0, #77aede); text-align: center; font-size: 17pt; margin: 10px; padding: 4px; border-top-left-radius: 8px; border-top-right-radius: 8px;"></div>
+                <div id="atisInfoField" style="padding: 10pt; position: absolute; left: 14pt; right: 14pt; top: 44pt; bottom: 14pt; background-color: white;">EFHK INFO NIL</div>
+            </div>
+
+        </div>
+    </body>
+    <footer id="footer">
+        <div id="metar" class="metar">
+            //
+        </div>
+    </footer>
+</html>

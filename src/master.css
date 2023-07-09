@@ -1,0 +1,416 @@
+body {
+    margin: 0;
+    user-select: none;
+    font-family: Verdana, sans-serif;
+    font-weight: 400;
+}
+p {
+    margin-top: 2px;
+    margin-bottom: 0;
+    font-size: 10pt;
+}
+h1 {
+    margin: 0;
+    font-weight: 500;
+    line-height: 27pt;
+}
+h2 {
+    padding-left: 6pt;
+    font-family: Verdana, sans-serif;
+    font-weight: 400;
+    font-size: 14pt;
+}
+h3 {
+    padding-left: 6pt;
+    font-family: Verdana, sans-serif;
+    font-weight: 400;
+    font-size: 11pt;
+}
+span {
+    font-weight: 500;
+    font-size: 14pt;
+}
+.topnav {
+    background-image: linear-gradient(#009ac7, #007492);
+    overflow: hidden;
+    height: 62px;
+}
+.topmenuField {
+    height: 58px;
+    float: left;
+    margin-right: 14px;
+    text-align: center;
+    background-color: white;
+    border: 1px solid #dadada;
+}
+.atisButton {
+    background-color: #0570bd;
+    width: 70px;
+    border: 1px outset white;
+    border-radius: 3px;
+    margin-right: 3px;
+    text-align: center;
+    cursor: pointer;
+}
+.arr {
+    background-color: #ff9600;
+}
+.qnhField {
+    font-weight: 500;
+    line-height: 60px;
+    padding: 0pt 6pt;
+    font-size: 2.1vw;
+    cursor: pointer;
+}
+.qfeField{
+    width: 13%;
+    min-width: 130px;
+    text-align: left;
+    padding: 0pt 4pt;
+    padding-top: 2px;
+    line-height: 25px;
+    height: 56px;
+}
+hr {
+    margin: 3px 0;
+    width: 100%;
+}
+.imcvmcField {
+    font-weight: 500;
+    line-height: 60px;
+    padding: 0pt 6pt;
+    font-size: 2.1vw;
+    width: 13%;
+    min-width: 70px;
+}
+.dateField {
+    font-weight: 500;
+    color: #b5b5b5;
+    font-size: 1.5vw;
+    line-height: 60px;
+    padding: 0pt 6pt;
+    width: 13%;
+}
+.timeField {
+    font-weight: 500;
+    font-size: 2.1vw;
+    line-height: 60px;
+    padding: 0pt 6pt;
+    margin-right: 0;
+    width: 9%;
+}
+.secondField {
+    font-weight: 500;
+    font-size: 1.7vw;
+    line-height: 60px;
+    padding: 0pt 6pt;
+    margin-left: 0;
+} 
+.modeselector {
+    position: absolute;
+    right: 0;
+    font-size: 9pt;
+    color: white;
+    background-image: linear-gradient(#e5f2ff, #c0d7f0);
+    padding: 0pt 2pt;
+    border: 1px outset white;
+    border-radius: 4px;
+    cursor: pointer;
+} 
+.leftnav {
+    width: 130px;
+    position: absolute;
+    top: 62px;
+    bottom: 0;
+}
+.mainbuttons {
+    margin-top: 5px;
+    margin-bottom: 4px;
+    width: 80px; 
+    height: 80px; 
+    border-color: #b3cbe6; 
+    border-radius: 8px; 
+    border-style: solid;
+    font-size: 10pt;
+    cursor: pointer;
+    padding: 0;
+}
+.mainbuttonActive {
+    background: linear-gradient(#708fb4, #e4f0ff);
+}
+.mainbuttonInactive {
+    background: linear-gradient(#e4f0ff, #bfd6f0);
+}
+.menuTriangle {
+	border-top: 20px solid transparent;
+	border-left: 30px solid #a3bed5;
+	border-bottom: 20px solid transparent;
+    position: absolute;
+    margin-left: 85px;
+    margin-top: -62px;
+    display: none;
+}
+.container {
+    position: absolute;
+    border: 1px outset;
+    border-radius: 3px;
+    border-bottom: none;
+    top: 62px;
+    bottom: 112px;
+    left: 130px;
+    right: 0;
+}
+svg {
+    height: 840px;
+}
+.warningWindow {
+    display: none;
+}
+.lvpWindow {
+    display: none;
+}
+footer {
+    position: fixed;
+    left: 130px;
+    bottom: 0;
+    right: 0;
+    height: 100px;
+    background-color: #E8E8E8;
+    border: 1px outset;
+    border-radius: 4px;
+    padding: 5px;
+}
+.metar {
+    background-color: white;
+    border: 1px solid gray;
+    height: 100%;
+    font-size: 1.4vw;
+    padding-left: 4pt;
+    word-wrap: break-word;
+}
+.runwayButton {
+    margin-left: 6pt;
+    margin-bottom: 6pt;
+    text-align: left;
+    width: 120px;
+    cursor: pointer;
+}
+.checkbox {
+    vertical-align:top;
+    margin-left: 12pt;
+    margin-right: 4pt;
+    cursor: pointer;
+}
+div#station-list {
+    white-space: nowrap;
+    color: black;
+    font-family: "FreeSans", "Helvetica", sans-serif;
+    text-shadow: none;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+    display: flex !important;
+    flex-wrap: wrap;
+    padding-top: 80px !important;
+    padding-bottom: 80px !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    position: fixed;
+    left: 8%;
+    top: 30px;
+    width: 1000px;
+    border-radius: 5px;
+    border: solid thin gray;
+    background-color: #3A72AA;
+    box-shadow: 0px 0px 15px 0px #000;
+    z-index: 999999;
+    opacity: 1;
+}
+.airport_sel_title {
+    white-space: nowrap;
+    font-weight: bold;
+    font-family: arial, sans-serif;
+    font-size: 18pt;
+    padding-left: 10px;
+    margin: 0px;
+    margin-right: 0px;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+    position: absolute;
+    margin-top: -50px;
+    color: white;
+    text-shadow: 0px 0px 3px black;
+}
+.station-selection-button a:visited, .station-selection-button a:link {
+    color:rgba(0, 0, 0, 0.6);
+}
+.station-selection-button {
+    white-space: nowrap;
+    font-family: "FreeSans", "Helvetica", sans-serif;
+    text-shadow: none;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+    border-radius: 2px;
+    font-size: 14pt;
+    font-weight: bold;
+    text-align: left;
+    color: black;
+    line-height: 30px;
+    background: rgb(20,30,40);
+    background: rgb(177,213,237);
+    background: -moz-linear-gradient(top,  rgba(177,213,237,1) 0%, rgba(134,174,204,1) 100%);
+    background: -webkit-linear-gradient(top,  rgba(177,213,237,1) 0%,rgba(134,174,204,1) 100%);
+    background: -o-linear-gradient(top,  rgba(177,213,237,1) 0%,rgba(134,174,204,1) 100%);
+    background: -ms-linear-gradient(top,  rgba(177,213,237,1) 0%,rgba(134,174,204,1) 100%);
+    background: linear-gradient(to bottom,  rgba(177,213,237,1) 0%,rgba(134,174,204,1) 100%);
+    border-top: solid thin #eee;
+    border-left: solid thin #eee;
+    box-shadow: 2px 2px 4px 0px #222;
+    cursor: pointer;
+    height: 30px !important;
+    width: 210px !important;
+    padding: 10px;
+    margin: 8px;
+}
+a.operative{
+    color: black !important;
+}
+.station-selection-button.disabled-field {
+    color: grey !important;
+}
+.station-selection-button.operative.disabled-field {
+    white-space: nowrap;
+    font-family: "FreeSans", "Helvetica", sans-serif;
+    text-shadow: none;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+    border-radius: 2px;
+    font-size: 14pt;
+    font-weight: bold;
+    text-align: left;
+    line-height: 30px;
+    height: 30px !important;
+    width: 210px !important;
+    padding: 10px;
+    margin: 8px;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAANElEQVQIW2N8+/btfwY0sHvHOgZGdAmQoKtHEKoETBBkAFwHsiBcAl0QLLFi6ez/IDPRAQAQSiTMLt1qaQAAAABJRU5ErkJggg==);
+    opacity: .5;
+    cursor: not-allowed;
+    border: solid thin gray;
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.3);
+    color: black !important;
+}
+.station-selection-button:hover {
+    background: rgb(206,223,234);
+    background: -moz-linear-gradient(top, rgba(206,223,234,1) 0%, rgba(163,187,204,1) 100%);
+    background: -webkit-linear-gradient(top, rgba(206,223,234,1) 0%,rgba(163,187,204,1) 100%);
+    background: -o-linear-gradient(top, rgba(206,223,234,1) 0%,rgba(163,187,204,1) 100%);
+    background: -ms-linear-gradient(top, rgba(206,223,234,1) 0%,rgba(163,187,204,1) 100%);
+    background: linear-gradient(to bottom, rgba(206,223,234,1) 0%,rgba(163,187,204,1) 100%);
+    box-shadow: 1px 1px 4px 0px #222;
+}
+.station-selection-button:active {
+    box-shadow: 0px 0px 20px 0px #eef;
+}
+div#station-close-button {
+    position:absolute;
+    z-index:8888;
+    width:100px;
+    height:35px;
+    right:45%;
+    bottom:15px;
+    border-radius:2px;
+    font-family:sans-serif;
+    font-size:1em;
+    font-weight: bold;
+    text-align:center;
+    text-shadow:-1px -1px 5px rgba(240,240,240,0.6);
+    color:#111;
+    line-height:35px;
+    background: rgb(177,213,237);
+    background: -moz-linear-gradient(top,  rgba(177,213,237,1) 0%, rgba(134,174,204,1) 100%);
+    background: -webkit-linear-gradient(top,  rgba(177,213,237,1) 0%,rgba(134,174,204,1) 100%);
+    background: -o-linear-gradient(top,  rgba(177,213,237,1) 0%,rgba(134,174,204,1) 100%);
+    background: -ms-linear-gradient(top,  rgba(177,213,237,1) 0%,rgba(134,174,204,1) 100%);
+    background: linear-gradient(to bottom,  rgba(177,213,237,1) 0%,rgba(134,174,204,1) 100%);
+    border-top: solid thin #eee;
+    border-left: solid thin #eee;
+    box-shadow: 3px 3px 3px 0px #222;
+    z-index:8888;
+    cursor:pointer;
+}
+
+@media only screen and (max-width: 1300px) {
+    .qfeField{
+        width: 130px;
+    }
+    .imcvmcField {
+        width: 70px;
+    }
+    .dateField {
+        width: 120px;
+    }
+    .timeField {
+        width: 80px;
+    }
+    .secondField {
+        width: 40px;
+    }
+    svg {
+        width: 95%;
+    }
+}
+@media only screen and (max-width: 1050px) {
+    .dateField {
+        display: none;
+    }
+}
+@media only screen and (max-width: 880px) {
+    .timeField {
+        display: none;
+    }
+    .secondField {
+        display: none;
+    }
+}
+@media only screen and (max-height: 1000px) {
+    svg {
+        height: 100%;
+    }
+    footer {
+        height: 10%;
+    }
+    .container {
+        bottom: 10%;
+    }
+}
+.metRepField {
+    background-color: #77aede;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 4pt;
+    padding-right: 4pt;
+    border-radius: 5px;
+    margin-left: 6pt;
+    width: 60%;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 4px;
+}
+.metRepFieldData {
+    font-weight: 500;
+    background-color: white;
+    font-size: 1.0vw;
+    height: 24px;
+    line-height: 24px;
+    width:auto;
+    margin-left: 80px;
+    margin-top: -27px;
+}
+.tafField {
+    width: 92%;
+    margin-right: 4px;
+    height: 90px;
+}
+.metRepFieldTaf {
+    height: 84px;
+}
