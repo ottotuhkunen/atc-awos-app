@@ -317,7 +317,7 @@ function loadActualMet(xml) {
     document.getElementById("metCurrentQfe22L").textContent = currentQnh - 6.5;
 
 
-    // Fetching TAF:
+    // Fetching TAF and METAR data:
     var myHeaders = new Headers();
     myHeaders.append("X-API-Key", "bcad5819aedc44a7aa9b4705be");
 
@@ -330,7 +330,7 @@ function loadActualMet(xml) {
     fetch("https://api.checkwx.com/taf/EFHK", requestOptions)
     .then(response => response.json())
     .then(result => {
-        document.getElementById("metTaf").textContent = result.data[0];
+        document.getElementById("metTaf").textContent = result.data[0] + "=";
     })
     .catch(error => console.log('error', error));
 
