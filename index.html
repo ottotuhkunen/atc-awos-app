@@ -36,21 +36,21 @@
             </div>
         </div>
         <div class="leftnav">
-            <button id="mainButton" class="mainbuttons mainbuttonActive">
+            <button id="mainButton" class="mainbuttons mainbuttonActive" onclick="saveConfig(); location.reload();">
                 <img src="src/main.png" style="width: 65px; height: auto;" alt="rwy" onclick="saveConfig(); location.reload();">Main
             </button>
             <div id="menuTriangle1" class="menuTriangle" style="display: block;"></div>
-            <!--
-            <button class="mainbuttons">
-                <img src="src/rwymenu.png" style="width: 60px; height: auto;" alt="rwy"><br><br>04R-22L
+            
+            <button onclick="openRWYCC('04R')" class="mainbuttons mainbuttonInactive">
+                <img onclick="openRWYCC('04R')" src="src/rwymenu.png" style="width: 60px; height: auto;" alt="rwy"><br><br>04R-22L
             </button>
-            <button class="mainbuttons">
-                <img src="src/rwymenu.png" style="width: 60px; height: auto;" alt="rwy"><br><br>15-33
+            <button onclick="openRWYCC('15')" class="mainbuttons mainbuttonInactive">
+                <img onclick="openRWYCC('15')" src="src/rwymenu.png" style="width: 60px; height: auto;" alt="rwy"><br><br>15-33
             </button>
-            <button class="mainbuttons">
-                <img src="src/rwymenu.png" style="width: 60px; height: auto;" alt="rwy"><br><br>04L-22R
+            <button onclick="openRWYCC('04L')" class="mainbuttons mainbuttonInactive">
+                <img onclick="openRWYCC('04L')" src="src/rwymenu.png" style="width: 60px; height: auto;" alt="rwy"><br><br>04L-22R
             </button>
-            <button id="metrepButton" class="mainbuttons mainbuttonInactive" style="font-size: 8pt; cursor: not-allowed;">
+            <!--<button id="metrepButton" class="mainbuttons mainbuttonInactive" style="font-size: 8pt; cursor: not-allowed;">
                 <img src="src/metrep.png" style="width: 35px; height: auto;" alt="rwy" onclick="metrep();"><br><br>MET REPORT
             </button>
             <div id="menuTriangle2" class="menuTriangle"></div>

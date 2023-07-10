@@ -104,4 +104,3 @@ function fetchInformation(){
     .catch(error => console.log('error', error));
 }
 
-//<tspan class="st12 st13">•</tspan>
