@@ -32,6 +32,9 @@ function getDate2(){
 
     if (h > 19 || h < 2) {
         document.getElementById("checkboxDep15").disabled = true;
+        document.getElementById("checkboxArr15").disabled = true;
+        document.getElementById("checkboxDep33").disabled = true;
+        document.getElementById("checkboxArr33").disabled = true;
         document.getElementById("bringToFront04R22L").style.display = "block";
         document.getElementById("rwy15").style.fill = "#d81715";
         document.getElementById("15_number").style.fill = "#dad7d4";
@@ -39,9 +42,9 @@ function getDate2(){
     }
     else {
         document.getElementById("checkboxDep15").disabled = false;
-        document.getElementById("checkboxArr15").disabled = false;
-        document.getElementById("checkboxDep33").disabled = false;
-        document.getElementById("checkboxArr33").disabled = false;
+        document.getElementById("checkboxArr15").disabled = true;
+        document.getElementById("checkboxDep33").disabled = true;
+        document.getElementById("checkboxArr33").disabled = true;
         if (document.getElementById("rwy15").style.fill == "#d81715") {
             document.getElementById("rwy15").style.fill = "#B5B5B5";
             document.getElementById("15_number").style.fill = "#DADADA";
