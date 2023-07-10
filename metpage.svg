@@ -1,0 +1,176 @@
+
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1202 610" style="enable-background:new 0 0 1202 610;" xml:space="preserve">
+	<style type="text/css">
+		.st0{fill:#77AEDE;}
+		.stt1{fill:#3F3F3F;}
+		.stt2{font-family:'Verdana-Bold';}
+		.stt3{font-size:16px;}
+		.stt4{fill:#FFFFFF;}
+		.stt5{font-family:'Verdana';}
+		.stt6{font-size:24px;}
+		.stt7{font-size:12px;}
+		.stt8{fill:#FFFFFF;stroke:#595959;stroke-miterlimit:10;}
+		.stt9{fill:none;stroke:#595959;stroke-miterlimit:10;}
+		.stt10{font-size:20px;}
+	</style>
+	<g id="metField1">
+		<path class="st0" d="M790.4,40H20.6c-3.09,0-5.6-2.51-5.6-5.6V8.6C15,5.51,17.51,3,20.6,3H790.4c3.09,0,5.6,2.51,5.6,5.6V34.4
+			C796,37.49,793.49,40,790.4,40z"/>
+		<text transform="matrix(1 0 0 1 22.7329 26.4209)" class="stt1 stt2 stt3">HEADER</text>
+		<rect x="104" y="6" class="stt4" width="689" height="31"/>
+		<text id="metHeader" transform="matrix(1 0 0 1 106.7329 30.4209)" class="stt5 stt6">EFHK 101650Z</text>
+	</g>
+	<g id="metField2">
+		<path class="st0" d="M790.4,79H20.6c-3.09,0-5.6-2.51-5.6-5.6V47.6c0-3.09,2.51-5.6,5.6-5.6H790.4c3.09,0,5.6,2.51,5.6,5.6V73.4
+			C796,76.49,793.49,79,790.4,79z"/>
+		<text transform="matrix(1 0 0 1 22.7329 65.4209)" class="stt1 stt2 stt3">WIND</text>
+		<rect x="104" y="45" class="stt4" width="689" height="31"/>
+		<text id="metWind" transform="matrix(1 0 0 1 106.7329 69.4209)" class="stt5 stt6">RWY 04L TDZ 200/5KT END 210/6KT</text>
+	</g>
+	<g id="metField3">
+		<path class="st0" d="M790.4,118H20.6c-3.09,0-5.6-2.51-5.6-5.6V86.6c0-3.09,2.51-5.6,5.6-5.6H790.4c3.09,0,5.6,2.51,5.6,5.6v25.79
+			C796,115.49,793.49,118,790.4,118z"/>
+		<text transform="matrix(1 0 0 1 22.7329 104.4209)" class="stt1 stt2 stt3">VIS</text>
+		<rect x="104" y="84" class="stt4" width="689" height="31"/>
+		<text id="metVis" transform="matrix(1 0 0 1 106.7329 108.4209)" class="stt5 stt6">10KM</text>
+	</g>
+	<g id="metField4">
+		<path class="st0" d="M790.4,157H20.6c-3.09,0-5.6-2.51-5.6-5.6V125.6c0-3.09,2.51-5.6,5.6-5.6H790.4c3.09,0,5.6,2.51,5.6,5.6v25.79
+			C796,154.49,793.49,157,790.4,157z"/>
+		<text transform="matrix(1 0 0 1 22.7329 143.4209)" class="stt1 stt2 stt3">RVR</text>
+		<rect x="104" y="123" class="stt4" width="689" height="31"/>
+		<text id="metRvr" transform="matrix(1 0 0 1 106.7329 147.4209)" class="stt5 stt6">2000M</text>
+	</g>
+	<g id="metField5">
+		<path class="st0" d="M790.4,196H20.6c-3.09,0-5.6-2.51-5.6-5.6V164.6c0-3.09,2.51-5.6,5.6-5.6H790.4c3.09,0,5.6,2.51,5.6,5.6v25.79
+			C796,193.49,793.49,196,790.4,196z"/>
+		<text transform="matrix(1 0 0 1 22.7329 182.4209)" class="stt1 stt2 stt3">RVR2</text>
+		<rect x="104" y="162" class="stt4" width="689" height="31"/>
+		<text id="metRvr2" transform="matrix(1 0 0 1 106.7329 186.4209)" class="stt5 stt6">2000M</text>
+	</g>
+	<g id="metField6">
+		<path class="st0" d="M790.4,235H20.6c-3.09,0-5.6-2.51-5.6-5.6V203.6c0-3.09,2.51-5.6,5.6-5.6H790.4c3.09,0,5.6,2.51,5.6,5.6v25.79
+			C796,232.49,793.49,235,790.4,235z"/>
+		<text transform="matrix(1 0 0 1 22.7329 221.4209)" class="stt1 stt2 stt3">RVR3</text>
+		<rect x="104" y="201" class="stt4" width="689" height="31"/>
+		<text id="metRvr3" transform="matrix(1 0 0 1 106.7329 225.4209)" class="stt5 stt6">2000M</text>
+	</g>
+	<g id="metField7">
+		<path class="st0" d="M790.4,274H20.6c-3.09,0-5.6-2.51-5.6-5.6V242.6c0-3.09,2.51-5.6,5.6-5.6H790.4c3.09,0,5.6,2.51,5.6,5.6v25.79
+			C796,271.49,793.49,274,790.4,274z"/>
+		<text transform="matrix(1 0 0 1 22.7329 260.4209)" class="stt1 stt2 stt3">CLOUDS</text>
+		<rect x="104" y="240" class="stt4" width="689" height="31"/>
+		<text id="metClouds" transform="matrix(1 0 0 1 106.7329 264.4209)" class="stt5 stt6">FEW040</text>
+	</g>
+	<g id="metField8">
+		<path class="st0" d="M790.4,314H20.6c-3.09,0-5.6-2.51-5.6-5.6V282.6c0-3.09,2.51-5.6,5.6-5.6H790.4c3.09,0,5.6,2.51,5.6,5.6v25.79
+			C796,311.49,793.49,314,790.4,314z"/>
+		<text transform="matrix(1 0 0 1 22.7329 300.4209)" class="stt1 stt2 stt3">WX</text>
+		<rect x="104" y="280" class="stt4" width="689" height="31"/>
+		<text id="metWx" transform="matrix(1 0 0 1 106.7329 304.4209)" class="stt5 stt6">CAVOK</text>
+	</g>
+	<g id="metField9">
+		<path class="st0" d="M349.4,354.03h-329c-3.09,0-5.6-2.51-5.6-5.6v-25.79c0-3.09,2.51-5.6,5.6-5.6h329c3.09,0,5.6,2.51,5.6,5.6
+			v25.79C355,351.52,352.49,354.03,349.4,354.03z"/>
+		<text transform="matrix(1 0 0 1 22.527 340.4503)" class="stt1 stt2 stt3">TA</text>
+		<rect x="103.79" y="320.03" class="stt4" width="248.21" height="31"/>
+		<text id="metTa" transform="matrix(1 0 0 1 106.527 344.4503)" class="stt5 stt6">20</text>
+	</g>
+	<g id="metField10">
+		<path class="st0" d="M790.03,354.03h-329c-3.09,0-5.6-2.51-5.6-5.6v-25.79c0-3.09,2.51-5.6,5.6-5.6h329c3.09,0,5.6,2.51,5.6,5.6
+			v25.79C795.63,351.52,793.12,354.03,790.03,354.03z"/>
+		<text transform="matrix(1 0 0 1 463.1594 340.4503)" class="stt1 stt2 stt3">TD</text>
+		<rect x="544.43" y="320.03" class="stt4" width="248.21" height="31"/>
+		<text id="metTd" transform="matrix(1 0 0 1 547.1594 344.4503)" class="stt5 stt6">09</text>
+	</g>
+	<g id="metField11">
+		<path class="st0" d="M349.73,394.03h-329c-3.09,0-5.6-2.51-5.6-5.6v-25.79c0-3.09,2.51-5.6,5.6-5.6h329c3.09,0,5.6,2.51,5.6,5.6
+			v25.79C355.34,391.52,352.83,394.03,349.73,394.03z"/>
+		<text transform="matrix(1 0 0 1 22.8652 380.4503)" class="stt1 stt2 stt3">QNH</text>
+		<rect x="104.13" y="360.03" class="stt4" width="248.21" height="31"/>
+		<text id="metQnh" transform="matrix(1 0 0 1 106.8653 384.4503)" class="stt5 stt6">1018</text>
+	</g>
+	<g id="metField12">
+		<path class="st0" d="M790.09,394.21h-329c-3.09,0-5.6-2.51-5.6-5.6v-25.79c0-3.09,2.51-5.6,5.6-5.6h329c3.09,0,5.6,2.51,5.6,5.6
+			v25.79C795.69,391.7,793.18,394.21,790.09,394.21z"/>
+		<text transform="matrix(1 0 0 1 463.2182 380.6268)" class="stt1 stt2 stt3">QFE</text>
+		<rect x="544.49" y="360.21" class="stt4" width="248.21" height="31"/>
+		<text id="metQfe" transform="matrix(1 0 0 1 547.2183 384.6268)" class="stt5 stt6">1011</text>
+	</g>
+	<g id="metField13">
+		<path class="st0" d="M790.4,434H20.6c-3.09,0-5.6-2.51-5.6-5.6V402.6c0-3.09,2.51-5.6,5.6-5.6H790.4c3.09,0,5.6,2.51,5.6,5.6v25.79
+			C796,431.49,793.49,434,790.4,434z"/>
+		<text transform="matrix(1 0 0 1 22.7329 420.4209)" class="stt1 stt2 stt3">TREND</text>
+		<rect x="104" y="400" class="stt4" width="689" height="31"/>
+		<text id="metTrend" transform="matrix(1 0 0 1 106.7329 424.4209)" class="stt5 stt6">NOSIG</text>
+	</g>
+	<g id="metField14">
+		<path class="st0" d="M1186.4,518H20.6c-3.09,0-5.6-2.51-5.6-5.6V442.6c0-3.09,2.51-5.6,5.6-5.6H1186.4c3.09,0,5.6,2.51,5.6,5.6
+			v69.79C1192,515.49,1189.49,518,1186.4,518z"/>
+		<text transform="matrix(1 0 0 1 22.7329 482.4209)" class="stt1 stt2 stt3">TAF</text>
+		<rect x="104" y="440" class="stt4" width="1084" height="75"/>
+		<text id="metTaf" transform="matrix(1 0 0 1 106.7329 456.4209)" class="stt5 stt3">TAF EFHK 101430Z 1015/1115 30006KT CAVOK=</text>
+	</g>
+	<g id="metField15">
+		<path class="st0" d="M1186.4,602H20.6c-3.09,0-5.6-2.51-5.6-5.6V526.6c0-3.09,2.51-5.6,5.6-5.6H1186.4c3.09,0,5.6,2.51,5.6,5.6
+			v69.79C1192,599.49,1189.49,602,1186.4,602z"/>
+		<text transform="matrix(1 0 0 1 22.7329 566.4209)" class="stt1 stt2 stt7">WARNINGS</text>
+		<rect x="104" y="524" class="stt4" width="1084" height="75"/>
+		<text id="metWarnings" transform="matrix(1 0 0 1 106.7329 540.4209)" class="stt5 stt3">NO ACTUAL WARNINGS</text>
+	</g>
+	<g id="currentField">
+		<g id="irrelevantFields">
+			<rect x="902.5" y="34.5" class="stt8" width="260" height="27"/>
+			<rect x="902.5" y="302.5" class="stt8" width="260" height="27"/>
+			<rect x="904.5" y="111.5" class="stt8" width="123" height="27"/>
+			<rect x="904.5" y="153.5" class="stt8" width="123" height="27"/>
+			<rect x="904.5" y="195.5" class="stt8" width="123" height="27"/>
+			<rect x="1039.5" y="111.5" class="stt8" width="123" height="27"/>
+			<rect x="1039.5" y="153.5" class="stt8" width="123" height="27"/>
+			<rect x="1039.5" y="195.5" class="stt8" width="123" height="27"/>
+			<rect x="904.5" y="253.5" class="stt8" width="118" height="27"/>
+			<rect x="1044.5" y="253.5" class="stt8" width="118" height="27"/>
+			<rect x="904.5" y="391.5" class="stt8" width="118" height="27"/>
+			<rect x="1044.5" y="391.5" class="stt8" width="118" height="27"/>
+			<text transform="matrix(1 0 0 1 865.2759 53.4209)" class="stt5 stt7">VIS</text>
+			<text transform="matrix(1 0 0 1 844.1997 173.4209)" class="stt5 stt7">CLOUD</text>
+			<text transform="matrix(1 0 0 1 857.4067 271.4209)" class="stt5 stt7">T/DP</text>
+			<text transform="matrix(1 0 0 1 1002.8501 265.4209)" class="stt5 stt7">°C</text>
+			<text transform="matrix(1 0 0 1 1142.8501 265.4209)" class="stt5 stt7">°C</text>
+			<text transform="matrix(1 0 0 1 1135.6958 314.4209)" class="stt5 stt7">hPa</text>
+			<text transform="matrix(1 0 0 1 1135.6958 403.4209)" class="stt5 stt7">hPa</text>
+			<text transform="matrix(1 0 0 1 995.6958 403.4209)" class="stt5 stt7">hPa</text>
+			<text transform="matrix(1 0 0 1 859.2935 320.4209)" class="stt5 stt7">QNH</text>
+			<text transform="matrix(1 0 0 1 862.8032 392.4209)" class="stt5 stt7">QFE</text>
+			<text transform="matrix(1 0 0 1 926.7915 372.4209)" class="stt5 stt3">RWY 04R</text>
+			<text transform="matrix(1 0 0 1 1029.1001 271.4209)" class="stt5 stt3">/</text>
+			<text transform="matrix(1 0 0 1 1066.7915 372.4209)" class="stt5 stt3">RWY 04R</text>
+			<path class="stt9" d="M1171.07,96.5H821.93c-2.45,0-4.43-1.99-4.43-4.43V4.43c0-2.45,1.99-4.43,4.43-4.43h349.13
+				c2.45,0,4.43,1.99,4.43,4.43v87.63C1175.5,94.51,1173.51,96.5,1171.07,96.5z"/>
+			<path class="stt9" d="M1171.07,242.5H821.93c-2.45,0-4.43-1.99-4.43-4.43V100.93c0-2.45,1.99-4.43,4.43-4.43h349.13
+				c2.45,0,4.43,1.99,4.43,4.43v137.13C1175.5,240.51,1173.51,242.5,1171.07,242.5z"/>
+			<path class="stt9" d="M1171.07,291.5H821.93c-2.45,0-4.43-1.99-4.43-4.43v-40.13c0-2.45,1.99-4.43,4.43-4.43h349.13
+				c2.45,0,4.43,1.99,4.43,4.43v40.13C1175.5,289.51,1173.51,291.5,1171.07,291.5z"/>
+			<path class="stt9" d="M1171.07,340.5H821.93c-2.45,0-4.43-1.99-4.43-4.43v-40.13c0-2.45,1.99-4.43,4.43-4.43h349.13
+				c2.45,0,4.43,1.99,4.43,4.43v40.13C1175.5,338.51,1173.51,340.5,1171.07,340.5z"/>
+			<path class="stt9" d="M1171.07,434.5H821.93c-2.45,0-4.43-1.99-4.43-4.43v-85.13c0-2.45,1.99-4.43,4.43-4.43h349.13
+				c2.45,0,4.43,1.99,4.43,4.43v85.13C1175.5,432.51,1173.51,434.5,1171.07,434.5z"/>
+			<line class="stt9" x1="891.35" y1="0" x2="891.35" y2="434.5"/>
+		</g>
+		<g id="inputFields">
+			<text id="metCurrentVis" transform="matrix(1 0 0 1 1000.7053 55.9001)" class="stt5 stt10">50000</text>
+			<text id="metCurrentQnh" transform="matrix(1 0 0 1 997.0676 323.9001)" class="stt5 stt10">1018.3</text>
+			<text id="metCurrentQfe04R" transform="matrix(1 0 0 1 916.0676 412.9001)" class="stt5 stt10">1012.4</text>
+			<text id="metCurrentQfe22L" transform="matrix(1 0 0 1 1056.0676 412.9001)" class="stt5 stt10">1012.4</text>
+			<text id="metCurrentCloud_id1" transform="matrix(1 0 0 1 946.512 216.9001)" class="stt5 stt10">SCT</text>
+			<text id="metCurrentTemp" transform="matrix(1 0 0 1 927.7825 273.9001)" class="stt5 stt10">19.5</text>
+			<text id="metCurrentDewpoint" transform="matrix(1 0 0 1 1073.1399 273.9001)" class="stt5 stt10">9.3</text>
+			<text id="metCurrentCloud_id2" transform="matrix(1 0 0 1 946.512 174.9001)" class="stt5 stt10">SCT</text>
+			<text id="metCurrentCloud_id3" transform="matrix(1 0 0 1 946.512 132.9001)" class="stt5 stt10">SCT</text>
+			<text id="metCurrentCloud_alt3" transform="matrix(1 0 0 1 1082.4202 132.9001)" class="stt5 stt10">050</text>
+			<text id="metCurrentCloud_alt2" transform="matrix(1 0 0 1 1082.4202 174.9001)" class="stt5 stt10">040</text>
+			<text id="metCurrentCloud_alt3" transform="matrix(1 0 0 1 1082.4202 216.9001)" class="stt5 stt10">030</text>
+		</g>
+	</g>
+</svg>

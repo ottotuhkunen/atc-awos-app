@@ -1,12 +1,17 @@
 function metrep(){
     document.getElementById("menuTriangle1").style.display = "none";
     document.getElementById("menuTriangle2").style.display = "block";
-    //document.getElementById("menuTriangle3").style.display = "none";
-    //document.getElementById("menuTriangle4").style.display = "none";
+    document.getElementById("menuTriangle3").style.display = "none";
     document.getElementById("mainButton").classList = "mainbuttons mainbuttonInactive"; 
-    //document.getElementById("metrepButton").classList = "mainbuttons mainbuttonActive"; 
-    //document.getElementById("adSelectionButton").classList = "mainbuttons mainbuttonInactive"; 
+    document.getElementById("metrepButton").classList = "mainbuttons mainbuttonActive"; 
     document.getElementById("setupButton").classList = "mainbuttons mainbuttonInactive";
+    document.getElementById("atisDiv").style.display = "none";
+    document.getElementById("mainSvg").style.display = "none";
+    document.getElementById("setupDiv").style.display = "none";
+    document.getElementById("metrepDiv").style.display = "block";
+
+    loadMetRep();
+    loadCurrentMet();
 }
 
 function setup(){
@@ -14,13 +19,12 @@ function setup(){
     document.getElementById("mainSvg").style.display = "none";
     document.getElementById("setupDiv").style.display = "block";
     document.getElementById("menuTriangle1").style.display = "none";
-    document.getElementById("menuTriangle2").style.display = "block";
-    //document.getElementById("menuTriangle3").style.display = "none";
-    //document.getElementById("menuTriangle4").style.display = "block";
+    document.getElementById("menuTriangle2").style.display = "none";
+    document.getElementById("menuTriangle3").style.display = "block";
     document.getElementById("mainButton").classList = "mainbuttons mainbuttonInactive"; 
-    //document.getElementById("metrepButton").classList = "mainbuttons mainbuttonInactive"; 
-    //document.getElementById("adSelectionButton").classList = "mainbuttons mainbuttonInactive"; 
-    document.getElementById("setupButton").classList = "mainbuttons mainbuttonActive"; 
+    document.getElementById("metrepButton").classList = "mainbuttons mainbuttonInactive"; 
+    document.getElementById("setupButton").classList = "mainbuttons mainbuttonActive";
+    document.getElementById("metrepDiv").style.display = "none";
 }
 
 function openDepATIS(){
@@ -212,3 +216,172 @@ function getRWYCCValues(){
     .catch(error => console.log('error', error));
 }
 
+function loadMetRep() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            setMetRep(this);
+        }
+    };
+    xhttp.open("GET", "https://opendata.fmi.fi/wfs?service=WFS&version=2.0.0&request=getFeature&storedquery_id=fmi::avi::observations::iwxxm&icaocode=EFHK", true); 
+    xhttp.send();
+}
+
+function setMetRep(xml) {
+    var xmlDoc = xml.responseXML;
+
+    var headers = xmlDoc.getElementsByTagName('gml:timePosition');
+    var header = headers[headers.length-1].childNodes[0].nodeValue;
+    document.getElementById("metHeader").textContent = "EFHK " + header;
+
+    var viss = xmlDoc.getElementsByTagName('iwxxm:prevailingVisibility');
+    var vis = viss[viss.length-1].childNodes[0].nodeValue;
+    if (vis == "9999.0") {
+        vis = "10KM";
+    }
+    document.getElementById("metVis").textContent = vis;
+
+    var temps = xmlDoc.getElementsByTagName('iwxxm:airTemperature');
+    var temp = temps[temps.length-1].childNodes[0].nodeValue;
+    document.getElementById("metTa").textContent = Math.round(temp);
+
+    var dews = xmlDoc.getElementsByTagName('iwxxm:dewpointTemperature');
+    var dew = dews[dews.length-1].childNodes[0].nodeValue;
+    document.getElementById("metTd").textContent = Math.round(dew);
+
+    var qnhs = xmlDoc.getElementsByTagName('iwxxm:qnh');
+    var qnh = qnhs[qnhs.length-1].childNodes[0].nodeValue;
+    document.getElementById("metQnh").textContent = Math.round(qnh);
+
+    document.getElementById("metQfe").textContent = Math.round(qnh - 7);
+}
+
+function loadCurrentMet() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        loadActualMet(this);
+      }
+    };
+    //AIRPORT SPECIFIC
+    xhttp.open("GET", "https://opendata.fmi.fi/wfs?service=WFS&version=2.0.0&request=getFeature&storedquery_id=fmi::observations::weather::simple&fmisid=100968", true); 
+    xhttp.send();
+    fetchInformation();
+    setTimeout(loadFMI, 60000);
+}
+
+function loadActualMet(xml) {
+    var xmlDoc = xml.responseXML;
+
+    var xmlSize = xmlDoc.getElementsByTagName("BsWfs:ParameterName");
+    var table = new Array(xmlSize.length);
+
+    for(var i = 0; i < xmlSize.length; i++) {
+        table[i] = new Array(2);
+        table[i][0] = xmlDoc.getElementsByTagName("BsWfs:ParameterName")[i].childNodes[0].nodeValue;
+        table[i][1] = xmlDoc.getElementsByTagName("BsWfs:ParameterValue")[i].childNodes[0].nodeValue;
+    }
+
+    table = table.slice(-15, -1);
+
+    var currentQnh = 0;
+    var currentVisibility = 0;
+    var currentDewpoint = 0;
+    var currentTemperature = 0;
+
+    for (var i = 0; i < table.length; i++) {
+        if (table[i][0] === "p_sea") {
+          currentQnh = table[i][1];
+        }
+        if (table[i][0] === "vis") {
+          currentVisibility = table[i][1];
+        }
+        if (table[i][0] === "td") {
+          currentDewpoint = table[i][1];
+        }
+        if (table[i][0] === "t2m") {
+          currentTemperature = table[i][1];
+        }
+    }
+
+    var roundedCurrentVisibility = Math.round(currentVisibility / 500) * 500;
+    if (roundedCurrentVisibility >= 50000) {
+        roundedCurrentVisibility = 50000;
+    }
+
+    document.getElementById("metCurrentVis").textContent = roundedCurrentVisibility;
+    document.getElementById("metCurrentTemp").textContent = currentTemperature;
+    document.getElementById("metCurrentDewpoint").textContent = currentDewpoint;
+    document.getElementById("metCurrentQnh").textContent = currentQnh;
+    document.getElementById("metCurrentQfe04R").textContent = currentQnh - 5.9;
+    document.getElementById("metCurrentQfe22L").textContent = currentQnh - 6.5;
+
+
+    // Fetching TAF:
+    var myHeaders = new Headers();
+    myHeaders.append("X-API-Key", "bcad5819aedc44a7aa9b4705be");
+
+    var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+    };
+
+    fetch("https://api.checkwx.com/taf/EFHK", requestOptions)
+    .then(response => response.json())
+    .then(result => {
+        document.getElementById("metTaf").textContent = result.data[0];
+    })
+    .catch(error => console.log('error', error));
+
+    fetch("https://api.checkwx.com/metar/EFHK/decoded", requestOptions)
+    .then(response => response.json())
+    .then(result => {
+
+        const metarWindDir = result.data[0].wind.degrees;
+        const metarWindSpd = result.data[0].wind.speed_kts;
+        if (metarWindDir == 0) {
+            document.getElementById("metWind").textContent = "RWY 04L TDZ VRB " + metarWindSpd + "KT END VRB " + metarWindSpd + "KT";
+        }
+        else if (metarWindSpd == 0) {
+            document.getElementById("metWind").textContent = "RWY 04L TDZ CALM END CALM";
+        } else {
+            document.getElementById("metWind").textContent = `RWY 04L TDZ ${result.data[0].wind.degrees}/${result.data[0].wind.speed_kts}KT END ${result.data[0].wind.degrees}/${result.data[0].wind.speed_kts}`;
+        }
+
+        let allConditionsText = '';
+
+        if (result.data[0].conditions) {
+            result.data[0].conditions.forEach(condition => {
+                allConditionsText += `${condition.code} `;
+            });
+        }
+
+        let allCloudsText = '';
+        result.data[0].clouds.forEach((cloud, index) => {
+            // All clouds
+            allCloudsText += cloud.code + " " + cloud.base_feet_agl + " ";
+            // Get elements
+            const feetElement = document.getElementById(`metCurrentCloud_alt${index + 1}`);
+            const codeElement = document.getElementById(`metCurrentCloud_id${index + 1}`);
+            const allCloudsElement = document.getElementById('metClouds');
+
+            // Update fields
+            if (allCloudsText.includes("CAVOK")) {
+                if (allCloudsElement) allCloudsElement.textContent = "";
+                if (feetElement) feetElement.textContent = "";
+                if (codeElement) codeElement.textContent = "";
+                document.getElementById("metWx").textContent = "CAVOK";
+            } else {
+                if (feetElement) feetElement.textContent = cloud.base_feet_agl;
+                if (codeElement) codeElement.textContent = cloud.code;
+                if (allCloudsElement) allCloudsElement.textContent = allCloudsText;
+                document.getElementById("metWx").textContent = allConditionsText;
+            }
+            
+        });
+    })
+    .catch(error => console.log('error', error));
+
+
+}
