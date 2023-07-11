@@ -28,8 +28,6 @@ function getDate2(){
     var dateUtc = new Date();
     var h = dateUtc.getUTCHours();
 
-    console.log(h);
-
     if (h > 19 || h < 2) {
         document.getElementById("checkboxDep15").disabled = true;
         document.getElementById("checkboxArr15").disabled = true;

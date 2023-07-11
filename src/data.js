@@ -86,7 +86,7 @@ function setData(xml) {
     document.getElementById("04R_windDir").innerHTML = randomWindDirection(windDirection, "arrow04R", "04R_maxDir", roundedWindSpeed);
 
     //WIND CALM
-    if (roundedWindSpeed < 1) {
+    if (roundedWindSpeed < 2) {
       document.getElementById("22R_windDir").style.display = "none";
       document.getElementById("22R_maxDir").style.display = "none";
       document.getElementById("22R_windSpd").innerHTML = "CALM";
@@ -429,6 +429,10 @@ function setMetarData(xml) {
     document.getElementById("rvr_04L_1").textContent = randomRVR_04L[0];
     document.getElementById("rvr_04L_2").textContent = randomRVR_04L[1];
     document.getElementById("rvr_04L_3").textContent = randomRVR_04L[2];
+
+    document.getElementById("metRvr").textContent = randomRVR_04L[0];
+    document.getElementById("metRvr2").textContent = randomRVR_04L[1];
+    document.getElementById("metRvr3").textContent = randomRVR_04L[2];
   } 
 
   // RVR 04R
@@ -440,6 +444,10 @@ function setMetarData(xml) {
     document.getElementById("rvr_04R_1").textContent = randomRVR_04R[0];
     document.getElementById("rvr_04R_2").textContent = randomRVR_04R[1];
     document.getElementById("rvr_04R_3").textContent = randomRVR_04R[2];
+
+    document.getElementById("metRvr").textContent = randomRVR_04L[0];
+    document.getElementById("metRvr2").textContent = randomRVR_04L[1];
+    document.getElementById("metRvr3").textContent = randomRVR_04L[2];
   } 
 
   // RVR 15
@@ -451,6 +459,10 @@ function setMetarData(xml) {
     document.getElementById("rvr_15_1").textContent = randomRVR_15[0];
     document.getElementById("rvr_15_2").textContent = randomRVR_15[1];
     document.getElementById("rvr_15_3").textContent = randomRVR_15[2];
+
+    document.getElementById("metRvr").textContent = randomRVR_04L[0];
+    document.getElementById("metRvr2").textContent = randomRVR_04L[1];
+    document.getElementById("metRvr3").textContent = randomRVR_04L[2];
   } 
 
   // RVR 33
@@ -462,6 +474,10 @@ function setMetarData(xml) {
     document.getElementById("rvr_15_1").textContent = randomRVR_33[0];
     document.getElementById("rvr_15_2").textContent = randomRVR_33[1];
     document.getElementById("rvr_15_3").textContent = randomRVR_33[2];
+
+    document.getElementById("metRvr").textContent = randomRVR_04L[0];
+    document.getElementById("metRvr2").textContent = randomRVR_04L[1];
+    document.getElementById("metRvr3").textContent = randomRVR_04L[2];
   } 
 
   // RVR 22L
@@ -473,6 +489,10 @@ function setMetarData(xml) {
     document.getElementById("rvr_04R_1").textContent = randomRVR_22L[0];
     document.getElementById("rvr_04R_2").textContent = randomRVR_22L[1];
     document.getElementById("rvr_04R_3").textContent = randomRVR_22L[2];
+
+    document.getElementById("metRvr").textContent = randomRVR_04L[0];
+    document.getElementById("metRvr2").textContent = randomRVR_04L[1];
+    document.getElementById("metRvr3").textContent = randomRVR_04L[2];
   } 
 
   // RVR 22R
@@ -484,6 +504,10 @@ function setMetarData(xml) {
     document.getElementById("rvr_04L_1").textContent = randomRVR_22R[0];
     document.getElementById("rvr_04L_2").textContent = randomRVR_22R[1];
     document.getElementById("rvr_04L_3").textContent = randomRVR_22R[2];
+
+    document.getElementById("metRvr").textContent = randomRVR_04L[0];
+    document.getElementById("metRvr2").textContent = randomRVR_04L[1];
+    document.getElementById("metRvr3").textContent = randomRVR_04L[2];
   } 
 
 
@@ -503,6 +527,11 @@ function setMetarData(xml) {
     document.getElementById("rvr_15_1").style.fill = "darkred";
     document.getElementById("rvr_15_2").style.fill = "darkred";
     document.getElementById("rvr_15_3").style.fill = "darkred";
+  }
+  if (rvr_15 == null && rvr_33 == null && rvr_04L == null && rvr_22R == null && rvr_04R == null && rvr_22L == null) {
+    document.getElementById("metRvr").textContent = "";
+    document.getElementById("metRvr2").textContent = "";
+    document.getElementById("metRvr3").textContent = "";
   }
 
 

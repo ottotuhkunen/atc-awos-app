@@ -27,11 +27,156 @@ function setup(){
     document.getElementById("metrepDiv").style.display = "none";
 }
 
+function metNav1() {
+    document.getElementById("metrepSvg").style.display = "block";
+    document.getElementById("metarsSvg").style.display = "none";
+    document.getElementById("metButton1").style.backgroundColor = "#D8E5F3";
+    document.getElementById("metButton2").style.backgroundColor = "#E6E6E6";
+}
+function metNav2() {
+    document.getElementById("metrepSvg").style.display = "none";
+    document.getElementById("metarsSvg").style.display = "block";
+    document.getElementById("metButton1").style.backgroundColor = "#E6E6E6";
+    document.getElementById("metButton2").style.backgroundColor = "#D8E5F3";
+
+    var myHeaders = new Headers();
+    myHeaders.append("X-API-Key", "bcad5819aedc44a7aa9b4705be");
+
+    var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+    };
+
+    // load METARs
+    fetch("https://api.checkwx.com/metar/EFTU", requestOptions)
+    .then(response => response.json())
+    .then(result => {
+        if (result.data[0] && result.data[0].length > 90) {
+            const originalString = result.data[0];
+            let splitIndex = 90;
+            while (splitIndex > 0 && originalString[splitIndex] !== ' ') {
+              splitIndex--;
+            }
+            const firstPart = originalString.slice(0, splitIndex).trim();
+            const secondPart = originalString.slice(splitIndex).trim();
+            document.getElementById("metarEFTU1").textContent = firstPart;
+            document.getElementById("metarEFTU2").textContent = secondPart + "=";
+        } 
+        else {
+            document.getElementById("metarEFTU1").textContent = result.data[0] + "=";
+        }
+    })
+    .catch(error => console.log('error', error));
+
+    fetch("https://api.checkwx.com/metar/EFTP", requestOptions)
+    .then(response => response.json())
+    .then(result => {
+        if (result.data[0] && result.data[0].length > 100) {
+            const originalString = result.data[0];
+            let splitIndex = 100;
+            while (splitIndex > 0 && originalString[splitIndex] !== ' ') {
+              splitIndex--;
+            }
+            const firstPart = originalString.slice(0, splitIndex).trim();
+            const secondPart = originalString.slice(splitIndex).trim();
+            document.getElementById("metarEFTP1").textContent = firstPart;
+            document.getElementById("metarEFTP2").textContent = secondPart + "=";
+        } 
+        else {
+            document.getElementById("metarEFTP1").textContent = result.data[0] + "=";
+        }
+    })
+    .catch(error => console.log('error', error));
+
+    fetch("https://api.checkwx.com/metar/EETN", requestOptions)
+    .then(response => response.json())
+    .then(result => {
+        if (result.data[0] && result.data[0].length > 100) {
+            const originalString = result.data[0];
+            let splitIndex = 100;
+            while (splitIndex > 0 && originalString[splitIndex] !== ' ') {
+              splitIndex--;
+            }
+            const firstPart = originalString.slice(0, splitIndex).trim();
+            const secondPart = originalString.slice(splitIndex).trim();
+            document.getElementById("metarEETN1").textContent = firstPart;
+            document.getElementById("metarEETN2").textContent = secondPart + "=";
+        } 
+        else {
+            document.getElementById("metarEETN1").textContent = result.data[0] + "=";
+        }
+    })
+    .catch(error => console.log('error', error));
+
+    fetch("https://api.checkwx.com/metar/EFJY", requestOptions)
+    .then(response => response.json())
+    .then(result => {
+        if (result.data[0] && result.data[0].length > 100) {
+            const originalString = result.data[0];
+            let splitIndex = 100;
+            while (splitIndex > 0 && originalString[splitIndex] !== ' ') {
+              splitIndex--;
+            }
+            const firstPart = originalString.slice(0, splitIndex).trim();
+            const secondPart = originalString.slice(splitIndex).trim();
+            document.getElementById("metarEFJY1").textContent = firstPart;
+            document.getElementById("metarEFJY2").textContent = secondPart + "=";
+        } 
+        else {
+            document.getElementById("metarEFJY1").textContent = result.data[0] + "=";
+        }
+    })
+    .catch(error => console.log('error', error));
+
+    fetch("https://api.checkwx.com/metar/ESSA", requestOptions)
+    .then(response => response.json())
+    .then(result => {
+        if (result.data[0] && result.data[0].length > 100) {
+            const originalString = result.data[0];
+            let splitIndex = 100;
+            while (splitIndex > 0 && originalString[splitIndex] !== ' ') {
+              splitIndex--;
+            }
+            const firstPart = originalString.slice(0, splitIndex).trim();
+            const secondPart = originalString.slice(splitIndex).trim();
+            document.getElementById("metarESSA1").textContent = firstPart;
+            document.getElementById("metarESSA2").textContent = secondPart + "=";
+        } 
+        else {
+            document.getElementById("metarESSA1").textContent = result.data[0] + "=";
+        }
+    })
+    .catch(error => console.log('error', error));
+
+    fetch("https://api.checkwx.com/metar/ULLI", requestOptions)
+    .then(response => response.json())
+    .then(result => {
+        if (result.data[0] && result.data[0].length > 100) {
+            const originalString = result.data[0];
+            let splitIndex = 100;
+            while (splitIndex > 0 && originalString[splitIndex] !== ' ') {
+              splitIndex--;
+            }
+            const firstPart = originalString.slice(0, splitIndex).trim();
+            const secondPart = originalString.slice(splitIndex).trim();
+            document.getElementById("metarULLI1").textContent = firstPart;
+            document.getElementById("metarULLI2").textContent = secondPart + "=";
+        } 
+        else {
+            document.getElementById("metarULLI1").textContent = result.data[0] + "=";
+        }
+    })
+    .catch(error => console.log('error', error));
+}
+
 function openDepATIS(){
+    document.getElementById("metrepDiv").style.display = "none";
     openAtisWindow(1);
 }
 
 function openArrATIS(){
+    document.getElementById("metrepDiv").style.display = "none";
     openAtisWindow(2);
 }
 
@@ -313,8 +458,8 @@ function loadActualMet(xml) {
     document.getElementById("metCurrentTemp").textContent = currentTemperature;
     document.getElementById("metCurrentDewpoint").textContent = currentDewpoint;
     document.getElementById("metCurrentQnh").textContent = currentQnh;
-    document.getElementById("metCurrentQfe04R").textContent = currentQnh - 5.9;
-    document.getElementById("metCurrentQfe22L").textContent = currentQnh - 6.5;
+    document.getElementById("metCurrentQfe04R").textContent = (currentQnh - 5.9).toFixed(1);
+    document.getElementById("metCurrentQfe22L").textContent = (currentQnh - 6.5).toFixed(1);
 
 
     // Fetching TAF and METAR data:
@@ -330,7 +475,42 @@ function loadActualMet(xml) {
     fetch("https://api.checkwx.com/taf/EFHK", requestOptions)
     .then(response => response.json())
     .then(result => {
-        document.getElementById("metTaf").textContent = result.data[0] + "=";
+        if (result.data[0] && result.data[0].length > 100) {
+            if (result.data[0] && result.data[0].length > 200) {
+                const originalString = result.data[0];
+                let splitIndex2 = 100;
+                let splitIndex3 = 200;
+
+                while (splitIndex2 > 0 && originalString[splitIndex2] !== ' ') {
+                    splitIndex2--;
+                }
+                while (splitIndex3 > splitIndex2 && originalString[splitIndex3] !== ' ') {
+                    splitIndex3--;
+                }
+
+                const firstPart = originalString.slice(0, splitIndex2).trim();
+                const secondPart = originalString.slice(splitIndex2, splitIndex3).trim();
+                const thirdPart = originalString.slice(splitIndex3).trim();
+
+                document.getElementById("metTaf1").textContent = firstPart;
+                document.getElementById("metTaf2").textContent = secondPart;
+                document.getElementById("metTaf3").textContent = thirdPart + "=";
+            } else {
+                const originalString = result.data[0];
+                let splitIndex = 100;
+                while (splitIndex > 0 && originalString[splitIndex] !== ' ') {
+                    splitIndex--;
+                }
+                const firstPart = originalString.slice(0, splitIndex).trim();
+                const secondPart = originalString.slice(splitIndex).trim();
+                document.getElementById("metTaf1").textContent = firstPart;
+                document.getElementById("metTaf2").textContent = secondPart + "=";
+            }
+        } 
+        else {
+            document.getElementById("metTaf1").textContent = result.data[0] + "=";
+        }
+        
     })
     .catch(error => console.log('error', error));
 
@@ -338,15 +518,17 @@ function loadActualMet(xml) {
     .then(response => response.json())
     .then(result => {
 
-        const metarWindDir = result.data[0].wind.degrees;
-        const metarWindSpd = result.data[0].wind.speed_kts;
-        if (metarWindDir == 0) {
+        const metarWindDir = result.data[0].wind && result.data[0].wind.degrees || 0;
+        const metarWindSpd = result.data[0].wind && result.data[0].wind.speed_kts || 0;
+
+        if (metarWindSpd == 0) {
+            document.getElementById("metWind").textContent = "RWY 04L TDZ CALM END CALM";
+        }
+        else if (metarWindDir == 0) {
             document.getElementById("metWind").textContent = "RWY 04L TDZ VRB " + metarWindSpd + "KT END VRB " + metarWindSpd + "KT";
         }
-        else if (metarWindSpd == 0) {
-            document.getElementById("metWind").textContent = "RWY 04L TDZ CALM END CALM";
-        } else {
-            document.getElementById("metWind").textContent = `RWY 04L TDZ ${result.data[0].wind.degrees}/${result.data[0].wind.speed_kts}KT END ${result.data[0].wind.degrees}/${result.data[0].wind.speed_kts}`;
+        else {
+            document.getElementById("metWind").textContent = `RWY 04L TDZ ${result.data[0].wind.degrees}/${result.data[0].wind.speed_kts}KT END ${result.data[0].wind.degrees}/${result.data[0].wind.speed_kts}KT`;
         }
 
         let allConditionsText = '';
@@ -382,6 +564,4 @@ function loadActualMet(xml) {
         });
     })
     .catch(error => console.log('error', error));
-
-
 }

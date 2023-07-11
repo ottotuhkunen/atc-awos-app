@@ -309,8 +309,12 @@
             </div>
 
             <div id="metrepDiv" style="display: none;">
-                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                    viewBox="0 0 1202 610" style="enable-background:new 0 0 1202 610; max-width: 90%; height: auto;" xml:space="preserve">
+                <button id="metButton1" onclick="metNav1();" style="position: absolute; top: 2px; left: 14px; width: 90px; height: 28px; background-color: #D8E5F3; border: 1px solid black;">MET EFHK</button>
+                <button id="metButton2" onclick="metNav2();" style="position: absolute; top: 2px; left: 104px; width: 90px; height: 28px; background-color: #E6E6E6; border: 1px solid black;">METARs</button>
+                <!--<button id="metButton3" style="position: absolute; top: 2px; left: 194px; width: 90px; height: 28px;">TAFs</button>-->
+
+                <svg id="metrepSvg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    viewBox="0 0 1202 610" style="enable-background:new 0 0 1202 610; margin-top: 30px; max-width: 88%; height: auto;" xml:space="preserve">
                     <style type="text/css">
                         .stt0{fill:#77AEDE;}
                         .stt1{fill:#3F3F3F;}
@@ -350,21 +354,21 @@
                             C796,154.49,793.49,157,790.4,157z"/>
                         <text transform="matrix(1 0 0 1 22.7329 143.4209)" class="stt1 stt2 stt3">RVR</text>
                         <rect x="104" y="123" class="stt4" width="689" height="31"/>
-                        <text id="metRvr" transform="matrix(1 0 0 1 106.7329 147.4209)" class="stt5 stt6">--</text>
+                        <text id="metRvr" transform="matrix(1 0 0 1 106.7329 147.4209)" class="stt5 stt6">//</text>
                     </g>
                     <g id="metField5">
                         <path class="stt0" d="M790.4,196H20.6c-3.09,0-5.6-2.51-5.6-5.6V164.6c0-3.09,2.51-5.6,5.6-5.6H790.4c3.09,0,5.6,2.51,5.6,5.6v25.79
                             C796,193.49,793.49,196,790.4,196z"/>
                         <text transform="matrix(1 0 0 1 22.7329 182.4209)" class="stt1 stt2 stt3">RVR2</text>
                         <rect x="104" y="162" class="stt4" width="689" height="31"/>
-                        <text id="metRvr2" transform="matrix(1 0 0 1 106.7329 186.4209)" class="stt5 stt6">--</text>
+                        <text id="metRvr2" transform="matrix(1 0 0 1 106.7329 186.4209)" class="stt5 stt6">//</text>
                     </g>
                     <g id="metField6">
                         <path class="stt0" d="M790.4,235H20.6c-3.09,0-5.6-2.51-5.6-5.6V203.6c0-3.09,2.51-5.6,5.6-5.6H790.4c3.09,0,5.6,2.51,5.6,5.6v25.79
                             C796,232.49,793.49,235,790.4,235z"/>
                         <text transform="matrix(1 0 0 1 22.7329 221.4209)" class="stt1 stt2 stt3">RVR3</text>
                         <rect x="104" y="201" class="stt4" width="689" height="31"/>
-                        <text id="metRvr3" transform="matrix(1 0 0 1 106.7329 225.4209)" class="stt5 stt6">--</text>
+                        <text id="metRvr3" transform="matrix(1 0 0 1 106.7329 225.4209)" class="stt5 stt6">//</text>
                     </g>
                     <g id="metField7">
                         <path class="stt0" d="M790.4,274H20.6c-3.09,0-5.6-2.51-5.6-5.6V242.6c0-3.09,2.51-5.6,5.6-5.6H790.4c3.09,0,5.6,2.51,5.6,5.6v25.79
@@ -420,7 +424,11 @@
                             v69.79C1192,515.49,1189.49,518,1186.4,518z"/>
                         <text transform="matrix(1 0 0 1 22.7329 482.4209)" class="stt1 stt2 stt3">TAF</text>
                         <rect x="104" y="440" class="stt4" width="1084" height="75"/>
-                        <text id="metTaf" transform="matrix(1 0 0 1 106.7329 456.4209)" class="stt5 stt3">TAF N/A</text>
+                        <text id="metTaf" transform="matrix(1 0 0 1 106.7329 456.4209)" class="stt5 stt3">
+                            <tspan id="metTaf1" class="sttt5 sttt6">TAF N/A</tspan>
+                            <tspan id="metTaf2" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                            <tspan id="metTaf3" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                        </text>
                     </g>
                     <g id="metField15">
                         <path class="stt0" d="M1186.4,602H20.6c-3.09,0-5.6-2.51-5.6-5.6V526.6c0-3.09,2.51-5.6,5.6-5.6H1186.4c3.09,0,5.6,2.51,5.6,5.6
@@ -455,7 +463,7 @@
                             <text transform="matrix(1 0 0 1 862.8032 392.4209)" class="stt5 stt7">QFE</text>
                             <text transform="matrix(1 0 0 1 926.7915 372.4209)" class="stt5 stt3">RWY 04R</text>
                             <text transform="matrix(1 0 0 1 1029.1001 271.4209)" class="stt5 stt3">/</text>
-                            <text transform="matrix(1 0 0 1 1066.7915 372.4209)" class="stt5 stt3">RWY 04R</text>
+                            <text transform="matrix(1 0 0 1 1066.7915 372.4209)" class="stt5 stt3">RWY 22L</text>
                             <path class="stt9" d="M1171.07,96.5H821.93c-2.45,0-4.43-1.99-4.43-4.43V4.43c0-2.45,1.99-4.43,4.43-4.43h349.13
                                 c2.45,0,4.43,1.99,4.43,4.43v87.63C1175.5,94.51,1173.51,96.5,1171.07,96.5z"/>
                             <path class="stt9" d="M1171.07,242.5H821.93c-2.45,0-4.43-1.99-4.43-4.43V100.93c0-2.45,1.99-4.43,4.43-4.43h349.13
@@ -482,6 +490,78 @@
                             <text id="metCurrentCloud_alt2" transform="matrix(1 0 0 1 1082.4202 174.9001)" class="stt5 stt10"></text>
                             <text id="metCurrentCloud_alt1" transform="matrix(1 0 0 1 1082.4202 216.9001)" class="stt5 stt10"></text>
                         </g>
+                    </g>
+                </svg>
+                <svg id="metarsSvg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    viewBox="0 0 1195.09 623.35" style="enable-background:new 0 0 1195.09 623.35; display: none; margin-top: 30px; max-width: 86%; height: auto;" xml:space="preserve">
+                    <style type="text/css">
+                        .sttt0{fill:#77AEDE;}
+                        .sttt1{fill:#3F3F3F;}
+                        .sttt2{font-family:'Verdana-Bold';}
+                        .sttt3{font-size:16px;}
+                        .sttt4{fill:#FFFFFF;}
+                        .sttt5{font-family:'Verdana';}
+                        .sttt6{font-size:17px;}
+                    </style>
+                    <g id="metEFTU">
+                        <path class="sttt0" d="M1178.31,103.18H17.36c-3.08,0-5.58-3-5.58-6.68V13.18c0-3.69,2.5-6.68,5.58-6.68h1160.95
+                            c3.08,0,5.58,3,5.58,6.68v83.31C1183.88,100.19,1181.39,103.18,1178.31,103.18z"/>
+                        <text transform="matrix(1 0 0 1 19.5121 60.2217)" class="sttt1 sttt2 sttt3">EFTU</text>
+                        <rect x="82.93" y="9.88" class="sttt4" width="1097.69" height="89.91"/>
+                        <text id="metarEFTU" transform="matrix(1 0 0 1 84.4429 40.9979)" class="sttt5 sttt6">
+                            <tspan id="metarEFTU1" class="sttt5 sttt6">//</tspan>
+                            <tspan id="metarEFTU2" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                        </text>
+                    </g>
+                    <g id="metEFTP">
+                        <path class="sttt0" d="M1178.31,205.21H17.36c-3.08,0-5.58-3-5.58-6.68v-83.32c0-3.69,2.5-6.68,5.58-6.68h1160.95
+                            c3.08,0,5.58,3,5.58,6.68v83.31C1183.88,202.22,1181.39,205.21,1178.31,205.21z"/>
+                        <text transform="matrix(1 0 0 1 19.5121 162.2504)" class="sttt1 sttt2 sttt3">EFTP</text>
+                        <rect x="82.93" y="111.91" class="sttt4" width="1097.69" height="89.91"/>
+                        <text id="metarEFTP" transform="matrix(1 0 0 1 84.4429 143.0267)" class="sttt5 sttt6">
+                            <tspan id="metarEFTP1" class="sttt5 sttt6">//</tspan>
+                            <tspan id="metarEFTP2" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                        </text>
+                    </g>
+                    <g id="metEETN">
+                        <path class="sttt0" d="M1178.31,307.07H17.36c-3.08,0-5.58-3-5.58-6.68v-83.32c0-3.69,2.5-6.68,5.58-6.68h1160.95
+                            c3.08,0,5.58,3,5.58,6.68v83.31C1183.88,304.07,1181.39,307.07,1178.31,307.07z"/>
+                        <text transform="matrix(1 0 0 1 19.5121 264.1086)" class="sttt1 sttt2 sttt3">EETN</text>
+                        <rect x="82.93" y="213.77" class="sttt4" width="1097.69" height="89.91"/>
+                        <text id="metarEETN" transform="matrix(1 0 0 1 84.4429 244.8848)" class="sttt5 sttt6">
+                            <tspan id="metarEETN1" class="sttt5 sttt6">//</tspan>
+                            <tspan id="metarEETN2" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                        </text>
+                    </g>
+                    <g id="metEFJY">
+                        <path class="sttt0" d="M1178.31,408.47H17.36c-3.08,0-5.58-3-5.58-6.68v-83.32c0-3.69,2.5-6.68,5.58-6.68h1160.95
+                            c3.08,0,5.58,3,5.58,6.68v83.31C1183.88,405.47,1181.39,408.47,1178.31,408.47z"/>
+                        <text transform="matrix(1 0 0 1 19.5121 365.5044)" class="sttt1 sttt2 sttt3">EFJY</text>
+                        <rect x="82.93" y="315.16" class="sttt4" width="1097.69" height="89.91"/>
+                        <text id="metarEFJY" transform="matrix(1 0 0 1 84.4429 346.2806)" class="sttt5 sttt6">
+                            <tspan id="metarEFJY1" class="sttt5 sttt6">//</tspan>
+                            <tspan id="metarEFJY2" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                        </text>
+                    </g>
+                    <g id="metESSA">
+                        <path class="sttt0" d="M1178.31,509.93H17.36c-3.08,0-5.58-3-5.58-6.68v-83.32c0-3.69,2.5-6.68,5.58-6.68h1160.95
+                            c3.08,0,5.58,3,5.58,6.68v83.31C1183.88,506.93,1181.39,509.93,1178.31,509.93z"/>
+                        <text transform="matrix(1 0 0 1 19.5121 466.97)" class="sttt1 sttt2 sttt3">ESSA</text>
+                        <rect x="82.93" y="416.63" class="sttt4" width="1097.69" height="89.91"/>
+                        <text id="metarESSA" transform="matrix(1 0 0 1 84.4429 447.7462)" class="sttt5 sttt6">
+                            <tspan id="metarESSA1" class="sttt5 sttt6">//</tspan>
+                            <tspan id="metarESSA2" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                        </text>
+                    </g>
+                    <g id="metULLI">
+                        <path class="sttt0" d="M1178.31,612.58H17.36c-3.08,0-5.58-3-5.58-6.68v-83.32c0-3.69,2.5-6.68,5.58-6.68h1160.95
+                            c3.08,0,5.58,3,5.58,6.68v83.31C1183.88,609.59,1181.39,612.58,1178.31,612.58z"/>
+                        <text transform="matrix(1 0 0 1 19.5121 569.6235)" class="sttt1 sttt2 sttt3">ULLI</text>
+                        <rect x="82.93" y="519.28" class="sttt4" width="1097.69" height="89.91"/>
+                        <text id="metarULLI" transform="matrix(1 0 0 1 84.4429 550.3997)" class="sttt5 sttt6">
+                            <tspan id="metarULLI1" class="sttt5 sttt6">//</tspan>
+                            <tspan id="metarULLI2" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                        </text>
                     </g>
                 </svg>
             </div>

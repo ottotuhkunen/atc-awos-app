@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 27.7.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1195.09 623.35" style="enable-background:new 0 0 1195.09 623.35;" xml:space="preserve">
+<style type="text/css">
+	.sttt0{fill:#82ACD9;}
+	.sttt1{fill:#3F3F3F;}
+	.sttt2{font-family:'Verdana-Bold';}
+	.sttt3{font-size:16px;}
+	.sttt4{fill:#FFFFFF;}
+	.sttt5{font-family:'Verdana';}
+	.sttt6{font-size:17px;}
+</style>
+<g id="metEFTU">
+	<path class="sttt0" d="M1178.31,103.18H17.36c-3.08,0-5.58-3-5.58-6.68V13.18c0-3.69,2.5-6.68,5.58-6.68h1160.95
+		c3.08,0,5.58,3,5.58,6.68v83.31C1183.88,100.19,1181.39,103.18,1178.31,103.18z"/>
+	<text transform="matrix(1 0 0 1 19.5121 60.2217)" class="sttt1 sttt2 sttt3">EFTU</text>
+	<rect x="82.93" y="9.88" class="sttt4" width="1097.69" height="89.91"/>
+	<text id="metarEFTU" transform="matrix(1 0 0 1 84.4429 40.9979)" class="sttt5 sttt6">METAR...</text>
+</g>
+<g id="metEFTP">
+	<path class="sttt0" d="M1178.31,205.21H17.36c-3.08,0-5.58-3-5.58-6.68v-83.32c0-3.69,2.5-6.68,5.58-6.68h1160.95
+		c3.08,0,5.58,3,5.58,6.68v83.31C1183.88,202.22,1181.39,205.21,1178.31,205.21z"/>
+	<text transform="matrix(1 0 0 1 19.5121 162.2504)" class="sttt1 sttt2 sttt3">EFTP</text>
+	<rect x="82.93" y="111.91" class="sttt4" width="1097.69" height="89.91"/>
+	<text id="metarEFTP" transform="matrix(1 0 0 1 84.4429 143.0267)" class="sttt5 sttt6">METAR...</text>
+</g>
+<g id="metEETN">
+	<path class="sttt0" d="M1178.31,307.07H17.36c-3.08,0-5.58-3-5.58-6.68v-83.32c0-3.69,2.5-6.68,5.58-6.68h1160.95
+		c3.08,0,5.58,3,5.58,6.68v83.31C1183.88,304.07,1181.39,307.07,1178.31,307.07z"/>
+	<text transform="matrix(1 0 0 1 19.5121 264.1086)" class="sttt1 sttt2 sttt3">EETN</text>
+	<rect x="82.93" y="213.77" class="sttt4" width="1097.69" height="89.91"/>
+	<text id="metarEETN" transform="matrix(1 0 0 1 84.4429 244.8848)" class="sttt5 sttt6">METAR...</text>
+</g>
+<g id="metEFJY">
+	<path class="sttt0" d="M1178.31,408.47H17.36c-3.08,0-5.58-3-5.58-6.68v-83.32c0-3.69,2.5-6.68,5.58-6.68h1160.95
+		c3.08,0,5.58,3,5.58,6.68v83.31C1183.88,405.47,1181.39,408.47,1178.31,408.47z"/>
+	<text transform="matrix(1 0 0 1 19.5121 365.5044)" class="sttt1 sttt2 sttt3">EFJY</text>
+	<rect x="82.93" y="315.16" class="sttt4" width="1097.69" height="89.91"/>
+	<text id="metarEFJY" transform="matrix(1 0 0 1 84.4429 346.2806)" class="sttt5 sttt6">METAR...</text>
+</g>
+<g id="metESSA">
+	<path class="sttt0" d="M1178.31,509.93H17.36c-3.08,0-5.58-3-5.58-6.68v-83.32c0-3.69,2.5-6.68,5.58-6.68h1160.95
+		c3.08,0,5.58,3,5.58,6.68v83.31C1183.88,506.93,1181.39,509.93,1178.31,509.93z"/>
+	<text transform="matrix(1 0 0 1 19.5121 466.97)" class="sttt1 sttt2 sttt3">ESSA</text>
+	<rect x="82.93" y="416.63" class="sttt4" width="1097.69" height="89.91"/>
+	<text id="metarESSA" transform="matrix(1 0 0 1 84.4429 447.7462)" class="sttt5 sttt6">METAR...</text>
+</g>
+<g id="metULLI">
+	<path class="sttt0" d="M1178.31,612.58H17.36c-3.08,0-5.58-3-5.58-6.68v-83.32c0-3.69,2.5-6.68,5.58-6.68h1160.95
+		c3.08,0,5.58,3,5.58,6.68v83.31C1183.88,609.59,1181.39,612.58,1178.31,612.58z"/>
+	<text transform="matrix(1 0 0 1 19.5121 569.6235)" class="sttt1 sttt2 sttt3">ULLI</text>
+	<rect x="82.93" y="519.28" class="sttt4" width="1097.69" height="89.91"/>
+	<text id="metarULLI" transform="matrix(1 0 0 1 84.4429 550.3997)" class="sttt5 sttt6">METAR...</text>
+</g>
+</svg>
