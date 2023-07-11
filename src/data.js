@@ -1,32 +1,43 @@
-function loadFMI() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        setData(this);
+async function loadFMI() {
+  try {
+      const response = await fetch("https://opendata.fmi.fi/wfs?service=WFS&version=2.0.0&request=getFeature&storedquery_id=fmi::observations::weather::simple&fmisid=100968");
+
+      if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+      } else {
+          const responseText = await response.text();
+          const parser = new DOMParser();
+          const data = parser.parseFromString(responseText, "application/xml");
+          setData(data);
+          fetchInformation();
       }
-    };
-    //AIRPORT SPECIFIC
-    xhttp.open("GET", "https://opendata.fmi.fi/wfs?service=WFS&version=2.0.0&request=getFeature&storedquery_id=fmi::observations::weather::simple&fmisid=100968", true); 
-    xhttp.send();
-    fetchInformation();
-    setTimeout(loadFMI, 60000);
+  } catch (error) {
+      console.log('Fetch API error -', error);
+  } finally {
+      setTimeout(loadFMI, 60000);
+  }
 }
 
-function loadMetar() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      setMetarData(this);
-    }
-  };
-  //AIRPORT SPECIFIC
-  xhttp.open("GET", "https://opendata.fmi.fi/wfs?service=WFS&version=2.0.0&request=getFeature&storedquery_id=fmi::avi::observations::iwxxm&icaocode=EFHK", true); 
-  xhttp.send();
+
+async function loadMetar() {
+  try {
+      const response = await fetch("https://opendata.fmi.fi/wfs?service=WFS&version=2.0.0&request=getFeature&storedquery_id=fmi::avi::observations::iwxxm&icaocode=EFHK");
+
+      if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+      } else {
+          const responseText = await response.text();
+          const parser = new DOMParser();
+          const data = parser.parseFromString(responseText, "application/xml");
+          setMetarData(data);
+      }
+  } catch (error) {
+      console.log('Fetch API error -', error);
+  }
 }
 
-function setData(xml) {
-    var xmlDoc = xml.responseXML;
 
+function setData(xmlDoc) {
     var xmlSize = xmlDoc.getElementsByTagName("BsWfs:ParameterName");
     var table = new Array(xmlSize.length);
 
@@ -76,7 +87,7 @@ function setData(xml) {
     }
 
     document.getElementById("qnh").innerHTML = roundedQnh;
-    document.getElementById("qfe").innerHTML = Math.floor(qnh - 6);
+    document.getElementById("qfe").innerHTML = Math.floor(qnh - 6.5);
     document.getElementById("22R_windDir").innerHTML = randomWindDirection(windDirection, "arrow22R", "22R_maxDir", roundedWindSpeed);
     document.getElementById("22L_windDir").innerHTML = randomWindDirection(windDirection, "arrow22L", "22L_maxDir", roundedWindSpeed);
     //EXTRA: document.getElementById("15_windDir").innerHTML = randomWindDirection(windDirection, "arrow15", "15_maxDir", roundedWindSpeed);
@@ -298,8 +309,7 @@ function randomWindDirection(realDirection, arrowID, maxDirID, windSpeed) { // 2
   return randomDirection;
 }
 
-function setMetarData(xml) {
-  var xmlDoc = xml.responseXML;
+function setMetarData(xmlDoc) {
   
   var vrbWindcheck = xmlDoc.getElementsByTagName("iwxxm:extremeCounterClockwiseWindDirection").length;
 

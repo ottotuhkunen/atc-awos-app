@@ -384,7 +384,7 @@ function setMetRep(xml) {
     var qnh = qnhs[qnhs.length-1].childNodes[0].nodeValue;
     document.getElementById("metQnh").textContent = Math.round(qnh);
 
-    document.getElementById("metQfe").textContent = Math.round(qnh - 7);
+    document.getElementById("metQfe").textContent = Math.round(qnh - 6.5);
 }
 
 function loadCurrentMet() {
