@@ -1,4 +1,4 @@
-function metrep(){
+function metrep() {
     document.getElementById("menuTriangle1").style.display = "none";
     document.getElementById("menuTriangle2").style.display = "block";
     document.getElementById("menuTriangle3").style.display = "none";
@@ -14,7 +14,7 @@ function metrep(){
     loadCurrentMet();
 }
 
-function setup(){
+function setup() {
     document.getElementById("atisDiv").style.display = "none";
     document.getElementById("mainSvg").style.display = "none";
     document.getElementById("setupDiv").style.display = "block";
@@ -636,9 +636,16 @@ function loadMetRep() {
 function setMetRep(xml) {
     var xmlDoc = xml.responseXML;
 
-    var headers = xmlDoc.getElementsByTagName('gml:timePosition');
-    var header = headers[headers.length-1].childNodes[0].nodeValue;
-    document.getElementById("metHeader").textContent = "EFHK " + header;
+    var metars = xmlDoc.getElementsByTagName('avi:input');
+    var metar = metars[metars.length-1].childNodes[0].nodeValue;
+    document.getElementById("metar").innerHTML = metar;
+
+    var header = metar.match(/(EFHK\s\d{6}Z)\s/);
+
+    if (header && header[1]) {
+        document.getElementById("metHeader").textContent = header[1];
+    }
+
 
     var viss = xmlDoc.getElementsByTagName('iwxxm:prevailingVisibility');
     var vis = viss[viss.length-1].childNodes[0].nodeValue;

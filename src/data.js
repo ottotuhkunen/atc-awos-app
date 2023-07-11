@@ -317,6 +317,13 @@ function setMetarData(xmlDoc) {
   var metar = metars[metars.length-1].childNodes[0].nodeValue;
   document.getElementById("metar").innerHTML = metar;
 
+  // set METREP trend
+  var trend = metar.match(/(\sQ\d{4}\s)(.*?)(?==)/);
+
+  if (trend && trend[2]) {
+    document.getElementById("metTrend").textContent = trend[2];
+  }
+
   // VARIABLE BETWEEN
   if (vrbWindcheck > 0) {
     var counterClockwises = xmlDoc.getElementsByTagName("iwxxm:extremeCounterClockwiseWindDirection");
@@ -539,9 +546,9 @@ function setMetarData(xmlDoc) {
     document.getElementById("rvr_15_3").style.fill = "darkred";
   }
   if (rvr_15 == null && rvr_33 == null && rvr_04L == null && rvr_22R == null && rvr_04R == null && rvr_22L == null) {
-    document.getElementById("metRvr").textContent = "";
-    document.getElementById("metRvr2").textContent = "";
-    document.getElementById("metRvr3").textContent = "";
+    document.getElementById("metRvr").textContent = "ABV 2000";
+    document.getElementById("metRvr2").textContent = "ABV 2000";
+    document.getElementById("metRvr3").textContent = "ABV 2000";
   }
 
 
