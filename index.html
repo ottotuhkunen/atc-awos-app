@@ -311,12 +311,12 @@
             <div id="metrepDiv" style="display: none;">
                 <button id="metButton1" onclick="metNav1();" style="position: absolute; top: 2px; left: 14px; width: 90px; height: 28px; background-color: #D8E5F3; border: 1px solid black;">MET EFHK</button>
                 <button id="metButton2" onclick="metNav2();" style="position: absolute; top: 2px; left: 104px; width: 90px; height: 28px; background-color: #E6E6E6; border: 1px solid black;">METARs</button>
-                <!--<button id="metButton3" style="position: absolute; top: 2px; left: 194px; width: 90px; height: 28px;">TAFs</button>-->
+                <button id="metButton3" onclick="metNav3();" style="position: absolute; top: 2px; left: 194px; width: 90px; height: 28px;">TAFs</button>
 
                 <svg id="metrepSvg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                     viewBox="0 0 1202 610" style="enable-background:new 0 0 1202 610; margin-top: 30px; max-width: 88%; height: auto;" xml:space="preserve">
                     <style type="text/css">
-                        .stt0{fill:#77AEDE;}
+                        .stt0{fill:#009ac7;}
                         .stt1{fill:#3F3F3F;}
                         .stt2{font-family:'Verdana'; font-weight: bold;}
                         .stt3{font-size:16px;}
@@ -495,7 +495,7 @@
                 <svg id="metarsSvg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                     viewBox="0 0 1195.09 623.35" style="enable-background:new 0 0 1195.09 623.35; display: none; margin-top: 30px; max-width: 86%; height: auto;" xml:space="preserve">
                     <style type="text/css">
-                        .sttt0{fill:#77AEDE;}
+                        .sttt0{fill:#009ac7;}
                         .sttt1{fill:#3F3F3F;}
                         .sttt2{font-family:'Verdana'; font-weight: bold;}
                         .sttt3{font-size:16px;}
@@ -564,6 +564,86 @@
                         </text>
                     </g>
                 </svg>
+
+                <svg id="tafsSvg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    viewBox="0 0 1195.09 623.35" style="enable-background:new 0 0 1195.09 623.35; display: none; margin-top: 30px; max-width: 86%; height: auto;" xml:space="preserve">
+                    <style type="text/css">
+                        .fst0{fill:#009ac7;}
+                        .fst1{fill:#3F3F3F;}
+                        .fst2{font-family:'Verdana'; font-weight: bold;}
+                        .fst3{font-size:16px;}
+                        .fst4{fill:#FFFFFF;}
+                        .fst5{font-family:'Verdana';}
+                        .fst6{font-size:17px;}
+                    </style>
+                    <g id="tafsEFTU">
+                        <path class="fst0" d="M1178.31,103.18H17.36c-3.08,0-5.58-3-5.58-6.68V13.18c0-3.69,2.5-6.68,5.58-6.68h1160.95
+                            c3.08,0,5.58,3,5.58,6.68v83.31C1183.88,100.19,1181.39,103.18,1178.31,103.18z"/>
+                        <text transform="matrix(1 0 0 1 19.5121 60.2217)" class="fst1 fst2 fst3">EFTU</text>
+                        <rect x="82.93" y="9.88" class="fst4" width="1097.69" height="89.91"/>
+                        <text id="tafEFTU" transform="matrix(1 0 0 1 84.4429 26.1484)" class="fst5 fst6">
+                            <tspan id="metTaf1_eftu" class="sttt5 sttt6">//</tspan>
+                            <tspan id="metTaf2_eftu" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                            <tspan id="metTaf3_eftu" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                        </text>
+                    </g>
+                    <g id="tafsEFTP">
+                        <path class="fst0" d="M1178.31,205.21H17.36c-3.08,0-5.58-3-5.58-6.68v-83.32c0-3.69,2.5-6.68,5.58-6.68h1160.95
+                            c3.08,0,5.58,3,5.58,6.68v83.31C1183.88,202.22,1181.39,205.21,1178.31,205.21z"/>
+                        <text transform="matrix(1 0 0 1 19.5121 162.2504)" class="fst1 fst2 fst3">EFTP</text>
+                        <rect x="82.93" y="111.91" class="fst4" width="1097.69" height="89.91"/>
+                         <text id="tafEFTP" transform="matrix(1 0 0 1 84.4429 128.1771)" class="fst5 fst6">
+                            <tspan id="metTaf1_eftp" class="sttt5 sttt6">//</tspan>
+                            <tspan id="metTaf2_eftp" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                            <tspan id="metTaf3_eftp" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                         </text>
+                    </g>
+                    <g id="tafsEETN">
+                        <path class="fst0" d="M1178.31,307.07H17.36c-3.08,0-5.58-3-5.58-6.68v-83.32c0-3.69,2.5-6.68,5.58-6.68h1160.95
+                            c3.08,0,5.58,3,5.58,6.68v83.31C1183.88,304.07,1181.39,307.07,1178.31,307.07z"/>
+                        <text transform="matrix(1 0 0 1 19.5121 264.1086)" class="fst1 fst2 fst3">EETN</text>
+                        <rect x="82.93" y="213.77" class="fst4" width="1097.69" height="89.91"/>
+                        <text id="tafEETN" transform="matrix(1 0 0 1 84.4429 230.0353)" class="fst5 fst6">
+                            <tspan id="metTaf1_eetn" class="sttt5 sttt6">//</tspan>
+                            <tspan id="metTaf2_eetn" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                            <tspan id="metTaf3_eetn" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                        </text>
+                    </g>
+                    <g id="tafsEFJY">
+                        <path class="fst0" d="M1178.31,408.47H17.36c-3.08,0-5.58-3-5.58-6.68v-83.32c0-3.69,2.5-6.68,5.58-6.68h1160.95
+                            c3.08,0,5.58,3,5.58,6.68v83.31C1183.88,405.47,1181.39,408.47,1178.31,408.47z"/>
+                        <text transform="matrix(1 0 0 1 19.5121 365.5044)" class="fst1 fst2 fst3">EFJY</text>
+                        <rect x="82.93" y="315.16" class="fst4" width="1097.69" height="89.91"/>
+                         <text id="tafEFJY" transform="matrix(1 0 0 1 84.4429 331.4311)" class="fst5 fst6">
+                            <tspan id="metTaf1_efjy" class="sttt5 sttt6">//</tspan>
+                            <tspan id="metTaf2_efjy" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                            <tspan id="metTaf3_efjy" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                         </text>
+                    </g>
+                    <g id="tafsESSA">
+                        <path class="fst0" d="M1178.31,509.93H17.36c-3.08,0-5.58-3-5.58-6.68v-83.32c0-3.69,2.5-6.68,5.58-6.68h1160.95
+                            c3.08,0,5.58,3,5.58,6.68v83.31C1183.88,506.93,1181.39,509.93,1178.31,509.93z"/>
+                        <text transform="matrix(1 0 0 1 19.5121 466.97)" class="fst1 fst2 fst3">ESSA</text>
+                        <rect x="82.93" y="416.63" class="fst4" width="1097.69" height="89.91"/>
+                        <text id="tafESSA" transform="matrix(1 0 0 1 84.4429 432.8967)" class="fst5 fst6">
+                            <tspan id="metTaf1_essa" class="sttt5 sttt6">//</tspan>
+                            <tspan id="metTaf2_essa" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                            <tspan id="metTaf3_essa" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                        </text>
+                    </g>
+                    <g id="tafsULLI">
+                        <path class="fst0" d="M1178.31,612.58H17.36c-3.08,0-5.58-3-5.58-6.68v-83.32c0-3.69,2.5-6.68,5.58-6.68h1160.95
+                            c3.08,0,5.58,3,5.58,6.68v83.31C1183.88,609.59,1181.39,612.58,1178.31,612.58z"/>
+                        <text transform="matrix(1 0 0 1 19.5121 569.6235)" class="fst1 fst2 fst3">ULLI</text>
+                        <rect x="82.93" y="519.28" class="fst4" width="1097.69" height="89.91"/>
+                        <text id="tafULLI" transform="matrix(1 0 0 1 84.4429 535.5502)" class="fst5 fst6">
+                            <tspan id="metTaf1_ulli" class="sttt5 sttt6">//</tspan>
+                            <tspan id="metTaf2_ulli" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                            <tspan id="metTaf3_ulli" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                        </text>
+                    </g>
+                </svg>
+           
             </div>
 
             <div id="atisDiv" style="display: none;">

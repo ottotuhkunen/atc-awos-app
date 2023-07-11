@@ -32,12 +32,14 @@ function metNav1() {
     document.getElementById("metarsSvg").style.display = "none";
     document.getElementById("metButton1").style.backgroundColor = "#D8E5F3";
     document.getElementById("metButton2").style.backgroundColor = "#E6E6E6";
+    document.getElementById("metButton3").style.backgroundColor = "#E6E6E6";
 }
 function metNav2() {
     document.getElementById("metrepSvg").style.display = "none";
     document.getElementById("metarsSvg").style.display = "block";
     document.getElementById("metButton1").style.backgroundColor = "#E6E6E6";
     document.getElementById("metButton2").style.backgroundColor = "#D8E5F3";
+    document.getElementById("metButton3").style.backgroundColor = "#E6E6E6";
 
     var myHeaders = new Headers();
     myHeaders.append("X-API-Key", "bcad5819aedc44a7aa9b4705be");
@@ -166,6 +168,277 @@ function metNav2() {
         else {
             document.getElementById("metarULLI1").textContent = result.data[0] + "=";
         }
+    })
+    .catch(error => console.log('error', error));
+}
+
+function metNav3() {
+    document.getElementById("metrepSvg").style.display = "none";
+    document.getElementById("metarsSvg").style.display = "none";
+    document.getElementById("tafsSvg").style.display = "block";
+    document.getElementById("metButton1").style.backgroundColor = "#E6E6E6";
+    document.getElementById("metButton2").style.backgroundColor = "#E6E6E6";
+    document.getElementById("metButton3").style.backgroundColor = "#D8E5F3";
+
+    var myHeaders = new Headers();
+    myHeaders.append("X-API-Key", "bcad5819aedc44a7aa9b4705be");
+
+    var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+    };
+
+    // fetching TAFs:
+    fetch("https://api.checkwx.com/taf/EFTU", requestOptions)
+    .then(response => response.json())
+    .then(result => {
+        if (result.data[0] && result.data[0].length > 100) {
+            if (result.data[0] && result.data[0].length > 200) {
+                const originalString = result.data[0];
+                let splitIndex2 = 100;
+                let splitIndex3 = 200;
+
+                while (splitIndex2 > 0 && originalString[splitIndex2] !== ' ') {
+                    splitIndex2--;
+                }
+                while (splitIndex3 > splitIndex2 && originalString[splitIndex3] !== ' ') {
+                    splitIndex3--;
+                }
+
+                const firstPart = originalString.slice(0, splitIndex2).trim();
+                const secondPart = originalString.slice(splitIndex2, splitIndex3).trim();
+                const thirdPart = originalString.slice(splitIndex3).trim();
+
+                document.getElementById("metTaf1_eftu").textContent = firstPart;
+                document.getElementById("metTaf2_eftu").textContent = secondPart;
+                document.getElementById("metTaf3_eftu").textContent = thirdPart + "=";
+            } else {
+                const originalString = result.data[0];
+                let splitIndex = 100;
+                while (splitIndex > 0 && originalString[splitIndex] !== ' ') {
+                    splitIndex--;
+                }
+                const firstPart = originalString.slice(0, splitIndex).trim();
+                const secondPart = originalString.slice(splitIndex).trim();
+                document.getElementById("metTaf1_eftu").textContent = firstPart;
+                document.getElementById("metTaf2_eftu").textContent = secondPart + "=";
+            }
+        } 
+        else {
+            document.getElementById("metTaf1_eftu").textContent = result.data[0] + "=";
+        }
+        
+    })
+    .catch(error => console.log('error', error));
+
+    fetch("https://api.checkwx.com/taf/EFTP", requestOptions)
+    .then(response => response.json())
+    .then(result => {
+        if (result.data[0] && result.data[0].length > 100) {
+            if (result.data[0] && result.data[0].length > 200) {
+                const originalString = result.data[0];
+                let splitIndex2 = 100;
+                let splitIndex3 = 200;
+
+                while (splitIndex2 > 0 && originalString[splitIndex2] !== ' ') {
+                    splitIndex2--;
+                }
+                while (splitIndex3 > splitIndex2 && originalString[splitIndex3] !== ' ') {
+                    splitIndex3--;
+                }
+
+                const firstPart = originalString.slice(0, splitIndex2).trim();
+                const secondPart = originalString.slice(splitIndex2, splitIndex3).trim();
+                const thirdPart = originalString.slice(splitIndex3).trim();
+
+                document.getElementById("metTaf1_eftp").textContent = firstPart;
+                document.getElementById("metTaf2_eftp").textContent = secondPart;
+                document.getElementById("metTaf3_eftp").textContent = thirdPart + "=";
+            } else {
+                const originalString = result.data[0];
+                let splitIndex = 100;
+                while (splitIndex > 0 && originalString[splitIndex] !== ' ') {
+                    splitIndex--;
+                }
+                const firstPart = originalString.slice(0, splitIndex).trim();
+                const secondPart = originalString.slice(splitIndex).trim();
+                document.getElementById("metTaf1_eftp").textContent = firstPart;
+                document.getElementById("metTaf2_eftp").textContent = secondPart + "=";
+            }
+        } 
+        else {
+            document.getElementById("metTaf1_eftp").textContent = result.data[0] + "=";
+        }
+        
+    })
+    .catch(error => console.log('error', error));
+
+    fetch("https://api.checkwx.com/taf/EETN", requestOptions)
+    .then(response => response.json())
+    .then(result => {
+        if (result.data[0] && result.data[0].length > 100) {
+            if (result.data[0] && result.data[0].length > 200) {
+                const originalString = result.data[0];
+                let splitIndex2 = 100;
+                let splitIndex3 = 200;
+
+                while (splitIndex2 > 0 && originalString[splitIndex2] !== ' ') {
+                    splitIndex2--;
+                }
+                while (splitIndex3 > splitIndex2 && originalString[splitIndex3] !== ' ') {
+                    splitIndex3--;
+                }
+
+                const firstPart = originalString.slice(0, splitIndex2).trim();
+                const secondPart = originalString.slice(splitIndex2, splitIndex3).trim();
+                const thirdPart = originalString.slice(splitIndex3).trim();
+
+                document.getElementById("metTaf1_eetn").textContent = firstPart;
+                document.getElementById("metTaf2_eetn").textContent = secondPart;
+                document.getElementById("metTaf3_eetn").textContent = thirdPart + "=";
+            } else {
+                const originalString = result.data[0];
+                let splitIndex = 100;
+                while (splitIndex > 0 && originalString[splitIndex] !== ' ') {
+                    splitIndex--;
+                }
+                const firstPart = originalString.slice(0, splitIndex).trim();
+                const secondPart = originalString.slice(splitIndex).trim();
+                document.getElementById("metTaf1_eetn").textContent = firstPart;
+                document.getElementById("metTaf2_eetn").textContent = secondPart + "=";
+            }
+        } 
+        else {
+            document.getElementById("metTaf1_eetn").textContent = result.data[0] + "=";
+        }
+        
+    })
+    .catch(error => console.log('error', error));
+
+    fetch("https://api.checkwx.com/taf/EFJY", requestOptions)
+    .then(response => response.json())
+    .then(result => {
+        if (result.data[0] && result.data[0].length > 100) {
+            if (result.data[0] && result.data[0].length > 200) {
+                const originalString = result.data[0];
+                let splitIndex2 = 100;
+                let splitIndex3 = 200;
+
+                while (splitIndex2 > 0 && originalString[splitIndex2] !== ' ') {
+                    splitIndex2--;
+                }
+                while (splitIndex3 > splitIndex2 && originalString[splitIndex3] !== ' ') {
+                    splitIndex3--;
+                }
+
+                const firstPart = originalString.slice(0, splitIndex2).trim();
+                const secondPart = originalString.slice(splitIndex2, splitIndex3).trim();
+                const thirdPart = originalString.slice(splitIndex3).trim();
+
+                document.getElementById("metTaf1_efjy").textContent = firstPart;
+                document.getElementById("metTaf2_efjy").textContent = secondPart;
+                document.getElementById("metTaf3_efjy").textContent = thirdPart + "=";
+            } else {
+                const originalString = result.data[0];
+                let splitIndex = 100;
+                while (splitIndex > 0 && originalString[splitIndex] !== ' ') {
+                    splitIndex--;
+                }
+                const firstPart = originalString.slice(0, splitIndex).trim();
+                const secondPart = originalString.slice(splitIndex).trim();
+                document.getElementById("metTaf1_efjy").textContent = firstPart;
+                document.getElementById("metTaf2_efjy").textContent = secondPart + "=";
+            }
+        } 
+        else {
+            document.getElementById("metTaf1_efjy").textContent = result.data[0] + "=";
+        }
+        
+    })
+    .catch(error => console.log('error', error));
+
+    fetch("https://api.checkwx.com/taf/ESSA", requestOptions)
+    .then(response => response.json())
+    .then(result => {
+        if (result.data[0] && result.data[0].length > 100) {
+            if (result.data[0] && result.data[0].length > 200) {
+                const originalString = result.data[0];
+                let splitIndex2 = 100;
+                let splitIndex3 = 200;
+
+                while (splitIndex2 > 0 && originalString[splitIndex2] !== ' ') {
+                    splitIndex2--;
+                }
+                while (splitIndex3 > splitIndex2 && originalString[splitIndex3] !== ' ') {
+                    splitIndex3--;
+                }
+
+                const firstPart = originalString.slice(0, splitIndex2).trim();
+                const secondPart = originalString.slice(splitIndex2, splitIndex3).trim();
+                const thirdPart = originalString.slice(splitIndex3).trim();
+
+                document.getElementById("metTaf1_essa").textContent = firstPart;
+                document.getElementById("metTaf2_essa").textContent = secondPart;
+                document.getElementById("metTaf3_essa").textContent = thirdPart + "=";
+            } else {
+                const originalString = result.data[0];
+                let splitIndex = 100;
+                while (splitIndex > 0 && originalString[splitIndex] !== ' ') {
+                    splitIndex--;
+                }
+                const firstPart = originalString.slice(0, splitIndex).trim();
+                const secondPart = originalString.slice(splitIndex).trim();
+                document.getElementById("metTaf1_essa").textContent = firstPart;
+                document.getElementById("metTaf2_essa").textContent = secondPart + "=";
+            }
+        } 
+        else {
+            document.getElementById("metTaf1_essa").textContent = result.data[0] + "=";
+        }
+        
+    })
+    .catch(error => console.log('error', error));
+
+    fetch("https://api.checkwx.com/taf/ULLI", requestOptions)
+    .then(response => response.json())
+    .then(result => {
+        if (result.data[0] && result.data[0].length > 100) {
+            if (result.data[0] && result.data[0].length > 200) {
+                const originalString = result.data[0];
+                let splitIndex2 = 100;
+                let splitIndex3 = 200;
+
+                while (splitIndex2 > 0 && originalString[splitIndex2] !== ' ') {
+                    splitIndex2--;
+                }
+                while (splitIndex3 > splitIndex2 && originalString[splitIndex3] !== ' ') {
+                    splitIndex3--;
+                }
+
+                const firstPart = originalString.slice(0, splitIndex2).trim();
+                const secondPart = originalString.slice(splitIndex2, splitIndex3).trim();
+                const thirdPart = originalString.slice(splitIndex3).trim();
+
+                document.getElementById("metTaf1_ulli").textContent = firstPart;
+                document.getElementById("metTaf2_ulli").textContent = secondPart;
+                document.getElementById("metTaf3_ulli").textContent = thirdPart + "=";
+            } else {
+                const originalString = result.data[0];
+                let splitIndex = 100;
+                while (splitIndex > 0 && originalString[splitIndex] !== ' ') {
+                    splitIndex--;
+                }
+                const firstPart = originalString.slice(0, splitIndex).trim();
+                const secondPart = originalString.slice(splitIndex).trim();
+                document.getElementById("metTaf1_ulli").textContent = firstPart;
+                document.getElementById("metTaf2_ulli").textContent = secondPart + "=";
+            }
+        } 
+        else {
+            document.getElementById("metTaf1_ulli").textContent = result.data[0] + "=";
+        }
+        
     })
     .catch(error => console.log('error', error));
 }
