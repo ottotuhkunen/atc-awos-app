@@ -195,20 +195,6 @@ function openAtisWindow(atisType){
 }
 
 function openRWYCC(runway) {
-    /*
-    if (runway == "04L") {
-        window.location.href = "rwycc/index.html";
-    }
-    else if (runway == "15") {
-        window.location.href = "rwycc/index.html";
-        document.getElementById("main_rwy_id").textContent = "RWY 15"
-        document.getElementById("rwy_condition_report_header").textContent = "RUNWAY 15 CONDITION REPORT AT 00:00 UTC"
-    }
-    else if (runway == "04R") {
-        window.location.href = "rwycc/index.html";
-    }
-    */
-
     var url = "rwycc/index.html?runway=" + encodeURIComponent(runway);
     window.location.href = url;
 }
@@ -225,8 +211,8 @@ function getParams() {
         document.getElementById("other_rwy_id").textContent = "RWY 22R";
         document.getElementById("rwy_title").textContent = "04L";
         document.getElementById("rwy_title2").textContent = "EFHK 04L";
-        document.getElementById("rwy_condition_report_header").textContent = "RUNWAY 04L CONDITION REPORT AT" + getRWYCCTime();
-        document.getElementById("rwy_condition_report_header2").textContent = "RUNWAY 22R CONDITION REPORT AT" + getRWYCCTime();
+        document.getElementById("rwy_condition_report_header").textContent = "RUNWAY 04L CONDITION REPORT AT " + getRWYCCTime();
+        document.getElementById("rwy_condition_report_header2").textContent = "RUNWAY 22R CONDITION REPORT AT " + getRWYCCTime();
     }
     else if (runway == "15") {
         document.getElementById("main_rwy_id").textContent = "RWY 15";
@@ -235,8 +221,8 @@ function getParams() {
         document.getElementById("other_rwy_id").textContent = "RWY 33";
         document.getElementById("rwy_title").textContent = "15";
         document.getElementById("rwy_title2").textContent = "EFHK 15";
-        document.getElementById("rwy_condition_report_header").textContent = "RUNWAY 15 CONDITION REPORT AT" + getRWYCCTime();
-        document.getElementById("rwy_condition_report_header2").textContent = "RUNWAY 33 CONDITION REPORT AT" + getRWYCCTime();
+        document.getElementById("rwy_condition_report_header").textContent = "RUNWAY 15 CONDITION REPORT AT " + getRWYCCTime();
+        document.getElementById("rwy_condition_report_header2").textContent = "RUNWAY 33 CONDITION REPORT AT " + getRWYCCTime();
     }
     else if (runway == "04R") {
         document.getElementById("main_rwy_id").textContent = "RWY 04R";
@@ -245,8 +231,8 @@ function getParams() {
         document.getElementById("other_rwy_id").textContent = "RWY 22L";
         document.getElementById("rwy_title").textContent = "04R";
         document.getElementById("rwy_title2").textContent = "EFHK 04R";
-        document.getElementById("rwy_condition_report_header").textContent = "RUNWAY 04R CONDITION REPORT AT" + getRWYCCTime();
-        document.getElementById("rwy_condition_report_header2").textContent = "RUNWAY 22L CONDITION REPORT AT" + getRWYCCTime();
+        document.getElementById("rwy_condition_report_header").textContent = "RUNWAY 04R CONDITION REPORT AT " + getRWYCCTime();
+        document.getElementById("rwy_condition_report_header2").textContent = "RUNWAY 22L CONDITION REPORT AT " + getRWYCCTime();
     }
 
     // Common information:
