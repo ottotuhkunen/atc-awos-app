@@ -30,6 +30,7 @@ function setup(){
 function metNav1() {
     document.getElementById("metrepSvg").style.display = "block";
     document.getElementById("metarsSvg").style.display = "none";
+    document.getElementById("tafsSvg").style.display = "none";
     document.getElementById("metButton1").style.backgroundColor = "#D8E5F3";
     document.getElementById("metButton2").style.backgroundColor = "#E6E6E6";
     document.getElementById("metButton3").style.backgroundColor = "#E6E6E6";
@@ -37,6 +38,7 @@ function metNav1() {
 function metNav2() {
     document.getElementById("metrepSvg").style.display = "none";
     document.getElementById("metarsSvg").style.display = "block";
+    document.getElementById("tafsSvg").style.display = "none";
     document.getElementById("metButton1").style.backgroundColor = "#E6E6E6";
     document.getElementById("metButton2").style.backgroundColor = "#D8E5F3";
     document.getElementById("metButton3").style.backgroundColor = "#E6E6E6";
