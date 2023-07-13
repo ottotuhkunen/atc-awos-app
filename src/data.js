@@ -576,7 +576,7 @@ function setMetarData(xmlDoc) {
         document.getElementById('atisID').innerHTML = item.atis_code;
         document.getElementById('atisID2').innerHTML = item.atis_code;
         var atisWithLines = item.text_atis.join(' ').split('.');
-        document.getElementById('atisInfoField').innerHTML = atisWithLines.join('<br>');
+        makeAtisText(atisWithLines.join('<br>'));
         break;
       }
       else {
@@ -589,6 +589,86 @@ function setMetarData(xmlDoc) {
   .catch(error => console.error('Error:', error));
 }
 
+function makeAtisText(atisText) {
+  if (atisText.includes("THIS IS HELSINKI-VANTAA")) {
+    atisText = atisText.replace(/(THIS IS HELSINKI-VANTAA ARRIVAL AND DEPARTURE INFORMATION) (\w)/, "EFHK ARR AND DEP INFO $2<br/>");
+    atisText = atisText.replace(/AT TIME (\d{4})/g, '$1<br/>');
+    atisText = atisText.replace(/APPROACH/g, 'APCH');
+    atisText = atisText.replace(/ARRIVAL/g, '<br/>ARR');
+    atisText = atisText.replace(/DEPARTURE/g, '<br/>DEP');
+    atisText = atisText.replace(/RUNWAY/g, 'RWY');
+    atisText = atisText.replace(/RUNWAYS/g, 'RWYS');
+    atisText = atisText.replace(/CLEAR AND DRY/g, '');
+    atisText = atisText.replace(/TRANSITION LEVEL (\d{2})/g, '<br/>TRL $1<br/>');
+    atisText = atisText.replace(/DEGREES/g, 'DEG');
+    atisText = atisText.replace(/KNOTS/g, 'KT');
+    atisText = atisText.replace(/TEMPERATURE/g, '<br/>T');
+    atisText = atisText.replace(/DEW POINT/g, 'DP');
+    atisText = atisText.replace(/QNH (\d{4})/g, 'QNH $1<br/>');
+    atisText = atisText.replace(/ADVISE ON INITIAL CONTACT YOU HAVE INFORMATION/g, '<br/>ACK INFO');
+    atisText = atisText.replace(/VERTICAL VISIBILITY/g, '<br/>VV');
+    atisText = atisText.replace(/VISIBILITY/g, '<br/>VIS');
+    atisText = atisText.replace(/CAVOK/g, '<br/>CAVOK');
+    atisText = atisText.replace(/BROKEN/g, 'BKN');
+    atisText = atisText.replace(/SCATTERED/g, 'SCT');
+    atisText = atisText.replace(/OVERCAST/g, 'OVC');
+    atisText = atisText.replace(/BECOMING/g, 'BECMG');
+    atisText = atisText.replace(/PROBABILITY/g, 'PROB');
+    atisText = atisText.replace(/LIGHT/g, 'FBL');
+    atisText = atisText.replace(/HEAVY/g, 'HVY');
+    atisText = atisText.replace(/MODERATE/g, 'MOD');
+    atisText = atisText.replace(/PROBABILITY/g, 'PROB');
+    atisText = atisText.replace(/CUMULONIMBUS/g, 'CB');
+    atisText = atisText.replace(/MOVING/g, 'MOV');
+    atisText = atisText.replace(/EAST/g, 'E');
+    atisText = atisText.replace(/NORTH/g, 'N');
+    atisText = atisText.replace(/WEST/g, 'W');
+    atisText = atisText.replace(/SOUTH/g, 'S');
+    atisText = atisText.replace(/NORTHWEST/g, 'NW');
+    atisText = atisText.replace(/SOUTHWEST/g, 'SW');
+    atisText = atisText.replace(/NORTHEAST/g, 'NE');
+    atisText = atisText.replace(/SOUTHEAST/g, 'SE');
+    atisText = atisText.replace(/ABOVE/g, 'ABV');
+    atisText = atisText.replace(/FORECASTED/g, 'FCST');
+    atisText = atisText.replace(/FLIGHT LEVEL/g, 'FL');
+    atisText = atisText.replace(/NO SIGNIFICANT CLOUDS/g, 'NSC');
+    atisText = atisText.replace(/SEVERE/g, 'SEV');
+    atisText = atisText.replace(/CLEAR SKY/g, 'SKC');
+    atisText = atisText.replace(/TEMPORARY/g, 'TEMPO');
+    atisText = atisText.replace(/WIND SHEAR/g, 'WS');
+    atisText = atisText.replace(/REPORTED/g, 'REP');
+    atisText = atisText.replace(/BETWEEN/g, 'BTN');
+    atisText = atisText.replace(/FROM/g, 'FM');
+    atisText = atisText.replace(/FREEZING/g, 'FZ');
+    atisText = atisText.replace(/ICING/g, 'ICE');
+    atisText = atisText.replace(/NO CLOUDS DETECTED/g, 'NCD');
+    atisText = atisText.replace(/RUNWAY VISUAL RANGE/g, 'RVR');
+    atisText = atisText.replace(/TOWERING CUMULUS/g, 'TCU');
+    atisText = atisText.replace(/VARIABLE/g, 'VRB');
+    atisText = atisText.replace(/GUSTING/g, 'MAX');
+    atisText = atisText.replace(/GUST/g, 'MAX');
+    atisText = atisText.replace(/GUSTS/g, 'MAX');
+    atisText = atisText.replace(/ SHALLOW/g, ' MI');
+    atisText = atisText.replace(/ PARTIAL/g, ' PR');
+    atisText = atisText.replace(/ PATCHES/g, ' BC');
+    atisText = atisText.replace(/ LOW DRIFTING/g, ' DR');
+    atisText = atisText.replace(/ BLOWING/g, ' BL');
+    atisText = atisText.replace(/ SHOWER/g, ' SH');
+    atisText = atisText.replace(/ THUNDERSTORM/g, ' TS');
+    atisText = atisText.replace(/DRIZZLE /g, 'DZ ');
+    atisText = atisText.replace(/RAIN /g, 'RA ');
+    atisText = atisText.replace(/SNOW GRAINS /g, 'SG ');
+    atisText = atisText.replace(/SNOW /g, 'SN ');
+    atisText = atisText.replace(/ICE CRYSTALS /g, 'IC ');
+    atisText = atisText.replace(/ICE PELLETS /g, 'PL ');
+    atisText = atisText.replace(/SMALL HAIL /g, 'GS ');
+    atisText = atisText.replace(/HAIL /g, 'GR ');
+    atisText = atisText.replace(/MIST /g, 'BR ');
+    atisText = atisText.replace(/FOG /g, 'FG ');
+    atisText = atisText.replace(/WIDESPREAD DUST /g, 'DU ');
+  }
+  document.getElementById("atisInfoField").innerHTML = atisText;
+}
 
 function rvrRandomizator(realRVR) {
   realRVR = Number(realRVR)
