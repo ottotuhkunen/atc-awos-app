@@ -609,9 +609,10 @@ function makeAtisText(atisText) {
     atisText = atisText.replace(/VERTICAL VISIBILITY/g, '<br/>VV');
     atisText = atisText.replace(/VISIBILITY/g, '<br/>VIS');
     atisText = atisText.replace(/CAVOK/g, '<br/>CAVOK');
-    atisText = atisText.replace(/BROKEN/g, 'BKN');
-    atisText = atisText.replace(/SCATTERED/g, 'SCT');
-    atisText = atisText.replace(/OVERCAST/g, 'OVC');
+    atisText = atisText.replace(/BROKEN/g, '<br/>BKN');
+    atisText = atisText.replace(/SCATTERED/g, '<br/>SCT');
+    atisText = atisText.replace(/OVERCAST/g, '<br/>OVC');
+    atisText = atisText.replace(/FEW/g, '<br/>FEW');
     atisText = atisText.replace(/BECOMING/g, 'BECMG');
     atisText = atisText.replace(/PROBABILITY/g, 'PROB');
     atisText = atisText.replace(/LIGHT/g, 'FBL');
@@ -666,6 +667,7 @@ function makeAtisText(atisText) {
     atisText = atisText.replace(/MIST /g, 'BR ');
     atisText = atisText.replace(/FOG /g, 'FG ');
     atisText = atisText.replace(/WIDESPREAD DUST /g, 'DU ');
+    atisText = atisText.replace(/KILOMETERS/g, 'KM');
   }
   document.getElementById("atisInfoField").innerHTML = atisText;
 }
