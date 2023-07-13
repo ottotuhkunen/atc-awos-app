@@ -10,6 +10,8 @@ async function loadFMI() {
           const data = parser.parseFromString(responseText, "application/xml");
           setData(data);
           fetchInformation();
+          fetchRwyStatus();
+          //console.log("FMI loaded")
       }
   } catch (error) {
       console.log('Fetch API error -', error);
@@ -88,6 +90,7 @@ function setData(xmlDoc) {
 
     document.getElementById("qnh").innerHTML = roundedQnh;
     document.getElementById("qfe").innerHTML = Math.floor(qnh - 6.5);
+    document.getElementById("metQfe").textContent = Math.floor(qnh - 6.5);
     document.getElementById("22R_windDir").innerHTML = randomWindDirection(windDirection, "arrow22R", "22R_maxDir", roundedWindSpeed);
     document.getElementById("22L_windDir").innerHTML = randomWindDirection(windDirection, "arrow22L", "22L_maxDir", roundedWindSpeed);
     //EXTRA: document.getElementById("15_windDir").innerHTML = randomWindDirection(windDirection, "arrow15", "15_maxDir", roundedWindSpeed);
@@ -101,26 +104,32 @@ function setData(xmlDoc) {
       document.getElementById("22R_windDir").style.display = "none";
       document.getElementById("22R_maxDir").style.display = "none";
       document.getElementById("22R_windSpd").innerHTML = "CALM";
+      document.getElementById("arrow22R").style.display = "none";
 
       document.getElementById("22L_windDir").style.display = "none";
       document.getElementById("22L_maxDir").style.display = "none";
       document.getElementById("22L_windSpd").innerHTML = "CALM";
+      document.getElementById("arrow22L").style.display = "none";
 
-      document.getElementById("15_windDir").style.display = "none";
-      document.getElementById("15_maxDir").style.display = "none";
+      //EXTRA: document.getElementById("15_windDir").style.display = "none";
+      //EXTRA: document.getElementById("15_maxDir").style.display = "none";
       //EXTRA: document.getElementById("15_windSpd").innerHTML = "CALM";
+      //EXTRA: document.getElementById("arrow15").style.display = "none";
 
       document.getElementById("33_windDir").style.display = "none";
       document.getElementById("33_maxDir").style.display = "none";
       document.getElementById("33_windSpd").innerHTML = "CALM";
+      document.getElementById("arrow33").style.display = "none";
 
       document.getElementById("04R_windDir").style.display = "none";
       document.getElementById("04R_maxDir").style.display = "none";
       document.getElementById("04R_windSpd").innerHTML = "CALM";
+      document.getElementById("arrow04R").style.display = "none";
 
       document.getElementById("04L_windDir").style.display = "none";
       document.getElementById("04L_maxDir").style.display = "none";
       document.getElementById("04L_windSpd").innerHTML = "CALM";
+      document.getElementById("arrow04L").style.display = "none";
     }
     else {
       document.getElementById("22R_windSpd").innerHTML = roundedWindSpeed;
@@ -148,6 +157,13 @@ function setData(xmlDoc) {
 
       document.getElementById("04L_windDir").style.display = "block";
       document.getElementById("04L_maxDir").style.display = "block";
+
+      document.getElementById("arrow04R").style.display = "none";
+      document.getElementById("arrow04L").style.display = "none";
+      // EXTRA: document.getElementById("arrow15").style.display = "none";
+      document.getElementById("arrow33").style.display = "none";
+      document.getElementById("arrow22L").style.display = "none";
+      document.getElementById("arrow22R").style.display = "none";
     }
 
     var displayedGust22R = getMaxSpeed(roundedGust, roundedWindSpeed, "display22R", "22R_maxSpd", "22R_minSpd");
@@ -546,12 +562,11 @@ function setMetarData(xmlDoc) {
     document.getElementById("rvr_15_3").style.fill = "darkred";
   }
   if (rvr_15 == null && rvr_33 == null && rvr_04L == null && rvr_22R == null && rvr_04R == null && rvr_22L == null) {
-    document.getElementById("metRvr").textContent = "ABV 2000";
-    document.getElementById("metRvr2").textContent = "ABV 2000";
-    document.getElementById("metRvr3").textContent = "ABV 2000";
+    document.getElementById("metRvr").textContent = "";
+    document.getElementById("metRvr2").textContent = "";
+    document.getElementById("metRvr3").textContent = "";
   }
-
-
+  
   // get ATIS
   fetch('https://data.vatsim.net/v3/vatsim-data.json')
   .then(response => response.json())
@@ -573,6 +588,7 @@ function setMetarData(xmlDoc) {
   })
   .catch(error => console.error('Error:', error));
 }
+
 
 function rvrRandomizator(realRVR) {
   realRVR = Number(realRVR)

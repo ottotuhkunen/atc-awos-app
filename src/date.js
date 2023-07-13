@@ -23,32 +23,3 @@ function getDate(){
     document.getElementById("secondField").innerHTML= seconds;
     setTimeout(getDate, 1000);
 }
-
-function getDate2(){
-    var dateUtc = new Date();
-    var h = dateUtc.getUTCHours();
-
-    if (h > 19 || h < 2) {
-        document.getElementById("checkboxDep15").disabled = true;
-        document.getElementById("checkboxArr15").disabled = true;
-        document.getElementById("checkboxDep33").disabled = true;
-        document.getElementById("checkboxArr33").disabled = true;
-        document.getElementById("bringToFront04R22L").style.display = "block";
-        document.getElementById("rwy15").style.fill = "#d81715";
-        document.getElementById("15_number").style.fill = "#dad7d4";
-        document.getElementById("33_number").style.fill = "#dad7d4";
-    }
-    else {
-        document.getElementById("checkboxDep15").disabled = false;
-        document.getElementById("checkboxArr15").disabled = true;
-        document.getElementById("checkboxDep33").disabled = true;
-        document.getElementById("checkboxArr33").disabled = true;
-        if (document.getElementById("rwy15").style.fill == "#d81715") {
-            document.getElementById("rwy15").style.fill = "#B5B5B5";
-            document.getElementById("15_number").style.fill = "#DADADA";
-            document.getElementById("33_number").style.fill = "#DADADA";
-        }
-    }
-
-    setTimeout(getDate, 120000);
-}

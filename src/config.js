@@ -11,9 +11,6 @@ function loadConfig() {
     var checked10 = JSON.parse(sessionStorage.getItem("arrBox22L"));
     var checked11 = JSON.parse(sessionStorage.getItem("depBox22R"));
     var checked12 = JSON.parse(sessionStorage.getItem("arrBox22R"));
-    var checked13 = JSON.parse(sessionStorage.getItem("closed_04R_22L"));
-    var checked14 = JSON.parse(sessionStorage.getItem("closed_15_33"));
-    var checked15 = JSON.parse(sessionStorage.getItem("closed_04L_22R"));
 
     if (checked1 == true){
            document.getElementById('checkboxDep04L').click();
@@ -51,16 +48,6 @@ function loadConfig() {
     if (checked12 == true){
            document.getElementById('checkboxArr22R').click();
     }  
-
-    if (checked13 == true){
-        document.getElementById('toggle_04R_22L').click();
-    } 
-    if (checked14 == true){
-        document.getElementById('toggle_15_33').click();
-    } 
-    if (checked15 == true){
-        document.getElementById('toggle_04L_22R').click();
-    } 
 }
 
 function saveConfig(){

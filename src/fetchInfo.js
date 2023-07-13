@@ -67,17 +67,6 @@ function fetchInformation(){
                 document.getElementById('infoWindow3_line3').textContent = record.fields['content'];
             }
 
-            // warning window
-            if (record.fields['Name'] === 'infowindow_warning') {
-                if(record.fields['content'] == "..."){
-                    document.getElementById('infoWindow4').style.display = "none";
-                }
-                else{
-                    document.getElementById('infoWindow4').style.display = "block";
-                    document.getElementById('infoWindow4_line1').textContent = record.fields['content'];
-                }
-            }
-
             // Runway condition report (RWYCC)
             if (record.fields['Name'] === 'rwycc_all_rwys') {
                 if(record.fields['content'] == "..."){
@@ -86,17 +75,53 @@ function fetchInformation(){
                 else{
                     document.getElementById('RWYCC_windows').style.display = "block";
 
-                    document.getElementById('04L_RWYCC_1').textContent = record.fields['content'] + "\u00A0".repeat(3) + record.fields['rwycc_upgr_dngr'];
-                    document.getElementById('04L_RWYCC_2').textContent = record.fields['content'] + "\u00A0".repeat(3) + record.fields['rwycc_upgr_dngr'];
-                    document.getElementById('04L_RWYCC_3').textContent = record.fields['content'] + "\u00A0".repeat(3) + record.fields['rwycc_upgr_dngr'];
+                    if (JSON.parse(sessionStorage.getItem("04L_closed"))) {
+                        document.getElementById('04L_RWYCC_1').textContent = "0" + "\u00A0".repeat(3) + "⇩"
+                        document.getElementById('04L_RWYCC_2').textContent = "0" + "\u00A0".repeat(3) + "⇩"
+                        document.getElementById('04L_RWYCC_3').textContent = "0" + "\u00A0".repeat(3) + "⇩"
 
-                    document.getElementById('04R_RWYCC_1').textContent = record.fields['content'] + "\u00A0".repeat(3) + record.fields['rwycc_upgr_dngr'];
-                    document.getElementById('04R_RWYCC_2').textContent = record.fields['content'] + "\u00A0".repeat(3) + record.fields['rwycc_upgr_dngr'];
-                    document.getElementById('04R_RWYCC_3').textContent = record.fields['content'] + "\u00A0".repeat(3) + record.fields['rwycc_upgr_dngr'];
+                    } else {
+                        document.getElementById('04L_RWYCC_1').textContent = record.fields['content'] + "\u00A0".repeat(3) + record.fields['rwycc_upgr_dngr'];
+                        document.getElementById('04L_RWYCC_2').textContent = record.fields['content'] + "\u00A0".repeat(3) + record.fields['rwycc_upgr_dngr'];
+                        document.getElementById('04L_RWYCC_3').textContent = record.fields['content'] + "\u00A0".repeat(3) + record.fields['rwycc_upgr_dngr'];
+                    }
 
-                    document.getElementById('15_RWYCC_1').textContent = record.fields['content'] + "\u00A0".repeat(3) + record.fields['rwycc_upgr_dngr'];
-                    document.getElementById('15_RWYCC_2').textContent = record.fields['content'] + "\u00A0".repeat(3) + record.fields['rwycc_upgr_dngr'];
-                    document.getElementById('15_RWYCC_3').textContent = record.fields['content'] + "\u00A0".repeat(3) + record.fields['rwycc_upgr_dngr'];
+                    if (JSON.parse(sessionStorage.getItem("04R_closed"))) {
+                        document.getElementById('04R_RWYCC_1').textContent = "0" + "\u00A0".repeat(3) + "⇩"
+                        document.getElementById('04R_RWYCC_2').textContent = "0" + "\u00A0".repeat(3) + "⇩"
+                        document.getElementById('04R_RWYCC_3').textContent = "0" + "\u00A0".repeat(3) + "⇩"
+
+                    } else {
+                        document.getElementById('04R_RWYCC_1').textContent = record.fields['content'] + "\u00A0".repeat(3) + record.fields['rwycc_upgr_dngr'];
+                        document.getElementById('04R_RWYCC_2').textContent = record.fields['content'] + "\u00A0".repeat(3) + record.fields['rwycc_upgr_dngr'];
+                        document.getElementById('04R_RWYCC_3').textContent = record.fields['content'] + "\u00A0".repeat(3) + record.fields['rwycc_upgr_dngr'];    
+                    }
+
+                    if (JSON.parse(sessionStorage.getItem("15_closed"))) {
+                        document.getElementById('15_RWYCC_1').textContent = "0" + "\u00A0".repeat(3) + "⇩"
+                        document.getElementById('15_RWYCC_2').textContent = "0" + "\u00A0".repeat(3) + "⇩"
+                        document.getElementById('15_RWYCC_3').textContent = "0" + "\u00A0".repeat(3) + "⇩"
+
+                    } else {
+                        document.getElementById('15_RWYCC_1').textContent = record.fields['content'] + "\u00A0".repeat(3) + record.fields['rwycc_upgr_dngr'];
+                        document.getElementById('15_RWYCC_2').textContent = record.fields['content'] + "\u00A0".repeat(3) + record.fields['rwycc_upgr_dngr'];
+                        document.getElementById('15_RWYCC_3').textContent = record.fields['content'] + "\u00A0".repeat(3) + record.fields['rwycc_upgr_dngr'];  
+                    }
+                }
+            }
+            // if warnings exist:
+            if (record.fields['Name'] === 'warnings') {
+                if(record.fields['content'] == "..."){
+                    document.getElementById('infoWindow4').style.display = "none";
+                    document.getElementById('metWarnings').textContent = "NO ACTUAL WARNINGS";
+                    document.getElementById('metrepHeader').style.color = "black";
+
+                }
+                else{
+                    document.getElementById('infoWindow4').style.display = "block";
+                    document.getElementById('infoWindow4_line1').textContent = "MET WARNINGS EXIST";
+                    document.getElementById('metWarnings').textContent = record.fields['content'];
+                    document.getElementById('metrepHeader').style.color = "red";
                 }
             }
         }
