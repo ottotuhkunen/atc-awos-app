@@ -158,12 +158,12 @@ function setData(xmlDoc) {
       document.getElementById("04L_windDir").style.display = "block";
       document.getElementById("04L_maxDir").style.display = "block";
 
-      document.getElementById("arrow04R").style.display = "none";
-      document.getElementById("arrow04L").style.display = "none";
-      // EXTRA: document.getElementById("arrow15").style.display = "none";
-      document.getElementById("arrow33").style.display = "none";
-      document.getElementById("arrow22L").style.display = "none";
-      document.getElementById("arrow22R").style.display = "none";
+      document.getElementById("arrow04R").style.display = "block";
+      document.getElementById("arrow04L").style.display = "block";
+      // EXTRA: document.getElementById("arrow15").style.display = "block";
+      document.getElementById("arrow33").style.display = "block";
+      document.getElementById("arrow22L").style.display = "block";
+      document.getElementById("arrow22R").style.display = "block";
     }
 
     var displayedGust22R = getMaxSpeed(roundedGust, roundedWindSpeed, "display22R", "22R_maxSpd", "22R_minSpd");
