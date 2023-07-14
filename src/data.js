@@ -660,7 +660,7 @@ function makeAtisText(atisText) {
     atisText = atisText.replace(/ PATCHES/g, ' BC');
     atisText = atisText.replace(/ LOW DRIFTING/g, ' DR');
     atisText = atisText.replace(/ BLOWING/g, ' BL');
-    atisText = atisText.replace(/ SHOWER/g, ' SH');
+    atisText = atisText.replace(/ SHOWERS/g, ' SH');
     atisText = atisText.replace(/ THUNDERSTORM/g, ' TS');
     atisText = atisText.replace(/DRIZZLE /g, 'DZ ');
     atisText = atisText.replace(/RAIN /g, 'RA ');
