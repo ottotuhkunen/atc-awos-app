@@ -573,8 +573,8 @@ function setMetarData(xmlDoc) {
   .then(data => {
     for (let item of data.atis) {
       if (item.callsign === "EFHK_ATIS") {
-        document.getElementById('atisID').innerHTML = item.atis_code;
-        document.getElementById('atisID2').innerHTML = item.atis_code;
+        //document.getElementById('atisID').innerHTML = item.atis_code;
+        //document.getElementById('atisID2').innerHTML = item.atis_code;
         var atisWithLines = item.text_atis.join(' ').split('.');
         makeAtisText(atisWithLines.join('<br>'));
         break;
@@ -668,6 +668,21 @@ function makeAtisText(atisText) {
     atisText = atisText.replace(/FOG /g, 'FG ');
     atisText = atisText.replace(/WIDESPREAD DUST /g, 'DU ');
     atisText = atisText.replace(/KILOMETERS/g, 'KM');
+  }
+  let pattern = /INFO\s([A-Z])/;
+
+  let match = atisText.match(pattern);
+  let atisCode;
+
+  if (match && match[1]) {
+    // ATIS ID
+    atisCode = match[1];
+    document.getElementById('atisID').innerHTML = atisCode;
+    document.getElementById('atisID2').innerHTML = atisCode;
+  } else {
+    //console.log("No ATIS ID");
+    document.getElementById('atisID').innerHTML = "//";
+    document.getElementById('atisID2').innerHTML = "//";
   }
   document.getElementById("atisInfoField").innerHTML = atisText;
 }
