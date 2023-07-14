@@ -123,15 +123,23 @@ hr {
     top: 62px;
     bottom: 0;
 }
+.button-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    justify-content: flex-start; 
+}
 .mainbuttons {
     margin-top: 5px;
     margin-bottom: 4px;
-    width: 80px; 
-    height: 80px; 
+    width: 11vh; 
+    height: 11vh; 
+    max-width: 80px; 
+    max-height: 80px; 
     border-color: #b3cbe6; 
     border-radius: 8px; 
     border-style: solid;
-    font-size: 10pt;
+    font-size: clamp(4px, 1.7vh, 11px);
     cursor: pointer;
     padding: 0;
 }
@@ -142,13 +150,11 @@ hr {
     background: linear-gradient(#e4f0ff, #bfd6f0);
 }
 .menuTriangle {
-	border-top: 20px solid transparent;
-	border-left: 30px solid #a3bed5;
-	border-bottom: 20px solid transparent;
-    position: absolute;
-    margin-left: 85px;
-    margin-top: -62px;
+	border-top: 2vh solid transparent;
+    border-left: 3vh solid #a3bed5;
+    border-bottom: 2vh solid transparent;
     display: none;
+    margin-left: 2px;
 }
 .container {
     position: absolute;

@@ -231,6 +231,12 @@ function setData(xmlDoc) {
     document.getElementById("04L_minSpd").innerHTML = getMinSpeed(roundedWindSpeed);
 
     loadMetar();
+    document.getElementById("22R_minSpd").style.fill = "#B9B8BA";
+    document.getElementById("22L_minSpd").style.fill = "#B9B8BA";
+    document.getElementById("04R_minSpd").style.fill = "#B9B8BA";
+    document.getElementById("04L_minSpd").style.fill = "#B9B8BA";
+    document.getElementById("15_minSpd").style.fill = "#B9B8BA";
+    document.getElementById("33_minSpd").style.fill = "#B9B8BA";
 }
 
 function setTrl(qnh) {
@@ -575,7 +581,7 @@ function setMetarData(xmlDoc) {
       if (item.callsign === "EFHK_ATIS") {
         //document.getElementById('atisID').innerHTML = item.atis_code;
         //document.getElementById('atisID2').innerHTML = item.atis_code;
-        var atisWithLines = item.text_atis.join(' ').split('.');
+        var atisWithLines = item.text_atis.join(' ').replace(/\.\./g, '.').split('.');
         makeAtisText(atisWithLines.join('<br>'));
         break;
       }

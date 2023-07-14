@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=800, initial-scale=0.7"/>
+        <meta name="viewport" content="initial-scale=1.0"/>
         <meta name="apple-mobile-web-app-capable" content="yes"/>
         <meta http-equiv="Pragma" content="no-cache" />
         <meta http-equiv="Expires" content="0" />
@@ -36,29 +36,40 @@
             </div>
         </div>
         <div class="leftnav">
-            <button id="mainButton" class="mainbuttons mainbuttonActive" onclick="saveConfig(); location.reload();">
-                <img src="src/main.png" style="width: 65px; height: auto;" alt="rwy" onclick="saveConfig(); location.reload();">Main
-            </button>
-            <div id="menuTriangle1" class="menuTriangle" style="display: block;"></div>
-            
+            <div class="button-container">
+                <button id="mainButton" class="mainbuttons mainbuttonActive" onclick="saveConfig(); location.reload();">
+                    <img src="src/main.png" style="width: 80%; height: auto;" alt="rwy" onclick="saveConfig(); location.reload();">Main
+                </button>
+                <div id="menuTriangle1" class="menuTriangle" style="display: block;"></div>
+            </div>
             <button id="rwy04RCondWindow" onclick="openRWYCC('04R')" class="mainbuttons mainbuttonInactive">
-                <img onclick="openRWYCC('04R')" src="src/rwymenu.png" style="width: 60px; height: auto;" alt="rwy"><br><br>04R-22L
+                <img onclick="openRWYCC('04R')" src="src/rwymenu.png" style="width: 80%; height: auto;" alt="rwy"><br><br>04R-22L
             </button>
+            <br>
             <button id="rwy15CondWindow" onclick="openRWYCC('15')" class="mainbuttons mainbuttonInactive">
-                <img onclick="openRWYCC('15')" src="src/rwymenu.png" style="width: 60px; height: auto;" alt="rwy"><br><br>15-33
+                <img onclick="openRWYCC('15')" src="src/rwymenu.png" style="width: 80%; height: auto;" alt="rwy"><br><br>15-33
             </button>
+            <br>
             <button id="rwy04LCondWindow" onclick="openRWYCC('04L')" class="mainbuttons mainbuttonInactive">
-                <img onclick="openRWYCC('04L')" src="src/rwymenu.png" style="width: 60px; height: auto;" alt="rwy"><br><br>04L-22R
+                <img onclick="openRWYCC('04L')" src="src/rwymenu.png" style="width: 80%; height: auto;" alt="rwy"><br><br>04L-22R
             </button>
-            <button onclick="metrep();" id="metrepButton" class="mainbuttons mainbuttonInactive">
-                <img src="src/metrep.png" style="width: 35px; height: auto;" alt="rwy" onclick="metrep();"><br><span id="metrepHeader" style="font-size: 8pt;">MET REPORT</span>
+            <br>
+            <button id="notamWindow" onclick="" class="mainbuttons mainbuttonInactive" style="cursor: not-allowed;">
+                SNOWTAM<br>TAXIWAYS<br>APRON
             </button>
-            <div id="menuTriangle2" class="menuTriangle"></div>
-            <button id="setupButton" class="mainbuttons mainbuttonInactive" onclick="setup();">
-                <img src="src/settings.png" style="width: 50px; height: auto;" alt="rwy" onclick="setup();"><br>Setup
-            </button>
-            <div id="menuTriangle3" class="menuTriangle"></div>
-	    <p style="color: red; font-weight: bold; font-size: 14pt; position: absolute; bottom: 0; padding: 12pt; background-color: rgb(232,232,232);">Simulator<br>use only!</p>
+            <br>
+            <div class="button-container">
+                <button onclick="metrep();" id="metrepButton" class="mainbuttons mainbuttonInactive">
+                    <img src="src/metrep.png" style="width: 44%; height: auto;" alt="rwy" onclick="metrep();"><br><span id="metrepHeader" style="font-size: clamp(4px, 1.4vh, 8pt);">MET REPORT</span>
+                </button>
+                <div id="menuTriangle2" class="menuTriangle"></div>
+            </div>
+            <div class="button-container">
+                <button id="setupButton" class="mainbuttons mainbuttonInactive" onclick="setup();">
+                    <img src="src/settings.png" style="width: 60%; height: auto;" alt="rwy" onclick="setup();"><br>Setup
+                </button>
+                <div id="menuTriangle3" class="menuTriangle"></div>
+            </div>
         </div>
         <div class="container" id="container">
             <!-- Generator: Adobe Illustrator 26.5.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
