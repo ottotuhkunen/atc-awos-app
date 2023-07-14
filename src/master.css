@@ -126,8 +126,7 @@ hr {
 .button-container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    justify-content: flex-start; 
+    justify-content: flex-start;
 }
 .mainbuttons {
     margin-top: 5px;
@@ -153,8 +152,15 @@ hr {
 	border-top: 2vh solid transparent;
     border-left: 3vh solid #a3bed5;
     border-bottom: 2vh solid transparent;
-    display: none;
     margin-left: 2px;
+    display: none;
+}
+@media (min-height: 620px) {
+    .menuTriangle {
+        border-top: 15px solid transparent;
+        border-left: 20px solid #a3bed5;
+        border-bottom: 15px solid transparent;
+    }
 }
 .container {
     position: absolute;
