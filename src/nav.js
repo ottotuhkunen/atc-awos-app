@@ -515,8 +515,8 @@ function openAtisWindow(atisType){
 }
 
 function openRWYCC(runway) {
-    var url = "rwycc/index.html?runway=" + encodeURIComponent(runway);
-    window.location.href = url;
+    //var url = "rwycc/index.html?runway=" + encodeURIComponent(runway);
+    //window.location.href = url;
 }
 
 function getParams() {

@@ -189,6 +189,14 @@ function getRwyFromAtis() {
         break;
     }
 
+    if (atisText != "EFHK ATIS NIL") {
+        document.getElementById("atisDetector").innerHTML = "Active runways are loaded from VATSIM"
+        document.getElementById("atisDetector").color = "green";
+    } else {
+        document.getElementById("atisDetector").innerHTML = "No ATIS detected"
+        document.getElementById("atisDetector").color = "darkred";
+    }
+
     saveConfig();
 }
 

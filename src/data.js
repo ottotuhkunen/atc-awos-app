@@ -587,7 +587,7 @@ function setMetarData(xmlDoc) {
       else {
         document.getElementById('atisID').innerHTML = "//";
         document.getElementById('atisID2').innerHTML = "//";
-        document.getElementById('atisInfoField').innerHTML = "EFHK INFO NIL";
+        document.getElementById('atisInfoField').innerHTML = "EFHK ATIS NIL";
       }
     }
   })

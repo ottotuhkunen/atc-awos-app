@@ -42,15 +42,15 @@
                 </button>
                 <div id="menuTriangle1" class="menuTriangle" style="display: block;"></div>
             </div>
-            <button id="rwy04RCondWindow" onclick="openRWYCC('04R')" class="mainbuttons mainbuttonInactive">
+            <button id="rwy04RCondWindow" onclick="openRWYCC('04R')" class="mainbuttons mainbuttonInactive" style="cursor: not-allowed;">
                 <img src="src/rwymenu.png" style="width: 80%; height: auto;" alt="rwy"><br><br>04R-22L
             </button>
             <br>
-            <button id="rwy15CondWindow" onclick="openRWYCC('15')" class="mainbuttons mainbuttonInactive">
+            <button id="rwy15CondWindow" onclick="openRWYCC('15')" class="mainbuttons mainbuttonInactive" style="cursor: not-allowed;">
                 <img src="src/rwymenu.png" style="width: 80%; height: auto;" alt="rwy"><br><br>15-33
             </button>
             <br>
-            <button id="rwy04LCondWindow" onclick="openRWYCC('04L')" class="mainbuttons mainbuttonInactive">
+            <button id="rwy04LCondWindow" onclick="openRWYCC('04L')" class="mainbuttons mainbuttonInactive" style="cursor: not-allowed;">
                 <img src="src/rwymenu.png" style="width: 80%; height: auto;" alt="rwy"><br><br>04L-22R
             </button>
             <br>
@@ -288,8 +288,8 @@
             <div id="setupDiv" style="display: none;">
                 <div id="rwyAutoDisclamers">
                     <h2>Runway configuration mode = AUTO</h2>
-                    <h3 style="color: darkred; font-weight: bold;">No ATIS detected</h3>
-                    <h3 style="font-weight: bold;">- change RWY config to MANUAL in order to select runways</h3>
+                    <h3 id="atisDetector" style="color: darkred; font-weight: bold;"></h3>
+                    <h3 style="font-weight: bold;">- change RWY config to MANUAL for local configuration</h3>
                 </div>
                 
                 <div id="rwySelectionContainers">
@@ -688,7 +688,7 @@
 
             <div id="atisDiv" style="display: none;">
                 <div id="atisDeporArr" style="background: linear-gradient(#bbd4f0, #77aede); text-align: center; font-size: 17pt; margin: 10px; padding: 4px; border-top-left-radius: 8px; border-top-right-radius: 8px;"></div>
-                <div id="atisInfoField" style="padding: 10pt; position: absolute; left: 14pt; right: 14pt; top: 44pt; bottom: 14pt; background-color: white;">EFHK INFO NIL</div>
+                <div id="atisInfoField" style="padding: 10pt; position: absolute; left: 14pt; right: 14pt; top: 44pt; bottom: 14pt; background-color: white;">EFHK ATIS NIL</div>
             </div>
         </div>
     </body>
