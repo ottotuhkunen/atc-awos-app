@@ -13,7 +13,7 @@ function openMainPage() {
     document.getElementById("snowtamDiv").style.display = "none";
     document.getElementById("menuTriangle4").style.display = "none";
     document.getElementById("snowtamButton").classList = "mainbuttons mainbuttonInactive";;
-
+    document.getElementById("mainButton").style.pointerEvents = "none";
     loadFMI();
 }
 
@@ -489,18 +489,18 @@ function metNav3() {
 }
 
 function openDepATIS(){
-    document.getElementById("metrepDiv").style.display = "none";
-    document.getElementById("snowtamDiv").style.display = "none";
     openAtisWindow(1);
 }
 
-function openArrATIS(){
-    document.getElementById("metrepDiv").style.display = "none";
-    document.getElementById("snowtamDiv").style.display = "none";
+function openArrATIS(){   
     openAtisWindow(2);
 }
 
 function openAtisWindow(atisType){
+    document.getElementById("metrepDiv").style.display = "none";
+    document.getElementById("snowtamDiv").style.display = "none";
+    document.getElementById("mainButton").style.pointerEvents = "auto";
+
     if (atisType == 1) {
         document.getElementById("atisDeporArr").innerHTML = "DEPARTURE ATIS";
     }else {
