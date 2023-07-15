@@ -31,6 +31,7 @@ function metrep() {
     document.getElementById("snowtamDiv").style.display = "none";
     document.getElementById("menuTriangle4").style.display = "none";
     document.getElementById("snowtamButton").classList = "mainbuttons mainbuttonInactive";
+    document.getElementById("mainButton").style.pointerEvents = "auto";
 
     loadMetRep();
     loadCurrentMet();
@@ -50,6 +51,7 @@ function setup() {
     document.getElementById("metrepDiv").style.display = "none";
     document.getElementById("snowtamDiv").style.display = "none";
     document.getElementById("menuTriangle4").style.display = "none";
+    document.getElementById("mainButton").style.pointerEvents = "auto";
 }
 
 function openSnowtam() {
