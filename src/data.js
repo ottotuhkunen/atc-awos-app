@@ -1,22 +1,25 @@
+function startDataFetching() {
+  loadFMI();
+  setInterval(loadFMI, 60000);
+}
+
 async function loadFMI() {
   try {
-      const response = await fetch("https://opendata.fmi.fi/wfs?service=WFS&version=2.0.0&request=getFeature&storedquery_id=fmi::observations::weather::simple&fmisid=100968");
+    const response = await fetch("https://opendata.fmi.fi/wfs?service=WFS&version=2.0.0&request=getFeature&storedquery_id=fmi::observations::weather::simple&fmisid=100968");
 
-      if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-      } else {
-          const responseText = await response.text();
-          const parser = new DOMParser();
-          const data = parser.parseFromString(responseText, "application/xml");
-          setData(data);
-          fetchInformation();
-          fetchRwyStatus();
-          //console.log("FMI loaded")
-      }
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    } else {
+      const responseText = await response.text();
+      const parser = new DOMParser();
+      const data = parser.parseFromString(responseText, "application/xml");
+      setData(data);
+      fetchInformation();
+      fetchRwyStatus();
+      console.log("FMI loaded");
+    }
   } catch (error) {
-      console.log('Fetch API error -', error);
-  } finally {
-      setTimeout(loadFMI, 60000);
+    console.log('Fetch API error -', error);
   }
 }
 
@@ -32,7 +35,7 @@ async function loadMetar() {
           const parser = new DOMParser();
           const data = parser.parseFromString(responseText, "application/xml");
           setMetarData(data);
-          //console.log("METAR data loaded")
+          console.log("METAR data loaded")
       }
   } catch (error) {
       console.log('Fetch API error -', error);
