@@ -4,6 +4,7 @@ function modeSelectorPressed() {
         document.getElementById("modeSelectorText").innerHTML = "RWY config<br><b>MANUAL</b>";
         document.getElementById("modeSelectorText").style.color = "darkred";
         document.getElementById("rwyAutoDisclamers").style.display = "none";
+        document.getElementById("rwySelectionContainers").style.display = "block";
 
         const checkboxIds = [
             "checkboxDep22R",
@@ -31,6 +32,7 @@ function modeSelectorPressed() {
         loadFMI();
     } else if (document.getElementById("modeSelectorText").innerHTML == "RWY config<br><b>MANUAL</b>") {
         // change mode to automatic
+        document.getElementById("rwySelectionContainers").style.display = "none";
         document.getElementById("modeSelectorText").innerHTML = "RWY config<br><b>AUTO</b>";
         document.getElementById("modeSelectorText").style.color = "green";
         document.getElementById("rwyAutoDisclamers").style.display = "block";
@@ -41,10 +43,8 @@ function modeSelectorPressed() {
 
 function loadConfig() {
     if (document.getElementById("modeSelectorText").innerHTML == "RWY config<br><b>AUTO</b>") {
-        document.getElementById("rwySelectionContainers").style.display = "none";
         getRwyFromAtis();
     } else {
-        document.getElementById("rwySelectionContainers").style.display = "block";
         //document.getElementById("setupContainer1").diabled = "false";
         document.getElementById("setupContainer2").diabled = "false";
         // RWY selection based on Setup page
@@ -189,14 +189,13 @@ function getRwyFromAtis() {
         break;
     }
 
-    if (atisText != "EFHK ATIS NIL") {
-        document.getElementById("atisDetector").innerHTML = "Active runways are loaded from VATSIM"
-        document.getElementById("atisDetector").color = "green";
-    } else {
+    if (atisText == "EFHK ATIS NIL") {
         document.getElementById("atisDetector").innerHTML = "No ATIS detected"
         document.getElementById("atisDetector").color = "darkred";
+    } else {
+        document.getElementById("atisDetector").innerHTML = "Active runways are loaded from VATSIM"
+        document.getElementById("atisDetector").color = "green";
     }
-
     saveConfig();
 }
 

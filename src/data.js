@@ -591,6 +591,10 @@ function setMetarData(xmlDoc) {
         document.getElementById('atisID').innerHTML = "//";
         document.getElementById('atisID2').innerHTML = "//";
         document.getElementById('atisInfoField').innerHTML = "EFHK ATIS NIL";
+        if (document.getElementById("modeSelectorText").innerHTML == "RWY config<br><b>AUTO</b>") {
+          // make all runways inactive
+          loadConfig();
+        }
       }
     }
   })
