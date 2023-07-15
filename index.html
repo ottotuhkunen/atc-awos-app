@@ -287,9 +287,8 @@
             </svg>
             <div id="setupDiv" style="display: none;">
                 <div id="rwyAutoDisclamers">
-                    <h2>Runway configuration mode = AUTO</h2>
-                    <h3 id="atisDetector" style="color: darkred; font-weight: bold;"></h3>
-                    <h3 style="font-weight: bold;">- change RWY config to MANUAL for local configuration</h3>
+                    <h2 id="atisDetector" style="color: darkred; font-weight: bold;"></h2>
+                    <h3 style="font-weight: bold;">Change RWY config to MANUAL for local configuration</h3>
                 </div>
                 
                 <div id="rwySelectionContainers">
@@ -308,8 +307,8 @@
                         <button class="runwayButton" onclick="soir22();"><strong>SOIR 22</strong><br>DEP 22R<br>ARR 22L, 22R</button><br>
                     </div>
                     -->
-                    <div id="setupContainer2" style="width: 300px; position: absolute; left: 10px;">
-                        <h2>Runway manual selection</h2>
+                    <div id="setupContainer2">
+                        <h2>Local Runway Configuration</h2>
                         <h3>04L<input class="checkbox" type="checkbox" id="checkboxDep04L" name="checkboxDep04L" onclick="dep04L();">DEP<input class="checkbox" type="checkbox" id="checkboxArr04L" name="checkboxArr04L" onclick="arr04L();">ARR</h3>
                         <h3>04R<input class="checkbox" type="checkbox" id="checkboxDep04R" name="checkboxDep04R" onclick="dep04R()">DEP<input class="checkbox" type="checkbox" id="checkboxArr04R" name="checkboxArr04R" onclick="arr04R();">ARR</h3>
                         <h3>15&nbsp;&nbsp;<input class="checkbox" type="checkbox" id="checkboxDep15" name="checkboxDep15" onclick="dep15();">DEP<input class="checkbox" type="checkbox" id="checkboxArr15" name="checkboxArr15" onclick="arr15();">ARR</h3>
@@ -319,10 +318,11 @@
                     </div>
                 </div>
                 
-                <div id="setupContainer3" style="position: absolute; top: 400px;">
+                <div id="setupContainer3" style="margin-top: 70px; max-width: 600px;">
+                    <hr>
                     <p>Please, do <b>NOT</b> distribute this weather app to users outside of Vatsim Scandinavia.</p>
-                    <p>The password to this app may change from time to time.</p><br>
-                    <p>This app is for simulation purposes only!
+                    <p>The password to this app may change from time to time.</p><br><hr>
+                    <h2 style="color: darkred; font-weight: bold;">This app is for simulation purposes only!</h2>
                 </div>
                 
                 <!--<h2>Runway availability</h2>
