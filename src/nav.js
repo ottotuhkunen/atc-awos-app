@@ -808,7 +808,7 @@ function loadActualMet(xml) {
         let allCloudsText = '';
         result.data[0].clouds.forEach((cloud, index) => {
             // All clouds
-            allCloudsText += cloud.code + " " + cloud.base_feet_agl + " ";
+            allCloudsText += cloud.code + " " + cloud.base_feet_agl + "FT ";
             // Get elements
             const feetElement = document.getElementById(`metCurrentCloud_alt${index + 1}`);
             const codeElement = document.getElementById(`metCurrentCloud_id${index + 1}`);
