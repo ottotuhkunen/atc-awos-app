@@ -579,7 +579,7 @@ function setMetarData(xmlDoc) {
   .then(response => response.json())
   .then(data => {
     for (let item of data.atis) {
-      if (item.callsign === "EETN_ATIS") {
+      if (item.callsign === "EFHK_ATIS") {
         var atisWithLines = item.text_atis.join(' ').replace(/\.\./g, '.').split('.');
         makeAtisText(atisWithLines.join('<br>'));
         break;
