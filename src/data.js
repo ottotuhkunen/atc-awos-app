@@ -674,6 +674,9 @@ function makeAtisText(atisText) {
     atisText = atisText.replace(/FOG /g, 'FG ');
     atisText = atisText.replace(/WIDESPREAD DUST /g, 'DU ');
     atisText = atisText.replace(/KILOMETERS/g, 'KM');
+    atisText = atisText.replace(/METERS/g, 'M');
+    atisText = atisText.replace(/VICINITY/g, 'VC');
+    atisText = atisText.replace(/FEET/g, 'FT');
   }
   let pattern = /INFO\s([A-Z])/;
 
