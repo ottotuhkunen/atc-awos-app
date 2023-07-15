@@ -113,7 +113,7 @@ hr {
     position: absolute;
     right: 0;
     font-size: 9pt;
-    color: white;
+    color: green;
     background-image: linear-gradient(#e5f2ff, #c0d7f0);
     padding: 0pt 2pt;
     border: 1px outset white;
@@ -147,9 +147,11 @@ hr {
 }
 .mainbuttonActive {
     background: linear-gradient(#708fb4, #e4f0ff);
+    pointer-events: none;
 }
 .mainbuttonInactive {
     background: linear-gradient(#e4f0ff, #bfd6f0);
+    pointer-events: auto;
 }
 .menuTriangle {
 	border-top: 2vh solid transparent;
@@ -428,4 +430,9 @@ div#station-close-button {
 }
 .metRepFieldTaf {
     height: 84px;
+}
+.snowtamContainer {
+    border: 1px solid black;
+    margin-top: 12px;
+    margin-right: 12px;
 }

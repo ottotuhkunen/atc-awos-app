@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="https://use.typekit.net/nju1yva.css">
         <meta name="robots" content="noindex">
     </head>
-    <body onload="getDate(); loadConfig(); loadFMI();">
+    <body onload="getDate(); loadFMI(); loadConfig();">
         <div class="topnav">
             <img alt="Logo" src="src/vatsca.png" style="height: 60px; float: left; padding: 0px 5px;">
             <div class="topmenuField atisButton" onclick="openDepATIS();" ><p>DEP</p><h1 id="atisID"><img style="width: 20px;" src="src/ajax-loader.gif" alt="//"></h1></div>
@@ -30,14 +30,14 @@
             <div class="topmenuField dateField" id="dateField"></div>
             <div class="topmenuField timeField" id="timeField"></div>
             <div class="topmenuField secondField" id="secondField"></div>
-            <div class="topmenuField modeselector" id="modeselector" style="cursor: not-allowed;">
-                <img alt="mode" src="src/daynight.png" style="padding-top: 8px;"><br>
-                Day/night
+            <div class="topmenuField modeselector" id="modeselector" onclick="modeSelectorPressed();">
+                <img src="src/rwymenu.png" style="width: 54px; height: auto;" alt="rwy"><br>
+                <p style="font-size: 9pt;" id="modeSelectorText">RWY config<br><b>AUTO</b></p>
             </div>
         </div>
         <div class="leftnav">
             <div class="button-container">
-                <button id="mainButton" class="mainbuttons mainbuttonActive" onclick="saveConfig(); location.reload();">
+                <button id="mainButton" class="mainbuttons mainbuttonActive" onclick="openMainPage();">
                     <img src="src/main.png" style="width: 80%; height: auto;" alt="rwy">Main
                 </button>
                 <div id="menuTriangle1" class="menuTriangle" style="display: block;"></div>
@@ -54,10 +54,12 @@
                 <img src="src/rwymenu.png" style="width: 80%; height: auto;" alt="rwy"><br><br>04L-22R
             </button>
             <br>
-            <button id="notamWindow" onclick="" class="mainbuttons mainbuttonInactive" style="cursor: not-allowed;">
-                SNOWTAM<br>TAXIWAYS<br>APRON
-            </button>
-            <br>
+            <div class="button-container">
+                <button id="snowtamButton" onclick="" class="mainbuttons mainbuttonInactive" style="cursor: not-allowed;">
+                    SNOWTAM<br>TAXIWAYS<br>APRON
+                </button>
+                <div id="menuTriangle4" class="menuTriangle" style="display: none;"></div>
+            </div>
             <div class="button-container">
                 <button onclick="metrep();" id="metrepButton" class="mainbuttons mainbuttonInactive">
                     <img src="src/metrep.png" style="width: 44%; height: auto;" alt="rwy"><br><span id="metrepHeader" style="font-size: clamp(4px, 1.4vh, 8pt);">MET REPORT</span>
@@ -284,28 +286,39 @@
                 </g>
             </svg>
             <div id="setupDiv" style="display: none;">
-                <div id="setupContainer1" style="width: 300px; position: absolute;">
-                    <h2>Runway combination</h2>
-                    <button class="runwayButton" onclick="openV();"><strong>OPEN V</strong><br>DEP 22R<br>ARR 15</button>
-                    <button class="runwayButton" onclick="openVQjet();"><strong>OPEN V QJET</strong><br>DEP 22R, 22L<br>ARR 15</button><br>
-                    <button class="runwayButton" onclick="para22();"><strong>PARA 22</strong><br>DEP 22R<br>ARR 22L</button>
-                    <button class="runwayButton" onclick="para22Qjet();"><strong>PARA 22 QJET</strong><br>DEP 22R, 22L<br>ARR 22L</button><br>
-                    <button class="runwayButton" onclick="para04();"><strong>PARA 04</strong><br>DEP 04R<br>ARR 04L</button>
-                    <button class="runwayButton" onclick="para04Prop();"><strong>PARA 04 PROP</strong><br>DEP 04R, 15<br>ARR 04L</button><br><br>
-                    <button class="runwayButton" onclick="openT();"><strong>OPEN T (LVP)</strong><br>DEP 15<br>ARR 22R</button>
-                    <button class="runwayButton" onclick="openA();"><strong>OPEN A (LVP)</strong><br>DEP 15<br>ARR 04L</button><br>
-                    <button class="runwayButton" onclick="soir04();"><strong>SOIR 04</strong><br>DEP 04R<br>ARR 04L, 04R</button>
-                    <button class="runwayButton" onclick="soir22();"><strong>SOIR 22</strong><br>DEP 22R<br>ARR 22L, 22R</button><br>
+                <div id="rwyAutoDisclamers">
+                    <h2>Runway configuration mode = AUTO</h2>
+                    <h3 style="color: darkred; font-weight: bold;">No ATIS detected</h3>
+                    <h3 style="font-weight: bold;">- change RWY config to MANUAL in order to select runways</h3>
                 </div>
-                <div id="setupContainer2" style="width: 300px; position: absolute; left: 310px;">
-                    <h2>Manual selection</h2>
-                    <h3>04L<input class="checkbox" type="checkbox" id="checkboxDep04L" name="checkboxDep04L" onclick="dep04L();">DEP<input class="checkbox" type="checkbox" id="checkboxArr04L" name="checkboxArr04L" onclick="arr04L();">ARR</h3>
-                    <h3>04R<input class="checkbox" type="checkbox" id="checkboxDep04R" name="checkboxDep04R" onclick="dep04R()">DEP<input class="checkbox" type="checkbox" id="checkboxArr04R" name="checkboxArr04R" onclick="arr04R();">ARR</h3>
-                    <h3>15&nbsp;&nbsp;<input class="checkbox" type="checkbox" id="checkboxDep15" name="checkboxDep15" onclick="dep15();">DEP<input class="checkbox" type="checkbox" id="checkboxArr15" name="checkboxArr15" onclick="arr15();">ARR</h3>
-                    <h3>33&nbsp;&nbsp;<input class="checkbox" type="checkbox" id="checkboxDep33" name="checkboxDep33" onclick="dep33();">DEP<input class="checkbox" type="checkbox" id="checkboxArr33" name="checkboxArr33" onclick="arr33();">ARR</h3>
-                    <h3>22L<input class="checkbox" type="checkbox" id="checkboxDep22L" name="checkboxDep22L" onclick="dep22L();">DEP<input class="checkbox" type="checkbox" id="checkboxArr22L" name="checkboxArr22L" onclick="arr22L();">ARR</h3>
-                    <h3>22R<input class="checkbox" type="checkbox" id="checkboxDep22R" name="checkboxDep22R" onclick="dep22R();">DEP<input class="checkbox" type="checkbox" id="checkboxArr22R" name="checkboxArr22R" onclick="arr22R();">ARR</h3>
+                
+                <div id="rwySelectionContainers">
+                    <!--
+                    <div id="setupContainer1" style="width: 300px; position: absolute;">
+                        <h2>Runway combination</h2>
+                        <button class="runwayButton" onclick="openV();"><strong>OPEN V</strong><br>DEP 22R<br>ARR 15</button>
+                        <button class="runwayButton" onclick="openVQjet();"><strong>OPEN V QJET</strong><br>DEP 22R, 22L<br>ARR 15</button><br>
+                        <button class="runwayButton" onclick="para22();"><strong>PARA 22</strong><br>DEP 22R<br>ARR 22L</button>
+                        <button class="runwayButton" onclick="para22Qjet();"><strong>PARA 22 QJET</strong><br>DEP 22R, 22L<br>ARR 22L</button><br>
+                        <button class="runwayButton" onclick="para04();"><strong>PARA 04</strong><br>DEP 04R<br>ARR 04L</button>
+                        <button class="runwayButton" onclick="para04Prop();"><strong>PARA 04 PROP</strong><br>DEP 04R, 15<br>ARR 04L</button><br><br>
+                        <button class="runwayButton" onclick="openT();"><strong>OPEN T (LVP)</strong><br>DEP 15<br>ARR 22R</button>
+                        <button class="runwayButton" onclick="openA();"><strong>OPEN A (LVP)</strong><br>DEP 15<br>ARR 04L</button><br>
+                        <button class="runwayButton" onclick="soir04();"><strong>SOIR 04</strong><br>DEP 04R<br>ARR 04L, 04R</button>
+                        <button class="runwayButton" onclick="soir22();"><strong>SOIR 22</strong><br>DEP 22R<br>ARR 22L, 22R</button><br>
+                    </div>
+                    -->
+                    <div id="setupContainer2" style="width: 300px; position: absolute; left: 10px;">
+                        <h2>Runway manual selection</h2>
+                        <h3>04L<input class="checkbox" type="checkbox" id="checkboxDep04L" name="checkboxDep04L" onclick="dep04L();">DEP<input class="checkbox" type="checkbox" id="checkboxArr04L" name="checkboxArr04L" onclick="arr04L();">ARR</h3>
+                        <h3>04R<input class="checkbox" type="checkbox" id="checkboxDep04R" name="checkboxDep04R" onclick="dep04R()">DEP<input class="checkbox" type="checkbox" id="checkboxArr04R" name="checkboxArr04R" onclick="arr04R();">ARR</h3>
+                        <h3>15&nbsp;&nbsp;<input class="checkbox" type="checkbox" id="checkboxDep15" name="checkboxDep15" onclick="dep15();">DEP<input class="checkbox" type="checkbox" id="checkboxArr15" name="checkboxArr15" onclick="arr15();">ARR</h3>
+                        <h3>33&nbsp;&nbsp;<input class="checkbox" type="checkbox" id="checkboxDep33" name="checkboxDep33" onclick="dep33();">DEP<input class="checkbox" type="checkbox" id="checkboxArr33" name="checkboxArr33" onclick="arr33();">ARR</h3>
+                        <h3>22L<input class="checkbox" type="checkbox" id="checkboxDep22L" name="checkboxDep22L" onclick="dep22L();">DEP<input class="checkbox" type="checkbox" id="checkboxArr22L" name="checkboxArr22L" onclick="arr22L();">ARR</h3>
+                        <h3>22R<input class="checkbox" type="checkbox" id="checkboxDep22R" name="checkboxDep22R" onclick="dep22R();">DEP<input class="checkbox" type="checkbox" id="checkboxArr22R" name="checkboxArr22R" onclick="arr22R();">ARR</h3>
+                    </div>
                 </div>
+                
                 <div id="setupContainer3" style="position: absolute; top: 400px;">
                     <p>Please, do <b>NOT</b> distribute this weather app to users outside of Vatsim Scandinavia.</p>
                     <p>The password to this app may change from time to time.</p><br>
@@ -654,14 +667,29 @@
                         </text>
                     </g>
                 </svg>
-           
+            </div>
+            <div id="snowtamDiv" style="display: none;">
+                <div id="snowtamContainer1" class="snowtamContainer">
+                    <h1 style="padding: 5pt;">EFHK REPORT ID</h1>
+                    <h2>EFHK_20230715_1048_45811</h2>
+                </div>
+                <div id="snowtamContainer2" class="snowtamContainer">
+                    <h1 style="padding: 5pt;">SNOWTAM #LOCAL</h1>
+                    <h3 id="snowtam">GG EFHKSUMM<br>151048 EFHKZTZX<br>SWEF0000 EFHK 07151048</h3>
+                    <h3>(SNOWTAM EFHK<br>07151033 04L 6/6/6 NR/NR/NR NR/NR/NR DRY/DRY/DRY<br>07151038 04R 6/5/5 NR/100/100 NR/NR/NR DRY/WET/WET<br>07151048 15 5/5/5 100/100/100 NR/NR/NR WET/WET/WET)</h3>
+                </div>
+                <div id="snowtamContainer3" class="snowtamContainer">
+                    <h1 style="padding: 5pt;">AIRPORT COMMENTS</h1>
+                    <h3>COMMENT SNOWTAM:<br>NIL</h3>
+                    <h3>COMMENT ATIS:<br>NIL</h3>
+                    <h3>COMMENT 'TORNI':<br>NIL</h3>
+                </div>
             </div>
 
             <div id="atisDiv" style="display: none;">
                 <div id="atisDeporArr" style="background: linear-gradient(#bbd4f0, #77aede); text-align: center; font-size: 17pt; margin: 10px; padding: 4px; border-top-left-radius: 8px; border-top-right-radius: 8px;"></div>
                 <div id="atisInfoField" style="padding: 10pt; position: absolute; left: 14pt; right: 14pt; top: 44pt; bottom: 14pt; background-color: white;">EFHK INFO NIL</div>
             </div>
-
         </div>
     </body>
     <footer id="footer">

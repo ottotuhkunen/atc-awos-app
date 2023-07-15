@@ -1,53 +1,195 @@
-function loadConfig() {
-    var checked1 = JSON.parse(sessionStorage.getItem("depBox04L"));
-    var checked2 = JSON.parse(sessionStorage.getItem("arrBox04L"));
-    var checked3 = JSON.parse(sessionStorage.getItem("depBox04R"));
-    var checked4 = JSON.parse(sessionStorage.getItem("arrBox04R"));
-    var checked5 = JSON.parse(sessionStorage.getItem("depBox15"));
-    var checked6 = JSON.parse(sessionStorage.getItem("arrBox15"));
-    var checked7 = JSON.parse(sessionStorage.getItem("depBox33"));
-    var checked8 = JSON.parse(sessionStorage.getItem("arrBox33"));
-    var checked9 = JSON.parse(sessionStorage.getItem("depBox22L"));
-    var checked10 = JSON.parse(sessionStorage.getItem("arrBox22L"));
-    var checked11 = JSON.parse(sessionStorage.getItem("depBox22R"));
-    var checked12 = JSON.parse(sessionStorage.getItem("arrBox22R"));
+function modeSelectorPressed() {
+    if (document.getElementById("modeSelectorText").innerHTML == "RWY config<br><b>AUTO</b>") {
+        // change mode to manual
+        document.getElementById("modeSelectorText").innerHTML = "RWY config<br><b>MANUAL</b>";
+        document.getElementById("modeSelectorText").style.color = "darkred";
+        document.getElementById("rwyAutoDisclamers").style.display = "none";
 
-    if (checked1 == true){
-           document.getElementById('checkboxDep04L').click();
+        const checkboxIds = [
+            "checkboxDep22R",
+            "checkboxDep22L",
+            "checkboxDep15",
+            "checkboxDep33",
+            "checkboxDep04L",
+            "checkboxDep04R",
+            "checkboxArr22L",
+            "checkboxArr22R",
+            "checkboxArr15",
+            "checkboxArr33",
+            "checkboxArr04L",
+            "checkboxArr04R"
+          ];
+          
+          checkboxIds.forEach(checkboxId => {
+            const checkbox = document.getElementById(checkboxId);
+            if (checkbox.checked) {
+              checkbox.click();
+            }
+          });
+        saveConfig();
+        loadConfig();
+        loadFMI();
+    } else if (document.getElementById("modeSelectorText").innerHTML == "RWY config<br><b>MANUAL</b>") {
+        // change mode to automatic
+        document.getElementById("modeSelectorText").innerHTML = "RWY config<br><b>AUTO</b>";
+        document.getElementById("modeSelectorText").style.color = "green";
+        document.getElementById("rwyAutoDisclamers").style.display = "block";
+        loadConfig();
+        loadFMI();
     }
-    if (checked2 == true){
-           document.getElementById('checkboxArr04L').click();
+}
+
+function loadConfig() {
+    if (document.getElementById("modeSelectorText").innerHTML == "RWY config<br><b>AUTO</b>") {
+        document.getElementById("rwySelectionContainers").style.display = "none";
+        getRwyFromAtis();
+    } else {
+        document.getElementById("rwySelectionContainers").style.display = "block";
+        //document.getElementById("setupContainer1").diabled = "false";
+        document.getElementById("setupContainer2").diabled = "false";
+        // RWY selection based on Setup page
+        var checked1 = JSON.parse(sessionStorage.getItem("depBox04L"));
+        var checked2 = JSON.parse(sessionStorage.getItem("arrBox04L"));
+        var checked3 = JSON.parse(sessionStorage.getItem("depBox04R"));
+        var checked4 = JSON.parse(sessionStorage.getItem("arrBox04R"));
+        var checked5 = JSON.parse(sessionStorage.getItem("depBox15"));
+        var checked6 = JSON.parse(sessionStorage.getItem("arrBox15"));
+        var checked7 = JSON.parse(sessionStorage.getItem("depBox33"));
+        var checked8 = JSON.parse(sessionStorage.getItem("arrBox33"));
+        var checked9 = JSON.parse(sessionStorage.getItem("depBox22L"));
+        var checked10 = JSON.parse(sessionStorage.getItem("arrBox22L"));
+        var checked11 = JSON.parse(sessionStorage.getItem("depBox22R"));
+        var checked12 = JSON.parse(sessionStorage.getItem("arrBox22R"));
+
+        if (checked1 == true){
+            document.getElementById('checkboxDep04L').click();
+        }
+        if (checked2 == true){
+            document.getElementById('checkboxArr04L').click();
+        }
+        if (checked3 == true){
+            document.getElementById('checkboxDep04R').click();
+        }
+        if (checked4 == true){
+            document.getElementById('checkboxArr04R').click();
+        }
+        if (checked5 == true){
+            document.getElementById('checkboxDep15').click();
+        }
+        if (checked6 == true){
+            document.getElementById('checkboxArr15').click();
+        }
+        if (checked7 == true){
+            document.getElementById('checkboxDep33').click();
+        }
+        if (checked8 == true){
+            document.getElementById('checkboxArr33').click();
+        }
+        if (checked9 == true){
+            document.getElementById('checkboxDep22L').click();
+        }
+        if (checked10 == true){
+            document.getElementById('checkboxArr22L').click();
+        }
+        if (checked11 == true){
+            document.getElementById('checkboxDep22R').click();
+        }
+        if (checked12 == true){
+            document.getElementById('checkboxArr22R').click();
+        }  
     }
-    if (checked3 == true){
-           document.getElementById('checkboxDep04R').click();
+}
+
+function getRwyFromAtis() {
+    let atisText = document.getElementById("atisInfoField").innerHTML;
+    const checkboxIds = [
+        "checkboxDep22R",
+        "checkboxDep22L",
+        "checkboxDep15",
+        "checkboxDep33",
+        "checkboxDep04L",
+        "checkboxDep04R",
+        "checkboxArr22L",
+        "checkboxArr22R",
+        "checkboxArr15",
+        "checkboxArr33",
+        "checkboxArr04L",
+        "checkboxArr04R"
+      ];
+      checkboxIds.forEach(checkboxId => {
+        const checkbox = document.getElementById(checkboxId);
+        if (checkbox.checked) {
+          checkbox.click();
+        }
+      });
+
+    switch (true) {
+      case atisText.includes("DEP RWY 22L AND 22R"):
+        document.getElementById('checkboxDep22L').click();
+        document.getElementById('checkboxDep22R').click();
+        break;
+      case atisText.includes("DEP RWYS 22R AND 22L"):
+        document.getElementById('checkboxDep22L').click();
+        document.getElementById('checkboxDep22R').click();
+        break;
+      case atisText.includes("DEP RWY 22R"):
+        document.getElementById('checkboxDep22R').click();
+        break;
+      case atisText.includes("DEP RWY 04R"):
+        document.getElementById('checkboxDep04R').click();
+        break;
+      case atisText.includes("DEP RWY 15"):
+        document.getElementById('checkboxDep15').click();
+        break;
+      case atisText.includes("DEP RWY 22L"):
+        document.getElementById('checkboxDep22L').click();
+        break;
+      case atisText.includes("DEP RWY 04L"):
+        document.getElementById('checkboxDep04L').click();
+        break;
+      case atisText.includes("DEP RWY 33"):
+        document.getElementById('checkboxDep33').click();
+        break;
     }
-    if (checked4 == true){
-           document.getElementById('checkboxArr04R').click();
+  
+    switch (true) {
+      case atisText.includes("ARR RWY 22L AND 22R"):
+        document.getElementById('checkboxArr22L').click();
+        document.getElementById('checkboxArr22R').click();
+        break;
+      case atisText.includes("ARR RWYS 22L AND 22R"):
+        document.getElementById('checkboxArr22L').click();
+        document.getElementById('checkboxArr22R').click();
+        break;
+      case atisText.includes("ARR RWY 22L"):
+        document.getElementById('checkboxArr22L').click();
+        break;
+      case atisText.includes("ARR RWY 04L AND 04R"):
+        document.getElementById('checkboxArr04L').click();
+        document.getElementById('checkboxArr04R').click();
+        break;
+      case atisText.includes("ARR RWYS 04L AND 04R"):
+        document.getElementById('checkboxArr04L').click();
+        document.getElementById('checkboxArr04R').click();
+        break;
+      case atisText.includes("ARR RWY 04L"):
+        document.getElementById('checkboxArr04L').click();
+        break;
+      case atisText.includes("ARR RWY 04R"):
+        document.getElementById('checkboxArr04R').click();
+        break;
+      case atisText.includes("ARR RWY 15"):
+        document.getElementById('checkboxArr15').click();
+        break;
+      case atisText.includes("ARR RWY 22R"):
+        document.getElementById('checkboxArr22R').click();
+        break;
+      case atisText.includes("ARR RWY 33"):
+        document.getElementById('checkboxArr33').click();
+        break;
     }
-    if (checked5 == true){
-           document.getElementById('checkboxDep15').click();
-    }
-    if (checked6 == true){
-           document.getElementById('checkboxArr15').click();
-    }
-    if (checked7 == true){
-           document.getElementById('checkboxDep33').click();
-    }
-    if (checked8 == true){
-           document.getElementById('checkboxArr33').click();
-    }
-    if (checked9 == true){
-           document.getElementById('checkboxDep22L').click();
-    }
-    if (checked10 == true){
-           document.getElementById('checkboxArr22L').click();
-    }
-    if (checked11 == true){
-           document.getElementById('checkboxDep22R').click();
-    }
-    if (checked12 == true){
-           document.getElementById('checkboxArr22R').click();
-    }  
+
+    saveConfig();
 }
 
 function saveConfig(){
@@ -135,7 +277,7 @@ function dep04L() {
             }
         }
     }
-    //loadFMI() to reload windbox font data
+    
 }
 
 function arr04L() {
@@ -195,7 +337,7 @@ function arr04L() {
             }
         }
     }
-    //loadFMI() to reload windbox font data
+    
 }
 
 function dep22R() {
@@ -255,7 +397,7 @@ function dep22R() {
             }
         }
     }
-    //loadFMI() to reload windbox font data
+    
 }
 
 function arr22R() {
@@ -315,7 +457,7 @@ function arr22R() {
             }
         }
     }
-    //loadFMI() to reload windbox font data
+    
 }
 
 function dep04R() {
@@ -378,7 +520,7 @@ function dep04R() {
             }
         }
     }
-    //loadFMI() to reload windbox font data
+    
 }
 
 function arr04R() {
@@ -441,7 +583,7 @@ function arr04R() {
             }
         }
     }
-    //loadFMI() to reload windbox font data
+    
 }
 
 function dep22L() {
@@ -504,7 +646,7 @@ function dep22L() {
             }
         }
     }
-    //loadFMI() to reload windbox font data
+    
 }
 
 function arr22L() {
@@ -567,7 +709,7 @@ function arr22L() {
             }
         }
     }
-    //loadFMI() to reload windbox font data
+    
 }
 
 function dep15() {
@@ -583,7 +725,7 @@ function dep15() {
 
     //if pressed true 
     if (checkbox.checked == true) {
-        document.getElementById("arrow15").style.fill = "black";
+        // EXTRA: document.getElementById("arrow15").style.fill = "black";
         document.getElementById("display15").style.fill = "white";
         document.getElementById("15_windSpd").style.fill = "black";
         document.getElementById("15_windDir").style.fill = "black";
@@ -608,7 +750,7 @@ function dep15() {
         document.getElementById("dep15").style.display = "none";
         //if arr is inactive
         if (otherType.checked == false) {
-            document.getElementById("arrow15").style.fill = "none";
+            //EXTRA: document.getElementById("arrow15").style.fill = "none";
             document.getElementById("display15").style.fill = "#DADADA";
             document.getElementById("15_windSpd").style.fill = "#B9B8BA";
             document.getElementById("15_windDir").style.fill = "#B9B8BA";
@@ -630,7 +772,7 @@ function dep15() {
             }
         }
     }
-    //loadFMI() to reload windbox font data
+    
 }
 
 function arr15() {
@@ -646,7 +788,7 @@ function arr15() {
 
     //if pressed true 
     if (checkbox.checked == true) {
-        document.getElementById("arrow15").style.fill = "black";
+        //EXTRA: document.getElementById("arrow15").style.fill = "black";
         document.getElementById("display15").style.fill = "white";
         document.getElementById("15_windSpd").style.fill = "black";
         document.getElementById("15_windDir").style.fill = "black";
@@ -671,7 +813,7 @@ function arr15() {
         document.getElementById("arr15").style.display = "none";
         //if arr is inactive
         if (otherType.checked == false) {
-            document.getElementById("arrow15").style.fill = "none";
+            //EXTRA: document.getElementById("arrow15").style.fill = "none";
             document.getElementById("display15").style.fill = "#DADADA";
             document.getElementById("15_windSpd").style.fill = "#B9B8BA";
             document.getElementById("15_windDir").style.fill = "#B9B8BA";
@@ -693,7 +835,7 @@ function arr15() {
             }
         }
     }
-    //loadFMI() to reload windbox font data
+    
 }
 
 function dep33() {
@@ -756,7 +898,7 @@ function dep33() {
             }
         }
     }
-    //loadFMI() to reload windbox font data
+    
 }
 
 function arr33() {
@@ -819,5 +961,5 @@ function arr33() {
             }
         }
     }
-    //loadFMI() to reload windbox font data
+    
 }

@@ -150,7 +150,7 @@ function soir22() {
 }
 function loadAutoConfig() {
     saveConfig();
-    location.reload();
+    loadConfig();
 }
 
 var baseUrl = "https://api.airtable.com/v0/appGAYI2wFvY7jZVG/Table%201";

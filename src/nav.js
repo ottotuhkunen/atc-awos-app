@@ -1,3 +1,22 @@
+function openMainPage() {
+    saveConfig();
+    document.getElementById("menuTriangle1").style.display = "block";
+    document.getElementById("menuTriangle2").style.display = "none";
+    document.getElementById("menuTriangle3").style.display = "none";
+    document.getElementById("mainButton").classList = "mainbuttons mainbuttonActive"; 
+    document.getElementById("metrepButton").classList = "mainbuttons mainbuttonInactive"; 
+    document.getElementById("setupButton").classList = "mainbuttons mainbuttonInactive";
+    document.getElementById("atisDiv").style.display = "none";
+    document.getElementById("mainSvg").style.display = "block";
+    document.getElementById("setupDiv").style.display = "none";
+    document.getElementById("metrepDiv").style.display = "none";
+    document.getElementById("snowtamDiv").style.display = "none";
+    document.getElementById("menuTriangle4").style.display = "none";
+    document.getElementById("snowtamButton").classList = "mainbuttons mainbuttonInactive";;
+
+    loadFMI();
+}
+
 function metrep() {
     document.getElementById("menuTriangle1").style.display = "none";
     document.getElementById("menuTriangle2").style.display = "block";
@@ -9,6 +28,9 @@ function metrep() {
     document.getElementById("mainSvg").style.display = "none";
     document.getElementById("setupDiv").style.display = "none";
     document.getElementById("metrepDiv").style.display = "block";
+    document.getElementById("snowtamDiv").style.display = "none";
+    document.getElementById("menuTriangle4").style.display = "none";
+    document.getElementById("snowtamButton").classList = "mainbuttons mainbuttonInactive";
 
     loadMetRep();
     loadCurrentMet();
@@ -24,7 +46,27 @@ function setup() {
     document.getElementById("mainButton").classList = "mainbuttons mainbuttonInactive"; 
     document.getElementById("metrepButton").classList = "mainbuttons mainbuttonInactive"; 
     document.getElementById("setupButton").classList = "mainbuttons mainbuttonActive";
+    document.getElementById("snowtamButton").classList = "mainbuttons mainbuttonInactive";
     document.getElementById("metrepDiv").style.display = "none";
+    document.getElementById("snowtamDiv").style.display = "none";
+    document.getElementById("menuTriangle4").style.display = "none";
+}
+
+function openSnowtam() {
+    document.getElementById("atisDiv").style.display = "none";
+    document.getElementById("mainSvg").style.display = "none";
+    document.getElementById("setupDiv").style.display = "none";
+    document.getElementById("menuTriangle1").style.display = "none";
+    document.getElementById("menuTriangle2").style.display = "none";
+    document.getElementById("menuTriangle3").style.display = "none";
+    document.getElementById("mainButton").classList = "mainbuttons mainbuttonInactive"; 
+    document.getElementById("metrepButton").classList = "mainbuttons mainbuttonInactive"; 
+    document.getElementById("setupButton").classList = "mainbuttons mainbuttonInactive";
+    document.getElementById("snowtamButton").classList = "mainbuttons mainbuttonActive";
+    document.getElementById("metrepDiv").style.display = "none";
+    document.getElementById("snowtamDiv").style.display = "block";
+    document.getElementById("menuTriangle4").style.display = "block";
+    //loadSnowtam()
 }
 
 function metNav1() {
@@ -35,6 +77,7 @@ function metNav1() {
     document.getElementById("metButton2").style.backgroundColor = "#E6E6E6";
     document.getElementById("metButton3").style.backgroundColor = "#E6E6E6";
 }
+
 function metNav2() {
     document.getElementById("metrepSvg").style.display = "none";
     document.getElementById("metarsSvg").style.display = "block";
@@ -447,11 +490,13 @@ function metNav3() {
 
 function openDepATIS(){
     document.getElementById("metrepDiv").style.display = "none";
+    document.getElementById("snowtamDiv").style.display = "none";
     openAtisWindow(1);
 }
 
 function openArrATIS(){
     document.getElementById("metrepDiv").style.display = "none";
+    document.getElementById("snowtamDiv").style.display = "none";
     openAtisWindow(2);
 }
 
@@ -830,4 +875,38 @@ function loadActualMet(xml) {
         });
     })
     .catch(error => console.log('error', error));
+}
+
+function loadSnowtam() {
+    fetch('https://www.ais.fi/ais/bulletins/efinen-fr.htm')
+  .then(response => response.text())
+  .then(htmlString => {
+    let parser = new DOMParser();
+    let doc = parser.parseFromString(htmlString, 'text/html');
+    let elements = doc.querySelectorAll('span[style="font-size:9.0pt; font-family:&quot;Monospace&quot;"]');
+
+    let snowtam = "";
+    let isSnowtam = false;
+
+    elements.forEach(element => {
+      if(element.textContent.trim() === "SNOWTAM") {
+        isSnowtam = true;
+        snowtam += element.textContent.trim();
+      } else if (element.textContent.trim() === "EFIV") {
+        if (isSnowtam) {
+          snowtam += " " + element.textContent.trim();
+        }
+      } else {
+        if (isSnowtam) {
+          snowtam += " " + element.textContent.trim();
+        }
+      }
+    });
+
+    console.log(snowtam); // log the snowtam details
+    // use the snowtam details here
+    // for example, populate your <h3> element
+    document.getElementById('snowtam').innerText = snowtam;
+  })
+  .catch(console.error);
 }

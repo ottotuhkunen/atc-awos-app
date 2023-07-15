@@ -32,6 +32,7 @@ async function loadMetar() {
           const parser = new DOMParser();
           const data = parser.parseFromString(responseText, "application/xml");
           setMetarData(data);
+          //console.log("METAR data loaded")
       }
   } catch (error) {
       console.log('Fetch API error -', error);
@@ -578,9 +579,7 @@ function setMetarData(xmlDoc) {
   .then(response => response.json())
   .then(data => {
     for (let item of data.atis) {
-      if (item.callsign === "EFHK_ATIS") {
-        //document.getElementById('atisID').innerHTML = item.atis_code;
-        //document.getElementById('atisID2').innerHTML = item.atis_code;
+      if (item.callsign === "EETN_ATIS") {
         var atisWithLines = item.text_atis.join(' ').replace(/\.\./g, '.').split('.');
         makeAtisText(atisWithLines.join('<br>'));
         break;
@@ -694,6 +693,11 @@ function makeAtisText(atisText) {
     document.getElementById('atisID2').innerHTML = "//";
   }
   document.getElementById("atisInfoField").innerHTML = atisText;
+
+  if (document.getElementById("modeSelectorText").innerHTML == "RWY config<br><b>AUTO</b>") {
+    // load automatic rwy config
+    loadConfig();
+  }
 }
 
 function rvrRandomizator(realRVR) {
