@@ -1,6 +1,6 @@
 function startDataFetching() {
   loadFMI();
-  setInterval(loadFMI, 60000);
+  setInterval(loadFMI, 90000);
 }
 
 async function loadFMI() {
@@ -16,7 +16,7 @@ async function loadFMI() {
       setData(data);
       fetchInformation();
       fetchRwyStatus();
-      console.log("FMI loaded");
+      console.log("FMI data loaded at", new Date().toLocaleTimeString());
     }
   } catch (error) {
     console.log('Fetch API error -', error);
@@ -35,7 +35,7 @@ async function loadMetar() {
           const parser = new DOMParser();
           const data = parser.parseFromString(responseText, "application/xml");
           setMetarData(data);
-          console.log("METAR data loaded")
+          console.log("METAR data loaded at", new Date().toLocaleTimeString());
       }
   } catch (error) {
       console.log('Fetch API error -', error);
@@ -56,6 +56,7 @@ function setData(xmlDoc) {
     table = table.slice(-15, -1);
 
     var qnh = 0;
+    var wawa = 0;
     var windSpeed = 0;
     var windDirection = 0;
     var windGust = 0;
@@ -72,6 +73,9 @@ function setData(xmlDoc) {
         }
         if (table[i][0] === "wg_10min") {
           windGust = table[i][1];
+        }
+        if (table[i][0] === "wawa") {
+          wawa = table[i][1];
         }
     }
 
@@ -241,6 +245,8 @@ function setData(xmlDoc) {
     document.getElementById("04L_minSpd").style.fill = "#B9B8BA";
     document.getElementById("15_minSpd").style.fill = "#B9B8BA";
     document.getElementById("33_minSpd").style.fill = "#B9B8BA";
+
+    setCurrentWx(Math.floor(wawa));
 }
 
 function setTrl(qnh) {
@@ -735,4 +741,61 @@ function rvrRandomizator(realRVR) {
 function qnhClick() {
   document.getElementById('qnh').style.backgroundColor = "white";
   document.getElementById('qnh').style.color = "black";
+}
+
+function setCurrentWx(wawa) {
+  currentWx = document.getElementById("metCurrentWx");
+
+  if (wawa == 0) currentWx.textContent = "NSW";
+  else if (wawa == 4) currentWx.textContent = "HZ";
+  else if (wawa == 5) currentWx.textContent = "FG";
+  else if (wawa == 10) currentWx.textContent = "BR";
+  else if (wawa == 20) currentWx.textContent = "REFG";
+  else if (wawa == 21) currentWx.textContent = "RE VCSH";
+  else if (wawa == 22) currentWx.textContent = "RE SHRA";
+  else if (wawa == 23) currentWx.textContent = "RERA";
+  else if (wawa == 24) currentWx.textContent = "RESN";
+  else if (wawa == 25) currentWx.textContent = "RE FZRA";
+  else if (wawa == 30) currentWx.textContent = "FG";
+  else if (wawa == 31) currentWx.textContent = "BCFG";
+  else if (wawa == 32) currentWx.textContent = "MIFG";
+  else if (wawa == 33) currentWx.textContent = "FG";
+  else if (wawa == 34) currentWx.textContent = "+FG";
+  else if (wawa == 40) currentWx.textContent = "RA";
+  else if (wawa == 41) currentWx.textContent = "-RA";
+  else if (wawa == 42) currentWx.textContent = "+RA";
+  else if (wawa == 50) currentWx.textContent = "DZ";
+  else if (wawa == 51) currentWx.textContent = "-DZ";
+  else if (wawa == 52) currentWx.textContent = "DZ";
+  else if (wawa == 53) currentWx.textContent = "+DZ";
+  else if (wawa == 54) currentWx.textContent = "-FZDZ";
+  else if (wawa == 55) currentWx.textContent = "FZDZ";
+  else if (wawa == 56) currentWx.textContent = "+FZDZ";
+  else if (wawa == 60) currentWx.textContent = "-RA";
+  else if (wawa == 61) currentWx.textContent = "-RA";
+  else if (wawa == 62) currentWx.textContent = "RA";
+  else if (wawa == 63) currentWx.textContent = "+RA";
+  else if (wawa == 64) currentWx.textContent = "-FZRA";
+  else if (wawa == 65) currentWx.textContent = "FZDZ";
+  else if (wawa == 66) currentWx.textContent = "+FZDZ";
+  else if (wawa == 67) currentWx.textContent = "-SNRA";
+  else if (wawa == 68) currentWx.textContent = "SNRA";
+  else if (wawa == 70) currentWx.textContent = "SN";
+  else if (wawa == 71) currentWx.textContent = "-SN";
+  else if (wawa == 72) currentWx.textContent = "SN";
+  else if (wawa == 73) currentWx.textContent = "+SN";
+  else if (wawa == 74) currentWx.textContent = "-GS";
+  else if (wawa == 75) currentWx.textContent = "GS";
+  else if (wawa == 76) currentWx.textContent = "+GS";
+  else if (wawa == 77) currentWx.textContent = "SG";
+  else if (wawa == 78) currentWx.textContent = "PL";
+  else if (wawa == 80) currentWx.textContent = "SHRA";
+  else if (wawa == 81) currentWx.textContent = "-SHRA";
+  else if (wawa == 82) currentWx.textContent = "SHRA";
+  else if (wawa == 83) currentWx.textContent = "+SHRA";
+  else if (wawa == 84) currentWx.textContent = "+SHRA";
+  else if (wawa == 85) currentWx.textContent = "-SHSN";
+  else if (wawa == 86) currentWx.textContent = "SHSN";
+  else if (wawa == 87) currentWx.textContent = "+SHSN";
+  else if (wawa == 89) currentWx.textContent = "SHGR";
 }
