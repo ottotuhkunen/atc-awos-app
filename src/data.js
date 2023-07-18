@@ -559,7 +559,6 @@ function setMetarData(xmlDoc) {
     document.getElementById("metRvr3").textContent = randomRVR_04L[2];
   } 
 
-
   if (rvr_04L == null && rvr_22R == null) {
     document.getElementById('RVR_values_04L').style.display = "none";
   }
@@ -773,7 +772,7 @@ function setCurrentWx(wawa) {
   else if (wawa == 56) currentWx.textContent = "HVY FZDZ";
   else if (wawa == 60) currentWx.textContent = "FBL RA";
   else if (wawa == 61) currentWx.textContent = "FBL RA";
-  else if (wawa == 62) currentWx.textContent = "RA";
+  else if (wawa == 62) currentWx.textContent = "MOD RA";
   else if (wawa == 63) currentWx.textContent = "HVY RA";
   else if (wawa == 64) currentWx.textContent = "FBL FZRA";
   else if (wawa == 65) currentWx.textContent = "FZDZ";

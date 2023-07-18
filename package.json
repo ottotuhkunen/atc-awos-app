@@ -17,6 +17,7 @@
     "express-basic-auth": "^1.2.1",
     "express-session": "^1.17.3",
     "jsdom": "^22.1.0",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "puppeteer": "^20.8.3"
   }
 }

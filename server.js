@@ -4,6 +4,7 @@ const basicAuth = require('express-basic-auth')
 const app = express();
 const axios = require('axios');
 const { JSDOM } = require('jsdom');
+const { takeScreenshot } = require('./screenshot');
 
 app.get('/api/data', async (req, res) => {
   const baseUrl = "https://api.airtable.com/v0/appGAYI2wFvY7jZVG/Table%201";
@@ -25,6 +26,27 @@ app.get('/api/data', async (req, res) => {
 });
 
 const port = process.env.PORT || 3000;
+
+// Public directory for images
+const publicDir = path.join(__dirname, 'public');
+app.use('/ausx5LTvjwDa', express.static(publicDir));
+
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+
+  // Take screenshot every 3 minutes
+  setInterval(async () => {
+    const screenshot = await takeScreenshot();
+
+    // Use a constant file name
+    const fileName = 'ulos.png';
+    const filePath = path.join(publicDir, fileName);
+
+    fs.writeFileSync(filePath, screenshot);
+
+    console.log(`Saved screenshot as ${fileName}`);
+  }, 3 * 60 * 1000);
+});
 
 app.use((req, res, next) => {
     if (req.header('x-forwarded-proto') !== 'https') {
