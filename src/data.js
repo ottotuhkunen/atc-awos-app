@@ -42,6 +42,9 @@ async function loadMetar() {
   }
 }
 
+// wawa declared in global scope
+let wawa = 0;
+
 
 function setData(xmlDoc) {
     var xmlSize = xmlDoc.getElementsByTagName("BsWfs:ParameterName");
@@ -56,7 +59,6 @@ function setData(xmlDoc) {
     table = table.slice(-15, -1);
 
     var qnh = 0;
-    var wawa = 0;
     var windSpeed = 0;
     var windDirection = 0;
     var windGust = 0;
