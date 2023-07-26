@@ -690,6 +690,8 @@ function makeAtisText(atisText) {
     atisText = atisText.replace(/METERS/g, 'M');
     atisText = atisText.replace(/VICINITY/g, 'VC');
     atisText = atisText.replace(/FEET/g, 'FT');
+    atisText = atisText.replace(/NOSIG/g, '<br/>NOSIG');
+    atisText = atisText.replace(/BECMG/g, '<br/>BECMG');
   }
   let pattern = /INFO\s([A-Z])/;
 
