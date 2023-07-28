@@ -617,6 +617,9 @@ function makeAtisText(atisText) {
     atisText = atisText.replace(/DEPARTURE/g, '<br/>DEP');
     atisText = atisText.replace(/RUNWAY/g, 'RWY');
     atisText = atisText.replace(/RUNWAYS/g, 'RWYS');
+    atisText = atisText.replace(/DEP RWY 22L AND 22R/g, 'DEP RWYS 22R AND 22L');
+    atisText = atisText.replace(/ARR RWY 04L AND 04R/g, 'ARR RWYS 04L AND 04R');
+    atisText = atisText.replace(/ARR RWY 22L AND 22R/g, 'ARR RWYS 22L AND 22R');
     atisText = atisText.replace(/CLEAR AND DRY/g, '');
     atisText = atisText.replace(/TRANSITION LEVEL (\d{2})/g, '<br/>TRL $1<br/>');
     atisText = atisText.replace(/DEGREES/g, 'DEG');
@@ -632,7 +635,6 @@ function makeAtisText(atisText) {
     atisText = atisText.replace(/SCATTERED/g, '<br/>SCT');
     atisText = atisText.replace(/OVERCAST/g, '<br/>OVC');
     atisText = atisText.replace(/FEW/g, '<br/>FEW');
-    atisText = atisText.replace(/BECOMING/g, 'BECMG');
     atisText = atisText.replace(/PROBABILITY/g, 'PROB');
     atisText = atisText.replace(/LIGHT/g, 'FBL');
     atisText = atisText.replace(/HEAVY/g, 'HVY');
@@ -691,7 +693,7 @@ function makeAtisText(atisText) {
     atisText = atisText.replace(/VICINITY/g, 'VC');
     atisText = atisText.replace(/FEET/g, 'FT');
     atisText = atisText.replace(/NOSIG/g, '<br/>NOSIG');
-    atisText = atisText.replace(/BECMG/g, '<br/>BECMG');
+    atisText = atisText.replace(/BECOMING/g, 'BECMG');
   }
   let pattern = /INFO\s([A-Z])/;
 
