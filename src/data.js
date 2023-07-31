@@ -447,18 +447,14 @@ function setMetarData(xmlDoc) {
   var vis = viss[viss.length-1].childNodes[0].nodeValue;
 
   // IMC VMC INDICATOR
-  if (vis < 5000 && vis > 10 || metar.match(/\W*(BKN00)/g) || metar.match(/\W*(OVC00)/g) || metar.includes(" VV")){
+  if (vis < 5000 && vis > 10 || metar.match(/\W*(BKN00)/g) || metar.match(/\W*(OVC00)/g) || metar.match(" VV")){
     document.getElementById("imcVmc").innerHTML = "IMC";
   }
   else {
     document.getElementById("imcVmc").innerHTML = "VMC";
   }
-  if (wawa == 5 || wawa == 10 || wawa == 30 || wawa == 31 || wawa == 32 || wawa == 33 || wawa == 34) {
-    document.getElementById("imcVmc").innerHTML = "LVP";
-  }
 
   // Check if METAR contains RVR:
-
   var pattern_04L = metar.match(/R04L\/[A-Za-z]?(\d+)/);
   var pattern_04R = metar.match(/R04R\/[A-Za-z]?(\d+)/);
   var pattern_15 = metar.match(/R15\/[A-Za-z]?(\d+)/);
@@ -487,6 +483,10 @@ function setMetarData(xmlDoc) {
     document.getElementById("metRvr").textContent = randomRVR_04L[0];
     document.getElementById("metRvr2").textContent = randomRVR_04L[1];
     document.getElementById("metRvr3").textContent = randomRVR_04L[2];
+
+    if (randomRVR_04L[0] < 600 || randomRVR_04L[1] < 600 || randomRVR_04L[2] < 600) {
+      document.getElementById("imcVmc").innerHTML = "LVP";
+    }
   } 
 
   // RVR 04R
@@ -499,9 +499,13 @@ function setMetarData(xmlDoc) {
     document.getElementById("rvr_04R_2").textContent = randomRVR_04R[1];
     document.getElementById("rvr_04R_3").textContent = randomRVR_04R[2];
 
-    document.getElementById("metRvr").textContent = randomRVR_04L[0];
-    document.getElementById("metRvr2").textContent = randomRVR_04L[1];
-    document.getElementById("metRvr3").textContent = randomRVR_04L[2];
+    document.getElementById("metRvr").textContent = randomRVR_04R[0];
+    document.getElementById("metRvr2").textContent = randomRVR_04R[1];
+    document.getElementById("metRvr3").textContent = randomRVR_04R[2];
+
+    if (randomRVR_04R[0] < 600 || randomRVR_04R[1] < 600 || randomRVR_04R[2] < 600) {
+      document.getElementById("imcVmc").innerHTML = "LVP";
+    }
   } 
 
   // RVR 15
@@ -514,9 +518,13 @@ function setMetarData(xmlDoc) {
     document.getElementById("rvr_15_2").textContent = randomRVR_15[1];
     document.getElementById("rvr_15_3").textContent = randomRVR_15[2];
 
-    document.getElementById("metRvr").textContent = randomRVR_04L[0];
-    document.getElementById("metRvr2").textContent = randomRVR_04L[1];
-    document.getElementById("metRvr3").textContent = randomRVR_04L[2];
+    document.getElementById("metRvr").textContent = randomRVR_15[0];
+    document.getElementById("metRvr2").textContent = randomRVR_15[1];
+    document.getElementById("metRvr3").textContent = randomRVR_15[2];
+
+    if (randomRVR_15[0] < 600 || randomRVR_15[1] < 600 || randomRVR_15[2] < 600 ) {
+      document.getElementById("imcVmc").innerHTML = "LVP";
+    }
   } 
 
   // RVR 33
@@ -529,9 +537,13 @@ function setMetarData(xmlDoc) {
     document.getElementById("rvr_15_2").textContent = randomRVR_33[1];
     document.getElementById("rvr_15_3").textContent = randomRVR_33[2];
 
-    document.getElementById("metRvr").textContent = randomRVR_04L[0];
-    document.getElementById("metRvr2").textContent = randomRVR_04L[1];
-    document.getElementById("metRvr3").textContent = randomRVR_04L[2];
+    document.getElementById("metRvr").textContent = randomRVR_33[0];
+    document.getElementById("metRvr2").textContent = randomRVR_33[1];
+    document.getElementById("metRvr3").textContent = randomRVR_33[2];
+
+    if (randomRVR_33[0] < 600 || randomRVR_33[1] < 600 || randomRVR_33[2] < 600) {
+      document.getElementById("imcVmc").innerHTML = "LVP";
+    }
   } 
 
   // RVR 22L
@@ -544,9 +556,13 @@ function setMetarData(xmlDoc) {
     document.getElementById("rvr_04R_2").textContent = randomRVR_22L[1];
     document.getElementById("rvr_04R_3").textContent = randomRVR_22L[2];
 
-    document.getElementById("metRvr").textContent = randomRVR_04L[0];
-    document.getElementById("metRvr2").textContent = randomRVR_04L[1];
-    document.getElementById("metRvr3").textContent = randomRVR_04L[2];
+    document.getElementById("metRvr").textContent = randomRVR_22L[0];
+    document.getElementById("metRvr2").textContent = randomRVR_22L[1];
+    document.getElementById("metRvr3").textContent = randomRVR_22L[2];
+
+    if (randomRVR_22L[0] < 600 || randomRVR_22L[1] < 600 || randomRVR_22L[2] < 600) {
+      document.getElementById("imcVmc").innerHTML = "LVP";
+    }
   } 
 
   // RVR 22R
@@ -559,10 +575,18 @@ function setMetarData(xmlDoc) {
     document.getElementById("rvr_04L_2").textContent = randomRVR_22R[1];
     document.getElementById("rvr_04L_3").textContent = randomRVR_22R[2];
 
-    document.getElementById("metRvr").textContent = randomRVR_04L[0];
-    document.getElementById("metRvr2").textContent = randomRVR_04L[1];
-    document.getElementById("metRvr3").textContent = randomRVR_04L[2];
+    document.getElementById("metRvr").textContent = randomRVR_22R[0];
+    document.getElementById("metRvr2").textContent = randomRVR_22R[1];
+    document.getElementById("metRvr3").textContent = randomRVR_22R[2];
+
+    if (randomRVR_22R[0] < 600 || randomRVR_22R[1] < 600 || randomRVR_22R[2] < 600) {
+      document.getElementById("imcVmc").innerHTML = "LVP";
+    }
   } 
+
+  if (metar.match(/[A-Za-z]+VV\d{2}[1-2]/)) {
+    document.getElementById("imcVmc").innerHTML = "LVP";
+  }
 
   if (rvr_04L == null && rvr_22R == null) {
     document.getElementById('RVR_values_04L').style.display = "none";
