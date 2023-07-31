@@ -453,6 +453,9 @@ function setMetarData(xmlDoc) {
   else {
     document.getElementById("imcVmc").innerHTML = "VMC";
   }
+  if (wawa == 5 || wawa == 10 || wawa == 30 || wawa == 31 || wawa == 32 || wawa == 33 || wawa == 34) {
+    document.getElementById("imcVmc").innerHTML = "LVP";
+  }
 
   // Check if METAR contains RVR:
 
