@@ -547,8 +547,9 @@ function openAtisWindow(atisType){
     }
 
     document.getElementById("atisDiv").style.display = "block";
-    document.getElementById("menuTriangle1").style.display = "none";
-    document.getElementById("menuTriangle2").style.display = "none";
+    document.getElementById("mainTriangle").style.display = "none";
+    document.getElementById("metReportTriangle").style.display = "none";
+    document.getElementById("setupTriangle").style.display = "none";
     document.getElementById("mainSvg").style.display = "none";
     document.getElementById("setupDiv").style.display = "none";
 }
