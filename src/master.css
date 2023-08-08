@@ -44,7 +44,7 @@ hr {
 .leftnav {
     width: 130px;
     position: absolute;
-    top: 5vw;
+    top: 4vw;
     bottom: 0;
 }
 .button-container {
@@ -283,7 +283,6 @@ svg {
     height: 100%;
 }
 
-
 .metRepField {
     background-color: #77aede;
     height: 30px;
@@ -349,11 +348,16 @@ svg {
 }
 
 .atisText {
+    position: absolute;
     padding: 10pt; 
     margin-left: 10px;
     margin-right: 10px;
     background-color: white;
     overflow: hidden;
+    left: 4px;
+    right: 4px;
+    top: 58px;
+    bottom: 24px;
 }
 
 #topMenuSvg{
@@ -396,4 +400,64 @@ svg {
 #leftNavSvg {
     height: 100%;
     max-height: 900px;
+}
+
+.metButtons {
+    background-color: #E6E6E6; 
+    border: 1px solid gray;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    font-size: 1.2vw;
+    margin-top: 4px;
+    margin-left: 0;
+    margin-right: -6px;
+    box-sizing: border-box;
+    width: 10vw;
+    height: 3vw;
+    max-width: 80px; 
+    max-height: 28px; 
+}
+
+@media (min-width: 1000px) {
+    .metButtons {
+        font-size: 12px;
+    }
+}
+
+#metRepButtonsContainer {
+    display: flex;
+}
+
+.st0{fill:#B5B5B5;}
+.st1{fill:#2C393D;}
+.st2{fill:#DADADA;}
+.st3{fill:#B9B8BA;}
+.st4{font-family:'Verdana';}
+.st5{font-size:20px;}
+.st6{font-size:29px;}
+.st7{fill:#DADADA;}
+.st8{font-family:'Verdana';}
+.st9{font-size:29px;}
+.st10{fill:none;stroke:#000000;stroke-miterlimit:10; transform-box: fill-box; transform-origin: center;}
+.st11{fill:#D80000;}
+.st12{font-family:'Verdana';}
+.st13{font-size:18px;}
+.st14{fill:#F09B36;stroke:#000000;stroke-miterlimit:10;display: none;}
+.rwycc1{fill:#515151;}
+.rwycc2{font-size:16px;}
+.rwycc3{fill:none;stroke:#B5B5B5;stroke-miterlimit:10;}
+.st15{fill:#4397C3;stroke:#000000;stroke-miterlimit:10;display: none;}
+.st16{text-anchor: end;}
+.st17{font-size:17px; fill:#404040;}
+
+
+.metRepDivContainer {
+    display: none; 
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 110px;
+    right: 0px;
+    width: calc(100%);
+    height: calc(100vh - 4vw - 110px);
 }
