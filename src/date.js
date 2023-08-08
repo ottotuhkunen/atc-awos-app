@@ -18,8 +18,8 @@ function getDate(){
     var time = h + ":" + m;
     var seconds = ":" + s;
     
-    document.getElementById("dateField").innerHTML= fullDate;
-    document.getElementById("timeField").innerHTML= time;
-    document.getElementById("secondField").innerHTML= seconds;
+    document.getElementById("dateValue").textContent= fullDate;
+    document.getElementById("timeValue").textContent= time;
+    document.getElementById("secondsValue").textContent= seconds;
     setTimeout(getDate, 1000);
 }

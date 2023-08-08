@@ -2,11 +2,11 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="initial-scale=1.0"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="apple-mobile-web-app-capable" content="yes"/>
         <meta http-equiv="Pragma" content="no-cache" />
         <meta http-equiv="Expires" content="0" />
-        <title>Helsingin sää ❄️💦</title>
+        <title>Helsingin sää ❄️</title>
         <link rel="icon" href="src/favicon.ico">
         <link rel="stylesheet" href="src/master.css">
         <script type="text/javascript" src="src/date.js"></script>
@@ -16,62 +16,144 @@
         <script type="text/javascript" src="src/autoconfig.js"></script>
         <script type="text/javascript" src="src/fetchInfo.js"></script>
         <script type="text/javascript" src="src/windcomponents.js"></script>
+        <script type="text/javascript" src="src/topMenu.js"></script>
         <link rel="stylesheet" href="https://use.typekit.net/nju1yva.css">
         <meta name="robots" content="noindex">
     </head>
     <body onload="getDate(); startDataFetching(); loadConfig();">
-        <div class="topnav">
-            <img alt="Logo" src="src/vatsca.png" style="height: 60px; float: left; padding: 0px 5px;">
-            <div class="topmenuField atisButton" onclick="openDepATIS();" ><p>DEP</p><h1 id="atisID"><img style="width: 20px;" src="src/ajax-loader.gif" alt="//"></h1></div>
-            <div class="topmenuField atisButton arr" onclick="openArrATIS();"><p>ARR</p><h1 id="atisID2"><img style="width: 20px;" src="src/ajax-loader.gif" alt="//"></h1></div>
-            <div class="topmenuField qnhField" id="qnh" onclick="qnhClick();"><img style="width: 20px;" src="src/ajax-loader.gif" alt="//"></div>
-            <div class="topmenuField qfeField">QFE<span id="qfe" style="float: right;"><img style="width: 20px;" src="src/ajax-loader.gif" alt="//"></span><hr>TRL<span id="trl" style="float: right;"><img style="width: 20px;" src="src/ajax-loader.gif" alt="//"></span></div>
-            <div class="topmenuField imcvmcField" id="imcVmc"><img style="width: 20px;" src="src/ajax-loader.gif" alt="//"></div>
-            <div class="topmenuField dateField" id="dateField"></div>
-            <div class="topmenuField timeField" id="timeField"></div>
-            <div class="topmenuField secondField" id="secondField"></div>
-            <div class="topmenuField modeselector" id="modeselector" onclick="modeSelectorPressed();">
-                <img src="src/rwymenu.png" style="width: 54px; height: auto;" alt="rwy"><br>
-                <p style="font-size: 9pt;" id="modeSelectorText">RWY config<br><b>AUTO</b></p>
-            </div>
+        <div class="customBackground">
+        <svg version="1.1" id="topMenuSvg" preserveAspectRatio="xMinYMin meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 960.75 38" xml:space="preserve">
+            <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="480.375" y1="38" x2="480.375" y2="0">
+                <stop offset="0" style="stop-color:#007492"/>
+                <stop offset="1" style="stop-color:#009AC7"/>
+            </linearGradient>
+            <rect id="topMenuBackground" x="0" y="0" width="100vw" height="38" fill="url(#SVGID_1_)"/>
+            <image style="overflow:hidden;" width="302" height="140" xlink:href="../../Downloads/vatscalogo.png"  transform="matrix(0.2286 0 0 0.2286 0 3)">
+            </image>
+            <rect style="cursor: pointer;" onclick="openDepATIS();" x="69.03" y="1.14" class="topMenu1" width="50.85" height="35.73"/>
+            <rect style="cursor: pointer;" onclick="openArrATIS();" x="122.24" y="1.14" class="topMenu2" width="50.85" height="35.73"/>
+            <rect onclick="qnhClick();" id="qnhBox" x="175.45" y="0.6" class="topMenu3" width="74.28" height="35.73" style="cursor: pointer;"/>
+            <rect x="257.87" y="0.6" class="topMenu3" width="146.28" height="35.73"/>
+            <rect x="416.57" y="0.6" class="topMenu3" width="146.28" height="35.73"/>
+            <rect x="575.27" y="0.6" class="topMenu4" width="149.69" height="35.73"/>
+            <rect x="258.31" y="18.46" class="topMenu4" width="145.31" height="0"/>
+            <rect x="729.97" y="0.6" class="topMenu4" width="102.02" height="35.73"/>
+            <rect x="831.99" y="0.6" class="topMenu4" width="51.01" height="35.73"/>
+            <rect style="cursor: pointer;" onclick="modeSelectorPressed();" x="899.36" y="1.94" class="topMenu5" width="49.54" height="34.12"/>
+            <text style="cursor: pointer;" onclick="openDepATIS();" transform="matrix(1 0 0 1 85.205 9.9785)" class="topMenu6 topMenu7">DEP</text>
+            <text style="cursor: pointer;" id="atisId2" onclick="openDepATIS();" transform="matrix(1 0 0 1 94 32.0903)" text-anchor="middle" class="topMenu6 topMenu8">//</text>
+            <text style="cursor: pointer;" id="atisId1" onclick="openArrATIS();" transform="matrix(1 0 0 1 147 32.0903)" text-anchor="middle" class="topMenu6 topMenu8">//</text>
+            <text style="cursor: pointer;" onclick="openArrATIS();" transform="matrix(1 0 0 1 138.6792 9.9789)" class="topMenu6 topMenu7">ARR</text>
+            <text style="cursor: pointer;" onclick="modeSelectorPressed();" transform="matrix(1 0 0 1 900.8391 13.9417)" class="topMenu6 topMenu9">RWY CONFIG</text>
+            <text onclick="modeSelectorPressed();" id="rwyConfigValue" transform="matrix(1 0 0 1 924 28.4647)" text-anchor="middle" class="topMenu6 topMenu10 topMenuGreen">AUTO</text>
+            <text transform="matrix(1 0 0 1 262.3049 11.8475)" class="topMenu6 topMenu10">QFE</text>
+            <text id="qfeValue" transform="matrix(1 0 0 1 400 14.7992)" text-anchor="end" class="topMenu6 topMenu11">//</text>
+            <text id="dateValue" transform="matrix(1 0 0 1 652 24.2618)" text-anchor="middle" class="topMenu12 topMenu6 topMenu13">//</text>
+            <text id="secondsValue" transform="matrix(1 0 0 1 854 24.5016)" text-anchor="middle" class="topMenu6 topMenu13">//</text>
+            <text id="timeValue" transform="matrix(1 0 0 1 780 30.3071)" text-anchor="middle" class="topMenu6 topMenu14">//</text>
+            <text id="trlValue" transform="matrix(1 0 0 1 400 33.2771)" text-anchor="end" class="topMenu6 topMenu11">//</text>
+            <text transform="matrix(1 0 0 1 262.9213 30.3073)" class="topMenu6 topMenu10">TRL</text>
+            <text onclick="qnhClick();" id="qnhValue" transform="matrix(1 0 0 1 211.5 30.3077)" style="cursor: pointer;" text-anchor="middle" class="topMenu6 topMenu15">//</text>
+            <text id="metCondValue" transform="matrix(1 0 0 1 490 30.3077)" text-anchor="middle" class="topMenu6 topMenu15">//</text>
+        </svg>
         </div>
         <div class="leftnav">
-            <div class="button-container">
-                <button id="mainButton" class="mainbuttons mainbuttonActive" onclick="openMainPage();">
-                    <img src="src/main.png" style="width: 80%; height: auto;" alt="rwy">Main
-                </button>
-                <div id="menuTriangle1" class="menuTriangle" style="display: block;"></div>
-            </div>
-            <button id="rwy04RCondWindow" onclick="openRWYCC('04R')" class="mainbuttons mainbuttonInactive" style="cursor: not-allowed;">
-                <img src="src/rwymenu.png" style="width: 80%; height: auto;" alt="rwy"><br><br>04R-22L
-            </button>
-            <br>
-            <button id="rwy15CondWindow" onclick="openRWYCC('15')" class="mainbuttons mainbuttonInactive" style="cursor: not-allowed;">
-                <img src="src/rwymenu.png" style="width: 80%; height: auto;" alt="rwy"><br><br>15-33
-            </button>
-            <br>
-            <button id="rwy04LCondWindow" onclick="openRWYCC('04L')" class="mainbuttons mainbuttonInactive" style="cursor: not-allowed;">
-                <img src="src/rwymenu.png" style="width: 80%; height: auto;" alt="rwy"><br><br>04L-22R
-            </button>
-            <br>
-            <div class="button-container">
-                <button id="snowtamButton" onclick="" class="mainbuttons mainbuttonInactive" style="cursor: not-allowed;">
-                    SNOWTAM<br>TAXIWAYS<br>APRON
-                </button>
-                <div id="menuTriangle4" class="menuTriangle" style="display: none;"></div>
-            </div>
-            <div class="button-container">
-                <button onclick="metrep();" id="metrepButton" class="mainbuttons mainbuttonInactive">
-                    <img src="src/metrep.png" style="width: 44%; height: auto;" alt="rwy"><br><span id="metrepHeader" style="font-size: clamp(4px, 1.4vh, 8pt);">MET REPORT</span>
-                </button>
-                <div id="menuTriangle2" class="menuTriangle"></div>
-            </div>
-            <div class="button-container">
-                <button id="setupButton" class="mainbuttons mainbuttonInactive" onclick="setup();">
-                    <img src="src/settings.png" style="width: 60%; height: auto;" alt="rwy"><br>Setup
-                </button>
-                <div id="menuTriangle3" class="menuTriangle"></div>
-            </div>
+            <?xml version="1.0" encoding="utf-8"?>
+            <svg id="leftNavSvg" version="1.1" preserveAspectRatio="xMinYMin meet"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                viewBox="0 0 70.38 563.95" style="enable-background:new 0 0 70.38 563.95;" xml:space="preserve">
+                <g id="background">
+                    <rect class="leftNav0" width="70.38" height="563.95"/>
+                </g>
+                <g id="buttonMain" style="cursor:pointer; pointer-events:none" onclick="openMainPage();">
+                    <linearGradient id="mainBackgroundGradient" gradientUnits="userSpaceOnUse" x1="27.5039" y1="53.3602" x2="27.5039" y2="1.8134">
+                        <stop  offset="0" style="stop-color:#C0D7F0"/>
+                        <stop  offset="0.9968" style="stop-color:#85A7CC"/>
+                    </linearGradient>
+                    <linearGradient id="mainBackgroundGradient2" gradientUnits="userSpaceOnUse" x1="27.5039" y1="53.3602" x2="27.5039" y2="1.8134">
+                        <stop  offset="0" style="stop-color:#C0D7F0"/>
+                        <stop  offset="0.9968" style="stop-color:#E5F2FF"/>
+                    </linearGradient>
+                    <path id="mainBackground" class="leftNav1" d="M3.71,53.36h47.58c1.69,0,3.05-1.37,3.05-3.05V4.87c0-1.69-1.37-3.05-3.05-3.05H3.71c-1.69,0-3.05,1.37-3.05,3.05v45.44
+                    C0.66,51.99,2.03,53.36,3.71,53.36z"/>
+                    <text transform="matrix(1 0 0 1 17.1289 49.0747)" class="leftNav2 leftNav3">Main</text>
+                    <image style="overflow:visible;" width="160" height="106" xlink:href="src/main.png" transform="matrix(0.3121 0 0 0.3121 2.5355 6.4594)"></image>
+                    <polygon id="mainTriangle" class="leftNav4" points="56.1,19.19 56.1,35.98 65.25,27.39"/>
+                </g>
+                <g id="buttonRwy1" style=" cursor: not-allowed;">
+                    <linearGradient id="rwy1BackgroundGradient" gradientUnits="userSpaceOnUse" x1="27.5038" y1="111.9552" x2="27.5038" y2="60.4084">
+                        <stop  offset="0" style="stop-color:#C0D7F0"/>
+                        <stop  offset="1" style="stop-color:#E5F2FF"/>
+                    </linearGradient> 
+                    <path id="rwy1Background" class="leftNav5" d="M3.71,111.96h47.58c1.69,0,3.05-1.37,3.05-3.05V63.46c0-1.69-1.37-3.05-3.05-3.05H3.71c-1.69,0-3.05,1.37-3.05,3.05v45.44
+                    C0.66,110.59,2.03,111.96,3.71,111.96z"/>
+                    <image style="overflow:visible;" width="134" height="55" xlink:href="src/rwymenu.png" transform="matrix(0.2724 0 0 0.2724 9.2501 71.1974)"></image>
+                    <text transform="matrix(1 0 0 1 10.6591 107.6697)" class="leftNav2 leftNav3">04R-22L</text>
+                    <polygon id="rwy1Triangle" class="leftNav4" points="56.1,77.79 56.1,94.58 65.25,85.98" style="display:none;"/>
+                </g>
+                <g id="buttonRwy2" style=" cursor: not-allowed;">
+                    <linearGradient id="rwy2BackgroundGradient" gradientUnits="userSpaceOnUse" x1="27.5038" y1="170.5502" x2="27.5038" y2="119.0034">
+                        <stop  offset="0" style="stop-color:#C0D7F0"/>
+                        <stop  offset="1" style="stop-color:#E5F2FF"/>
+                    </linearGradient>
+                    <path id="rwy2Background" class="leftNav6" d="M3.71,170.55h47.58c1.69,0,3.05-1.37,3.05-3.05v-45.44c0-1.69-1.37-3.05-3.05-3.05H3.71c-1.69,0-3.05,1.37-3.05,3.05v45.44
+                    C0.66,169.18,2.03,170.55,3.71,170.55z"/>
+                    <image style="overflow:visible;" width="134" height="55" xlink:href="src/rwymenu.png" transform="matrix(0.2724 0 0 0.2724 9.2501 129.7924)"></image>
+                    <text transform="matrix(1 0 0 1 15.7094 166.2648)" class="leftNav2 leftNav3">15-33</text>
+                    <polygon id="rwy2Triangle" class="leftNav4" points="56.1,136.75 56.1,153.54 65.25,144.95" style="display:none;"/>
+                </g>
+                <g id="buttonRwy3" style=" cursor: not-allowed;">
+                    <linearGradient id="rwy3BackgroundGradient" gradientUnits="userSpaceOnUse" x1="27.5038" y1="228.9693" x2="27.5038" y2="177.4225">
+                        <stop  offset="0" style="stop-color:#C0D7F0"/>
+                        <stop  offset="1" style="stop-color:#E5F2FF"/>
+                    </linearGradient>
+                    <path id="rwy3Background" class="leftNav7" d="M3.71,228.97h47.58c1.69,0,3.05-1.37,3.05-3.05v-45.44c0-1.69-1.37-3.05-3.05-3.05H3.71c-1.69,0-3.05,1.37-3.05,3.05v45.44
+                    C0.66,227.6,2.03,228.97,3.71,228.97z"/>
+                    <image style="overflow:visible;" width="134" height="55" xlink:href="src/rwymenu.png" transform="matrix(0.2724 0 0 0.2724 9.2501 188.2115)"></image>
+                    <text transform="matrix(1 0 0 1 10.6591 224.6838)" class="leftNav2 leftNav3">04L-22R</text>
+                    <polygon id="rwy3Triangle" class="leftNav4" points="56.1,194.8 56.1,211.59 65.25,203" style="display:none;"/>
+                </g>
+                <g id="buttonSnowtam" style=" cursor: not-allowed;">
+                    <linearGradient id="snowtamBackgroundGradient" gradientUnits="userSpaceOnUse" x1="27.5038" y1="287.4837" x2="27.5038" y2="235.9369">
+                        <stop  offset="0" style="stop-color:#C0D7F0"/>
+                        <stop  offset="1" style="stop-color:#E5F2FF"/>
+                    </linearGradient>
+                    <path id="snowtamBackground" class="leftNav8" d="
+                    M3.71,287.48h47.58c1.69,0,3.05-1.37,3.05-3.05v-45.44c0-1.69-1.37-3.05-3.05-3.05H3.71c-1.69,0-3.05,1.37-3.05,3.05v45.44
+                    C0.66,286.12,2.03,287.48,3.71,287.48z"/>
+                    <text transform="matrix(1 0 0 1 4.5092 254.1041)"><tspan x="0" y="0" class="leftNav2 leftNav3">SNOWTAM </tspan><tspan x="0.94" y="10" class="leftNav2 leftNav3">TAXIWAYS </tspan><tspan x="7.85" y="20" class="leftNav2 leftNav3">APRON</tspan></text>
+                    <polygon id="snowtamTriangle" class="leftNav4" points="56.1,253.31 56.1,270.11 65.25,261.51" style="display:none;"/>
+                </g>
+                <g id="buttonMetReport" style=" cursor: pointer;" onclick="metrep();">
+                    <linearGradient id="metReportBackgroundGradient" gradientUnits="userSpaceOnUse" x1="27.5038" y1="331.3684" x2="27.5038" y2="294.3064">
+                        <stop  offset="0" style="stop-color:#C0D7F0"/>
+                        <stop offset="1" style="stop-color:#E5F2FF"/>
+                    </linearGradient>
+                    <linearGradient id="metReportBackgroundGradient2" gradientUnits="userSpaceOnUse" x1="27.5038" y1="331.3684" x2="27.5038" y2="294.3064">
+                        <stop  offset="0" style="stop-color:#C0D7F0"/>
+                        <stop offset="1" style="stop-color:#85A7CC"/>
+                    </linearGradient>
+                    <path id="metReportBackground" class="leftNav9" d="M3.71,331.37h47.58c1.69,0,3.05-1.37,3.05-3.05v-30.96c0-1.69-1.37-3.05-3.05-3.05H3.71c-1.69,0-3.05,1.37-3.05,3.05v30.96
+                        C0.66,330,2.03,331.37,3.71,331.37z"/>
+                    <text id="metrepHeader" transform="matrix(1 0 0 1 4 344.9969)" class="leftNav2 leftNav10" style="font-size: 5.7pt;">MET REPORT</text>
+                    <image style="overflow:visible;" width="75" height="91" xlink:href="src/metrep.png" transform="matrix(0.2631 0 0 0.2631 17.6371 300.853)"></image>
+                    <polygon id="metReportTriangle" class="leftNav4" points="56.1,312.84 56.1,329.63 65.25,321.03" style="display:none;"/>
+                </g>
+                <g id="buttonSetup" style=" cursor: pointer;" onclick="setup();">
+                    <linearGradient id="setupBackgroundGradient" gradientUnits="userSpaceOnUse" x1="27.5038" y1="405.9137" x2="27.5038" y2="354.3669">
+                        <stop  offset="0" style="stop-color:#C0D7F0"/>
+                        <stop  offset="1" style="stop-color:#E5F2FF"/>
+                    </linearGradient>
+                    <linearGradient id="setupBackgroundGradient2" gradientUnits="userSpaceOnUse" x1="27.5038" y1="405.9137" x2="27.5038" y2="354.3669">
+                        <stop  offset="0" style="stop-color:#C0D7F0"/>
+                        <stop  offset="1" style="stop-color:#85A7CC"/>
+                    </linearGradient>
+                    <path id="setupBackground" class="leftNav11" d="M3.71,405.91h47.58c1.69,0,3.05-1.37,3.05-3.05v-45.44c0-1.69-1.37-3.05-3.05-3.05H3.71c-1.69,0-3.05,1.37-3.05,3.05v45.44
+                    C0.66,404.55,2.03,405.91,3.71,405.91z"/>
+                    <text transform="matrix(1 0 0 1 15.2792 403.6082)" class="leftNav2 leftNav3">Setup</text>
+                    <image style="overflow:visible;" width="512" height="512" xlink:href="src/settings.png" transform="matrix(0.0722 0 0 0.0722 9.0096 356.6096)"></image>
+                    <polygon id="setupTriangle" class="leftNav4" points="56.1,371.74 56.1,388.54 65.25,379.94" style="display:none;"/>
+                </g>
+            </svg>
         </div>
         <div class="container" id="container">
             <!-- Generator: Adobe Illustrator 26.5.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
@@ -285,7 +367,7 @@
                         597.5,217.96"/>
                 </g>
             </svg>
-            <div id="setupDiv" style="display: none;">
+            <div id="setupDiv" style="display: none; width: 100%;">
                 <div id="rwyAutoDisclamers">
                     <h2 id="atisDetector" style="color: darkred; font-weight: bold;"></h2>
                     <h3 style="font-weight: bold;">Change RWY config to MANUAL for local configuration</h3>
@@ -332,13 +414,13 @@
                 -->
             </div>
 
-            <div id="metrepDiv" style="display: none;">
+            <div id="metrepDiv" style="display: none; width: 100%;">
                 <button id="metButton1" onclick="metNav1();" style="position: absolute; top: 2px; left: 14px; width: 90px; height: 28px; background-color: #D8E5F3; border: 1px solid black;">MET EFHK</button>
                 <button id="metButton2" onclick="metNav2();" style="position: absolute; top: 2px; left: 104px; width: 90px; height: 28px; background-color: #E6E6E6; border: 1px solid black;">METARs</button>
                 <button id="metButton3" onclick="metNav3();" style="position: absolute; top: 2px; left: 194px; width: 90px; height: 28px; background-color: #E6E6E6; border: 1px solid black;">TAFs</button>
 
                 <svg id="metrepSvg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                    viewBox="0 0 1202 610" style="enable-background:new 0 0 1202 610; margin-top: 30px; max-width: 88%; height: auto;" xml:space="preserve">
+                    viewBox="0 0 1202 610" style="enable-background:new 0 0 1202 610; margin-top: 30px;" xml:space="preserve">
                     <style type="text/css">
                         .stt0{fill:#009ac7;}
                         .stt1{fill:#3F3F3F;}
@@ -520,7 +602,7 @@
                     </g>
                 </svg>
                 <svg id="metarsSvg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                    viewBox="0 0 1195.09 623.35" style="enable-background:new 0 0 1195.09 623.35; display: none; margin-top: 30px; max-width: 86%; height: auto;" xml:space="preserve">
+                    viewBox="0 0 1195.09 623.35" style="enable-background:new 0 0 1195.09 623.35; display: none; margin-top: 30px;" xml:space="preserve">
                     <style type="text/css">
                         .sttt0{fill:#009ac7;}
                         .sttt1{fill:#3F3F3F;}
@@ -593,7 +675,7 @@
                 </svg>
 
                 <svg id="tafsSvg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                    viewBox="0 0 1195.09 623.35" style="enable-background:new 0 0 1195.09 623.35; display: none; margin-top: 30px; max-width: 86%; height: auto;" xml:space="preserve">
+                    viewBox="0 0 1195.09 623.35" style="enable-background:new 0 0 1195.09 623.35; display: none; margin-top: 30px;" xml:space="preserve">
                     <style type="text/css">
                         .fst0{fill:#009ac7;}
                         .fst1{fill:#3F3F3F;}
@@ -689,9 +771,9 @@
                 </div>
             </div>
 
-            <div id="atisDiv" style="display: none;">
-                <div id="atisDeporArr" style="background: linear-gradient(#bbd4f0, #77aede); text-align: center; font-size: 17pt; margin: 10px; padding: 4px; border-top-left-radius: 8px; border-top-right-radius: 8px;"></div>
-                <div id="atisInfoField" style="padding: 10pt; position: absolute; left: 14pt; right: 14pt; top: 44pt; bottom: 14pt; background-color: white;">EFHK ATIS NIL</div>
+            <div id="atisDiv" style="display: none; height: 90%;">
+                <div id="atisDeporArr" class="atisWindow"></div>
+                <div id="atisInfoField" class="atisText">EFHK ATIS NIL</div>
             </div>
         </div>
     </body>

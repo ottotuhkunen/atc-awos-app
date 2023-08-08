@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 27.7.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 70.38 563.95" style="enable-background:new 0 0 70.38 563.95;" xml:space="preserve">
+<g id="background">
+	<rect class="leftNav0" width="70.38" height="563.95"/>
+</g>
+<g id="buttonMain">
+	
+		<linearGradient id="mainBackground_00000058573810495276805020000006987161348058096010_" gradientUnits="userSpaceOnUse" x1="27.5039" y1="53.3602" x2="27.5039" y2="1.8134">
+		<stop  offset="0" style="stop-color:#C0D7F0"/>
+		<stop  offset="0.9968" style="stop-color:#85A7CC"/>
+	</linearGradient>
+	
+		<path id="mainBackground_00000091713142710189689720000008914049123106929829_" style="fill:url(#mainBackground_00000058573810495276805020000006987161348058096010_);stroke:#C0D7F0;stroke-width:0.25;stroke-miterlimit:10;" d="
+		M3.71,53.36h47.58c1.69,0,3.05-1.37,3.05-3.05V4.87c0-1.69-1.37-3.05-3.05-3.05H3.71c-1.69,0-3.05,1.37-3.05,3.05v45.44
+		C0.66,51.99,2.03,53.36,3.71,53.36z"/>
+	<text transform="matrix(1 0 0 1 17.1289 49.0747)" class="leftNav2 leftNav3">Main</text>
+	
+		<image style="overflow:visible;" width="160" height="106" xlink:href="src/main.png"  transform="matrix(0.3121 0 0 0.3121 2.5355 6.4594)">
+	</image>
+	<polygon id="mainTriangle_00000005241861149263278870000004872226579225809594_" class="leftNav4" points="56.1,19.19 56.1,35.98 
+		65.25,27.39 	"/>
+</g>
+<g id="buttonRwy1">
+	
+		<linearGradient id="rwy1Background_00000142889639932312408020000012369885621513215624_" gradientUnits="userSpaceOnUse" x1="27.5038" y1="111.9552" x2="27.5038" y2="60.4084">
+		<stop  offset="0" style="stop-color:#C0D7F0"/>
+		<stop  offset="1" style="stop-color:#E5F2FF"/>
+	</linearGradient>
+	
+		<path id="rwy1Background" style="fill:url(#rwy1Background_00000142889639932312408020000012369885621513215624_);stroke:#C0D7F0;stroke-width:0.25;stroke-miterlimit:10;" d="
+		M3.71,111.96h47.58c1.69,0,3.05-1.37,3.05-3.05V63.46c0-1.69-1.37-3.05-3.05-3.05H3.71c-1.69,0-3.05,1.37-3.05,3.05v45.44
+		C0.66,110.59,2.03,111.96,3.71,111.96z"/>
+	
+		<image style="overflow:visible;" width="134" height="55" xlink:href="src/rwymenu.png"  transform="matrix(0.2724 0 0 0.2724 9.2501 71.1974)">
+	</image>
+	<text transform="matrix(1 0 0 1 10.6591 107.6697)" class="leftNav2 leftNav3">04R-22L</text>
+	<polygon id="rwy1Triangle" class="leftNav4" points="56.1,77.79 56.1,94.58 65.25,85.98 	"/>
+</g>
+<g id="buttonRwy2">
+	
+		<linearGradient id="rwy2Background_00000140731205881132332900000012771677612095532169_" gradientUnits="userSpaceOnUse" x1="27.5038" y1="170.5502" x2="27.5038" y2="119.0034">
+		<stop  offset="0" style="stop-color:#C0D7F0"/>
+		<stop  offset="1" style="stop-color:#E5F2FF"/>
+	</linearGradient>
+	
+		<path id="rwy2Background_00000151525126866751739470000013898946599616175532_" style="fill:url(#rwy2Background_00000140731205881132332900000012771677612095532169_);stroke:#C0D7F0;stroke-width:0.25;stroke-miterlimit:10;" d="
+		M3.71,170.55h47.58c1.69,0,3.05-1.37,3.05-3.05v-45.44c0-1.69-1.37-3.05-3.05-3.05H3.71c-1.69,0-3.05,1.37-3.05,3.05v45.44
+		C0.66,169.18,2.03,170.55,3.71,170.55z"/>
+	
+		<image style="overflow:visible;" width="134" height="55" xlink:href="src/rwymenu.png"  transform="matrix(0.2724 0 0 0.2724 9.2501 129.7924)">
+	</image>
+	<text transform="matrix(1 0 0 1 15.7094 166.2648)" class="leftNav2 leftNav3">15-33</text>
+	<polygon id="rwy2Triangle_00000173128651862109695980000000931299069967747230_" class="leftNav4" points="56.1,136.75 56.1,153.54 
+		65.25,144.95 	"/>
+</g>
+<g id="buttonRwy3">
+	
+		<linearGradient id="rwy3Background_00000147923930869775965240000000688776432047910330_" gradientUnits="userSpaceOnUse" x1="27.5038" y1="228.9693" x2="27.5038" y2="177.4225">
+		<stop  offset="0" style="stop-color:#C0D7F0"/>
+		<stop  offset="1" style="stop-color:#E5F2FF"/>
+	</linearGradient>
+	
+		<path id="rwy3Background" style="fill:url(#rwy3Background_00000147923930869775965240000000688776432047910330_);stroke:#C0D7F0;stroke-width:0.25;stroke-miterlimit:10;" d="
+		M3.71,228.97h47.58c1.69,0,3.05-1.37,3.05-3.05v-45.44c0-1.69-1.37-3.05-3.05-3.05H3.71c-1.69,0-3.05,1.37-3.05,3.05v45.44
+		C0.66,227.6,2.03,228.97,3.71,228.97z"/>
+	
+		<image style="overflow:visible;" width="134" height="55" xlink:href="src/rwymenu.png"  transform="matrix(0.2724 0 0 0.2724 9.2501 188.2115)">
+	</image>
+	<text transform="matrix(1 0 0 1 10.6591 224.6838)" class="leftNav2 leftNav3">04L-22R</text>
+	<polygon id="rwy3Triangle" class="leftNav4" points="56.1,194.8 56.1,211.59 65.25,203 	"/>
+</g>
+<g id="buttonSnowtam">
+	
+		<linearGradient id="snowtamBackground_00000065755550447440635200000002886099148742999701_" gradientUnits="userSpaceOnUse" x1="27.5038" y1="287.4837" x2="27.5038" y2="235.9369">
+		<stop  offset="0" style="stop-color:#C0D7F0"/>
+		<stop  offset="1" style="stop-color:#E5F2FF"/>
+	</linearGradient>
+	
+		<path id="snowtamBackground_00000121240735032771332370000015206515661579376807_" style="fill:url(#snowtamBackground_00000065755550447440635200000002886099148742999701_);stroke:#C0D7F0;stroke-width:0.25;stroke-miterlimit:10;" d="
+		M3.71,287.48h47.58c1.69,0,3.05-1.37,3.05-3.05v-45.44c0-1.69-1.37-3.05-3.05-3.05H3.71c-1.69,0-3.05,1.37-3.05,3.05v45.44
+		C0.66,286.12,2.03,287.48,3.71,287.48z"/>
+	<text transform="matrix(1 0 0 1 4.5092 254.1041)"><tspan x="0" y="0" class="leftNav2 leftNav3">SNOWTAM </tspan><tspan x="0.94" y="10" class="leftNav2 leftNav3">TAXIWAYS </tspan><tspan x="7.85" y="20" class="leftNav2 leftNav3">APRON</tspan></text>
+	<polygon id="snowtamTriangle_00000150074536982003667240000006682530009403433116_" class="leftNav4" points="56.1,253.31 56.1,270.11 
+		65.25,261.51 	"/>
+</g>
+<g id="buttonMetReport">
+	
+		<linearGradient id="metReportBackground_00000075862952681259025430000012799507384541379498_" gradientUnits="userSpaceOnUse" x1="27.5038" y1="331.3684" x2="27.5038" y2="294.3064">
+		<stop  offset="0" style="stop-color:#C0D7F0"/>
+		<stop  offset="1" style="stop-color:#E5F2FF"/>
+	</linearGradient>
+	
+		<path id="metReportBackground" style="fill:url(#metReportBackground_00000075862952681259025430000012799507384541379498_);stroke:#C0D7F0;stroke-width:0.25;stroke-miterlimit:10;" d="
+		M3.71,331.37h47.58c1.69,0,3.05-1.37,3.05-3.05v-30.96c0-1.69-1.37-3.05-3.05-3.05H3.71c-1.69,0-3.05,1.37-3.05,3.05v30.96
+		C0.66,330,2.03,331.37,3.71,331.37z"/>
+	<text transform="matrix(1 0 0 1 6.3403 344.9969)" class="leftNav2 leftNav10">MET REPORT</text>
+	
+		<image style="overflow:visible;" width="75" height="91" xlink:href="src/metrep.png"  transform="matrix(0.2631 0 0 0.2631 17.6371 300.853)">
+	</image>
+	<polygon id="metReportTriangle" class="leftNav4" points="56.1,312.84 56.1,329.63 65.25,321.03 	"/>
+</g>
+<g id="buttonSetup">
+	
+		<linearGradient id="setupBackground_00000134226715252674828190000006647714604598873762_" gradientUnits="userSpaceOnUse" x1="27.5038" y1="405.9137" x2="27.5038" y2="354.3669">
+		<stop  offset="0" style="stop-color:#C0D7F0"/>
+		<stop  offset="1" style="stop-color:#E5F2FF"/>
+	</linearGradient>
+	
+		<path id="setupBackground_00000034089413681432593930000001501497334725508527_" style="fill:url(#setupBackground_00000134226715252674828190000006647714604598873762_);stroke:#C0D7F0;stroke-width:0.25;stroke-miterlimit:10;" d="
+		M3.71,405.91h47.58c1.69,0,3.05-1.37,3.05-3.05v-45.44c0-1.69-1.37-3.05-3.05-3.05H3.71c-1.69,0-3.05,1.37-3.05,3.05v45.44
+		C0.66,404.55,2.03,405.91,3.71,405.91z"/>
+	<text transform="matrix(1 0 0 1 15.2792 403.6082)" class="leftNav2 leftNav3">Setup</text>
+	
+		<image style="overflow:visible;" width="512" height="512" xlink:href="src/settings.png"  transform="matrix(0.0722 0 0 0.0722 9.0096 356.6096)">
+	</image>
+	<polygon id="setupTriangle_00000078037034857209242550000002286389291620571563_" class="leftNav4" points="56.1,371.74 56.1,388.54 
+		65.25,379.94 	"/>
+</g>
+</svg>

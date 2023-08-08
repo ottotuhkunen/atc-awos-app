@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 27.7.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="topMenuSvg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 960.75 38" style="enable-background:new 0 0 960.75 38;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:url(#SVGID_1_);}
+	.st1{fill:#0570BD;stroke:#A0A0A0;stroke-miterlimit:10;}
+	.st2{fill:#FF9600;stroke:#A0A0A0;stroke-miterlimit:10;}
+	.st3{fill:#FFFFFF;}
+	.st4{fill:#FFFFFF;stroke:#A0A0A0;stroke-miterlimit:10;}
+	.st5{fill:#CFE2F6;stroke:#A0A0A0;stroke-miterlimit:10;}
+	.st6{font-family:'Verdana';}
+	.st7{font-size:9px;}
+	.st8{font-size:20px;}
+	.st9{font-size:7px;}
+	.st10{font-size:11px;}
+	.st11{font-size:14px;}
+	.st12{fill:#B5B5B5;}
+	.st13{font-size:16px;}
+	.st14{font-size:28px;}
+	.st15{font-size:30px;}
+</style>
+<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="480.375" y1="38" x2="480.375" y2="0">
+	<stop  offset="0" style="stop-color:#007492"/>
+	<stop  offset="1" style="stop-color:#009AC7"/>
+</linearGradient>
+<rect class="st0" width="960.75" height="38"/>
+<image style="overflow:visible;" width="302" height="140" xlink:href="../../Downloads/vatscalogo.png"  transform="matrix(0.2286 0 0 0.2286 0 3)">
+</image>
+<rect x="69.03" y="1.14" class="st1" width="50.85" height="35.73"/>
+<rect x="122.24" y="1.14" class="st2" width="50.85" height="35.73"/>
+<rect x="175.45" y="0.6" class="st3" width="74.28" height="35.73"/>
+<rect x="257.87" y="0.6" class="st3" width="146.28" height="35.73"/>
+<rect x="416.57" y="0.6" class="st3" width="146.28" height="35.73"/>
+<rect x="575.27" y="0.6" class="st4" width="149.69" height="35.73"/>
+<rect x="258.31" y="18.46" class="st4" width="145.31" height="0"/>
+<rect x="729.97" y="0.6" class="st4" width="102.02" height="35.73"/>
+<rect x="831.99" y="0.6" class="st4" width="51.01" height="35.73"/>
+<rect x="899.36" y="1.94" class="st5" width="49.54" height="34.12"/>
+<text transform="matrix(1 0 0 1 85.205 9.9785)" class="st6 st7">DEP</text>
+<text id="atisId2" transform="matrix(1 0 0 1 84.9912 32.0903)" class="st6 st8">//</text>
+<text id="atisId1" transform="matrix(1 0 0 1 138.7661 32.0903)" class="st6 st8">//</text>
+<text transform="matrix(1 0 0 1 138.6792 9.9789)" class="st6 st7">ARR</text>
+<text transform="matrix(1 0 0 1 900.8391 13.9417)" class="st6 st9">RWY CONFIG</text>
+<text id="runwayConfigMode" transform="matrix(1 0 0 1 919.1375 28.4647)" class="st6 st10">//</text>
+<text transform="matrix(1 0 0 1 262.3049 11.8475)" class="st6 st10">QFE</text>
+<text id="qfeValue" transform="matrix(1 0 0 1 387.3561 14.7992)" class="st6 st11">//</text>
+<g id="date">
+	<text transform="matrix(1 0 0 1 643.3708 24.2618)" class="st12 st6 st13">//</text>
+</g>
+<text id="seconds" transform="matrix(1 0 0 1 851.3098 24.5016)" class="st6 st13">//</text>
+<text id="time" transform="matrix(1 0 0 1 768.6257 30.3071)" class="st6 st14">//</text>
+<text id="trlValue" transform="matrix(1 0 0 1 387.0934 33.2771)" class="st6 st11">//</text>
+<text transform="matrix(1 0 0 1 262.9213 30.3073)" class="st6 st10">TRL</text>
+<text id="qnh" transform="matrix(1 0 0 1 198.97 30.3077)" class="st6 st15">//</text>
+<text id="metCondValue" transform="matrix(1 0 0 1 475.9541 30.3077)" class="st6 st15">//</text>
+</svg>

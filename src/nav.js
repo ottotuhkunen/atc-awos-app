@@ -1,74 +1,111 @@
 function openMainPage() {
     saveConfig();
-    document.getElementById("menuTriangle1").style.display = "block";
-    document.getElementById("menuTriangle2").style.display = "none";
-    document.getElementById("menuTriangle3").style.display = "none";
-    document.getElementById("mainButton").classList = "mainbuttons mainbuttonActive"; 
-    document.getElementById("metrepButton").classList = "mainbuttons mainbuttonInactive"; 
-    document.getElementById("setupButton").classList = "mainbuttons mainbuttonInactive";
+    // left nav triangles
+    document.getElementById("mainTriangle").style.display = "block";
+    document.getElementById("rwy1Triangle").style.display = "none";
+    document.getElementById("rwy2Triangle").style.display = "none";
+    document.getElementById("rwy3Triangle").style.display = "none";
+    document.getElementById("snowtamTriangle").style.display = "none";
+    document.getElementById("metReportTriangle").style.display = "none";
+    document.getElementById("setupTriangle").style.display = "none";
+
+    // left nav buttons
+    document.getElementById("buttonMain").style.pointerEvents = "none";
+    document.getElementById("mainBackground").classList.remove("leftNav1_1");
+    document.getElementById("mainBackground").classList.add("leftNav1");
+    document.getElementById("metReportBackground").classList.remove("leftNav9_1");
+    document.getElementById("metReportBackground").classList.add("leftNav9");
+    document.getElementById("setupBackground").classList.remove("leftNav11_1");
+    document.getElementById("setupBackground").classList.add("leftNav11");
+
+
+    // displayed content
     document.getElementById("atisDiv").style.display = "none";
     document.getElementById("mainSvg").style.display = "block";
     document.getElementById("setupDiv").style.display = "none";
     document.getElementById("metrepDiv").style.display = "none";
     document.getElementById("snowtamDiv").style.display = "none";
-    document.getElementById("menuTriangle4").style.display = "none";
-    document.getElementById("snowtamButton").classList = "mainbuttons mainbuttonInactive";;
-    document.getElementById("mainButton").style.pointerEvents = "none";
     loadFMI();
 }
 
 function metrep() {
-    document.getElementById("menuTriangle1").style.display = "none";
-    document.getElementById("menuTriangle2").style.display = "block";
-    document.getElementById("menuTriangle3").style.display = "none";
-    document.getElementById("mainButton").classList = "mainbuttons mainbuttonInactive"; 
-    document.getElementById("metrepButton").classList = "mainbuttons mainbuttonActive"; 
-    document.getElementById("setupButton").classList = "mainbuttons mainbuttonInactive";
+    // left nav triangles
+    document.getElementById("mainTriangle").style.display = "none";
+    document.getElementById("rwy1Triangle").style.display = "none";
+    document.getElementById("rwy2Triangle").style.display = "none";
+    document.getElementById("rwy3Triangle").style.display = "none";
+    document.getElementById("snowtamTriangle").style.display = "none";
+    document.getElementById("metReportTriangle").style.display = "block";
+    document.getElementById("setupTriangle").style.display = "none";
+
+    // left nav buttons
+    document.getElementById("buttonMain").style.pointerEvents = "auto";
+    document.getElementById("mainBackground").classList.remove("leftNav1");
+    document.getElementById("mainBackground").classList.add("leftNav1_1");
+    document.getElementById("metReportBackground").classList.remove("leftNav9");
+    document.getElementById("metReportBackground").classList.add("leftNav9_1");
+    document.getElementById("setupBackground").classList.remove("leftNav11_1");
+    document.getElementById("setupBackground").classList.add("leftNav11");
+
+    // displayed content
     document.getElementById("atisDiv").style.display = "none";
     document.getElementById("mainSvg").style.display = "none";
     document.getElementById("setupDiv").style.display = "none";
     document.getElementById("metrepDiv").style.display = "block";
     document.getElementById("snowtamDiv").style.display = "none";
-    document.getElementById("menuTriangle4").style.display = "none";
-    document.getElementById("snowtamButton").classList = "mainbuttons mainbuttonInactive";
-    document.getElementById("mainButton").style.pointerEvents = "auto";
 
     loadMetRep();
     loadCurrentMet();
 }
 
 function setup() {
+    // left nav triangles
+    document.getElementById("mainTriangle").style.display = "none";
+    document.getElementById("rwy1Triangle").style.display = "none";
+    document.getElementById("rwy2Triangle").style.display = "none";
+    document.getElementById("rwy3Triangle").style.display = "none";
+    document.getElementById("snowtamTriangle").style.display = "none";
+    document.getElementById("metReportTriangle").style.display = "none";
+    document.getElementById("setupTriangle").style.display = "block";
+    
+    // left nav buttons
+    document.getElementById("buttonMain").style.pointerEvents = "auto";
+    document.getElementById("mainBackground").classList.remove("leftNav1");
+    document.getElementById("mainBackground").classList.add("leftNav1_1");
+    document.getElementById("metReportBackground").classList.remove("leftNav9_1");
+    document.getElementById("metReportBackground").classList.add("leftNav9");
+    document.getElementById("setupBackground").classList.remove("leftNav11");
+    document.getElementById("setupBackground").classList.add("leftNav11_1");
+    
+    // displayed content
+    document.getElementById("metrepDiv").style.display = "none";
+    document.getElementById("snowtamDiv").style.display = "none";
     document.getElementById("atisDiv").style.display = "none";
     document.getElementById("mainSvg").style.display = "none";
     document.getElementById("setupDiv").style.display = "block";
-    document.getElementById("menuTriangle1").style.display = "none";
-    document.getElementById("menuTriangle2").style.display = "none";
-    document.getElementById("menuTriangle3").style.display = "block";
-    document.getElementById("mainButton").classList = "mainbuttons mainbuttonInactive"; 
-    document.getElementById("metrepButton").classList = "mainbuttons mainbuttonInactive"; 
-    document.getElementById("setupButton").classList = "mainbuttons mainbuttonActive";
-    document.getElementById("snowtamButton").classList = "mainbuttons mainbuttonInactive";
-    document.getElementById("metrepDiv").style.display = "none";
-    document.getElementById("snowtamDiv").style.display = "none";
-    document.getElementById("menuTriangle4").style.display = "none";
-    document.getElementById("mainButton").style.pointerEvents = "auto";
 }
 
 function openSnowtam() {
+    // left nav triangles
+    document.getElementById("mainTriangle").style.display = "none";
+    document.getElementById("rwy1Triangle").style.display = "none";
+    document.getElementById("rwy2Triangle").style.display = "none";
+    document.getElementById("rwy3Triangle").style.display = "none";
+    document.getElementById("snowtamTriangle").style.display = "block";
+    document.getElementById("metReportTriangle").style.display = "none";
+    document.getElementById("setupTriangle").style.display = "none";
+
+    // left nav buttons
+    // ...
+    
+    // displayed content
+    document.getElementById("metrepDiv").style.display = "none";
+    document.getElementById("snowtamDiv").style.display = "block";
     document.getElementById("atisDiv").style.display = "none";
     document.getElementById("mainSvg").style.display = "none";
     document.getElementById("setupDiv").style.display = "none";
-    document.getElementById("menuTriangle1").style.display = "none";
-    document.getElementById("menuTriangle2").style.display = "none";
-    document.getElementById("menuTriangle3").style.display = "none";
-    document.getElementById("mainButton").classList = "mainbuttons mainbuttonInactive"; 
-    document.getElementById("metrepButton").classList = "mainbuttons mainbuttonInactive"; 
-    document.getElementById("setupButton").classList = "mainbuttons mainbuttonInactive";
-    document.getElementById("snowtamButton").classList = "mainbuttons mainbuttonActive";
-    document.getElementById("metrepDiv").style.display = "none";
-    document.getElementById("snowtamDiv").style.display = "block";
-    document.getElementById("menuTriangle4").style.display = "block";
-    //loadSnowtam()
+    
+    // loadSnowtam(); DISABLED
 }
 
 function metNav1() {
@@ -501,7 +538,7 @@ function openArrATIS(){
 function openAtisWindow(atisType){
     document.getElementById("metrepDiv").style.display = "none";
     document.getElementById("snowtamDiv").style.display = "none";
-    document.getElementById("mainButton").style.pointerEvents = "auto";
+    document.getElementById("buttonMain").style.pointerEvents = "auto";
 
     if (atisType == 1) {
         document.getElementById("atisDeporArr").innerHTML = "DEPARTURE ATIS";

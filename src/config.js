@@ -1,8 +1,8 @@
 function modeSelectorPressed() {
-    if (document.getElementById("modeSelectorText").innerHTML == "RWY config<br><b>AUTO</b>") {
+    if (document.getElementById("rwyConfigValue").textContent == "AUTO") {
         // change mode to manual
-        document.getElementById("modeSelectorText").innerHTML = "RWY config<br><b>MANUAL</b>";
-        document.getElementById("modeSelectorText").style.color = "darkred";
+        document.getElementById("rwyConfigValue").textContent = "MANUAL";
+        document.getElementById("rwyConfigValue").style.fill = "darkred";
         document.getElementById("rwyAutoDisclamers").style.display = "none";
         document.getElementById("rwySelectionContainers").style.display = "block";
 
@@ -30,11 +30,11 @@ function modeSelectorPressed() {
         saveConfig();
         loadConfig();
         loadFMI();
-    } else if (document.getElementById("modeSelectorText").innerHTML == "RWY config<br><b>MANUAL</b>") {
+    } else if (document.getElementById("rwyConfigValue").textContent == "MANUAL") {
         // change mode to automatic
         document.getElementById("rwySelectionContainers").style.display = "none";
-        document.getElementById("modeSelectorText").innerHTML = "RWY config<br><b>AUTO</b>";
-        document.getElementById("modeSelectorText").style.color = "green";
+        document.getElementById("rwyConfigValue").textContent = "AUTO";
+        document.getElementById("rwyConfigValue").style.fill = "green";
         document.getElementById("rwyAutoDisclamers").style.display = "block";
         loadConfig();
         loadFMI();
@@ -42,7 +42,7 @@ function modeSelectorPressed() {
 }
 
 function loadConfig() {
-    if (document.getElementById("modeSelectorText").innerHTML == "RWY config<br><b>AUTO</b>") {
+    if (document.getElementById("rwyConfigValue").innerHTML == "AUTO") {
         getRwyFromAtis();
     } else {
         //document.getElementById("setupContainer1").diabled = "false";

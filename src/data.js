@@ -44,7 +44,10 @@ async function loadMetar() {
 
 // wawa declared in global scope
 let wawa = 0;
-
+let roundedQnh;
+let metCond = "//";
+let qnh = 0;
+let atisCode = "//";
 
 function setData(xmlDoc) {
     var xmlSize = xmlDoc.getElementsByTagName("BsWfs:ParameterName");
@@ -57,8 +60,7 @@ function setData(xmlDoc) {
     }
 
     table = table.slice(-15, -1);
-
-    var qnh = 0;
+    
     var windSpeed = 0;
     var windDirection = 0;
     var windGust = 0;
@@ -81,25 +83,10 @@ function setData(xmlDoc) {
         }
     }
 
-    if (sessionStorage.getItem('efhkQnh') === null){
-      sessionStorage.efhkQnh = JSON.stringify(1);
-    }
-
-    var qnhChanger = JSON.parse(sessionStorage.efhkQnh);
-    var roundedQnh = Math.floor(qnh);
+    roundedQnh = Math.floor(qnh);
     var roundedGust = Math.ceil(windGust * 1.943);
     var roundedWindSpeed = Math.round(windSpeed * 1.943);
 
-    setTrl(roundedQnh);
-
-    if (roundedQnh != qnhChanger){
-      sessionStorage.efhkQnh = JSON.stringify(roundedQnh);
-      document.getElementById('qnh').style.backgroundColor = "black";
-      document.getElementById('qnh').style.color = "white";
-    }
-
-    document.getElementById("qnh").innerHTML = roundedQnh;
-    document.getElementById("qfe").innerHTML = Math.floor(qnh - 6.5);
     document.getElementById("metQfe").textContent = Math.floor(qnh - 6.5);
     document.getElementById("22R_windDir").innerHTML = randomWindDirection(windDirection, "arrow22R", "22R_maxDir", roundedWindSpeed);
     document.getElementById("22L_windDir").innerHTML = randomWindDirection(windDirection, "arrow22L", "22L_maxDir", roundedWindSpeed);
@@ -249,32 +236,6 @@ function setData(xmlDoc) {
     document.getElementById("33_minSpd").style.fill = "#B9B8BA";
 
     setCurrentWx(Math.floor(wawa));
-}
-
-function setTrl(qnh) {
-  var trl = 0;
-  if (qnh >= 943 && qnh <= 959){
-    trl = 80;     
-  }
-  else if (qnh >= 960 && qnh <= 977){
-    trl = 75;
-  }
-  else if (qnh >= 978 && qnh <= 995){
-    trl = 70;
-  }
-  else if (qnh >= 996 && qnh <= 1013){
-    trl = 65;
-  }
-  else if (qnh >= 1014 && qnh <= 1031){
-    trl = 60;
-  }
-  else if (qnh >= 1032 && qnh <= 1050){
-    trl = 55;
-  }
-  else if (qnh >= 1051 && qnh <= 1068){
-    trl = 50;
-  }
-  document.getElementById("trl").innerHTML = trl;
 }
 
 function getMinSpeed(roundedWindSpeed) {
@@ -448,10 +409,10 @@ function setMetarData(xmlDoc) {
 
   // IMC VMC INDICATOR
   if (vis < 5000 && vis > 10 || metar.match(/\W*(BKN00)/g) || metar.match(/\W*(OVC00)/g) || metar.match(" VV")){
-    document.getElementById("imcVmc").innerHTML = "IMC";
+    metCond = "IMC";
   }
   else {
-    document.getElementById("imcVmc").innerHTML = "VMC";
+    metCond = "VMC";
   }
 
   // Check if METAR contains RVR:
@@ -485,7 +446,7 @@ function setMetarData(xmlDoc) {
     document.getElementById("metRvr3").textContent = randomRVR_04L[2];
 
     if (randomRVR_04L[0] < 600 || randomRVR_04L[1] < 600 || randomRVR_04L[2] < 600) {
-      document.getElementById("imcVmc").innerHTML = "LVP";
+      metCond = "LVP";
     }
   } 
 
@@ -504,7 +465,7 @@ function setMetarData(xmlDoc) {
     document.getElementById("metRvr3").textContent = randomRVR_04R[2];
 
     if (randomRVR_04R[0] < 600 || randomRVR_04R[1] < 600 || randomRVR_04R[2] < 600) {
-      document.getElementById("imcVmc").innerHTML = "LVP";
+      metCond = "LVP";
     }
   } 
 
@@ -523,7 +484,7 @@ function setMetarData(xmlDoc) {
     document.getElementById("metRvr3").textContent = randomRVR_15[2];
 
     if (randomRVR_15[0] < 600 || randomRVR_15[1] < 600 || randomRVR_15[2] < 600 ) {
-      document.getElementById("imcVmc").innerHTML = "LVP";
+      metCond = "LVP";
     }
   } 
 
@@ -542,7 +503,7 @@ function setMetarData(xmlDoc) {
     document.getElementById("metRvr3").textContent = randomRVR_33[2];
 
     if (randomRVR_33[0] < 600 || randomRVR_33[1] < 600 || randomRVR_33[2] < 600) {
-      document.getElementById("imcVmc").innerHTML = "LVP";
+      metCond = "LVP";
     }
   } 
 
@@ -561,7 +522,7 @@ function setMetarData(xmlDoc) {
     document.getElementById("metRvr3").textContent = randomRVR_22L[2];
 
     if (randomRVR_22L[0] < 600 || randomRVR_22L[1] < 600 || randomRVR_22L[2] < 600) {
-      document.getElementById("imcVmc").innerHTML = "LVP";
+      metCond = "LVP";
     }
   } 
 
@@ -580,12 +541,12 @@ function setMetarData(xmlDoc) {
     document.getElementById("metRvr3").textContent = randomRVR_22R[2];
 
     if (randomRVR_22R[0] < 600 || randomRVR_22R[1] < 600 || randomRVR_22R[2] < 600) {
-      document.getElementById("imcVmc").innerHTML = "LVP";
+      metCond = "LVP";
     }
   } 
 
   if (metar.match(/[A-Za-z]+VV\d{2}[1-2]/)) {
-    document.getElementById("imcVmc").innerHTML = "LVP";
+    metCond = "LVP";
   }
 
   if (rvr_04L == null && rvr_22R == null) {
@@ -610,7 +571,11 @@ function setMetarData(xmlDoc) {
     document.getElementById("metRvr2").textContent = "";
     document.getElementById("metRvr3").textContent = "";
   }
-  
+
+  // populate the top menu (qnh, qfe, metCond)
+  let qfeValue = Math.floor(qnh - 6.5);
+  populateTopMenu(roundedQnh, qfeValue, metCond);
+
   // get ATIS
   fetch('https://data.vatsim.net/v3/vatsim-data.json')
   .then(response => response.json())
@@ -622,10 +587,10 @@ function setMetarData(xmlDoc) {
         break;
       }
       else {
-        document.getElementById('atisID').innerHTML = "//";
-        document.getElementById('atisID2').innerHTML = "//";
+        document.getElementById('atisId1').textContent = "//";
+        document.getElementById('atisId2').textContent = "//";
         document.getElementById('atisInfoField').innerHTML = "EFHK ATIS NIL";
-        if (document.getElementById("modeSelectorText").innerHTML == "RWY config<br><b>AUTO</b>") {
+        if (document.getElementById("rwyConfigValue").textContent == "AUTO") {
           // make all runways inactive
           loadConfig();
         }
@@ -725,21 +690,18 @@ function makeAtisText(atisText) {
   let pattern = /INFO\s([A-Z])/;
 
   let match = atisText.match(pattern);
-  let atisCode;
 
   if (match && match[1]) {
     // ATIS ID
     atisCode = match[1];
-    document.getElementById('atisID').innerHTML = atisCode;
-    document.getElementById('atisID2').innerHTML = atisCode;
-  } else {
-    //console.log("No ATIS ID");
-    document.getElementById('atisID').innerHTML = "//";
-    document.getElementById('atisID2').innerHTML = "//";
   }
+
+  document.getElementById('atisId1').textContent = atisCode;
+  document.getElementById('atisId2').textContent = atisCode;
+  
   document.getElementById("atisInfoField").innerHTML = atisText;
 
-  if (document.getElementById("modeSelectorText").innerHTML == "RWY config<br><b>AUTO</b>") {
+  if (document.getElementById("rwyConfigValue").textContent == "AUTO") {
     // load automatic rwy config
     loadConfig();
   }
@@ -768,11 +730,6 @@ function rvrRandomizator(realRVR) {
   }
 
   return [rvrValue1, rvrValue2, rvrValue3];
-}
-
-function qnhClick() {
-  document.getElementById('qnh').style.backgroundColor = "white";
-  document.getElementById('qnh').style.color = "black";
 }
 
 function setCurrentWx(wawa) {

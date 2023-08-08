@@ -122,14 +122,14 @@ function fetchInformation(){
                 if(record.fields['content'] == "..."){
                     document.getElementById('infoWindow4').style.display = "none";
                     document.getElementById('metWarnings').textContent = "NO ACTUAL WARNINGS";
-                    document.getElementById('metrepHeader').style.color = "black";
+                    document.getElementById('metrepHeader').style.fill = "black";
 
                 }
                 else{
                     document.getElementById('infoWindow4').style.display = "block";
                     document.getElementById('infoWindow4_line1').textContent = "MET WARNINGS EXIST";
                     document.getElementById('metWarnings').textContent = record.fields['content'];
-                    document.getElementById('metrepHeader').style.color = "red";
+                    document.getElementById('metrepHeader').style.fill = "darkred";
                 }
             }
         }
