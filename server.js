@@ -3,8 +3,8 @@ const express = require('express');
 const basicAuth = require('express-basic-auth')
 const app = express();
 const axios = require('axios');
+const cheerio = require('cheerio');
 const { JSDOM } = require('jsdom');
-//const { takeScreenshot } = require('./screenshot');
 
 app.get('/api/data', async (req, res) => {
   const baseUrl = "https://api.airtable.com/v0/appGAYI2wFvY7jZVG/Table%201";
@@ -26,6 +26,26 @@ app.get('/api/data', async (req, res) => {
 });
 
 const port = process.env.PORT || 3000;
+
+/*
+app.get('/snowtam', async (req, res) => {
+  try {
+      const { data } = await axios.get('https://www.ais.fi/ais/bulletins/efinen.htm');
+      
+      // Regular expression to capture content after "ENONTEKIO AFIS CLSD" until a '<' (which usually signifies the start of an HTML tag)
+      const regex = /ENONTEKIO AFIS CLSD. (.*?)</;
+      const matches = data.match(regex);
+      let extractedData = "NO SNOWTAM";
+      if (matches && matches[1]) {
+          extractedData = matches[1].trim(); // captures content after "ENONTEKIO AFIS CLSD"
+      }
+      res.json({ data: extractedData });
+  } catch (error) {
+      res.status(500).json({ error: 'Failed to scrape data' });
+  }
+});
+*/
+
 
 app.use((req, res, next) => {
     if (req.header('x-forwarded-proto') !== 'https') {

@@ -17,6 +17,8 @@ function openMainPage() {
     document.getElementById("metReportBackground").classList.add("leftNav9");
     document.getElementById("setupBackground").classList.remove("leftNav11_1");
     document.getElementById("setupBackground").classList.add("leftNav11");
+    document.getElementById("snowtamBackground").classList.remove("leftNav8_1");
+    document.getElementById("snowtamBackground").classList.add("leftNav8");
 
 
     // displayed content
@@ -46,6 +48,8 @@ function metrep() {
     document.getElementById("metReportBackground").classList.add("leftNav9_1");
     document.getElementById("setupBackground").classList.remove("leftNav11_1");
     document.getElementById("setupBackground").classList.add("leftNav11");
+    document.getElementById("snowtamBackground").classList.remove("leftNav8_1");
+    document.getElementById("snowtamBackground").classList.add("leftNav8");
 
     // displayed content
     document.getElementById("atisDiv").style.display = "none";
@@ -76,6 +80,8 @@ function setup() {
     document.getElementById("metReportBackground").classList.add("leftNav9");
     document.getElementById("setupBackground").classList.remove("leftNav11");
     document.getElementById("setupBackground").classList.add("leftNav11_1");
+    document.getElementById("snowtamBackground").classList.remove("leftNav8_1");
+    document.getElementById("snowtamBackground").classList.add("leftNav8");
     
     // displayed content
     document.getElementById("metrepDiv").style.display = "none";
@@ -96,7 +102,15 @@ function openSnowtam() {
     document.getElementById("setupTriangle").style.display = "none";
 
     // left nav buttons
-    // ...
+    document.getElementById("buttonMain").style.pointerEvents = "auto";
+    document.getElementById("mainBackground").classList.remove("leftNav1");
+    document.getElementById("mainBackground").classList.add("leftNav1_1");
+    document.getElementById("metReportBackground").classList.remove("leftNav9_1");
+    document.getElementById("metReportBackground").classList.add("leftNav9");
+    document.getElementById("setupBackground").classList.remove("leftNav11_1");
+    document.getElementById("setupBackground").classList.add("leftNav11");
+    document.getElementById("snowtamBackground").classList.remove("leftNav8");
+    document.getElementById("snowtamBackground").classList.add("leftNav8_1");
     
     // displayed content
     document.getElementById("metrepDiv").style.display = "none";
@@ -105,7 +119,7 @@ function openSnowtam() {
     document.getElementById("mainSvg").style.display = "none";
     document.getElementById("setupDiv").style.display = "none";
     
-    // loadSnowtam(); DISABLED
+    loadSnowtam(); // function located in fetchInfo.js file
 }
 
 function metNav1() {
@@ -915,38 +929,4 @@ function loadActualMet(xml) {
         });
     })
     .catch(error => console.log('error', error));
-}
-
-function loadSnowtam() {
-    fetch('https://www.ais.fi/ais/bulletins/efinen-fr.htm')
-  .then(response => response.text())
-  .then(htmlString => {
-    let parser = new DOMParser();
-    let doc = parser.parseFromString(htmlString, 'text/html');
-    let elements = doc.querySelectorAll('span[style="font-size:9.0pt; font-family:&quot;Monospace&quot;"]');
-
-    let snowtam = "";
-    let isSnowtam = false;
-
-    elements.forEach(element => {
-      if(element.textContent.trim() === "SNOWTAM") {
-        isSnowtam = true;
-        snowtam += element.textContent.trim();
-      } else if (element.textContent.trim() === "EFIV") {
-        if (isSnowtam) {
-          snowtam += " " + element.textContent.trim();
-        }
-      } else {
-        if (isSnowtam) {
-          snowtam += " " + element.textContent.trim();
-        }
-      }
-    });
-
-    console.log(snowtam); // log the snowtam details
-    // use the snowtam details here
-    // for example, populate your <h3> element
-    document.getElementById('snowtam').innerText = snowtam;
-  })
-  .catch(console.error);
 }

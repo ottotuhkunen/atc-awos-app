@@ -137,3 +137,29 @@ function fetchInformation(){
     .catch(error => console.log('error', error));
 }
 
+// SNOWTAMs:
+async function loadSnowtam() {
+    try {
+        const response = await fetch('/snowtam');
+        const data = await response.json();
+
+        document.getElementById('snowtamLine1').innerHTML = data.data;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+
+    // example id: EFHK_20230715_1048_45811
+    let snowtamId = "EFHK_";
+
+    let currentDate = new Date();
+    let year = currentDate.getUTCFullYear().toString(); // gets the full year as four digits
+    let month = (currentDate.getUTCMonth() + 1).toString().padStart(2, '0');  // +1 because months are 0-indexed in JS
+    let day = currentDate.getUTCDate().toString().padStart(2, '0');
+    let formattedDate = year + month + day;
+
+    snowtamId = snowtamId + formattedDate + "_UNDEF";
+    document.getElementById("snowtamId").innerHTML = snowtamId;
+
+    // snowtam observation times to:
+    // snowtamTime1, snowtamTime2
+}

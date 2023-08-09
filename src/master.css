@@ -122,6 +122,12 @@ footer {
     padding-left: 4pt;
     word-wrap: break-word;
 }
+@media (min-width: 1200px) {
+    .metar {
+        font-size: 20px;
+    }
+}
+
 .runwayButton {
     margin-left: 6pt;
     margin-bottom: 6pt;
@@ -278,7 +284,7 @@ svg {
 }
 
 #mainSvg, #metrepSvg, #metarsSvg, #tafsSvg {
-    max-width: 840px;
+    max-width: 900px;
     width: 100%;
     height: 100%;
 }
@@ -340,16 +346,17 @@ svg {
 .atisWindow {
     background: linear-gradient(#bbd4f0, #77aede); 
     text-align: center; 
-    font-size: 17pt; 
-    margin: 10px;
+    font-size: 12pt;
+    margin: 10pt;
     padding: 4px; 
     border-top-left-radius: 8px; 
     border-top-right-radius: 8px;
+    height: 26px;
 }
 
 .atisText {
     position: absolute;
-    padding: 10pt; 
+    padding: 4pt; 
     margin-left: 10px;
     margin-right: 10px;
     background-color: white;
@@ -358,6 +365,17 @@ svg {
     right: 4px;
     top: 58px;
     bottom: 24px;
+    font-size: 10pt;
+    color: #333333;
+}
+
+@media (min-width: 1200px) {
+    .atisText {
+        font-size: 12pt;
+    }
+    .atisWindow {
+        font-size: 16pt; 
+    }
 }
 
 #topMenuSvg{
@@ -381,7 +399,6 @@ svg {
 
 
 .leftNav0{fill:none;}
-	
 .leftNav1{fill:url(#mainBackgroundGradient);stroke:#C0D7F0;stroke-width:0.25;stroke-miterlimit:10;}
 .leftNav1_1{fill:url(#mainBackgroundGradient2);stroke:#C0D7F0;stroke-width:0.25;stroke-miterlimit:10;}
 .leftNav2{font-family:'verdana';}
@@ -391,6 +408,7 @@ svg {
 .leftNav6{fill:url(#rwy2BackgroundGradient);stroke:#C0D7F0;stroke-width:0.25;stroke-miterlimit:10;}
 .leftNav7{fill:url(#rwy3BackgroundGradient);stroke:#C0D7F0;stroke-width:0.25;stroke-miterlimit:10;}
 .leftNav8{fill:url(#snowtamBackgroundGradient);stroke:#C0D7F0;stroke-width:0.25;stroke-miterlimit:10;}
+.leftNav8_1{fill:url(#snowtamBackgroundGradient2);stroke:#C0D7F0;stroke-width:0.25;stroke-miterlimit:10;}
 .leftNav9{fill:url(#metReportBackgroundGradient);stroke:#C0D7F0;stroke-width:0.25;stroke-miterlimit:10;}
 .leftNav9_1{fill:url(#metReportBackgroundGradient2);stroke:#C0D7F0;stroke-width:0.25;stroke-miterlimit:10;}
 .leftNav11{fill:url(#setupBackgroundGradient);stroke:#C0D7F0;stroke-width:0.25;stroke-miterlimit:10;}
