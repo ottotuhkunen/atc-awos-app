@@ -163,61 +163,12 @@ function setData(xmlDoc) {
       document.getElementById("arrow22R").style.display = "block";
     }
 
-    var displayedGust22R = getMaxSpeed(roundedGust, roundedWindSpeed, "display22R", "22R_maxSpd", "22R_minSpd");
-    var displayedGust22L = getMaxSpeed(roundedGust, roundedWindSpeed, "display22L", "22L_maxSpd", "22L_minSpd");
-    var displayedGust15 = getMaxSpeed(roundedGust, roundedWindSpeed, "display15", "15_maxSpd", "15_minSpd");
-    var displayedGust33 = getMaxSpeed(roundedGust, roundedWindSpeed, "display33", "33_maxSpd", "33_minSpd");
-    var displayedGust04L = getMaxSpeed(roundedGust, roundedWindSpeed, "display04L", "04L_maxSpd", "04L_minSpd");
-    var displayedGust04R = getMaxSpeed(roundedGust, roundedWindSpeed, "display04R", "04R_maxSpd", "04R_minSpd");
-
-    document.getElementById("22R_maxSpd").innerHTML = displayedGust22R;
-    document.getElementById("22L_maxSpd").innerHTML = displayedGust22L;
-    //EXTRA: document.getElementById("15_maxSpd").innerHTML = displayedGust15;
-    document.getElementById("15_maxSpd").innerHTML = "//";
-    document.getElementById("33_maxSpd").innerHTML = displayedGust33;
-    document.getElementById("04L_maxSpd").innerHTML = displayedGust04L;
-    document.getElementById("04R_maxSpd").innerHTML = displayedGust04R;
-
-    if (roundedGust > (roundedWindSpeed + 9)) {
-      if (JSON.parse(sessionStorage.getItem("depBox04L")) || JSON.parse(sessionStorage.getItem("arrBox04L"))) {
-        document.getElementById("04L_maxSpd").style.fill = "black";
-      } else {
-        document.getElementById("04L_maxSpd").style.fill = "#B9B8BA";
-      }
-      if (JSON.parse(sessionStorage.getItem("depBox04R")) || JSON.parse(sessionStorage.getItem("arrBox04R"))) {
-        document.getElementById("04R_maxSpd").style.fill = "black";
-      } else {
-        document.getElementById("04R_maxSpd").style.fill = "#B9B8BA";
-      }
-      if (JSON.parse(sessionStorage.getItem("depBox15")) || JSON.parse(sessionStorage.getItem("arrBox15"))) {
-        document.getElementById("15_maxSpd").style.fill = "black";
-      } else {
-        document.getElementById("15_maxSpd").style.fill = "#B9B8BA";
-      }
-      if (JSON.parse(sessionStorage.getItem("depBox33")) || JSON.parse(sessionStorage.getItem("arrBox33"))) {
-        document.getElementById("33_maxSpd").style.fill = "black";
-      } else {
-        document.getElementById("33_maxSpd").style.fill = "#B9B8BA";
-      }
-      if (JSON.parse(sessionStorage.getItem("depBox22L")) || JSON.parse(sessionStorage.getItem("arrBox22L"))) {
-        document.getElementById("22L_maxSpd").style.fill = "black";
-      } else {
-        document.getElementById("22L_maxSpd").style.fill = "#B9B8BA";
-      }
-      if (JSON.parse(sessionStorage.getItem("depBox22R")) || JSON.parse(sessionStorage.getItem("arrBox22R"))) {
-        document.getElementById("22R_maxSpd").style.fill = "black";
-      } else {
-        document.getElementById("22R_maxSpd").style.fill = "#B9B8BA";
-      }
-    } 
-    else {
-      document.getElementById("04L_maxSpd").style.fill = "#B9B8BA";
-      document.getElementById("04R_maxSpd").style.fill = "#B9B8BA";
-      document.getElementById("15_maxSpd").style.fill = "#B9B8BA";
-      document.getElementById("33_maxSpd").style.fill = "#B9B8BA";
-      document.getElementById("22L_maxSpd").style.fill = "#B9B8BA";
-      document.getElementById("22R_maxSpd").style.fill = "#B9B8BA";
-    }
+    getMaxSpeed(roundedGust, roundedWindSpeed, "display22R", "22R_maxSpd", "22R_minSpd", "22R");
+    getMaxSpeed(roundedGust, roundedWindSpeed, "display22L", "22L_maxSpd", "22L_minSpd", "22L");
+    //getMaxSpeed(roundedGust, roundedWindSpeed, "display15", "15_maxSpd", "15_minSpd", "15"); EXTRA
+    getMaxSpeed(roundedGust, roundedWindSpeed, "display33", "33_maxSpd", "33_minSpd", "33");
+    getMaxSpeed(roundedGust, roundedWindSpeed, "display04L", "04L_maxSpd", "04L_minSpd", "04L");
+    getMaxSpeed(roundedGust, roundedWindSpeed, "display04R", "04R_maxSpd", "04R_minSpd", "04R");
 
     document.getElementById("22R_minSpd").innerHTML = getMinSpeed(roundedWindSpeed);
     document.getElementById("22L_minSpd").innerHTML = getMinSpeed(roundedWindSpeed);
@@ -228,13 +179,6 @@ function setData(xmlDoc) {
     document.getElementById("04L_minSpd").innerHTML = getMinSpeed(roundedWindSpeed);
 
     loadMetar();
-    document.getElementById("22R_minSpd").style.fill = "#B9B8BA";
-    document.getElementById("22L_minSpd").style.fill = "#B9B8BA";
-    document.getElementById("04R_minSpd").style.fill = "#B9B8BA";
-    document.getElementById("04L_minSpd").style.fill = "#B9B8BA";
-    document.getElementById("15_minSpd").style.fill = "#B9B8BA";
-    document.getElementById("33_minSpd").style.fill = "#B9B8BA";
-
     setCurrentWx(Math.floor(wawa));
 }
 
@@ -246,20 +190,29 @@ function getMinSpeed(roundedWindSpeed) {
   return minimumSpeed;
 }
 
-function getMaxSpeed(roundedGust, roundedWindSpeed, display, font1, font2) {
+function getMaxSpeed(roundedGust, roundedWindSpeed, display, font1, font2, runway) {
   var maxGust = roundedGust + 3;
   var maxSpeed = Math.floor(Math.random() * (maxGust - roundedGust) + roundedGust);
 
-  //console.log(maxSpeed);
-  //console.log(roundedWindSpeed);
+  // console.log(maxSpeed);
+  // console.log(roundedWindSpeed);
 
-  if (maxSpeed >= (roundedWindSpeed + 9)) {
-    if (document.getElementById(display).style.fill == "white") {
+  var activeDep = JSON.parse(sessionStorage.getItem("depBox" + runway));
+  var activeArr = JSON.parse(sessionStorage.getItem("arrBox" + runway));
+
+  if (activeDep || activeArr){
+    if (maxSpeed > (roundedWindSpeed + 9)) {
       document.getElementById(font1).style.fill = "black";
       document.getElementById(font2).style.fill = "black";
+      console.log("moi");
+    } else {
+      document.getElementById(font1).style.fill = "#B9B8BA";
+      document.getElementById(font2).style.fill = "#B9B8BA";
     }
   }
-  return maxSpeed;
+  
+  // make gust
+  document.getElementById(font1).innerHTML = roundedGust;
 }
 
 function randomWindDirection(realDirection, arrowID, maxDirID, windSpeed) { // 29.0
