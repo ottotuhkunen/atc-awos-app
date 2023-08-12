@@ -122,6 +122,42 @@ function openSnowtam() {
     loadSnowtam(); // function located in fetchInfo.js file
 }
 
+function snowtamNav1() {
+    document.getElementById("snowtam").style.display = "block";
+    document.getElementById("taxiways").style.display = "none";
+    document.getElementById("aprons").style.display = "none";
+    document.getElementById("snowtamButton1").style.backgroundColor = "#D8E5F3";
+    document.getElementById("snowtamButton2").style.backgroundColor = "#E6E6E6";
+    document.getElementById("snowtamButton3").style.backgroundColor = "#E6E6E6";
+    document.getElementById("snowtamButton1").style.pointerEvents = "none";
+    document.getElementById("snowtamButton2").style.pointerEvents = "all";
+    document.getElementById("snowtamButton3").style.pointerEvents = "all";
+}
+
+function snowtamNav2() {
+    document.getElementById("snowtam").style.display = "none";
+    document.getElementById("taxiways").style.display = "block";
+    document.getElementById("aprons").style.display = "none";
+    document.getElementById("snowtamButton1").style.backgroundColor = "#E6E6E6";
+    document.getElementById("snowtamButton2").style.backgroundColor = "#D8E5F3";
+    document.getElementById("snowtamButton3").style.backgroundColor = "#E6E6E6";
+    document.getElementById("snowtamButton1").style.pointerEvents = "all";
+    document.getElementById("snowtamButton2").style.pointerEvents = "none";
+    document.getElementById("snowtamButton3").style.pointerEvents = "all";
+}
+
+function snowtamNav3() {
+    document.getElementById("snowtam").style.display = "none";
+    document.getElementById("taxiways").style.display = "none";
+    document.getElementById("aprons").style.display = "block";
+    document.getElementById("snowtamButton1").style.backgroundColor = "#E6E6E6";
+    document.getElementById("snowtamButton2").style.backgroundColor = "#E6E6E6";
+    document.getElementById("snowtamButton3").style.backgroundColor = "#D8E5F3";
+    document.getElementById("snowtamButton1").style.pointerEvents = "all";
+    document.getElementById("snowtamButton2").style.pointerEvents = "all";
+    document.getElementById("snowtamButton3").style.pointerEvents = "none";
+}
+
 function metNav1() {
     document.getElementById("metrepSvg").style.display = "block";
     document.getElementById("metarsSvg").style.display = "none";
@@ -129,6 +165,9 @@ function metNav1() {
     document.getElementById("metButton1").style.backgroundColor = "#D8E5F3";
     document.getElementById("metButton2").style.backgroundColor = "#E6E6E6";
     document.getElementById("metButton3").style.backgroundColor = "#E6E6E6";
+    document.getElementById("metButton1").style.pointerEvents = "none";
+    document.getElementById("metButton2").style.pointerEvents = "all";
+    document.getElementById("metButton3").style.pointerEvents = "all";
 }
 
 function metNav2() {
@@ -138,6 +177,9 @@ function metNav2() {
     document.getElementById("metButton1").style.backgroundColor = "#E6E6E6";
     document.getElementById("metButton2").style.backgroundColor = "#D8E5F3";
     document.getElementById("metButton3").style.backgroundColor = "#E6E6E6";
+    document.getElementById("metButton1").style.pointerEvents = "all";
+    document.getElementById("metButton2").style.pointerEvents = "none";
+    document.getElementById("metButton3").style.pointerEvents = "all";
 
     var myHeaders = new Headers();
     myHeaders.append("X-API-Key", "bcad5819aedc44a7aa9b4705be");
@@ -277,6 +319,9 @@ function metNav3() {
     document.getElementById("metButton1").style.backgroundColor = "#E6E6E6";
     document.getElementById("metButton2").style.backgroundColor = "#E6E6E6";
     document.getElementById("metButton3").style.backgroundColor = "#D8E5F3";
+    document.getElementById("metButton1").style.pointerEvents = "all";
+    document.getElementById("metButton2").style.pointerEvents = "all";
+    document.getElementById("metButton3").style.pointerEvents = "none";
 
     var myHeaders = new Headers();
     myHeaders.append("X-API-Key", "bcad5819aedc44a7aa9b4705be");

@@ -325,6 +325,9 @@ svg {
     margin-top: 12px;
     margin-right: 12px;
 }
+#snowtamContainer1, #taxiwaysContainer1, #apronsContainer1 {
+    margin-top: 2px;
+}
 
 #snowtamTitle, #snowtamTime1, #snowtamTime2, #snowtamLine1 {
     font-size: 11pt;
@@ -437,7 +440,8 @@ svg {
     width: 10vw;
     height: 3vw;
     max-width: 80px; 
-    max-height: 28px; 
+    max-height: 28px;
+    cursor: pointer;
 }
 
 @media (min-width: 1000px) {
@@ -472,7 +476,6 @@ svg {
 .st16{text-anchor: end;}
 .st17{font-size:17px; fill:#404040;}
 
-
 .metRepDivContainer {
     display: none; 
     position: absolute;
@@ -482,4 +485,32 @@ svg {
     right: 0px;
     width: calc(100%);
     height: calc(100vh - 4vw - 110px);
+}
+
+table {
+    text-align: left;
+    margin-top: 12px;
+    color: red;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    border: 1px solid black;
+    padding: 8px;
+    padding-top: 12px;
+    padding-bottom: 14px;
+}
+
+@media (max-width: 1100px) {
+    table {
+        font-size: 8pt;
+    }
+    .snowtamContainer h2 {
+        font-size: 12pt;
+    }
+}
+
+#metButton1, #snowtamButton1 {
+    pointer-events: none;
 }

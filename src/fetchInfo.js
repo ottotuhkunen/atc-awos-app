@@ -139,8 +139,8 @@ function fetchInformation(){
 
 // SNOWTAMs:
 async function loadSnowtam() {
-    let observationTime = "undef";
-    let observationTime2 = "timeonly";
+    let observationTime = "0000";
+    let observationTime2 = "NO_SNOWTAM";
     try {
         const response = await fetch('/snowtam');
         const data = await response.json();

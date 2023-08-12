@@ -734,21 +734,73 @@
                 </svg>
             </div>
             <div id="snowtamDiv" style="display: none; margin-left: 12px;">
-                <div id="snowtamContainer1" class="snowtamContainer">
-                    <h2 style="padding: 5pt; font-weight: bold;">EFHK REPORT ID</h2>
-                    <h3 id="snowtamId">//</h3>
+                <div id="metrepButtonsContainer">
+                    <button id="snowtamButton1" onclick="snowtamNav1();" class="metButtons" style="margin-left: -2px; background-color: #D8E5F3;">SNOWTAM</button>
+                    <button id="snowtamButton2" onclick="snowtamNav2();" class="metButtons">TAXIWAYS</button>
+                    <button id="snowtamButton3" onclick="snowtamNav3();" class="metButtons">APRONS</button>
                 </div>
-                <div id="snowtamContainer2" class="snowtamContainer">
-                    <h2 style="padding: 5pt; font-weight: bold;">SNOWTAM #LOCAL</h2>
-                    <h3 id="snowtamTitle">GG EFHKSNOW<br><span id="snowtamTime1">//</span> EFHKZTZX<br>SWEF0000 EFHK <span id="snowtamTime2">//</span></h3>
-                    <p style="padding-left: 5pt; padding-bottom: 10px;" id="snowtamLine1">//</p>
+                <div id="snowtam">
+                    <div id="snowtamContainer1" class="snowtamContainer">
+                        <h2 style="padding: 5pt; font-weight: bold;">EFHK REPORT ID</h2>
+                        <h3 id="snowtamId">//</h3>
+                    </div>
+                    <div id="snowtamContainer2" class="snowtamContainer">
+                        <h2 style="padding: 5pt; font-weight: bold;">SNOWTAM #LOCAL</h2>
+                        <h3 id="snowtamTitle">GG EFHKSNOW<br><span id="snowtamTime1">//</span> EFHKZTZX<br>SWEF0000 EFHK <span id="snowtamTime2">//</span></h3>
+                        <p style="padding-left: 5pt; padding-bottom: 10px;" id="snowtamLine1">SNOWTAM NIL</p>
+                    </div>
+                    <div id="snowtamContainer3" class="snowtamContainer">
+                        <h2 style="padding: 5pt; font-weight: bold;">AIRPORT COMMENTS</h2>
+                        <h3>COMMENT SNOWTAM:<br>NIL</h3>
+                        <h3>COMMENT ATIS:<br>NIL</h3>
+                        <h3>COMMENT 'TORNI':<br>NIL</h3>
+                    </div>
                 </div>
-                <div id="snowtamContainer3" class="snowtamContainer">
-                    <h2 style="padding: 5pt; font-weight: bold;">AIRPORT COMMENTS</h2>
-                    <h3>COMMENT SNOWTAM:<br>NIL</h3>
-                    <h3>COMMENT ATIS:<br>NIL</h3>
-                    <h3>COMMENT 'TORNI':<br>NIL</h3>
+                <div id="taxiways" style="display: none; margin-right: 12px;">
+                    <div id="taxiwaysContainer1" class="snowtamContainer" style="margin-right: 0;">
+                        <h2 style="padding: 5pt; font-weight: bold;">TAXIWAYS</h2>
+                    </div>
+                    <table>
+                        <tr>
+                            <th>TAXIWAY Y OUTDATED</th>
+                            <th>TAXIWAY Z OUTDATED</th>
+                            <th>TAXIWAY S OUTDATED</th>
+                            <th>TAXIWAY D OUTDATED</th>
+                        </tr>
+                        <tr>
+                            <th>TAXIWAY G OUTDATED</th>
+                            <th>TAXIWAY W OUTDATED</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </table>
                 </div>
+                <div id="aprons" style="display: none; margin-right: 12px;">
+                    <div id="apronsContainer1" class="snowtamContainer" style="margin-right: 0;">
+                        <h2 style="padding: 5pt; font-weight: bold;">APRONS</h2>
+                    </div>
+                    <table>
+                        <tr>
+                            <th>APRON 1N OUTDATED</th>
+                            <th>APRON 1E OUTDATED</th>
+                            <th>APRON 1S OUTDATED</th>
+                            <th>APRON 1W OUTDATED</th>
+                        </tr>
+                        <tr>
+                            <th>APRON 2 OUTDATED</th>
+                            <th>APRON 3 OUTDATED</th>
+                            <th>APRON 4 OUTDATED</th>
+                            <th>APRON 6 OUTDATED</th>
+                        </tr>
+                        <tr>
+                            <th>APRON 8 OUTDATED</th>
+                            <th>APRON 9 OUTDATED</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </table>
+                </div>
+                
             </div>
 
             <div id="atisDiv" style="display: none;">
