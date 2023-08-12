@@ -353,21 +353,6 @@
                 </div>
                 
                 <div id="rwySelectionContainers" style="display: none;">
-                    <!--
-                    <div id="setupContainer1" style="width: 300px; position: absolute;">
-                        <h2>Runway combination</h2>
-                        <button class="runwayButton" onclick="openV();"><strong>OPEN V</strong><br>DEP 22R<br>ARR 15</button>
-                        <button class="runwayButton" onclick="openVQjet();"><strong>OPEN V QJET</strong><br>DEP 22R, 22L<br>ARR 15</button><br>
-                        <button class="runwayButton" onclick="para22();"><strong>PARA 22</strong><br>DEP 22R<br>ARR 22L</button>
-                        <button class="runwayButton" onclick="para22Qjet();"><strong>PARA 22 QJET</strong><br>DEP 22R, 22L<br>ARR 22L</button><br>
-                        <button class="runwayButton" onclick="para04();"><strong>PARA 04</strong><br>DEP 04R<br>ARR 04L</button>
-                        <button class="runwayButton" onclick="para04Prop();"><strong>PARA 04 PROP</strong><br>DEP 04R, 15<br>ARR 04L</button><br><br>
-                        <button class="runwayButton" onclick="openT();"><strong>OPEN T (LVP)</strong><br>DEP 15<br>ARR 22R</button>
-                        <button class="runwayButton" onclick="openA();"><strong>OPEN A (LVP)</strong><br>DEP 15<br>ARR 04L</button><br>
-                        <button class="runwayButton" onclick="soir04();"><strong>SOIR 04</strong><br>DEP 04R<br>ARR 04L, 04R</button>
-                        <button class="runwayButton" onclick="soir22();"><strong>SOIR 22</strong><br>DEP 22R<br>ARR 22L, 22R</button><br>
-                    </div>
-                    -->
                     <div id="setupContainer2">
                         <h2>Local Runway Configuration</h2>
                         <h3>04L<input class="checkbox" type="checkbox" id="checkboxDep04L" name="checkboxDep04L" onclick="dep04L();">DEP<input class="checkbox" type="checkbox" id="checkboxArr04L" name="checkboxArr04L" onclick="arr04L();">ARR</h3>
@@ -378,7 +363,6 @@
                         <h3>22R<input class="checkbox" type="checkbox" id="checkboxDep22R" name="checkboxDep22R" onclick="dep22R();">DEP<input class="checkbox" type="checkbox" id="checkboxArr22R" name="checkboxArr22R" onclick="arr22R();">ARR</h3>
                     </div>
                 </div>
-                
                 <div id="setupContainer3" style="margin-top: 70px; max-width: 600px;">
                     <hr>
                     <p>Please, do <b>NOT</b> distribute this weather app to users outside of Vatsim Scandinavia.</p>
@@ -388,12 +372,6 @@
                     <h3>AWOS version: 3.5.1</h3>
                     <h3>Latest updates: SNOWTAM page + taxiways & aprons, visual enhancements</h3>
                 </div>
-                
-                <!--<h2>Runway availability</h2>
-                <button id="toggle_04R_22L" value="" class="runwayButton" onclick="close_04R_22L();"><strong>04R/22L</strong><br>OPEN</button>
-                <button id="toggle_15_33" value="" class="runwayButton" onclick="close_15_33();"><strong>15/33</strong><br>OPEN</button>
-                <button id="toggle_04L_22R" value="" class="runwayButton" style="margin-bottom: 100px;" onclick="close_04L_22R();"><strong>04L/22R</strong><br>OPEN</button>
-                -->
             </div>
 
             <div id="metrepDiv" class="metRepDivContainer">
@@ -404,19 +382,6 @@
                 </div>
                 <svg id="metrepSvg" preserveAspectRatio="xMinYMin meet" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                     viewBox="0 0 1202 610" style="enable-background:new 0 0 1202 610;" xml:space="preserve">
-                    <style type="text/css">
-                        .stt0{fill:#009ac7;}
-                        .stt1{fill:#3F3F3F;}
-                        .stt2{font-family:'Verdana'; font-weight: bold;}
-                        .stt3{font-size:16px;}
-                        .stt4{fill:#FFFFFF;}
-                        .stt5{font-family:'Verdana'; color: #3F3F3F;}
-                        .stt6{font-size:24px;}
-                        .stt7{font-size:12px;}
-                        .stt8{fill:#FFFFFF;stroke:#595959;stroke-miterlimit:10;}
-                        .stt9{fill:none;stroke:#595959;stroke-miterlimit:10;}
-                        .stt10{font-size:20px;}
-                    </style>
                     <g id="metField1">
                         <path class="stt0" d="M790.4,40H20.6c-3.09,0-5.6-2.51-5.6-5.6V8.6C15,5.51,17.51,3,20.6,3H790.4c3.09,0,5.6,2.51,5.6,5.6V34.4
                             C796,37.49,793.49,40,790.4,40z"/>
@@ -586,15 +551,6 @@
                 </svg>
                 <svg id="metarsSvg" preserveAspectRatio="xMinYMin meet" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                     viewBox="0 0 1195.09 623.35" style="enable-background:new 0 0 1195.09 623.35; display: none;" xml:space="preserve">
-                    <style type="text/css">
-                        .sttt0{fill:#009ac7;}
-                        .sttt1{fill:#3F3F3F;}
-                        .sttt2{font-family:'Verdana'; font-weight: bold;}
-                        .sttt3{font-size:16px;}
-                        .sttt4{fill:#FFFFFF;}
-                        .sttt5{font-family:'Verdana';}
-                        .sttt6{font-size:17px;}
-                    </style>
                     <g id="metEFTU">
                         <path class="sttt0" d="M1178.31,103.18H17.36c-3.08,0-5.58-3-5.58-6.68V13.18c0-3.69,2.5-6.68,5.58-6.68h1160.95
                             c3.08,0,5.58,3,5.58,6.68v83.31C1183.88,100.19,1181.39,103.18,1178.31,103.18z"/>

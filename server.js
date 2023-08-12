@@ -58,20 +58,20 @@ app.get('/snowtam', async (req, res) => {
       // Remove all newline characters
       contentWithoutHtml = contentWithoutHtml.replace(/\n/g, "<br>");
       
-      // Replace 2 or more white spaces with a single white space
+      // Replace extra spaces with only one space
       contentWithoutHtml = contentWithoutHtml.replace(/\s{2,}/g, " ").trim();
 
-      // SNOWTAM<br> EFIV08091419 04 6/6/6 NR/NR/NR NR/NR/NR DRY/DRY/DRYREMARK/ RWY 04 NEXT PLANNED ASSESSMENT 08091730 UTC ESTIMATEDCONDITION DRY.
+      // SNOWTAM<br> EFHK...
       let rawSnowtam = "";
 
-      // Extract the desired string
+      // Extract SNOWTAM from page
       const matches = contentWithoutHtml.match(/SNOWTAM<br> EFHK.*?\+/);
     
       if (matches) {
           rawSnowtam = matches[0];
           rawSnowtam = rawSnowtam.replace(" +", "");
       }
-      
+
       res.json({ data: rawSnowtam });
   } catch (error) {
       res.status(500).json({ error: 'Failed to scrape data' });

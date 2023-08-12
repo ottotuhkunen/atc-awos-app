@@ -279,9 +279,7 @@ div#station-close-button {
     cursor:pointer;
 }
 
-svg {
-    width: 100%;
-}
+svg { width: 100%; }
 
 #mainSvg, #metrepSvg, #metarsSvg, #tafsSvg {
     max-width: 900px;
@@ -360,7 +358,6 @@ svg {
     border-top-right-radius: 8px;
     height: 26px;
 }
-
 .atisText {
     position: absolute;
     padding: 4pt; 
@@ -375,7 +372,6 @@ svg {
     font-size: 10pt;
     color: #333333;
 }
-
 @media (min-width: 1200px) {
     .atisText {
         font-size: 12pt;
@@ -384,15 +380,12 @@ svg {
         font-size: 16pt; 
     }
 }
-
 #topMenuSvg{
     width: 100%; 
     max-height: 48px;
 }
 
-#topMenuBackground {
-    fill:url(#SVGID_1_);
-}
+#topMenuBackground { fill:url(#SVGID_1_); }
 
 .customBackground {
     position: absolute;
@@ -403,7 +396,6 @@ svg {
     max-height: 48px;
     background-image: linear-gradient(#009ac7, #007492);
 }
-
 
 .leftNav0{fill:none;}
 .leftNav1{fill:url(#mainBackgroundGradient);stroke:#C0D7F0;stroke-width:0.25;stroke-miterlimit:10;}
@@ -426,7 +418,6 @@ svg {
     height: 100%;
     max-height: 900px;
 }
-
 .metButtons {
     background-color: #E6E6E6; 
     border: 1px solid gray;
@@ -443,16 +434,13 @@ svg {
     max-height: 28px;
     cursor: pointer;
 }
-
 @media (min-width: 1000px) {
     .metButtons {
         font-size: 12px;
     }
 }
 
-#metRepButtonsContainer {
-    display: flex;
-}
+#metRepButtonsContainer { display: flex; }
 
 .st0{fill:#B5B5B5;}
 .st1{fill:#2C393D;}
@@ -486,7 +474,6 @@ svg {
     width: calc(100%);
     height: calc(100vh - 4vw - 110px);
 }
-
 table {
     text-align: left;
     margin-top: 12px;
@@ -494,23 +481,39 @@ table {
     width: 100%;
     border-collapse: collapse;
 }
-
 th {
     border: 1px solid black;
     padding: 8px;
     padding-top: 12px;
     padding-bottom: 14px;
 }
-
 @media (max-width: 1100px) {
-    table {
-        font-size: 8pt;
-    }
-    .snowtamContainer h2 {
-        font-size: 12pt;
-    }
+    table { font-size: 8pt; }
+    .snowtamContainer h2 { font-size: 12pt; }
 }
 
-#metButton1, #snowtamButton1 {
-    pointer-events: none;
-}
+#metButton1, #snowtamButton1 { pointer-events: none; }
+
+/* METREP svg */
+
+.stt0{fill:#009ac7;}
+.stt1{fill:#3F3F3F;}
+.stt2{font-family:'Verdana'; font-weight: bold;}
+.stt3{font-size:16px;}
+.stt4{fill:#FFFFFF;}
+.stt5{font-family:'Verdana'; color: #3F3F3F;}
+.stt6{font-size:24px;}
+.stt7{font-size:12px;}
+.stt8{fill:#FFFFFF;stroke:#595959;stroke-miterlimit:10;}
+.stt9{fill:none;stroke:#595959;stroke-miterlimit:10;}
+.stt10{font-size:20px;}
+
+/* METARS svg */
+
+.sttt0{fill:#009ac7;}
+.sttt1{fill:#3F3F3F;}
+.sttt2{font-family:'Verdana'; font-weight: bold;}
+.sttt3{font-size:16px;}
+.sttt4{fill:#FFFFFF;}
+.sttt5{font-family:'Verdana';}
+.sttt6{font-size:17px;}
