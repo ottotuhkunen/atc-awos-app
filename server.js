@@ -27,6 +27,27 @@ app.get('/api/data', async (req, res) => {
 
 const port = process.env.PORT || 3000;
 
+// fetch data from airtable:
+app.get('/dataEFHK', async (req, res) => {
+  const baseUrl = "https://api.airtable.com/v0/appGAYI2wFvY7jZVG/Table%201";
+  
+  const requestOptions = {
+      method: 'GET',
+      headers: {
+          'Authorization': 'Bearer patdi7Qmwc4DabdNb.2bd05fae548b7ec31be6a80e2500e78c499b0cf2b5a1b5c893211538d962eb0d'
+      },
+  };
+
+  try {
+      const response = await fetch(baseUrl, requestOptions);
+      const data = await response.json();
+      res.json(data);
+  } catch (error) {
+      res.status(500).json({ error: "Failed to fetch data from Airtable." });
+  }
+});
+
+// fetch SNWOTAM:
 app.get('/snowtam', async (req, res) => {
   try {
       const { data } = await axios.get('https://www.ais.fi/ais/bulletins/efinen.htm');
@@ -50,9 +71,7 @@ app.get('/snowtam', async (req, res) => {
           rawSnowtam = matches[0];
           rawSnowtam = rawSnowtam.replace(" +", "");
       }
-
       
-      console.log(rawSnowtam);
       res.json({ data: rawSnowtam });
   } catch (error) {
       res.status(500).json({ error: 'Failed to scrape data' });

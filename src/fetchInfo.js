@@ -1,14 +1,5 @@
-var baseUrl = "https://api.airtable.com/v0/appGAYI2wFvY7jZVG/Table%201";
-
-var requestOptions = {
-    method: 'GET',
-    headers: {
-        'Authorization': 'Bearer patdi7Qmwc4DabdNb.2bd05fae548b7ec31be6a80e2500e78c499b0cf2b5a1b5c893211538d962eb0d'
-    },
-};
-
 function fetchInformation(){
-    fetch(baseUrl, requestOptions)
+    fetch('/dataEFHK')
     .then(response => response.json())
 
     .then(result => {

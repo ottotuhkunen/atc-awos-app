@@ -10,7 +10,6 @@ function openMainPage() {
     document.getElementById("setupTriangle").style.display = "none";
 
     // left nav buttons
-    document.getElementById("buttonMain").style.pointerEvents = "none";
     document.getElementById("mainBackground").classList.remove("leftNav1_1");
     document.getElementById("mainBackground").classList.add("leftNav1");
     document.getElementById("metReportBackground").classList.remove("leftNav9_1");
@@ -19,6 +18,10 @@ function openMainPage() {
     document.getElementById("setupBackground").classList.add("leftNav11");
     document.getElementById("snowtamBackground").classList.remove("leftNav8_1");
     document.getElementById("snowtamBackground").classList.add("leftNav8");
+    document.getElementById("buttonMain").style.pointerEvents = "none";
+    document.getElementById("buttonSnowtam").style.pointerEvents = "auto";
+    document.getElementById("buttonMetReport").style.pointerEvents = "auto";
+    document.getElementById("buttonSetup").style.pointerEvents = "auto";
 
 
     // displayed content
@@ -41,7 +44,6 @@ function metrep() {
     document.getElementById("setupTriangle").style.display = "none";
 
     // left nav buttons
-    document.getElementById("buttonMain").style.pointerEvents = "auto";
     document.getElementById("mainBackground").classList.remove("leftNav1");
     document.getElementById("mainBackground").classList.add("leftNav1_1");
     document.getElementById("metReportBackground").classList.remove("leftNav9");
@@ -50,6 +52,10 @@ function metrep() {
     document.getElementById("setupBackground").classList.add("leftNav11");
     document.getElementById("snowtamBackground").classList.remove("leftNav8_1");
     document.getElementById("snowtamBackground").classList.add("leftNav8");
+    document.getElementById("buttonMain").style.pointerEvents = "auto";
+    document.getElementById("buttonSnowtam").style.pointerEvents = "auto";
+    document.getElementById("buttonMetReport").style.pointerEvents = "none";
+    document.getElementById("buttonSetup").style.pointerEvents = "auto";
 
     // displayed content
     document.getElementById("atisDiv").style.display = "none";
@@ -73,7 +79,6 @@ function setup() {
     document.getElementById("setupTriangle").style.display = "block";
     
     // left nav buttons
-    document.getElementById("buttonMain").style.pointerEvents = "auto";
     document.getElementById("mainBackground").classList.remove("leftNav1");
     document.getElementById("mainBackground").classList.add("leftNav1_1");
     document.getElementById("metReportBackground").classList.remove("leftNav9_1");
@@ -82,6 +87,10 @@ function setup() {
     document.getElementById("setupBackground").classList.add("leftNav11_1");
     document.getElementById("snowtamBackground").classList.remove("leftNav8_1");
     document.getElementById("snowtamBackground").classList.add("leftNav8");
+    document.getElementById("buttonMain").style.pointerEvents = "auto";
+    document.getElementById("buttonSnowtam").style.pointerEvents = "auto";
+    document.getElementById("buttonMetReport").style.pointerEvents = "auto";
+    document.getElementById("buttonSetup").style.pointerEvents = "none";
     
     // displayed content
     document.getElementById("metrepDiv").style.display = "none";
@@ -102,7 +111,6 @@ function openSnowtam() {
     document.getElementById("setupTriangle").style.display = "none";
 
     // left nav buttons
-    document.getElementById("buttonMain").style.pointerEvents = "auto";
     document.getElementById("mainBackground").classList.remove("leftNav1");
     document.getElementById("mainBackground").classList.add("leftNav1_1");
     document.getElementById("metReportBackground").classList.remove("leftNav9_1");
@@ -111,6 +119,10 @@ function openSnowtam() {
     document.getElementById("setupBackground").classList.add("leftNav11");
     document.getElementById("snowtamBackground").classList.remove("leftNav8");
     document.getElementById("snowtamBackground").classList.add("leftNav8_1");
+    document.getElementById("buttonMain").style.pointerEvents = "auto";
+    document.getElementById("buttonSnowtam").style.pointerEvents = "none";
+    document.getElementById("buttonMetReport").style.pointerEvents = "auto";
+    document.getElementById("buttonSetup").style.pointerEvents = "auto";
     
     // displayed content
     document.getElementById("metrepDiv").style.display = "none";
