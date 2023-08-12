@@ -149,7 +149,7 @@ function metNav2() {
     };
 
     // load METARs
-    fetch("https://api.checkwx.com/metar/EFTU", requestOptions)
+    fetch("/api/metar/EFTU")
     .then(response => response.json())
     .then(result => {
         if (result.data[0] && result.data[0].length > 90) {
@@ -169,7 +169,7 @@ function metNav2() {
     })
     .catch(error => console.log('error', error));
 
-    fetch("https://api.checkwx.com/metar/EFTP", requestOptions)
+    fetch("/api/metar/EFTP")
     .then(response => response.json())
     .then(result => {
         if (result.data[0] && result.data[0].length > 100) {
@@ -189,7 +189,7 @@ function metNav2() {
     })
     .catch(error => console.log('error', error));
 
-    fetch("https://api.checkwx.com/metar/EETN", requestOptions)
+    fetch("/api/metar/EETN")
     .then(response => response.json())
     .then(result => {
         if (result.data[0] && result.data[0].length > 100) {
@@ -209,7 +209,7 @@ function metNav2() {
     })
     .catch(error => console.log('error', error));
 
-    fetch("https://api.checkwx.com/metar/EFJY", requestOptions)
+    fetch("/api/metar/EFJY")
     .then(response => response.json())
     .then(result => {
         if (result.data[0] && result.data[0].length > 100) {
@@ -229,7 +229,7 @@ function metNav2() {
     })
     .catch(error => console.log('error', error));
 
-    fetch("https://api.checkwx.com/metar/ESSA", requestOptions)
+    fetch("/api/metar/ESSA")
     .then(response => response.json())
     .then(result => {
         if (result.data[0] && result.data[0].length > 100) {
@@ -249,7 +249,7 @@ function metNav2() {
     })
     .catch(error => console.log('error', error));
 
-    fetch("https://api.checkwx.com/metar/ULLI", requestOptions)
+    fetch("/api/metar/ULLI")
     .then(response => response.json())
     .then(result => {
         if (result.data[0] && result.data[0].length > 100) {
@@ -288,7 +288,7 @@ function metNav3() {
     };
 
     // fetching TAFs:
-    fetch("https://api.checkwx.com/taf/EFTU", requestOptions)
+    fetch("/api/taf/EFTU")
     .then(response => response.json())
     .then(result => {
         if (result.data[0] && result.data[0].length > 100) {
@@ -330,7 +330,7 @@ function metNav3() {
     })
     .catch(error => console.log('error', error));
 
-    fetch("https://api.checkwx.com/taf/EFTP", requestOptions)
+    fetch("/api/taf/EFTP")
     .then(response => response.json())
     .then(result => {
         if (result.data[0] && result.data[0].length > 100) {
@@ -372,7 +372,7 @@ function metNav3() {
     })
     .catch(error => console.log('error', error));
 
-    fetch("https://api.checkwx.com/taf/EETN", requestOptions)
+    fetch("/api/taf/EETN")
     .then(response => response.json())
     .then(result => {
         if (result.data[0] && result.data[0].length > 100) {
@@ -414,7 +414,7 @@ function metNav3() {
     })
     .catch(error => console.log('error', error));
 
-    fetch("https://api.checkwx.com/taf/EFJY", requestOptions)
+    fetch("/api/taf/EFJY")
     .then(response => response.json())
     .then(result => {
         if (result.data[0] && result.data[0].length > 100) {
@@ -456,7 +456,7 @@ function metNav3() {
     })
     .catch(error => console.log('error', error));
 
-    fetch("https://api.checkwx.com/taf/ESSA", requestOptions)
+    fetch("/api/taf/ESSA")
     .then(response => response.json())
     .then(result => {
         if (result.data[0] && result.data[0].length > 100) {
@@ -498,7 +498,7 @@ function metNav3() {
     })
     .catch(error => console.log('error', error));
 
-    fetch("https://api.checkwx.com/taf/ULLI", requestOptions)
+    fetch("/api/taf/ULLI")
     .then(response => response.json())
     .then(result => {
         if (result.data[0] && result.data[0].length > 100) {
@@ -837,7 +837,7 @@ function loadActualMet(xml) {
         redirect: 'follow'
     };
 
-    fetch("https://api.checkwx.com/taf/EFHK", requestOptions)
+    fetch("/api/taf/EFHK")
     .then(response => response.json())
     .then(result => {
         if (result.data[0] && result.data[0].length > 100) {
@@ -879,7 +879,7 @@ function loadActualMet(xml) {
     })
     .catch(error => console.log('error', error));
 
-    fetch("https://api.checkwx.com/metar/EFHK/decoded", requestOptions)
+    fetch("/api/decocedmetar/EFHK")
     .then(response => response.json())
     .then(result => {
 

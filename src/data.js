@@ -387,16 +387,11 @@ function setMetarData(xmlDoc) {
   // RVR 04L
   if (rvr_04L !== null) {
     var randomRVR_04L = rvrRandomizator(rvr_04L);
-
     document.getElementById('RVR_values_04L').style.display = "block";
-
     document.getElementById("rvr_04L_1").textContent = randomRVR_04L[0];
     document.getElementById("rvr_04L_2").textContent = randomRVR_04L[1];
     document.getElementById("rvr_04L_3").textContent = randomRVR_04L[2];
-
-    document.getElementById("metRvr").textContent = randomRVR_04L[0];
-    document.getElementById("metRvr2").textContent = randomRVR_04L[1];
-    document.getElementById("metRvr3").textContent = randomRVR_04L[2];
+    document.getElementById("metRvr").textContent = "04L TDZ " + randomRVR_04L[0] + "M MID " + randomRVR_04L[1] + "M END " + randomRVR_04L[2] + "M";
 
     if (randomRVR_04L[0] < 600 || randomRVR_04L[1] < 600 || randomRVR_04L[2] < 600) {
       metCond = "LVP";
@@ -406,16 +401,11 @@ function setMetarData(xmlDoc) {
   // RVR 04R
   if (rvr_04R !== null) {
     var randomRVR_04R = rvrRandomizator(rvr_04R);
-
     document.getElementById('RVR_values_04R').style.display = "block";
-
     document.getElementById("rvr_04R_1").textContent = randomRVR_04R[0];
     document.getElementById("rvr_04R_2").textContent = randomRVR_04R[1];
     document.getElementById("rvr_04R_3").textContent = randomRVR_04R[2];
-
-    document.getElementById("metRvr").textContent = randomRVR_04R[0];
-    document.getElementById("metRvr2").textContent = randomRVR_04R[1];
-    document.getElementById("metRvr3").textContent = randomRVR_04R[2];
+    document.getElementById("metRvr2").textContent = "04R TDZ " + randomRVR_04R[0] + "M MID " + randomRVR_04R[1] + "M END " + randomRVR_04R[2] + "M";
 
     if (randomRVR_04R[0] < 600 || randomRVR_04R[1] < 600 || randomRVR_04R[2] < 600) {
       metCond = "LVP";
@@ -425,16 +415,11 @@ function setMetarData(xmlDoc) {
   // RVR 15
   if (rvr_15 !== null) {
     var randomRVR_15 = rvrRandomizator(rvr_15);
-
     document.getElementById('RVR_values_15').style.display = "block";
-
     document.getElementById("rvr_15_1").textContent = randomRVR_15[0];
     document.getElementById("rvr_15_2").textContent = randomRVR_15[1];
     document.getElementById("rvr_15_3").textContent = randomRVR_15[2];
-
-    document.getElementById("metRvr").textContent = randomRVR_15[0];
-    document.getElementById("metRvr2").textContent = randomRVR_15[1];
-    document.getElementById("metRvr3").textContent = randomRVR_15[2];
+    document.getElementById("metRvr3").textContent = "15 TDZ " + randomRVR_15[0] + "M MID " + randomRVR_15[1] + "M END " + randomRVR_15[2] + "M";
 
     if (randomRVR_15[0] < 600 || randomRVR_15[1] < 600 || randomRVR_15[2] < 600 ) {
       metCond = "LVP";
@@ -444,16 +429,11 @@ function setMetarData(xmlDoc) {
   // RVR 33
   if (rvr_33 !== null) {
     var randomRVR_33 = rvrRandomizator(rvr_33);
-
     document.getElementById('RVR_values_15').style.display = "block";
-
     document.getElementById("rvr_15_1").textContent = randomRVR_33[0];
     document.getElementById("rvr_15_2").textContent = randomRVR_33[1];
     document.getElementById("rvr_15_3").textContent = randomRVR_33[2];
-
-    document.getElementById("metRvr").textContent = randomRVR_33[0];
-    document.getElementById("metRvr2").textContent = randomRVR_33[1];
-    document.getElementById("metRvr3").textContent = randomRVR_33[2];
+    document.getElementById("metRvr3").textContent = "15 TDZ " + randomRVR_33[2] + "M MID " + randomRVR_33[1] + "M END " + randomRVR_33[0] + "M";
 
     if (randomRVR_33[0] < 600 || randomRVR_33[1] < 600 || randomRVR_33[2] < 600) {
       metCond = "LVP";
@@ -463,16 +443,11 @@ function setMetarData(xmlDoc) {
   // RVR 22L
   if (rvr_22L !== null) {
     var randomRVR_22L = rvrRandomizator(rvr_22L);
-
     document.getElementById('RVR_values_04R').style.display = "block";
-
     document.getElementById("rvr_04R_1").textContent = randomRVR_22L[0];
     document.getElementById("rvr_04R_2").textContent = randomRVR_22L[1];
     document.getElementById("rvr_04R_3").textContent = randomRVR_22L[2];
-
-    document.getElementById("metRvr").textContent = randomRVR_22L[0];
-    document.getElementById("metRvr2").textContent = randomRVR_22L[1];
-    document.getElementById("metRvr3").textContent = randomRVR_22L[2];
+    document.getElementById("metRvr2").textContent = "04R TDZ " + randomRVR_22L[2] + "M MID " + randomRVR_22L[1] + "M END " + randomRVR_22L[0] + "M";
 
     if (randomRVR_22L[0] < 600 || randomRVR_22L[1] < 600 || randomRVR_22L[2] < 600) {
       metCond = "LVP";
@@ -482,16 +457,11 @@ function setMetarData(xmlDoc) {
   // RVR 22R
   if (rvr_22R !== null) {
     var randomRVR_22R = rvrRandomizator(rvr_22R);
-
     document.getElementById('RVR_values_04L').style.display = "block";
-
     document.getElementById("rvr_04L_1").textContent = randomRVR_22R[0];
     document.getElementById("rvr_04L_2").textContent = randomRVR_22R[1];
     document.getElementById("rvr_04L_3").textContent = randomRVR_22R[2];
-
-    document.getElementById("metRvr").textContent = randomRVR_22R[0];
-    document.getElementById("metRvr2").textContent = randomRVR_22R[1];
-    document.getElementById("metRvr3").textContent = randomRVR_22R[2];
+    document.getElementById("metRvr").textContent = "04L TDZ " + randomRVR_22R[2] + "M MID " + randomRVR_22R[1] + "M END " + randomRVR_22R[0] + "M";
 
     if (randomRVR_22R[0] < 600 || randomRVR_22R[1] < 600 || randomRVR_22R[2] < 600) {
       metCond = "LVP";

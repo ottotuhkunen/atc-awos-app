@@ -139,11 +139,20 @@ function fetchInformation(){
 
 // SNOWTAMs:
 async function loadSnowtam() {
+    let observationTime = "undef";
+    let observationTime2 = "timeonly";
     try {
         const response = await fetch('/snowtam');
         const data = await response.json();
+        // Extract the observation time
+        let match = data.data.match(/ (\d{8}) /);
+        observationTime = match ? match[0] : null;
+        observationTime2 = observationTime ? observationTime.slice(-5) : null;
 
-        document.getElementById('snowtamLine1').innerHTML = data.data;
+        // Insert linechanges
+        let finalSnowtam = data.data.replace(/ (\d{8}) /g, '<br>$1 ');
+
+        document.getElementById('snowtamLine1').innerHTML = "(" + finalSnowtam + ")";
     } catch (error) {
         console.error('Error fetching data:', error);
     }
@@ -157,9 +166,8 @@ async function loadSnowtam() {
     let day = currentDate.getUTCDate().toString().padStart(2, '0');
     let formattedDate = year + month + day;
 
-    snowtamId = snowtamId + formattedDate + "_UNDEF";
-    document.getElementById("snowtamId").innerHTML = snowtamId;
-
-    // snowtam observation times to:
-    // snowtamTime1, snowtamTime2
+    snowtamId = snowtamId + formattedDate;
+    document.getElementById("snowtamId").innerHTML = snowtamId + "_" + observationTime2;
+    document.getElementById("snowtamTime1").innerHTML = observationTime;
+    document.getElementById("snowtamTime2").innerHTML = observationTime;
 }

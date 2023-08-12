@@ -326,6 +326,10 @@ svg {
     margin-right: 12px;
 }
 
+#snowtamTitle, #snowtamTime1, #snowtamTime2, #snowtamLine1 {
+    font-size: 11pt;
+}
+
 .topMenu1{fill:#0570BD;stroke:#A0A0A0;stroke-miterlimit:10;}
 .topMenu2{fill:#FF9600;stroke:#A0A0A0;stroke-miterlimit:10;}
 .topMenu3{fill:#FFFFFF;}
