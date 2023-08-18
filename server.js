@@ -142,7 +142,7 @@ app.use(basicAuth({
     challenge: true
 }));
 
-app.use(express.static('.')); // index.html directory
+app.use(express.static('.'));
 
 app.listen(port, function () {
     console.log('App is listening on port ' + port + '!');
