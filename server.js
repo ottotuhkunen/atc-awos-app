@@ -62,7 +62,7 @@ app.get('/snowtam', async (req, res) => {
       contentWithoutHtml = contentWithoutHtml.replace(/\s{2,}/g, " ").trim();
 
       // SNOWTAM<br> EFHK...
-      let rawSnowtam = "";
+      let rawSnowtam = "SNOWTAM NIL";
 
       // Extract SNOWTAM from page
       const matches = contentWithoutHtml.match(/SNOWTAM<br> EFHK.*?\+/);
@@ -74,7 +74,7 @@ app.get('/snowtam', async (req, res) => {
 
       res.json({ data: rawSnowtam });
   } catch (error) {
-      res.status(500).json({ error: 'Failed to scrape data' });
+      res.status(500).json({ error: 'Failed to get SNOWTAM' });
   }
 });
 
@@ -129,9 +129,6 @@ app.get('/api/metar/:location', async (req, res) => {
   res.json(data);
 });
 
-
-
-/*
 app.use((req, res, next) => {
     if (req.header('x-forwarded-proto') !== 'https') {
       res.redirect(`https://${req.header('host')}${req.url}`);
@@ -144,7 +141,6 @@ app.use(basicAuth({
     users: { [process.env.BASIC_AUTH_USER]: process.env.BASIC_AUTH_PASSWORD },
     challenge: true
 }));
-*/
 
 app.use(express.static('.')); // index.html directory
 

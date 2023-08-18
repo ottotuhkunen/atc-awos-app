@@ -80,27 +80,27 @@ function fetchInformation(){
                     document.getElementById('RWYCC_windows').style.display = "block";
 
                     if (JSON.parse(sessionStorage.getItem("04L_closed"))) {
-                        document.getElementById('04L_RWYCC_1').textContent = "0" + "\u00A0".repeat(3) + "⇩";
-                        document.getElementById('04L_RWYCC_2').textContent = "0" + "\u00A0".repeat(3) + "⇩";
-                        document.getElementById('04L_RWYCC_3').textContent = "0" + "\u00A0".repeat(3) + "⇩";
+                        document.getElementById('04L_RWYCC_1').textContent = "//" + "\u00A0".repeat(3) + "•";
+                        document.getElementById('04L_RWYCC_2').textContent = "//" + "\u00A0".repeat(3) + "•";
+                        document.getElementById('04L_RWYCC_3').textContent = "//" + "\u00A0".repeat(3) + "•";
                     } else {
                         document.getElementById('04L_RWYCC_1').textContent = record.fields['content'] + "\u00A0".repeat(3) + record.fields['rwycc_upgr_dngr'];
                         document.getElementById('04L_RWYCC_2').textContent = record.fields['content'] + "\u00A0".repeat(3) + record.fields['rwycc_upgr_dngr'];
                         document.getElementById('04L_RWYCC_3').textContent = record.fields['content'] + "\u00A0".repeat(3) + record.fields['rwycc_upgr_dngr'];
                     }
                     if (JSON.parse(sessionStorage.getItem("04R_closed"))) {
-                        document.getElementById('04R_RWYCC_1').textContent = "0" + "\u00A0".repeat(3) + "⇩";
-                        document.getElementById('04R_RWYCC_2').textContent = "0" + "\u00A0".repeat(3) + "⇩";
-                        document.getElementById('04R_RWYCC_3').textContent = "0" + "\u00A0".repeat(3) + "⇩";
+                        document.getElementById('04R_RWYCC_1').textContent = "//" + "\u00A0".repeat(3) + "•";
+                        document.getElementById('04R_RWYCC_2').textContent = "//" + "\u00A0".repeat(3) + "•";
+                        document.getElementById('04R_RWYCC_3').textContent = "//" + "\u00A0".repeat(3) + "•";
                     } else {
                         document.getElementById('04R_RWYCC_1').textContent = record.fields['content'] + "\u00A0".repeat(3) + record.fields['rwycc_upgr_dngr'];
                         document.getElementById('04R_RWYCC_2').textContent = record.fields['content'] + "\u00A0".repeat(3) + record.fields['rwycc_upgr_dngr'];
                         document.getElementById('04R_RWYCC_3').textContent = record.fields['content'] + "\u00A0".repeat(3) + record.fields['rwycc_upgr_dngr'];    
                     }
                     if (JSON.parse(sessionStorage.getItem("15_closed"))) {
-                        document.getElementById('15_RWYCC_1').textContent = "0" + "\u00A0".repeat(3) + "⇩";
-                        document.getElementById('15_RWYCC_2').textContent = "0" + "\u00A0".repeat(3) + "⇩";
-                        document.getElementById('15_RWYCC_3').textContent = "0" + "\u00A0".repeat(3) + "⇩";
+                        document.getElementById('15_RWYCC_1').textContent = "//" + "\u00A0".repeat(3) + "•";
+                        document.getElementById('15_RWYCC_2').textContent = "//" + "\u00A0".repeat(3) + "•";
+                        document.getElementById('15_RWYCC_3').textContent = "//" + "\u00A0".repeat(3) + "•";
                     } else {
                         document.getElementById('15_RWYCC_1').textContent = record.fields['content'] + "\u00A0".repeat(3) + record.fields['rwycc_upgr_dngr'];
                         document.getElementById('15_RWYCC_2').textContent = record.fields['content'] + "\u00A0".repeat(3) + record.fields['rwycc_upgr_dngr'];
@@ -138,7 +138,7 @@ async function loadSnowtam() {
         // Extract the observation time
         let match = data.data.match(/ (\d{8}) /);
         observationTime = match ? match[0] : null;
-        observationTime2 = observationTime ? observationTime.slice(-5) : null;
+        observationTime2 = observationTime ? observationTime.slice(-5) : "OUTDATED";
 
         // Insert linechanges
         let finalSnowtam = data.data.replace(/ (\d{8}) /g, '<br>$1 ');
@@ -148,17 +148,16 @@ async function loadSnowtam() {
         console.error('Error fetching data:', error);
     }
 
-    // example id: EFHK_20230715_1048_45811
-    let snowtamId = "EFHK_";
-
     let currentDate = new Date();
     let year = currentDate.getUTCFullYear().toString(); // gets the full year as four digits
     let month = (currentDate.getUTCMonth() + 1).toString().padStart(2, '0');  // +1 because months are 0-indexed in JS
     let day = currentDate.getUTCDate().toString().padStart(2, '0');
     let formattedDate = year + month + day;
 
-    snowtamId = snowtamId + formattedDate;
-    document.getElementById("snowtamId").innerHTML = snowtamId + "_" + observationTime2;
+    // example id: EFHK_20230715_1048_45811
+    let snowtamId = "EFHK_" + formattedDate + "_" + observationTime2;
+
+    document.getElementById("snowtamId").innerHTML = snowtamId;
     document.getElementById("snowtamTime1").innerHTML = observationTime;
     document.getElementById("snowtamTime2").innerHTML = observationTime;
 }

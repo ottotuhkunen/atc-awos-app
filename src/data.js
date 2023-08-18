@@ -23,7 +23,6 @@ async function loadFMI() {
   }
 }
 
-
 async function loadMetar() {
   try {
       const response = await fetch("https://opendata.fmi.fi/wfs?service=WFS&version=2.0.0&request=getFeature&storedquery_id=fmi::avi::observations::iwxxm&icaocode=EFHK");
@@ -42,7 +41,7 @@ async function loadMetar() {
   }
 }
 
-// wawa declared in global scope
+// global scope
 let wawa = 0;
 let roundedQnh;
 let metCond = "//";
@@ -554,7 +553,6 @@ function makeAtisText(atisText) {
     atisText = atisText.replace(/LIGHT/g, 'FBL');
     atisText = atisText.replace(/HEAVY/g, 'HVY');
     atisText = atisText.replace(/MODERATE/g, 'MOD');
-    atisText = atisText.replace(/PROBABILITY/g, 'PROB');
     atisText = atisText.replace(/CUMULONIMBUS/g, 'CB');
     atisText = atisText.replace(/MOVING/g, 'MOV');
     atisText = atisText.replace(/EAST/g, 'E');
