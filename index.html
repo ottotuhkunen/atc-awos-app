@@ -6,6 +6,7 @@
         <meta name="apple-mobile-web-app-capable" content="yes"/>
         <meta http-equiv="Pragma" content="no-cache" />
         <meta http-equiv="Expires" content="0" />
+        <meta name="robots" content="noindex">
         <title>Helsingin sää ❄️</title>
         <link rel="icon" href="src/favicon.ico">
         <link rel="stylesheet" href="src/master.css">
@@ -18,7 +19,6 @@
         <script type="text/javascript" src="src/windcomponents.js"></script>
         <script type="text/javascript" src="src/topMenu.js"></script>
         <link rel="stylesheet" href="https://use.typekit.net/nju1yva.css">
-        <meta name="robots" content="noindex">
     </head>
     <body onload="getDate(); startDataFetching(); loadConfig();">
         <div class="customBackground">
@@ -157,6 +157,32 @@
                     <polygon id="setupTriangle" class="leftNav4" points="56.1,371.74 56.1,388.54 65.25,379.94" style="display:none;"/>
                 </g>
             </svg>
+            <select id="actions" onchange="performAction(this.value)">
+                <option value="efhk">EFHK</option>
+                <option value="efet">EFET - Enontekiö</option>
+                <option value="efha">EFHA - Halli</option>
+                <option value="efiv">EFIV - Ivalo</option>
+                <option value="efjo">EFJO - Joensuu</option>
+                <option value="efjy">EFJY - Jyväskylä</option>
+                <option value="efke">EFKE - Kemi</option>
+                <option value="efki">EFKI - Kajaani</option>
+                <option value="efkk">EFKK - Kokkola</option>
+                <option value="efks">EFKS - Kuusamo</option>
+                <option value="efkt">EFKT - Kittilä</option>
+                <option value="efku">EFKU - Kuopio</option>
+                <option value="eflp">EFLP - Lappeenranta</option>
+                <option value="efma">EFMA - Maarianhamina</option>
+                <option value="efmi">EFMI - Mikkeli</option>
+                <option value="efou">EFOU - Oulu</option>
+                <option value="efpo">EFPO - Pori</option>
+                <option value="efro">EFRO - Rovaniemi</option>
+                <option value="efsa">EFSA - Savonlinna</option>
+                <option value="efsi">EFSI - Seinäjoki</option>
+                <option value="eftp">EFTP - Tampere</option>
+                <option value="eftu">EFTU - Turku</option>
+                <option value="efut">EFUT - Utti</option>
+                <option value="efva">EFVA - Vaasa</option>
+            </select>
         </div>
         <div class="container" id="container">
             <svg style="user-select: none;" id="mainSvg" preserveAspectRatio="xMinYMin meet" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1106.47 787.76">

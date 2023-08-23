@@ -49,67 +49,67 @@ app.get('/dataEFHK', async (req, res) => {
 
 // fetch SNWOTAM:
 app.get('/snowtam', async (req, res) => {
-  try {
-      const { data } = await axios.get('https://www.ais.fi/ais/bulletins/efinen.htm');
-      
-      // Remove all HTML tags
-      let contentWithoutHtml = data.replace(/<\/?[^>]+(>|$)/g, " ");
-      
-      // Remove all newline characters
-      contentWithoutHtml = contentWithoutHtml.replace(/\n/g, "<br>");
-      
-      // Replace extra spaces with only one space
-      contentWithoutHtml = contentWithoutHtml.replace(/\s{2,}/g, " ").trim();
+    try {
+        const { data } = await axios.get('https://www.ais.fi/ais/bulletins/efinen.htm');
+        
+        // Remove all HTML tags
+        let contentWithoutHtml = data.replace(/<\/?[^>]+(>|$)/g, " ");
+        
+        // Remove all newline characters
+        contentWithoutHtml = contentWithoutHtml.replace(/\n/g, "<br>");
+        
+        // Replace extra spaces with only one space
+        contentWithoutHtml = contentWithoutHtml.replace(/\s{2,}/g, " ").trim();
 
-      // SNOWTAM<br> EFHK...
-      let rawSnowtam = "SNOWTAM NIL";
+        // SNOWTAM<br> EFHK...
+        let rawSnowtam = "SNOWTAM NIL";
 
-      // Extract SNOWTAM from page
-      const matches = contentWithoutHtml.match(/SNOWTAM<br> EFHK.*?\+/);
+        // Extract SNOWTAM from page
+        const matches = contentWithoutHtml.match(/SNOWTAM<br> EFHK.*?\+/);
     
-      if (matches) {
-          rawSnowtam = matches[0];
-          rawSnowtam = rawSnowtam.replace(" +", "");
-      }
+        if (matches) {
+            rawSnowtam = matches[0];
+            rawSnowtam = rawSnowtam.replace(" +", "");
+        }
 
-      res.json({ data: rawSnowtam });
-  } catch (error) {
-      res.status(500).json({ error: 'Failed to get SNOWTAM' });
-  }
+        res.json({ data: rawSnowtam });
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to get SNOWTAM' });
+    }
 });
 
 // fetch TAFs:
 app.get('/api/taf/:location', async (req, res) => {
-  const location = req.params.location;
-  
-  const apiURL = `https://api.checkwx.com/taf/${location}`;
-  
-  const response = await fetch(apiURL, {
-      method: 'GET',
-      headers: {
-          "X-API-Key": "bcad5819aedc44a7aa9b4705be"
-      }
-  });
+    const location = req.params.location;
+    
+    const apiURL = `https://api.checkwx.com/taf/${location}`;
+    
+    const response = await fetch(apiURL, {
+        method: 'GET',
+        headers: {
+            "X-API-Key": "bcad5819aedc44a7aa9b4705be"
+        }
+    });
 
-  const data = await response.json();
-  res.json(data);
+    const data = await response.json();
+    res.json(data);
 });
 
 // fetch decoded METAR for EFHK:
 app.get('/api/decocedmetar/:location', async (req, res) => {
-  const location = req.params.location;
-  
-  const apiURL = `https://api.checkwx.com/metar/${location}/decoded`;
-  
-  const response = await fetch(apiURL, {
-      method: 'GET',
-      headers: {
-          "X-API-Key": "bcad5819aedc44a7aa9b4705be"
-      }
-  });
+    const location = req.params.location;
+    
+    const apiURL = `https://api.checkwx.com/metar/${location}/decoded`;
+    
+    const response = await fetch(apiURL, {
+        method: 'GET',
+        headers: {
+            "X-API-Key": "bcad5819aedc44a7aa9b4705be"
+        }
+    });
 
-  const data = await response.json();
-  res.json(data);
+    const data = await response.json();
+    res.json(data);
 });
 
 // fetch METARs:

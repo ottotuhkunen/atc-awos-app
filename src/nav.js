@@ -987,3 +987,92 @@ function loadActualMet(xml) {
     })
     .catch(error => console.log('error', error));
 }
+
+function performAction(value) {
+    switch (value) {
+      case "efhk":
+        alert('EFHK is already opened');
+        break;
+      case "efro":
+        window.location.href = "awosview/efro.html";
+        break;
+      default:
+        break;
+    }
+}
+
+function performAction(value) {
+    switch (value.toLowerCase()) {
+        case "efet":
+            window.location.href = "awosview/efet.html";
+            break;
+        case "efha":
+            window.location.href = "awosview/efha.html";
+            break;
+        case "efiv":
+            window.location.href = "awosview/efiv.html";
+            break;
+        case "efjo":
+            window.location.href = "awosview/efjo.html";
+            break;
+        case "efjy":
+            window.location.href = "awosview/efjy.html";
+            break;
+        case "efki":
+            window.location.href = "awosview/efki.html";
+            break;
+        case "efke":
+            window.location.href = "awosview/efke.html";
+            break;
+        case "efkt":
+            window.location.href = "awosview/efkt.html";
+            break;
+        case "efkk":
+            window.location.href = "awosview/efkk.html";
+            break;
+        case "efku":
+            window.location.href = "awosview/efku.html";
+            break;
+        case "efks":
+            window.location.href = "awosview/efks.html";
+            break;
+        case "eflp":
+            window.location.href = "awosview/eflp.html";
+            break;
+        case "efma":
+            window.location.href = "awosview/efma.html";
+            break;
+        case "efmi":
+            window.location.href = "awosview/efmi.html";
+            break;
+        case "efou":
+            window.location.href = "awosview/efou.html";
+            break;
+        case "efpo":
+            window.location.href = "awosview/efpo.html";
+            break;
+        case "efro":
+            window.location.href = "awosview/efro.html";
+            break;
+        case "efsa":
+            window.location.href = "awosview/efsa.html";
+            break;
+        case "efsi":
+            window.location.href = "awosview/efsi.html";
+            break;
+        case "eftp":
+            window.location.href = "awosview/eftp.html";
+            break;
+        case "eftu":
+            window.location.href = "awosview/eftu.html";
+            break;
+        case "efut":
+            window.location.href = "awosview/efut.html";
+            break;
+        case "efva":
+            window.location.href = "awosview/efva.html";
+            break;
+        default:
+            break;
+    }
+}

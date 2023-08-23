@@ -1,0 +1,334 @@
+#topContainer {
+    background-color: #0a141e;
+    align-items: center;
+    text-align: center;
+    margin: 0;
+    height: 80px;
+}
+
+body {
+    margin: 0;
+    background-color: #23303f;
+    font-family: "FreeSans", "Helvetica", sans-serif;
+    color: lightgray;
+    user-select: none;
+    overflow-y: hidden;
+    overflow: hidden;
+}
+
+span {
+    font-size: 14pt;
+    font-weight: 100;
+    margin-left: 8px;
+    vertical-align: text-top;
+}
+
+table {
+    min-width: 100%;
+    align-items: start;
+}
+
+th {
+    text-align: left;
+}
+
+.logo {
+    width: 80px;
+    height: auto;
+    position: absolute;
+    right: 8px;
+    top: 0px;
+}
+
+#actions {
+    width: auto;
+    height: 22px;
+    position: absolute;
+    right: 100px;
+    top: 6px;
+    padding-left: 8pt;
+    padding-right: 8pt;
+    border-radius: 2px;
+    font-size: 10pt;
+    font-weight: 600;
+    text-align: center;
+    color: #111;
+    background: rgb(160,190,220);
+    border-top: solid thin #6080a0;
+    border-left: solid thin #6080a0;
+    cursor: pointer;
+}
+
+.title {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    margin: 0;
+    font-weight: 400;
+    font-size: 12pt;
+    color: #c0d0e0;
+}
+
+#awosTopContainer {
+    background-color: #14202f;
+    width: 100%;
+    margin-top: -44px;
+}
+
+#awosTopMenu {
+    height: 56px;
+    border-collapse: collapse;
+    font-size: 6pt;
+    color: #d0d0d0;
+    font-family: "FreeSans", "Helvetica", sans-serif;
+}
+
+#awosTopMenu td, th {
+    vertical-align: top;
+    border: 0.5px solid gray;
+    padding-left: 6px;
+}
+
+td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#metarText {
+    font-family: "DejaVu Sans Mono", monospace;
+    margin-top: 0;
+    margin-left: 6px;
+    font-size: 14pt;
+}
+
+#activeRunway {
+    text-align: right;
+    color: #e0e0e0;
+    font-size: 10pt; /* 36pt */
+    margin: 0;
+    margin-top: -10px; /* 10px */
+    padding: 0;
+    line-height: 10pt;
+}
+
+.runwayContainer {
+    width: 140px;
+}
+
+#utcTime {
+    text-align: center;
+    color: #e0e0e0;
+    font-size: 16pt;
+    margin: 0;
+    margin-top: 10px;
+    padding: 0;
+    line-height: 10pt;
+}
+
+#metCond, #cb, #ts {
+    text-align: center;
+    font-size: 24pt;
+    margin: 0;
+    margin-top: 10px;
+    padding: 0;
+    line-height: 10pt;
+    color: #d0d0d0;
+    font-weight: 400;
+}
+
+#trl, #atisId, #qnh {
+    text-align: start;
+    font-size: 24pt;
+    margin: 0;
+    margin-top: 10px;
+    padding: 0;
+    line-height: 10pt;
+    color: #e0e0e0;
+    font-weight: 400;
+}
+
+#atisId {
+    line-height: 24pt;
+    margin-top: 1px;
+}
+
+#qnh {
+    display: inline-block;  
+}
+
+#qnhDecimal {
+    line-height: 0;
+    margin-left: 0;
+    font-size: 16pt;
+    color: gray;
+}
+
+#ta {
+    text-align: start;
+    font-size: 20pt;
+    margin: 0;
+    margin-top: 10px;
+    padding: 0;
+    line-height: 10pt;
+    color: #e0e0e0;
+    font-weight: 100;
+}
+
+#td, #qfe {
+    text-align: start;
+    font-size: 16pt;
+    margin: 0;
+    margin-top: 10px;
+    padding: 0;
+    line-height: 10pt;
+    color: #e0e0e0;
+    font-weight: 100;
+}
+
+#qfe {
+    color: gray;
+}
+
+.st0{fill:#0C141D;stroke:#14202F;stroke-miterlimit:10;}
+.st1{fill:#454B52;}
+.st2{fill:#2A323B;stroke:#3A4352;stroke-width:0.5;stroke-miterlimit:10;}
+.st3{fill:none;stroke:#AFB7C0;stroke-width:0.75;stroke-miterlimit:10;}
+.st4{fill:#111C2D;stroke:#253B6E;stroke-width:0.5;stroke-miterlimit:10;}
+.st5{fill:#3E63B7;}
+.st6{fill:#0C141D;stroke:#253B6E;stroke-width:0.5;stroke-miterlimit:10;}
+.st7{fill:#CBD2DC;}
+.st8{font-family:'Arial';}
+.st9{font-size:9px;}
+.st10{font-family:'Arial'; font-weight: bold;}
+.st11{fill:#FFFFFF;}
+.st12{font-size:14px;}
+.st13{font-size:22px;}
+.st14{fill:#464646;}
+.st15{font-size:13px;}
+.st16{fill:#FFFF54;display: none;}
+.st17{fill:#142233;}
+.st18{fill:#8A929B;}
+.st19{font-size:23px;}
+.st20{fill:#14202F;}
+.st21{font-size:19px;}
+.st22{font-size:12px;}
+.st23{fill:none;stroke:#404449;stroke-width:0.5;stroke-miterlimit:10;}
+.st24{fill:#90C0F0; display: none;}
+.st25{fill:#FDF9D1; display: none;}
+.stt0{fill:#152437;}
+.stt3{font-size:16px;}
+.stt7{fill:none;stroke:#FFFFFF;stroke-width:0.25;stroke-miterlimit:10;}
+.stt4{fill:#CFCFCF;}
+.stt6{font-size:36px;}
+.stt8{fill: #23303f;}
+.st32{fill:#FFFF54;stroke:#000000;stroke-width:0.5;stroke-miterlimit:10;}
+
+#awosMainSvg {
+    max-width: 900px;
+    width: 90%;
+    height: 100%;
+}
+
+#mainContainer {
+    position: absolute;
+    left: 0px;
+    top: 112px;
+    bottom: 10px;
+    right: 0px;
+    width: 100%;
+    height: calc(100vh - 124px);
+}
+
+.container {
+    position: absolute;
+    left: 80px;
+    top: 4vw;
+    bottom: 100px;
+    right: 0px;
+    width: calc(100% - 80px);
+    height: calc(100vh - 4vw - 100px);
+}
+
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 22px;
+    background-color: #102030;
+}
+
+.footerText {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    font-size: 10pt;
+    margin-bottom: 3pt;
+    margin-left: 8pt;
+}
+
+.footerText2 {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    font-size: 9pt;
+    margin-bottom: 3pt;
+    margin-right: 8pt;
+    text-align: right;
+    font-weight: 600;
+}
+
+#compassDiv {
+    position: absolute;
+    right: 50px;
+    top: 30px;
+    width: 2.8vw;
+    height: 8vw; 
+    max-width: 40px;
+    max-height: 110px; 
+    background-color: #384554;
+    cursor: pointer;
+    text-align: center;
+    border: 1px #708090 solid;
+    background-image: url('images/compass.png');
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 70%;
+    display: inline-block;
+    border-radius: 6px;
+}
+
+.activeCeilometer {
+    fill: url(#leftBorderGradient);
+}
+
+@media (max-width: 720px) {
+/* top menu bar responsive font size: */
+    #utcTime, #td, #qfe {
+        font-size: 11pt;
+    }
+    #metCond, #cb, #ts {
+        font-size: 14pt;
+    }
+    #ta {
+        font-size: 14pt;
+    }
+    #trl, #atisId, #qnh {
+        font-size: 14pt;
+    }
+    #metarText {
+        font-size: 11pt;
+    }
+    #qnhDecimal {
+        font-size: 9pt;
+    }
+    .title {
+        font-size: 9pt;
+    }
+    #actions {
+        font-size: 9pt;
+    }
+}
