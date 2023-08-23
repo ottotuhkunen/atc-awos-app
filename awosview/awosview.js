@@ -431,7 +431,7 @@ function setCurrentWx(wawa) {
     else if (wawa == 56) currentWx.textContent = "+FZDZ";
     else if (wawa == 60) currentWx.textContent = "-RA";
     else if (wawa == 61) currentWx.textContent = "-RA";
-    else if (wawa == 62) currentWx.textContent = "MOD RA";
+    else if (wawa == 62) currentWx.textContent = "RA";
     else if (wawa == 63) currentWx.textContent = "+RA";
     else if (wawa == 64) currentWx.textContent = "-FZRA";
     else if (wawa == 65) currentWx.textContent = "FZDZ";
@@ -484,9 +484,33 @@ function setMetarData(xmlDoc) {
         counterClockwise = Math.round(counterClockwise);
         clockwise = Math.round(clockwise)
 
-        if (counterClockwise >= windDirection) counterClockwise = (windDirection - 10 + 360) % 360;
-        if (clockwise <= windDirection) clockwise = (windDirection + 10) % 360;
-
+        if (clockwise < counterClockwise) {
+            // adjust clockwise if windDirection is outside of the sector
+            if (windDirection > clockwise && windDirection < counterClockwise) {
+                let clockwiseDiff = (windDirection - clockwise + 360) % 360;
+                let counterClockwiseDiff = (counterClockwise - windDirection + 360) % 360;
+                
+                if (clockwiseDiff < counterClockwiseDiff) {
+                    clockwise = windDirection;
+                } else {
+                    counterClockwise = windDirection;
+                }
+            }
+        } else {
+            // adjust counterClockwise or clockwise if windDirection is outside of the sector
+            if (windDirection > clockwise || windDirection < counterClockwise) {
+                let clockwiseDiff = (windDirection - clockwise + 360) % 360;
+                let counterClockwiseDiff = (counterClockwise - windDirection + 360) % 360;
+                
+                if (clockwiseDiff < counterClockwiseDiff) {
+                    clockwise = windDirection;
+                } else {
+                    counterClockwise = windDirection;
+                }
+            }
+        }
+    
+        // write wind vrb data
         if (counterClockwise < 100) counterClockwise = "0" + counterClockwise;
         if (clockwise < 100) clockwise = "0" + clockwise;
 
@@ -501,8 +525,11 @@ function setMetarData(xmlDoc) {
             document.getElementById("degreeCircle_2").style.fill = "#de8200";
             document.getElementById("degreeCircle_3").style.fill = "#de8200";
         }
-        
-        if (clockwise < counterClockwise) clockwise = 360 + clockwise;
+
+        if (clockwise < counterClockwise) counterClockwise = counterClockwise - 360;
+
+        console.log(clockwise);
+        console.log(counterClockwise);
 
         // set wind sector background
         let windSectorData03 = createWindSector("left", counterClockwise, clockwise);
@@ -517,9 +544,6 @@ function setMetarData(xmlDoc) {
             pathElementMid.setAttribute('d', windSectorDataMid);
             pathElement21.setAttribute('d', windSectorData21);
         }
-
-        console.log(counterClockwise + ", " + windDirection);
-        console.log(clockwise + ", " + windDirection);
     }
     // Random variable direction
     else {
@@ -869,8 +893,6 @@ function randomVrb() {
     if (randomClockwise <= 0) randomClockwise += 360;
     if (randomCounterClockwise < 100) randomCounterClockwise = "0" + randomCounterClockwise;
     if (randomClockwise < 100) randomClockwise = "0" + randomClockwise;
-
-    console.log(randomCounterClockwise + ", " + randomClockwise)
     
     return [randomCounterClockwise, randomClockwise];
 }
