@@ -484,19 +484,8 @@ function setMetarData(xmlDoc) {
         counterClockwise = Math.round(counterClockwise);
         clockwise = Math.round(clockwise)
 
-        // set wind sector background
-        let windSectorData03 = createWindSector("left", counterClockwise, clockwise);
-        let windSectorDataMid = createWindSector("mid", counterClockwise, clockwise);
-        let windSectorData21 = createWindSector("right", counterClockwise, clockwise);
-        const pathElement03 = document.getElementById('degreeCircle_1');
-        const pathElementMid = document.getElementById('degreeCircle_2');
-        const pathElement21 = document.getElementById('degreeCircle_3');
-
-        if (pathElement03) {
-            pathElement03.setAttribute('d', windSectorData03);
-            pathElementMid.setAttribute('d', windSectorDataMid);
-            pathElement21.setAttribute('d', windSectorData21);
-        }
+        if (counterClockwise >= windDirection) counterClockwise = (windDirection - 10 + 360) % 360;
+        if (clockwise <= windDirection) clockwise = (windDirection + 10) % 360;
 
         if (counterClockwise < 100) counterClockwise = "0" + counterClockwise;
         if (clockwise < 100) clockwise = "0" + clockwise;
@@ -512,6 +501,25 @@ function setMetarData(xmlDoc) {
             document.getElementById("degreeCircle_2").style.fill = "#de8200";
             document.getElementById("degreeCircle_3").style.fill = "#de8200";
         }
+        
+        if (clockwise < counterClockwise) clockwise = 360 + clockwise;
+
+        // set wind sector background
+        let windSectorData03 = createWindSector("left", counterClockwise, clockwise);
+        let windSectorDataMid = createWindSector("mid", counterClockwise, clockwise);
+        let windSectorData21 = createWindSector("right", counterClockwise, clockwise);
+        const pathElement03 = document.getElementById('degreeCircle_1');
+        const pathElementMid = document.getElementById('degreeCircle_2');
+        const pathElement21 = document.getElementById('degreeCircle_3');
+
+        if (pathElement03) {
+            pathElement03.setAttribute('d', windSectorData03);
+            pathElementMid.setAttribute('d', windSectorDataMid);
+            pathElement21.setAttribute('d', windSectorData21);
+        }
+
+        console.log(counterClockwise + ", " + windDirection);
+        console.log(clockwise + ", " + windDirection);
     }
     // Random variable direction
     else {
@@ -519,12 +527,6 @@ function setMetarData(xmlDoc) {
             let randomVrb1 = randomVrb();
             let randomVrb2 = randomVrb();
             let randomVrb3 = randomVrb();
-            vrbField1.textContent = randomVrb1[0] + " - " + randomVrb1[1];
-            vrbField2.textContent = randomVrb2[0] + " - " + randomVrb2[1];
-            vrbField3.textContent = randomVrb3[0] + " - " + randomVrb3[1];
-            vrbField1.style.fill = "#464646";
-            vrbField2.style.fill = "#464646";
-            vrbField3.style.fill = "#464646";
 
             let windSectorData03 = createWindSector("left", randomVrb1[0], randomVrb1[1]);
             let windSectorDataMid = createWindSector("mid", randomVrb2[0], randomVrb2[1]);
@@ -532,11 +534,32 @@ function setMetarData(xmlDoc) {
             const pathElement03 = document.getElementById('degreeCircle_1');
             const pathElementMid = document.getElementById('degreeCircle_2');
             const pathElement21 = document.getElementById('degreeCircle_3');
+
             if (pathElement03) {
                 pathElement03.setAttribute('d', windSectorData03);
                 pathElementMid.setAttribute('d', windSectorDataMid);
                 pathElement21.setAttribute('d', windSectorData21);
             }
+
+            if (randomVrb1[1] > 360) {
+                randomVrb1[1] -= 360;
+                if (randomVrb1[1] < 100) randomVrb1[1] = "0" + randomVrb1[1];
+            }
+            if (randomVrb2[1] > 360) {
+                randomVrb2[1] -= 360;
+                if (randomVrb2[1] < 100) randomVrb2[1] = "0" + randomVrb2[1];
+            }
+            if (randomVrb3[1] > 360) {
+                randomVrb3[1] -= 360;
+                if (randomVrb3[1] < 100) randomVrb3[1] = "0" + randomVrb3[1];
+            }
+
+            vrbField1.textContent = randomVrb1[0] + " - " + randomVrb1[1];
+            vrbField2.textContent = randomVrb2[0] + " - " + randomVrb2[1];
+            vrbField3.textContent = randomVrb3[0] + " - " + randomVrb3[1];
+            vrbField1.style.fill = "#464646";
+            vrbField2.style.fill = "#464646";
+            vrbField3.style.fill = "#464646";
 
             document.getElementById("degreeCircle_1").style.fill = "#3264bd";
             document.getElementById("degreeCircle_2").style.fill = "#3264bd";
@@ -835,8 +858,10 @@ function checkCloudCoverage(cloudType) {
 }
 
 function randomVrb() {
+    // creating offset between 10 and 30 degrees
     let randomOffset = Math.floor(Math.random() * 21) + 10;
     randomOffset = Math.round(randomOffset / 10) * 10;
+    // applying offset to current wind direction
     let randomCounterClockwise = windDirection - randomOffset;
     let randomClockwise = windDirection + randomOffset;
 
@@ -844,6 +869,8 @@ function randomVrb() {
     if (randomClockwise <= 0) randomClockwise += 360;
     if (randomCounterClockwise < 100) randomCounterClockwise = "0" + randomCounterClockwise;
     if (randomClockwise < 100) randomClockwise = "0" + randomClockwise;
+
+    console.log(randomCounterClockwise + ", " + randomClockwise)
     
     return [randomCounterClockwise, randomClockwise];
 }
