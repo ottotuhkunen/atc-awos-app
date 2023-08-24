@@ -59,6 +59,27 @@ th {
     cursor: pointer;
 }
 
+/*
+#mode {
+    width: 120px;
+    height: 22px;
+    position: absolute;
+    right: 100px;
+    top: 6px;
+    padding-left: 8pt;
+    padding-right: 8pt;
+    border-radius: 2px;
+    font-size: 10pt;
+    font-weight: 600;
+    text-align: center;
+    color: #111;
+    background: rgb(160,190,220);
+    border-top: solid thin #6080a0;
+    border-left: solid thin #6080a0;
+    cursor: pointer;
+}
+*/
+
 .title {
     position: absolute;
     left: 10px;
@@ -151,6 +172,7 @@ td {
 #atisId {
     line-height: 24pt;
     margin-top: 1px;
+    cursor: pointer;
 }
 
 #qnh {

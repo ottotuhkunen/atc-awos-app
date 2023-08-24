@@ -538,6 +538,7 @@ function makeAtisText(atisText) {
     atisText = atisText.replace(/TRANSITION LEVEL (\d{2})/g, '<br/>TRL $1<br/>');
     atisText = atisText.replace(/DEGREES/g, 'DEG');
     atisText = atisText.replace(/KNOTS/g, 'KT');
+    atisText = atisText.replace(/MAXIMUM/g, 'MAX');
     atisText = atisText.replace(/TEMPERATURE/g, '<br/>T');
     atisText = atisText.replace(/DEW POINT/g, 'DP');
     atisText = atisText.replace(/QNH (\d{4})/g, 'QNH $1<br/>');

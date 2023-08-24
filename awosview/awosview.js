@@ -37,6 +37,9 @@ function loadData(icaoCode, fmisid, qfeSub) {
     }, 90000);
 }
 
+// D-ATIS
+let dAtis = "ATIS NIL";
+
 // get current ATIS id
 function loadAtis(icaoCode, fmisid, qfeSub) {
     const atisIdField = document.getElementById('atisId');
@@ -57,6 +60,9 @@ function loadAtis(icaoCode, fmisid, qfeSub) {
                 let matchIdType2 = atisWithLines.match(/INFORMATION\s([A-Z])/);
                 let matchRwy = atisWithLines.match(/RWY (\d{2}) IN USE/);
                 let matchRwyType2 = atisWithLines.match(/RUNWAY (\d{2}) IN USE/);
+
+                atisWithLines = atisWithLines.replace(/\.\./g, '.').split('.');
+                makeAtisText(atisWithLines.join('\n'));
                 
                 if (matchId && matchId[1]) { atisCode = matchId[1] }
                 else if (matchIdType2 && matchIdType2[1]) { atisCode = matchIdType2[1] }
@@ -118,6 +124,101 @@ function loadAtis(icaoCode, fmisid, qfeSub) {
     .catch(error => console.error('Error:', error));
     loadFMI(icaoCode, fmisid, qfeSub);
 }
+
+// make D-ATIS
+function makeAtisText(atisText) {
+    if (atisText.includes("THIS IS")) {
+        atisText = atisText.replace(/THIS IS /g, "");
+        atisText = atisText.replace(/(ARRIVAL AND DEPARTURE INFORMATION) (\w)/, "ARR AND DEP INFO $2\n");
+        atisText = atisText.replace(/AT TIME (\d{4})/g, '$1\n');
+        atisText = atisText.replace(/ARRIVAL/g, '\nARR');
+        atisText = atisText.replace(/DEPARTURE/g, '\nDEP');
+        atisText = atisText.replace(/RUNWAY/g, 'RWY');
+        atisText = atisText.replace(/CLEAR AND DRY/g, '');
+        atisText = atisText.replace(/TRANSITION LEVEL (\d{2})/g, '\nTRL $1\n');
+        atisText = atisText.replace(/DEGREES/g, 'DEG');
+        atisText = atisText.replace(/KNOTS/g, 'KT');
+        atisText = atisText.replace(/MAXIMUM/g, 'MAX');
+        atisText = atisText.replace(/TEMPERATURE/g, '\nT');
+        atisText = atisText.replace(/DEW POINT/g, 'DP');
+        atisText = atisText.replace(/QNH (\d{4})/g, 'QNH $1\n');
+        atisText = atisText.replace(/ADVISE ON INITIAL CONTACT YOU HAVE INFORMATION/g, '\nACK INFO');
+        atisText = atisText.replace(/VERTICAL VISIBILITY/g, '\nVV');
+        atisText = atisText.replace(/VISIBILITY/g, '\nVIS');
+        atisText = atisText.replace(/CAVOK/g, '\nCAVOK');
+        atisText = atisText.replace(/BROKEN/g, '\nBKN');
+        atisText = atisText.replace(/SCATTERED/g, '\nSCT');
+        atisText = atisText.replace(/OVERCAST/g, '\nOVC');
+        atisText = atisText.replace(/FEW/g, '\nFEW');
+        atisText = atisText.replace(/PROBABILITY/g, 'PROB');
+        atisText = atisText.replace(/LIGHT/g, 'FBL');
+        atisText = atisText.replace(/HEAVY/g, 'HVY');
+        atisText = atisText.replace(/MODERATE/g, 'MOD');
+        atisText = atisText.replace(/CUMULONIMBUS/g, 'CB');
+        atisText = atisText.replace(/MOVING/g, 'MOV');
+        atisText = atisText.replace(/EAST/g, 'E');
+        atisText = atisText.replace(/NORTH/g, 'N');
+        atisText = atisText.replace(/WEST/g, 'W');
+        atisText = atisText.replace(/SOUTH/g, 'S');
+        atisText = atisText.replace(/NORTHWEST/g, 'NW');
+        atisText = atisText.replace(/SOUTHWEST/g, 'SW');
+        atisText = atisText.replace(/NORTHEAST/g, 'NE');
+        atisText = atisText.replace(/SOUTHEAST/g, 'SE');
+        atisText = atisText.replace(/ABOVE/g, 'ABV');
+        atisText = atisText.replace(/FORECASTED/g, 'FCST');
+        atisText = atisText.replace(/FLIGHT LEVEL/g, 'FL');
+        atisText = atisText.replace(/NO SIGNIFICANT CLOUDS/g, 'NSC');
+        atisText = atisText.replace(/SEVERE/g, 'SEV');
+        atisText = atisText.replace(/CLEAR SKY/g, 'SKC');
+        atisText = atisText.replace(/TEMPORARY/g, 'TEMPO');
+        atisText = atisText.replace(/WIND SHEAR/g, 'WS');
+        atisText = atisText.replace(/REPORTED/g, 'REP');
+        atisText = atisText.replace(/BETWEEN/g, 'BTN');
+        atisText = atisText.replace(/FROM/g, 'FM');
+        atisText = atisText.replace(/FREEZING/g, 'FZ');
+        atisText = atisText.replace(/ICING/g, 'ICE');
+        atisText = atisText.replace(/NO CLOUDS DETECTED/g, 'NCD');
+        atisText = atisText.replace(/RUNWAY VISUAL RANGE/g, 'RVR');
+        atisText = atisText.replace(/TOWERING CUMULUS/g, 'TCU');
+        atisText = atisText.replace(/VARIABLE/g, 'VRB');
+        atisText = atisText.replace(/GUSTING/g, 'MAX');
+        atisText = atisText.replace(/GUST/g, 'MAX');
+        atisText = atisText.replace(/GUSTS/g, 'MAX');
+        atisText = atisText.replace(/ SHALLOW/g, ' MI');
+        atisText = atisText.replace(/ PARTIAL/g, ' PR');
+        atisText = atisText.replace(/ PATCHES/g, ' BC');
+        atisText = atisText.replace(/ LOW DRIFTING/g, ' DR');
+        atisText = atisText.replace(/ BLOWING/g, ' BL');
+        atisText = atisText.replace(/ SHOWERS/g, ' SH');
+        atisText = atisText.replace(/ THUNDERSTORM/g, ' TS');
+        atisText = atisText.replace(/DRIZZLE /g, 'DZ ');
+        atisText = atisText.replace(/RAIN /g, 'RA ');
+        atisText = atisText.replace(/SNOW GRAINS /g, 'SG ');
+        atisText = atisText.replace(/SNOW /g, 'SN ');
+        atisText = atisText.replace(/ICE CRYSTALS /g, 'IC ');
+        atisText = atisText.replace(/ICE PELLETS /g, 'PL ');
+        atisText = atisText.replace(/SMALL HAIL /g, 'GS ');
+        atisText = atisText.replace(/HAIL /g, 'GR ');
+        atisText = atisText.replace(/MIST /g, 'BR ');
+        atisText = atisText.replace(/FOG /g, 'FG ');
+        atisText = atisText.replace(/WIDESPREAD DUST /g, 'DU ');
+        atisText = atisText.replace(/KILOMETERS/g, 'KM');
+        atisText = atisText.replace(/METERS/g, 'M');
+        atisText = atisText.replace(/VICINITY/g, 'VC');
+        atisText = atisText.replace(/FEET/g, 'FT');
+        atisText = atisText.replace(/NOSIG/g, 'NOSIG');
+        atisText = atisText.replace(/BECOMING/g, 'BECMG');
+    }
+    dAtis = atisText;
+}
+
+// show D-ATIS alert
+document.addEventListener("DOMContentLoaded", function() {
+    var atisElement = document.getElementById("atisId");
+    atisElement.addEventListener("click", function() {
+        alert(dAtis);
+    });
+});
 
 // load current weather data from FMI
 async function loadFMI(icaoCode, fmisid, qfeSub) {
