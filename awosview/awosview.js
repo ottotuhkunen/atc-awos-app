@@ -192,8 +192,7 @@ function setData(xmlDoc, icaoCode, qfeSub) {
             if (windSpeed < 0.9) {
                 windSpeed = 0;
                 windCalm = true;
-            }
-            
+            }   
         }
         if (table[i][0] === "wd_10min") {
             windDirection = Math.floor(table[i][1] / 10) * 10;
@@ -486,31 +485,35 @@ function setMetarData(xmlDoc) {
 
         if (clockwise < counterClockwise) {
             // adjust clockwise if windDirection is outside of the sector
-            if (windDirection > clockwise && windDirection < counterClockwise) {
+            if (windDirection >= clockwise && windDirection < counterClockwise) {
                 let clockwiseDiff = (windDirection - clockwise + 360) % 360;
                 let counterClockwiseDiff = (counterClockwise - windDirection + 360) % 360;
                 
                 if (clockwiseDiff < counterClockwiseDiff) {
-                    clockwise = windDirection;
+                    clockwise = windDirection + 10;
                 } else {
-                    counterClockwise = windDirection;
+                    counterClockwise = windDirection - 10;
                 }
             }
         } else {
             // adjust counterClockwise or clockwise if windDirection is outside of the sector
-            if (windDirection > clockwise || windDirection < counterClockwise) {
+            if (windDirection >= clockwise || windDirection <= counterClockwise) {
                 let clockwiseDiff = (windDirection - clockwise + 360) % 360;
                 let counterClockwiseDiff = (counterClockwise - windDirection + 360) % 360;
                 
                 if (clockwiseDiff < counterClockwiseDiff) {
-                    clockwise = windDirection;
+                    clockwise = windDirection + 10;
                 } else {
-                    counterClockwise = windDirection;
+                    counterClockwise = windDirection - 10;
                 }
             }
         }
     
         // write wind vrb data
+        if (clockwise == 370) clockwise = 10;
+        if (clockwise == 00) clockwise = 350;
+        if (counterClockwise == 370) counterClockwise = 10;
+        if (counterClockwise == 00) counterClockwise = 360;
         if (counterClockwise < 100) counterClockwise = "0" + counterClockwise;
         if (clockwise < 100) clockwise = "0" + clockwise;
 
@@ -527,10 +530,7 @@ function setMetarData(xmlDoc) {
         }
 
         if (clockwise < counterClockwise) counterClockwise = counterClockwise - 360;
-
-        console.log(clockwise);
-        console.log(counterClockwise);
-
+        
         // set wind sector background
         let windSectorData03 = createWindSector("left", counterClockwise, clockwise);
         let windSectorDataMid = createWindSector("mid", counterClockwise, clockwise);

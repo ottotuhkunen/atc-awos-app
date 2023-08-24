@@ -68,13 +68,12 @@ function fetchInformation(){
                     document.getElementById('04L_RWYCC_1').textContent = "5" + "\u00A0".repeat(3) + "•";
                     document.getElementById('04L_RWYCC_2').textContent = "5" + "\u00A0".repeat(3) + "•";
                     document.getElementById('04L_RWYCC_3').textContent = "5" + "\u00A0".repeat(3) + "•";
-                    document.getElementById('04R_RWYCC_1').textContent = "5" + "\u00A0".repeat(3) + "•";
-                    document.getElementById('04R_RWYCC_2').textContent = "5" + "\u00A0".repeat(3) + "•";
-                    document.getElementById('04R_RWYCC_3').textContent = "5" + "\u00A0".repeat(3) + "•";
+                    document.getElementById('04R_RWYCC_1').textContent = "3" + "\u00A0".repeat(3) + "⇩";
+                    document.getElementById('04R_RWYCC_2').textContent = "3" + "\u00A0".repeat(3) + "⇩";
+                    document.getElementById('04R_RWYCC_3').textContent = "3" + "\u00A0".repeat(3) + "⇩";
                     document.getElementById('15_RWYCC_1').textContent = "5" + "\u00A0".repeat(3) + "•";
                     document.getElementById('15_RWYCC_2').textContent = "5" + "\u00A0".repeat(3) + "•";
                     document.getElementById('15_RWYCC_3').textContent = "5" + "\u00A0".repeat(3) + "•";
-                    //console.log(wawa);
                 }
                 else{
                     document.getElementById('RWYCC_windows').style.display = "block";
@@ -93,9 +92,16 @@ function fetchInformation(){
                         document.getElementById('04R_RWYCC_2').textContent = "//" + "\u00A0".repeat(3) + "•";
                         document.getElementById('04R_RWYCC_3').textContent = "//" + "\u00A0".repeat(3) + "•";
                     } else {
-                        document.getElementById('04R_RWYCC_1').textContent = record.fields['content'] + "\u00A0".repeat(3) + record.fields['rwycc_upgr_dngr'];
-                        document.getElementById('04R_RWYCC_2').textContent = record.fields['content'] + "\u00A0".repeat(3) + record.fields['rwycc_upgr_dngr'];
-                        document.getElementById('04R_RWYCC_3').textContent = record.fields['content'] + "\u00A0".repeat(3) + record.fields['rwycc_upgr_dngr'];    
+                        // NOTAM: RWY 04R/22L SLIPPERY WHEN WET
+                        if (record.fields['content'] == 5) {
+                            document.getElementById('04R_RWYCC_1').textContent = "3" + "\u00A0".repeat(3) + "⇩";
+                            document.getElementById('04R_RWYCC_2').textContent = "3" + "\u00A0".repeat(3) + "⇩";
+                            document.getElementById('04R_RWYCC_3').textContent = "3" + "\u00A0".repeat(3) + "⇩";  
+                        } else {
+                            document.getElementById('04R_RWYCC_1').textContent = record.fields['content'] + "\u00A0".repeat(3) + record.fields['rwycc_upgr_dngr'];
+                            document.getElementById('04R_RWYCC_2').textContent = record.fields['content'] + "\u00A0".repeat(3) + record.fields['rwycc_upgr_dngr'];
+                            document.getElementById('04R_RWYCC_3').textContent = record.fields['content'] + "\u00A0".repeat(3) + record.fields['rwycc_upgr_dngr'];  
+                        }
                     }
                     if (JSON.parse(sessionStorage.getItem("15_closed"))) {
                         document.getElementById('15_RWYCC_1').textContent = "//" + "\u00A0".repeat(3) + "•";
