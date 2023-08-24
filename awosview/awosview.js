@@ -130,12 +130,15 @@ function makeAtisText(atisText) {
     if (atisText.includes("THIS IS")) {
         atisText = atisText.replace(/THIS IS /g, "");
         atisText = atisText.replace(/(ARRIVAL AND DEPARTURE INFORMATION) (\w)/, "ARR AND DEP INFO $2\n");
+        atisText = atisText.replace(/AUTOMATIC REPORT/g, 'AUTOMATIC REPORT\n');
         atisText = atisText.replace(/AT TIME (\d{4})/g, '$1\n');
+        atisText = atisText.replace(/EXPECTED/g, 'EXPECTED\n');
         atisText = atisText.replace(/ARRIVAL/g, '\nARR');
         atisText = atisText.replace(/DEPARTURE/g, '\nDEP');
         atisText = atisText.replace(/RUNWAY/g, 'RWY');
         atisText = atisText.replace(/CLEAR AND DRY/g, '');
         atisText = atisText.replace(/TRANSITION LEVEL (\d{2})/g, '\nTRL $1\n');
+        atisText = atisText.replace(/TOUCHDOWN ZONE/g, 'TDZ');
         atisText = atisText.replace(/DEGREES/g, 'DEG');
         atisText = atisText.replace(/KNOTS/g, 'KT');
         atisText = atisText.replace(/MAXIMUM/g, 'MAX');
@@ -207,7 +210,16 @@ function makeAtisText(atisText) {
         atisText = atisText.replace(/VICINITY/g, 'VC');
         atisText = atisText.replace(/FEET/g, 'FT');
         atisText = atisText.replace(/NOSIG/g, 'NOSIG');
-        atisText = atisText.replace(/BECOMING/g, 'BECMG');
+        atisText = atisText.replace(/RVR VALUES AVAILABLE ON AIR TRAFFIC CONTROL FREQUENCY/g, '\nRVR VALUES AVBL ON ATC FREQ\n');
+        atisText = atisText.replace(/\n /g, '\n');
+        atisText = atisText.replace(/(\n\s*)+\n/g, '\n');
+        atisText = atisText.replace(/NO CLOUD DETECTED/g, 'NCD');
+        atisText = atisText.replace(/TAMPERE-PIRKKALA/g, 'EFTP');
+        atisText = atisText.replace(/ROVANIEMI/g, 'EFRO');
+        atisText = atisText.replace(/OULU/g, 'EFOU');
+        atisText = atisText.replace(/KUOPIO/g, 'EFKU');
+        atisText = atisText.replace(/JYVASKYLA/g, 'EFJY');
+        atisText = atisText.replace(/TURKU/g, 'EFTU');
     }
     dAtis = atisText;
 }
