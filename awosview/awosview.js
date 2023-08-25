@@ -25,7 +25,6 @@ function getDate(){
 
     if(awosTime) {
         awosTime.textContent = timeAwos;
-        awosTime.style.color = "#e0e0e0";
     }
 } setInterval(getDate, 1000);
 
@@ -77,7 +76,7 @@ function loadAtis(icaoCode, fmisid, qfeSub) {
                 atisIdField.style.backgroundColor = "#14202f";
             } else {
                 atisIdField.textContent = "//";
-                atisIdField.style.backgroundColor = "#d66c68";
+                atisIdField.style.backgroundColor = "#e66464";
             }
         }
 
@@ -148,7 +147,7 @@ function makeAtisText(atisText) {
         atisText = atisText.replace(/ADVISE ON INITIAL CONTACT YOU HAVE INFORMATION/g, '\nACK INFO');
         atisText = atisText.replace(/VERTICAL VISIBILITY/g, '\nVV');
         atisText = atisText.replace(/VISIBILITY/g, '\nVIS');
-        atisText = atisText.replace(/CAVOK/g, '\nCAVOK');
+        atisText = atisText.replace(/CAVOK/g, '\nCAVOK\n');
         atisText = atisText.replace(/BROKEN/g, '\nBKN');
         atisText = atisText.replace(/SCATTERED/g, '\nSCT');
         atisText = atisText.replace(/OVERCAST/g, '\nOVC');
@@ -336,19 +335,19 @@ function setData(xmlDoc, icaoCode, qfeSub) {
     let gust3 = generateRandomGust(windGust);
 
     if (gust1 >= windSpeed + 10) {
-        document.getElementById("maxbase").style.fill = "#af7f22";
+        document.getElementById("maxbase").classList.add("maxWindHighlight");
     } else {
-        document.getElementById("maxbase").style.fill = "#2A323B";
+        document.getElementById("maxbase").classList.remove("maxWindHighlight");
     }
     if (gust2 >= windSpeed + 10) {
-        document.getElementById("maxbase_2").style.fill = "#af7f22";
+        document.getElementById("maxbase_2").classList.add("maxWindHighlight");
     } else {
-        document.getElementById("maxbase_2").style.fill = "#2A323B";
+        document.getElementById("maxbase_2").classList.remove("maxWindHighlight");
     }
     if (gust3 >= windSpeed + 10) {
-        document.getElementById("maxbase_3").style.fill = "#af7f22";
+        document.getElementById("maxbase_3").classList.add("maxWindHighlight");
     } else {
-        document.getElementById("maxbase_3").style.fill = "#2A323B";
+        document.getElementById("maxbase_3").classList.remove("maxWindHighlight");
     }
 
     // wind speed
@@ -634,12 +633,12 @@ function setMetarData(xmlDoc) {
             vrbField1.textContent = counterClockwise + " - " + clockwise;
             vrbField2.textContent = counterClockwise + " - " + clockwise;
             vrbField3.textContent = counterClockwise + " - " + clockwise;
-            vrbField1.style.fill = "white";
-            vrbField2.style.fill = "white";
-            vrbField3.style.fill = "white";
-            document.getElementById("degreeCircle_1").style.fill = "#de8200";
-            document.getElementById("degreeCircle_2").style.fill = "#de8200";
-            document.getElementById("degreeCircle_3").style.fill = "#de8200";
+            vrbField1.classList.add("variableTextHighlight");
+            vrbField2.classList.add("variableTextHighlight");
+            vrbField3.classList.add("variableTextHighlight");
+            document.getElementById("degreeCircle_1").classList.add("variableHighlight");
+            document.getElementById("degreeCircle_2").classList.add("variableHighlight");
+            document.getElementById("degreeCircle_3").classList.add("variableHighlight");
         }
 
         if (clockwise < counterClockwise) counterClockwise = counterClockwise - 360;
@@ -694,13 +693,13 @@ function setMetarData(xmlDoc) {
             vrbField1.textContent = randomVrb1[0] + " - " + randomVrb1[1];
             vrbField2.textContent = randomVrb2[0] + " - " + randomVrb2[1];
             vrbField3.textContent = randomVrb3[0] + " - " + randomVrb3[1];
-            vrbField1.style.fill = "#464646";
-            vrbField2.style.fill = "#464646";
-            vrbField3.style.fill = "#464646";
+            vrbField1.classList.remove("variableTextHighlight");
+            vrbField2.classList.remove("variableTextHighlight");
+            vrbField3.classList.remove("variableTextHighlight");
 
-            document.getElementById("degreeCircle_1").style.fill = "#3264bd";
-            document.getElementById("degreeCircle_2").style.fill = "#3264bd";
-            document.getElementById("degreeCircle_3").style.fill = "#3264bd";
+            document.getElementById("degreeCircle_1").classList.remove("variableHighlight");
+            document.getElementById("degreeCircle_2").classList.remove("variableHighlight");
+            document.getElementById("degreeCircle_3").classList.remove("variableHighlight");
         }
     }
 
@@ -731,9 +730,9 @@ function setMetarData(xmlDoc) {
             const pathElementMid = document.getElementById('degreeCircle_2');
             const pathElement21 = document.getElementById('degreeCircle_3');
 
-            pathElement03.style.fill = "#3E63B7";
-            pathElementMid.style.fill = "#3E63B7";
-            pathElement21.style.fill = "#3E63B7";
+            pathElement03.classList.remove("variableHighlight");
+            pathElementMid.classList.remove("variableHighlight");
+            pathElement21.classList.remove("variableHighlight");
 
             let windSectorData03 = createWindSector("left", 0.1, 360);
             let windSectorDataMid = createWindSector("mid", 0.1, 360);
@@ -763,9 +762,9 @@ function setMetarData(xmlDoc) {
             vrbField1.textContent = "CALM";
             vrbField2.textContent = "CALM";
             vrbField3.textContent = "CALM";
-            vrbField1.style.fill = "white";
-            vrbField2.style.fill = "white";
-            vrbField3.style.fill = "white";
+            vrbField1.classList.add("variableTextHighlight");
+            vrbField2.classList.add("variableTextHighlight");
+            vrbField3.classList.add("variableTextHighlight");
             vrbField1.style.fontSize = "16px";
             vrbField2.style.fontSize = "16px";
             vrbField3.style.fontSize = "16px";
@@ -777,9 +776,9 @@ function setMetarData(xmlDoc) {
             const pathElementMid = document.getElementById('degreeCircle_2');
             const pathElement21 = document.getElementById('degreeCircle_3');
 
-            pathElement03.style.fill = "#3E63B7";
-            pathElementMid.style.fill = "#3E63B7";
-            pathElement21.style.fill = "#3E63B7";
+            pathElement03.classList.remove("variableHighlight");
+            pathElementMid.classList.remove("variableHighlight");
+            pathElement21.classList.remove("variableHighlight");
 
             let windSectorData03 = createWindSector("left", 0.1, 360);
             let windSectorDataMid = createWindSector("mid", 0.1, 360);
@@ -805,15 +804,15 @@ function setMetarData(xmlDoc) {
     if(tsField) { 
         if (metar.includes("VCTS")) {
             tsField.textContent = "VCTS";
-            document.getElementById("tsBackground").style.backgroundColor = "#af7f22";
+            document.getElementById("tsBackground").classList.add("topMenuHighlight");
             document.getElementById("weather").textContent = "-SHRA VCTS";
         } else if (metar.includes("TS")) {
             tsField.textContent = "TS";
-            document.getElementById("tsBackground").style.backgroundColor = "#af7f22";
+            document.getElementById("tsBackground").classList.add("topMenuHighlight");
             document.getElementById("weather").textContent = "SHRA TS";
         } else {
             tsField.textContent = "";
-            document.getElementById("tsBackground").style.backgroundColor = "#102030";
+            document.getElementById("tsBackground").classList.remove("topMenuHighlight");
         }
     }
 
@@ -821,10 +820,10 @@ function setMetarData(xmlDoc) {
     if(cbField) {
         if (metar.includes("CB")) {
             cbField.textContent = "CB";
-            document.getElementById("cbBackground").style.backgroundColor = "#af7f22";
+            document.getElementById("cbBackground").classList.add("topMenuHighlight");
         } else {
             cbField.textContent = "";
-            document.getElementById("cbBackground").style.backgroundColor = "#102030";
+            document.getElementById("cbBackground").classList.remove("topMenuHighlight");
         }
     }
 
@@ -1238,7 +1237,7 @@ function rotateAirport(icaoCode) {
         document.getElementById('ceilometer1').style.transform = "translate(440px, 40px)";
         document.getElementById('ceilometer2').style.transform = "translate(10px, -240px)";
         document.getElementById('weatherBoxGroup').style.transform = "translate(160px, -120px)";
-        document.getElementById('rvrLeftGroup').style.transform = "translate(60px, 140px)";
+        document.getElementById('rvrLeftGroup').style.transform = "translate(86px, 110px)";
         document.getElementById('rvrMidGroup').style.transform = "translate(30px, 24px)";
         document.getElementById('rvrRightGroup').style.transform = "translate(-10px, -90px)";
     }
@@ -1404,9 +1403,9 @@ function rotateAirport(icaoCode) {
         document.getElementById('ceilometer1').style.transform = "translate(250px, 40px)";
         document.getElementById('ceilometer2').style.transform = "translate(90px, -440px)";
         document.getElementById('weatherBoxGroup').style.transform = "translate(200px, -50px)";
-        document.getElementById('rvrLeftGroup').style.transform = "translate(30px, 60px)";
-        document.getElementById('rvrMidGroup').style.transform = "translate(30px, 0)";
-        document.getElementById('rvrRightGroup').style.transform = "translate(10px, -50px)";
+        document.getElementById('rvrLeftGroup').style.transform = "translate(30px, 65px)";
+        document.getElementById('rvrMidGroup').style.transform = "translate(30px, 5px)";
+        document.getElementById('rvrRightGroup').style.transform = "translate(10px, -48px)";
     }
     else if (icaoCode == "EFTU") {
         document.getElementById('rvrLeftGroup').style.transform = "translate(0, 15px)";
@@ -1433,14 +1432,44 @@ function rotateAirport(icaoCode) {
     }
 }
 
-/*
-    document.getElementById('windmeter03').style.transform = "translate(0, 0)";
-    document.getElementById('windmeterMid').style.transform = "translate(0, 0)";
-    document.getElementById('windmeter21').style.transform = "translate(0, 0)";
-    document.getElementById('ceilometer1').style.transform = "translate(0, 0)";
-    document.getElementById('ceilometer2').style.transform = "translate(0, 0)";
-    document.getElementById('weatherBoxGroup').style.transform = "translate(0, 0)";
-    document.getElementById('rvrLeftGroup').style.transform = "translate(0, 0)";
-    document.getElementById('rvrMidGroup').style.transform = "translate(0, 0)";
-    document.getElementById('rvrRightGroup').style.transform = "translate(0, 0)";
-*/
+document.addEventListener('DOMContentLoaded', function() {
+    // light/dark mode theme toggle
+    const themeToggleButton = document.getElementById('mode');
+    const themeStylesheet = document.getElementById('theme-stylesheet');
+        
+    // Load theme from URL or local storage
+    // Default = dark mode
+    let currentTheme = getThemeFromUrl() || localStorage.getItem('theme') || 'dark';
+
+    // Apply the loaded theme
+    applyTheme();
+
+    themeToggleButton.addEventListener('click', function() {
+        // Toggle the theme
+        currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        if (currentTheme == "dark") themeToggleButton.textContent = "To light mode";
+        if (currentTheme == "light") themeToggleButton.textContent = "To dark mode";
+        
+        localStorage.setItem('theme', currentTheme);
+        applyTheme();
+
+        // Update the URL to reflect the theme without reloading the page
+        const newUrl = `${window.location.pathname}?theme=${currentTheme}`;
+        history.replaceState(null, null, newUrl);
+    });
+
+
+    function getThemeFromUrl() {
+        return new URLSearchParams(window.location.search).get('theme');
+    }
+
+    function applyTheme() {
+        if (currentTheme === 'dark') {
+            themeStylesheet.setAttribute('href', 'dark-mode.css');
+            themeToggleButton.textContent = "To light mode";
+        } else {
+            themeStylesheet.setAttribute('href', 'light-mode.css');
+            themeToggleButton.textContent = "To dark mode";
+        }
+    }
+});
