@@ -73,10 +73,10 @@ function loadAtis(icaoCode, fmisid, qfeSub) {
         if(atisIdField) {
             if(atisFound) {
                 atisIdField.textContent = atisCode;
-                atisIdField.style.backgroundColor = "#14202f";
+                atisIdField.classList.remove("noAtisHighlight");
             } else {
                 atisIdField.textContent = "//";
-                atisIdField.style.backgroundColor = "#e66464";
+                atisIdField.classList.add("noAtisHighlight");
             }
         }
 

@@ -74,6 +74,7 @@ body {
 .variableHighlight {fill:#d1862f;}
 .variableTextHighlight {fill:black;}
 .topMenuHighlight {background-color: #e3bb73;}
+.noAtisHighlight {background-color: #e66464;}
 
 footer {
     background-color: #7aabde;
