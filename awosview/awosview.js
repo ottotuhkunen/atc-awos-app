@@ -60,7 +60,7 @@ function loadAtis(icaoCode, fmisid, qfeSub) {
                 let matchRwy = atisWithLines.match(/RWY (\d{2}) IN USE/);
                 let matchRwyType2 = atisWithLines.match(/RUNWAY (\d{2}) IN USE/);
 
-                atisWithLines = atisWithLines.replace(/\.\./g, '.').split('.');
+                atisWithLines = atisWithLines.replace(/\.\./g, '.').split('. ');
                 makeAtisText(atisWithLines.join('\n'));
                 
                 if (matchId && matchId[1]) { atisCode = matchId[1] }
@@ -95,7 +95,7 @@ function loadAtis(icaoCode, fmisid, qfeSub) {
                 document.getElementById("cloudBase2").classList.remove("activeCeilometer");
             }
             // left runway
-            else if (runwayCheck >= 1 && runwayCheck <= 17) {
+            else if (runwayCheck >= 1 && runwayCheck <= 17 || runwayCheck == 36) {
                 runwayField.style.fontSize = "36pt";
                 runwayField.style.marginTop = "10px";
                 runwayField.textContent = runwayInUse;
@@ -107,7 +107,7 @@ function loadAtis(icaoCode, fmisid, qfeSub) {
                 document.getElementById("cloudBase2").classList.remove("activeCeilometer");
             }
             // right runway
-            else if (runwayCheck >= 18 && runwayCheck <= 36) {
+            else if (runwayCheck >= 18 && runwayCheck <= 35) {
                 runwayField.style.fontSize = "36pt";
                 runwayField.style.marginTop = "10px";
                 runwayField.textContent = runwayInUse;
