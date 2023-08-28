@@ -808,7 +808,7 @@ function setMetRep(xml) {
     if (vis == "9999.0") {
         vis = "10KM";
     }
-    document.getElementById("metVis").textContent = vis;
+    document.getElementById("metVis").textContent = Math.round(vis) + "M";
 
     var temps = xmlDoc.getElementsByTagName('iwxxm:airTemperature');
     var temp = temps[temps.length-1].childNodes[0].nodeValue;
@@ -950,6 +950,9 @@ function loadActualMet(xml) {
             document.getElementById("metWind").textContent = "RWY 04L TDZ VRB " + metarWindSpd + "KT END VRB " + metarWindSpd + "KT";
         }
         else {
+            if (result.data[0].wind.degrees < 100) {
+                result.data[0].wind.degrees = "0" + result.data[0].wind.degrees;
+            }
             document.getElementById("metWind").textContent = `RWY 04L TDZ ${result.data[0].wind.degrees}/${result.data[0].wind.speed_kts}KT END ${result.data[0].wind.degrees}/${result.data[0].wind.speed_kts}KT`;
         }
 
@@ -962,6 +965,7 @@ function loadActualMet(xml) {
         }
 
         let allCloudsText = '';
+        let cloudAltPreset = '';
         result.data[0].clouds.forEach((cloud, index) => {
             // All clouds
             allCloudsText += cloud.code + " " + cloud.base_feet_agl + "FT ";
@@ -969,6 +973,8 @@ function loadActualMet(xml) {
             const feetElement = document.getElementById(`metCurrentCloud_alt${index + 1}`);
             const codeElement = document.getElementById(`metCurrentCloud_id${index + 1}`);
             const allCloudsElement = document.getElementById('metClouds');
+            cloudAltPreset = String(Math.floor(cloud.base_feet_agl / 100)).padStart(3, '0'); 
+
 
             // Update fields
             if (allCloudsText.includes("CAVOK")) {
@@ -977,7 +983,7 @@ function loadActualMet(xml) {
                 if (codeElement) codeElement.textContent = "";
                 document.getElementById("metWx").textContent = "CAVOK";
             } else {
-                if (feetElement) feetElement.textContent = cloud.base_feet_agl;
+                if (feetElement) feetElement.textContent = cloudAltPreset;
                 if (codeElement) codeElement.textContent = cloud.code;
                 if (allCloudsElement) allCloudsElement.textContent = allCloudsText;
                 document.getElementById("metWx").textContent = allConditionsText;
