@@ -315,3 +315,8 @@ footer {
         font-size: 9pt;
     }
 }
+@media (max-width: 630px) {
+    .title {
+        display: none;
+    }
+}

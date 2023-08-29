@@ -375,7 +375,7 @@
             <div id="setupDiv" style="display: none; width: 100%;">
                 <div id="rwyAutoDisclamers">
                     <h2 id="atisDetector" style="color: red; font-weight: bold;"></h2>
-                    <h3 style="font-weight: bold;">Change RWY config to MANUAL for local configuration</h3>
+                    <h3>Change configuration to MANUAL to set offline runway combination</h3>
                 </div>
                 
                 <div id="rwySelectionContainers" style="display: none;">
@@ -389,18 +389,43 @@
                         <h3>22R<input class="checkbox" type="checkbox" id="checkboxDep22R" name="checkboxDep22R" onclick="dep22R();">DEP<input class="checkbox" type="checkbox" id="checkboxArr22R" name="checkboxArr22R" onclick="arr22R();">ARR</h3>
                     </div>
                 </div>
-                <div id="setupContainer3" style="margin-top: 70px; max-width: 600px;">
+                <div id="setupContainer3" style="margin-top: 20px; max-width: 700px;">
+
                     <hr>
-                    <p>Please, do <b>NOT</b> distribute this weather app to users outside of Vatsim Scandinavia.</p>
-                    <p>The password to this app may change from time to time.</p><br><hr>
-                    <h2 style="color: red; font-weight: bold;">🎮 This app is for simulation purposes only! 🎮</h2>
+                    <h2 style="font-weight: bold;">This app is for simulation purposes only!</h2>
+
+                    <div style="background-color: rgb(255, 165, 165); border-radius: 4px;">
+                        <table style="color: black; margin: 8pt; font-size: 10pt;">
+                            <tr>
+                                <td>⛔</td>
+                                <td style="padding: 5px;">
+                                    Please, do <b>NOT</b> distribute this weather app to users outside of Vatsim Scandinavia.<br>
+                                    The password to this app may change from time to time.
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="background-color: rgb(160, 212, 255); border-radius: 4px;">
+                        <table style="color: black; margin: 8pt; font-size: 10pt;">
+                            <tr>
+                                <td>ℹ️</td>
+                                <td style="padding: 5px;">
+                                    This is an unofficial tool designed solely for use on the VATSIM network.<br>
+                                    This site is not affiliated, endorsed, or sponsored by any official AWOS service or entity.<br>
+                                    The information and design on this site are intended only for entertainment and simulation purposes and should not be relied upon for any real-world aviation activities.
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                     <hr>
-                    <h3>AWOS version: 3.5.2</h3>
+                    <h3>Current version: 3.5.2</h3>
                     <h3>Latest updates:</h3>
+
                     <ul>
                         <li>visual improvements</li>
                         <li>fix: wind direction exceeding vrb wind direction in some cases</li>
                     </ul>
+
                 </div>
             </div>
 
