@@ -47,6 +47,7 @@ let roundedQnh;
 let metCond = "//";
 let qnh = 0;
 let atisCode = "//";
+let windDirection = 0;
 
 function setData(xmlDoc) {
     var xmlSize = xmlDoc.getElementsByTagName("BsWfs:ParameterName");
@@ -61,7 +62,6 @@ function setData(xmlDoc) {
     table = table.slice(-15, -1);
     
     var windSpeed = 0;
-    var windDirection = 0;
     var windGust = 0;
 
     for (var i = 0; i < table.length; i++) {
@@ -257,8 +257,12 @@ function randomWindDirection(realDirection, arrowID, maxDirID, windSpeed) { // 2
 }
 
 function setMetarData(xmlDoc) {
-  
-  var vrbWindcheck = xmlDoc.getElementsByTagName("iwxxm:extremeCounterClockwiseWindDirection").length;
+
+  let records = xmlDoc.getElementsByTagName("iwxxm:MeteorologicalAerodromeObservationRecord");
+  let latestRecord = records[records.length - 1];
+
+  let counterClockwises = latestRecord.getElementsByTagName("iwxxm:extremeCounterClockwiseWindDirection");
+  let clockwises = latestRecord.getElementsByTagName("iwxxm:extremeClockwiseWindDirection");
 
   var metars = xmlDoc.getElementsByTagName('avi:input');
   var metar = metars[metars.length-1].childNodes[0].nodeValue;
@@ -272,9 +276,7 @@ function setMetarData(xmlDoc) {
   }
 
   // VARIABLE BETWEEN
-  if (vrbWindcheck > 0) {
-    var counterClockwises = xmlDoc.getElementsByTagName("iwxxm:extremeCounterClockwiseWindDirection");
-    var clockwises = xmlDoc.getElementsByTagName("iwxxm:extremeClockwiseWindDirection");
+  if (counterClockwises.length > 0) {
 
     var counterClockwise = counterClockwises[counterClockwises.length-1].childNodes[0].nodeValue;
     var clockwise = clockwises[clockwises.length-1].childNodes[0].nodeValue;
@@ -282,12 +284,38 @@ function setMetarData(xmlDoc) {
     counterClockwise = Math.round(counterClockwise);
     clockwise = Math.round(clockwise)
 
-    if (counterClockwise < 100) {
-      counterClockwise = "0" + counterClockwise
+    if (clockwise < counterClockwise) {
+      // adjust clockwise if windDirection is outside of the sector
+      if (windDirection >= clockwise && windDirection < counterClockwise) {
+          let clockwiseDiff = (windDirection - clockwise + 360) % 360;
+          let counterClockwiseDiff = (counterClockwise - windDirection + 360) % 360;
+          
+          if (clockwiseDiff < counterClockwiseDiff) {
+              clockwise = windDirection + 10;
+          } else {
+              counterClockwise = windDirection - 10;
+          }
+      }
+    } else {
+        // adjust counterClockwise or clockwise if windDirection is outside of the sector
+        if (windDirection >= clockwise || windDirection <= counterClockwise) {
+            let clockwiseDiff = (windDirection - clockwise + 360) % 360;
+            let counterClockwiseDiff = (counterClockwise - windDirection + 360) % 360;
+            
+            if (clockwiseDiff < counterClockwiseDiff) {
+                clockwise = windDirection + 10;
+            } else {
+                counterClockwise = windDirection - 10;
+            }
+        }
     }
-    if (clockwise < 100) {
-      clockwise = "0" + clockwise
-    }
+
+    if (clockwise == 370) clockwise = 10;
+    if (clockwise == 00) clockwise = 350;
+    if (counterClockwise == 370) counterClockwise = 10;
+    if (counterClockwise == 00) counterClockwise = 360;
+    if (counterClockwise < 100) counterClockwise = "0" + counterClockwise;
+    if (clockwise < 100) clockwise = "0" + clockwise;
 
     if (JSON.parse(sessionStorage.getItem("depBox04L")) || JSON.parse(sessionStorage.getItem("arrBox04L"))) {
       document.getElementById("04L_maxDir").style.fill = "black";
@@ -607,7 +635,7 @@ function makeAtisText(atisText) {
     atisText = atisText.replace(/VICINITY/g, 'VC');
     atisText = atisText.replace(/FEET/g, 'FT');
     atisText = atisText.replace(/NOSIG/g, 'NOSIG');
-    atisText = atisText.replace(/BECOMING/g, 'BECMG');
+    atisText = atisText.replace(/BECOMING/g, '<br/>BECMG');
   }
   let pattern = /INFO\s([A-Z])/;
 
