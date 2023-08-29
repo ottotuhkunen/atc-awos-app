@@ -20,7 +20,7 @@
         <script type="text/javascript" src="src/topMenu.js"></script>
         <link rel="stylesheet" href="https://use.typekit.net/nju1yva.css">
     </head>
-    <body onload="getDate(); startDataFetching(); loadConfig();">
+    <body onload="getDate(); loadConfig(); startDataFetching();">
         <div class="customBackground">
         <svg version="1.1" id="topMenuSvg" preserveAspectRatio="xMinYMin meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 960.75 38" xml:space="preserve">
             <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="480.375" y1="38" x2="480.375" y2="0">
@@ -395,8 +395,12 @@
                     <p>The password to this app may change from time to time.</p><br><hr>
                     <h2 style="color: red; font-weight: bold;">🎮 This app is for simulation purposes only! 🎮</h2>
                     <hr>
-                    <h3>AWOS version: 3.5.1</h3>
-                    <h3>Latest updates: SNOWTAM page + taxiways & aprons, visual enhancements</h3>
+                    <h3>AWOS version: 3.5.2</h3>
+                    <h3>Latest updates:</h3>
+                    <ul>
+                        <li>visual improvements</li>
+                        <li>fix: wind direction exceeding vrb wind direction in some cases</li>
+                    </ul>
                 </div>
             </div>
 
@@ -515,7 +519,10 @@
                             v69.79C1192,599.49,1189.49,602,1186.4,602z"/>
                         <text transform="matrix(1 0 0 1 22.7329 566.4209)" class="stt1 stt2 stt7">WARNINGS</text>
                         <rect x="104" y="524" class="stt4" width="1084" height="75"/>
-                        <text id="metWarnings" transform="matrix(1 0 0 1 106.7329 540.4209)" class="stt5 stt3">NO ACTUAL WARNINGS</text>
+                        <text transform="matrix(1 0 0 1 106.7329 540.4209)" class="stt5 stt3">
+                            <tspan id="metWarnings" class="stt5 stt3">//</tspan>
+                            <tspan id="metWarnings2" x="0" dy="1.4em" class="stt5 stt3"></tspan>
+                        </text>
                     </g>
                     <g id="currentField">
                         <g id="irrelevantFields">
@@ -559,9 +566,9 @@
                             <line class="stt9" x1="891.35" y1="0" x2="891.35" y2="434.5"/>
                         </g>
                         <g id="inputFields">
-                            <text id="metCurrentVis" transform="matrix(1 0 0 1 1000.7053 37.4792)" class="stt5 stt10">//</text>
-                            <text id="metCurrentWx" transform="matrix(1 0 0 1 1000.7053 73.321)" class="stt5 stt10">NSW</text>
-                            <text id="metCurrentQnh" transform="matrix(1 0 0 1 997.0676 323.9001)" class="stt5 stt10">//</text>
+                            <text id="metCurrentVis" transform="matrix(1 0 0 1 1034 37.4792)" text-anchor="middle" class="stt5 stt10">//</text>
+                            <text id="metCurrentWx" transform="matrix(1 0 0 1 1034 73.321)" text-anchor="middle" class="stt5 stt10">//</text>
+                            <text id="metCurrentQnh" transform="matrix(1 0 0 1 1034 323.9001)" text-anchor="middle" class="stt5 stt10">//</text>
                             <text id="metCurrentQfe04R" transform="matrix(1 0 0 1 916.0676 412.9001)" class="stt5 stt10">//</text>
                             <text id="metCurrentQfe22L" transform="matrix(1 0 0 1 1056.0676 412.9001)" class="stt5 stt10">//</text>
                             <text id="metCurrentCloud_id1" transform="matrix(1 0 0 1 946.512 216.9001)" class="stt5 stt10"></text>

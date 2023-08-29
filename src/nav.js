@@ -805,11 +805,12 @@ function setMetRep(xml) {
 
     var viss = xmlDoc.getElementsByTagName('iwxxm:prevailingVisibility');
     var vis = viss[viss.length-1].childNodes[0].nodeValue;
-    if (vis == "9999.0") {
-        vis = "10KM";
-    }
-    document.getElementById("metVis").textContent = Math.round(vis) + "M";
 
+    if (vis == "9999.0") vis = "10KM";
+    else vis = Math.round(vis) + "M";
+
+    document.getElementById("metVis").textContent = vis;
+    
     var temps = xmlDoc.getElementsByTagName('iwxxm:airTemperature');
     var temp = temps[temps.length-1].childNodes[0].nodeValue;
     document.getElementById("metTa").textContent = Math.round(temp);
