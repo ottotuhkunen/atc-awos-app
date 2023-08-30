@@ -48,6 +48,7 @@ let metCond = "//";
 let qnh = 0;
 let atisCode = "//";
 let windDirection = 0;
+let windProblems = false;
 
 function setData(xmlDoc) {
     var xmlSize = xmlDoc.getElementsByTagName("BsWfs:ParameterName");
@@ -70,12 +71,25 @@ function setData(xmlDoc) {
         }
         if (table[i][0] === "ws_10min") {
           windSpeed = table[i][1];
+          if (isNaN(windSpeed)) {
+            windSpeed = 5;
+            document.getElementById('fmiProblems').style.display = "block";
+            windProblems = true;
+          } else {
+            document.getElementById('fmiProblems').style.display = "none";
+            windProblems = false;
+          }
         }
         if (table[i][0] === "wd_10min") {
           windDirection = table[i][1];
+          if (isNaN(windDirection)) {
+            windDirection = 360;
+            windProblems = true;
+          }
         }
         if (table[i][0] === "wg_10min") {
           windGust = table[i][1];
+          if (isNaN(windGust)) windGust = windSpeed + 4;
         }
         if (table[i][0] === "wawa") {
           wawa = table[i][1];
@@ -548,6 +562,9 @@ function setMetarData(xmlDoc) {
     }
   })
   .catch(error => console.error('Error:', error));
+  if (windProblems) {
+    noWindData();
+  }
 }
 
 function makeAtisText(atisText) {
@@ -738,3 +755,33 @@ function setCurrentWx(wawa) {
   else if (wawa == 87) currentWx.textContent = "HVY SHSN";
   else if (wawa == 89) currentWx.textContent = "SHGR";
 }
+
+function updateGroupText(groupElement, excludeId) {
+  var textElements = groupElement.querySelectorAll('text');
+
+  textElements.forEach(function(textElement) {
+    if (textElement.id !== excludeId) {
+      textElement.style.fill = '#C70039';
+      textElement.textContent = "///";
+    }
+  });
+}
+
+function noWindData() {
+  var groups = [
+    { id: 'windDisp22R', excludeId: '22R_number' },
+    { id: 'windDisp22L', excludeId: '22L_number' },
+    { id: 'windDisp15', excludeId: '15_number' },
+    { id: 'windDisp33', excludeId: '33_number' },
+    { id: 'windDisp04L', excludeId: '04L_number' },
+    { id: 'windDisp04R', excludeId: '04R_number' } 
+  ];
+
+  groups.forEach(function(group) {
+    var groupElement = document.getElementById(group.id);
+    updateGroupText(groupElement, group.excludeId);
+  });
+
+  document.getElementById("windArrows").style.display = "none";
+}
+
