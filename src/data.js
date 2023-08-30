@@ -103,8 +103,7 @@ function setData(xmlDoc) {
     document.getElementById("metQfe").textContent = Math.floor(qnh - 6.5);
     document.getElementById("22R_windDir").innerHTML = randomWindDirection(windDirection, "arrow22R", "22R_maxDir", roundedWindSpeed);
     document.getElementById("22L_windDir").innerHTML = randomWindDirection(windDirection, "arrow22L", "22L_maxDir", roundedWindSpeed);
-    //EXTRA: document.getElementById("15_windDir").innerHTML = randomWindDirection(windDirection, "arrow15", "15_maxDir", roundedWindSpeed);
-    document.getElementById("15_windDir").innerHTML = "//";
+    document.getElementById("15_windDir").innerHTML = randomWindDirection(windDirection, "arrow15", "15_maxDir", roundedWindSpeed);
     document.getElementById("33_windDir").innerHTML = randomWindDirection(windDirection, "arrow33", "33_maxDir", roundedWindSpeed);
     document.getElementById("04L_windDir").innerHTML = randomWindDirection(windDirection, "arrow04L", "04L_maxDir", roundedWindSpeed);
     document.getElementById("04R_windDir").innerHTML = randomWindDirection(windDirection, "arrow04R", "04R_maxDir", roundedWindSpeed);
@@ -121,10 +120,10 @@ function setData(xmlDoc) {
       document.getElementById("22L_windSpd").innerHTML = "CALM";
       document.getElementById("arrow22L").style.display = "none";
 
-      //EXTRA: document.getElementById("15_windDir").style.display = "none";
-      //EXTRA: document.getElementById("15_maxDir").style.display = "none";
-      //EXTRA: document.getElementById("15_windSpd").innerHTML = "CALM";
-      //EXTRA: document.getElementById("arrow15").style.display = "none";
+      document.getElementById("15_windDir").style.display = "none";
+      document.getElementById("15_maxDir").style.display = "none";
+      document.getElementById("15_windSpd").innerHTML = "CALM";
+      document.getElementById("arrow15").style.display = "none";
 
       document.getElementById("33_windDir").style.display = "none";
       document.getElementById("33_maxDir").style.display = "none";
@@ -144,8 +143,7 @@ function setData(xmlDoc) {
     else {
       document.getElementById("22R_windSpd").innerHTML = roundedWindSpeed;
       document.getElementById("22L_windSpd").innerHTML = roundedWindSpeed;
-      //EXTRA:
-      document.getElementById("15_windSpd").innerHTML = "//";
+      document.getElementById("15_windSpd").innerHTML = roundedWindSpeed;
       document.getElementById("33_windSpd").innerHTML = roundedWindSpeed;
       document.getElementById("04R_windSpd").innerHTML = roundedWindSpeed;
       document.getElementById("04L_windSpd").innerHTML = roundedWindSpeed;
@@ -170,7 +168,7 @@ function setData(xmlDoc) {
 
       document.getElementById("arrow04R").style.display = "block";
       document.getElementById("arrow04L").style.display = "block";
-      // EXTRA: document.getElementById("arrow15").style.display = "block";
+      //document.getElementById("arrow15").style.display = "block"; EXTRA
       document.getElementById("arrow33").style.display = "block";
       document.getElementById("arrow22L").style.display = "block";
       document.getElementById("arrow22R").style.display = "block";
@@ -178,15 +176,14 @@ function setData(xmlDoc) {
 
     getMaxSpeed(roundedGust, roundedWindSpeed, "display22R", "22R_maxSpd", "22R_minSpd", "22R");
     getMaxSpeed(roundedGust, roundedWindSpeed, "display22L", "22L_maxSpd", "22L_minSpd", "22L");
-    //getMaxSpeed(roundedGust, roundedWindSpeed, "display15", "15_maxSpd", "15_minSpd", "15"); EXTRA
+    getMaxSpeed(roundedGust, roundedWindSpeed, "display15", "15_maxSpd", "15_minSpd", "15");
     getMaxSpeed(roundedGust, roundedWindSpeed, "display33", "33_maxSpd", "33_minSpd", "33");
     getMaxSpeed(roundedGust, roundedWindSpeed, "display04L", "04L_maxSpd", "04L_minSpd", "04L");
     getMaxSpeed(roundedGust, roundedWindSpeed, "display04R", "04R_maxSpd", "04R_minSpd", "04R");
 
     document.getElementById("22R_minSpd").innerHTML = getMinSpeed(roundedWindSpeed);
     document.getElementById("22L_minSpd").innerHTML = getMinSpeed(roundedWindSpeed);
-    //EXTRA: document.getElementById("15_minSpd").innerHTML = getMinSpeed(roundedWindSpeed);
-    document.getElementById("15_minSpd").innerHTML = "//";
+    document.getElementById("15_minSpd").innerHTML = getMinSpeed(roundedWindSpeed);
     document.getElementById("33_minSpd").innerHTML = getMinSpeed(roundedWindSpeed);
     document.getElementById("04R_minSpd").innerHTML = getMinSpeed(roundedWindSpeed);
     document.getElementById("04L_minSpd").innerHTML = getMinSpeed(roundedWindSpeed);
@@ -364,8 +361,7 @@ function setMetarData(xmlDoc) {
 
     document.getElementById("22R_maxDir").innerHTML = counterClockwise + "-" + clockwise;
     document.getElementById("22L_maxDir").innerHTML = counterClockwise + "-" + clockwise;
-    //EXTRA: document.getElementById("15_maxDir").innerHTML = counterClockwise + "-" + clockwise;
-    document.getElementById("15_maxDir").innerHTML = "//";
+    document.getElementById("15_maxDir").innerHTML = counterClockwise + "-" + clockwise;
     document.getElementById("33_maxDir").innerHTML = counterClockwise + "-" + clockwise;
     document.getElementById("04R_maxDir").innerHTML = counterClockwise + "-" + clockwise;
     document.getElementById("04L_maxDir").innerHTML = counterClockwise + "-" + clockwise;
@@ -384,8 +380,7 @@ function setMetarData(xmlDoc) {
   if (metar.includes("VRB")) {
     document.getElementById("22R_windDir").innerHTML = "VRB";
     document.getElementById("22L_windDir").innerHTML = "VRB";
-    //EXTRA: document.getElementById("15_windDir").innerHTML = "VRB";
-    document.getElementById("15_windDir").innerHTML = "//";
+    document.getElementById("15_windDir").innerHTML = "VRB";
     document.getElementById("33_windDir").innerHTML = "VRB";
     document.getElementById("04R_windDir").innerHTML = "VRB";
     document.getElementById("04L_windDir").innerHTML = "VRB";
@@ -520,15 +515,7 @@ function setMetarData(xmlDoc) {
     document.getElementById('RVR_values_04R').style.display = "none";
   }
   if (rvr_15 == null && rvr_33 == null) {
-    //EXTRA: (normally only the one line below)
-    // document.getElementById('RVR_values_15').style.display = "none";
-    document.getElementById('RVR_values_15').style.display = "block";
-    document.getElementById("rvr_15_1").textContent = "//"
-    document.getElementById("rvr_15_2").textContent = "//"
-    document.getElementById("rvr_15_3").textContent = "//"
-    document.getElementById("rvr_15_1").style.fill = "darkred";
-    document.getElementById("rvr_15_2").style.fill = "darkred";
-    document.getElementById("rvr_15_3").style.fill = "darkred";
+    document.getElementById('RVR_values_15').style.display = "none";
   }
   if (rvr_15 == null && rvr_33 == null && rvr_04L == null && rvr_22R == null && rvr_04R == null && rvr_22L == null) {
     document.getElementById("metRvr").textContent = "";
@@ -565,6 +552,7 @@ function setMetarData(xmlDoc) {
   if (windProblems) {
     noWindData();
   }
+  rwy15Closed();
 }
 
 function makeAtisText(atisText) {
@@ -785,3 +773,13 @@ function noWindData() {
   document.getElementById("windArrows").style.display = "none";
 }
 
+function rwy15Closed() {
+  var groups = [{id: 'windDisp15', excludeId: '15_number'}];
+
+  groups.forEach(function(group) {
+    var groupElement = document.getElementById(group.id);
+    updateGroupText(groupElement, group.excludeId);
+  });
+
+  document.getElementById("arrow15").style.display = "none";
+}
