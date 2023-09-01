@@ -129,3 +129,7 @@ footer {
 .legendLabel {
     color: white;
 }
+
+.tickLabel {
+    color: #c0d0e0;
+}

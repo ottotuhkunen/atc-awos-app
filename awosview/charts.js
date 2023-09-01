@@ -140,33 +140,59 @@ function initializeChart(xmlDoc) {
     var minTime2 = new Date().getTime() - 8200000;
 
     // wind direction
-    const plotDirections = $.plot("#windDirectionChart", [{
-        data: windDirectionData,
-        lines: { show: true },
-        points: { show: false },
-        color: "#2b4c70",
-        label: "DIR 2min AVG"
-    }], {
+    const plotDirections = $.plot("#windDirectionChart", [
+        {
+            data: windDirectionData,
+            lines: { show: true },
+            points: { show: false },
+            color: "#3495e5",
+            label: "DIR 2min AVG",
+            yaxis: 1
+        },
+        {
+            data: [[null, null]],
+            lines: { show: false },
+            points: { show: false },
+            yaxis: 2
+        }
+    ], {
         xaxis: {
             mode: "time",
             timeformat: "%H:%M",
             timezone: "UTC",
             min: minTime,
+            tickSize: [2, "minute"]
         },
-        yaxis: {
-            ticks: [
-                [0, "N"],
-                [45, "NE"],
-                [90, "E"],
-                [125, "SE"],
-                [180, "S"],
-                [225, "SW"],
-                [270, "W"],
-                [315, "NW"],
-                [360, "N"],
-            ],
-            tickFormatter: (v, axis) => `${axis.ticks[v][1]} = ${v.toFixed(0).padStart(3, '0')}`,
-        },
+        yaxes: [
+            {
+                ticks: [
+                    [0, "N"],
+                    [45, "NE"],
+                    [90, "E"],
+                    [135, "SE"],
+                    [180, "S"],
+                    [225, "SW"],
+                    [270, "W"],
+                    [315, "NW"],
+                    [360, "N"]
+                ],
+                tickFormatter: (v, axis) => {
+                    return `${v.toFixed(0).padStart(3, '0')} (${axis.ticks.find(t => t[0] === v)[1]})`;
+                }
+            },
+            { 
+                position: "right",
+                min: 0,
+                max: 360,
+                ticks: [
+                    [0, "0°"],
+                    [90, "90°"],
+                    [180, "180°"],
+                    [270, "270°"],
+                    [360, "360°"]
+                ]
+            }
+        ],
         legend: {
             show: true,
             position: "nw",
@@ -182,7 +208,7 @@ function initializeChart(xmlDoc) {
             data: windSpeedData,
             lines: { show: true },
             points: { show: false },
-            color: "#2b4c70",
+            color: "#3495e5",
             label: "SPD 2min AVG"
         },
         {
@@ -198,6 +224,13 @@ function initializeChart(xmlDoc) {
             timeformat: "%H:%M",
             timezone: "UTC",
             min: minTime,
+            tickSize: [2, "minute"]
+        },
+        yaxis: {
+            position: "right",
+            tickFormatter: function (val, axis) {
+                return Math.round(val) + " kt";
+            }
         },
         legend: {
             show: true,
@@ -215,7 +248,7 @@ function initializeChart(xmlDoc) {
             data: tempData,
             lines: { show: true },
             points: { show: false },
-            color: "#2b4c70",
+            color: "#3495e5",
             label: "T",
             yaxis: 1
         },
@@ -223,7 +256,7 @@ function initializeChart(xmlDoc) {
             data: dewData,
             lines: { show: true },
             points: { show: false },
-            color: "#3495e5",
+            color: "#2b4c70",
             label: "DP",
             yaxis: 1
         },
@@ -241,12 +274,13 @@ function initializeChart(xmlDoc) {
             timeformat: "%H:%M",
             timezone: "UTC",
             min: minTime2,
+            tickSize: [30, "minute"]
         },
         yaxes: [
             {
-                tickFormatter: function(val, axis) {
-                    return parseFloat(val).toFixed(1); // One decimal place
-                },
+                tickFormatter: function (val, axis) {
+                    return Math.round(val) + "°C";
+                }
             },
             { 
                 position: "right",
@@ -272,16 +306,21 @@ function initializeChart(xmlDoc) {
     // qnh
     const plotQnh = $.plot("#qnhChart", [{
         data: qnhData,
-        lines: { show: true },
-        points: { show: false },
+        lines: { show: false },
+        points: { show: true, fillColor: "green", lineWidth: 0, radius: 1.5 },
+        shadowSize: 0,
         label: "QNH",
-        color: "darkgreen"
+        color: "green"
     }], {
         xaxis: {
             mode: "time",
             timeformat: "%H:%M",
             timezone: "UTC",
             min: minTime2,
+            tickSize: [30, "minute"]
+        },
+        yaxis: {
+            position: "right",
         },
         legend: {
             show: true,
@@ -308,7 +347,7 @@ function initializeChart(xmlDoc) {
         }
     } else {
         // Use 5km intervals if the max visibility is above 10km
-        for (let i = 0; i <= maxVisibility; i += 5000) {
+        for (let i = 0; i <= maxVisibility; i += 10000) {
             ticks.push([i, i/1000 + " km"]);
         }
     }
@@ -318,6 +357,7 @@ function initializeChart(xmlDoc) {
         data: visibilityData,
         lines: { show: false },
         points: { show: true, fillColor: "#3495e5", lineWidth: 0, radius: 1.5 },
+        shadowSize: 0,
         label: "PVIS 10min",
         color: "#3495e5"
     }], {
@@ -326,9 +366,11 @@ function initializeChart(xmlDoc) {
             timeformat: "%H:%M",
             timezone: "UTC",
             min: minTime2,
+            tickSize: [30, "minute"]
         },
         yaxis: {
-            ticks: ticks
+            ticks: ticks,
+            position: "right"
         },
         legend: {
             show: true,
@@ -343,9 +385,9 @@ function initializeChart(xmlDoc) {
     const plotCb = $.plot("#cbChart", [{
         data: cbState,
         lines: { show: false },
-        points: { show: true, fillColor: "darkred", lineWidth: 0, radius: 3 },
+        points: { show: true, fillColor: "red", lineWidth: 0, radius: 3 },
         label: "CB 5min",
-        color: "darkred"
+        color: "red"
     }], {
         xaxis: {
             mode: "time",

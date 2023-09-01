@@ -121,3 +121,7 @@ footer {
     border: 1px solid white;
     background-color: #f0f0f5;
 }
+
+.tickLabel {
+    color: black;
+}
