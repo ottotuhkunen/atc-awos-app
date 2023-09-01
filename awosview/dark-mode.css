@@ -3,7 +3,7 @@
 }
 
 body {
-    background-color: #23303f;
+    background-color: #203040;
     color: lightgray;
 }
 
@@ -79,4 +79,53 @@ footer {
     background-color: #384554;
     border: 1px #708090 solid;
     background-image: url('images/compass.png');
+}
+
+.topNavButton {
+    border: 1px solid #305070;
+    color: white;
+    background-color: rgb(40,50,60);
+}
+
+.topNavActive {
+    background-color: rgb(80,90,100);
+}
+
+.topNavIcon {
+    filter: invert(75%) sepia(35%) saturate(3850%) hue-rotate(172deg) brightness(100%) contrast(100%);
+}
+
+.topNav {
+    background-color: rgb(10,20,30);
+}
+
+.homeIcon {
+    filter: invert(75%) sepia(35%) saturate(3850%) hue-rotate(172deg) brightness(100%) contrast(100%);
+}
+
+#metarsTable {
+    background-color: #203040;
+}
+
+#metarsTable th {
+    border: 1px solid #304050;
+    background-color: #203040;
+}
+
+#metarsTable td {
+    border: 1px solid #304050;
+    background-color: #102030;
+}
+
+.chartbox {
+    background-color: #102030;
+    border: 0.5px solid gray; 
+}
+
+.legend {
+    background-color: rgb(70,80,90);
+}
+
+.legendLabel {
+    color: white;
 }

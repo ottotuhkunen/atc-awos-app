@@ -2,7 +2,31 @@
     align-items: center;
     text-align: center;
     margin: 0;
-    height: 80px;
+    height: 30px;
+}
+
+.topNavButton {
+    height: 34px;
+    text-align: left;
+    width: 120px;
+    font-size: 10pt;
+    font-weight: 400;
+    padding-left: 38px;
+    position: relative;
+    text-shadow: -1px -1px 5px rgba(40,40,40,0.6);
+    border-radius: 1px;
+    cursor: pointer;
+}
+
+.topNavActive {
+    cursor: default;
+}
+
+.topNavIcon {
+    width: 20px; 
+    position: absolute;
+    top: 7px;
+    left: 8px;
 }
 
 body {
@@ -10,8 +34,6 @@ body {
     font-family: "FreeSans", "Helvetica", sans-serif;
     color: lightgray;
     user-select: none;
-    overflow-y: hidden;
-    overflow: hidden;
 }
 
 span {
@@ -19,11 +41,6 @@ span {
     font-weight: 100;
     margin-left: 8px;
     vertical-align: text-top;
-}
-
-table {
-    min-width: 100%;
-    align-items: start;
 }
 
 th {
@@ -74,16 +91,23 @@ th {
 
 .title {
     position: absolute;
-    left: 10px;
-    top: 10px;
+    left: 36px;
+    top: 8px;
     margin: 0;
     font-weight: 400;
     font-size: 12pt;
 }
 
+.homeIcon {
+    width: 18px;
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    cursor: pointer;
+}
+
 #awosTopContainer {
     width: 100%;
-    margin-top: -44px;
 }
 
 #awosTopMenu {
@@ -91,6 +115,8 @@ th {
     border-collapse: collapse;
     font-size: 6pt;
     font-family: "FreeSans", "Helvetica", sans-serif;
+    min-width: 100%;
+    align-items: start;
 }
 
 #awosTopMenu td, th {
@@ -109,6 +135,7 @@ td {
     margin-top: 0;
     margin-left: 6px;
     font-size: 14pt;
+    margin-bottom: 0;
 }
 
 #activeRunway {
@@ -219,13 +246,11 @@ td {
 }
 
 #mainContainer {
-    position: absolute;
-    left: 0px;
-    top: 112px;
-    bottom: 10px;
-    right: 0px;
     width: 100%;
-    height: calc(100vh - 124px);
+    height: calc(100vh - 165px);
+    margin-top: 0;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .container {
@@ -268,8 +293,8 @@ footer {
 
 #compassDiv {
     position: absolute;
-    right: 50px;
-    top: 30px;
+    right: 4%;
+    top: 160px;
     width: 2.8vw;
     height: 8vw; 
     max-width: 40px;
@@ -319,4 +344,82 @@ footer {
     .title {
         display: none;
     }
+}
+
+.chartsContainer {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chartwidget {
+    width: 450px; 
+    height: 250px;
+}
+
+.flot-tick-label {
+    font-family: "FreeSans", "Helvetica", sans-serif;
+    font-weight: bold;
+    font-size: 9pt;
+}
+
+.chartTitle {
+    font-size: 9pt;
+    font-weight: bold;
+    margin-top: 2px;
+    margin-bottom: -5px;
+}
+
+.legendLabel {
+    font-family: "FreeSans", "Helvetica", sans-serif !important;
+    font-weight: bold !important;
+    font-size: 9pt !important;
+}
+
+#screenCleaningContainer {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 540px;
+    height: 120px;
+    border: 1px solid gray;
+    border-radius: 4px;
+}
+
+#metarsTable {
+    border-collapse: collapse;
+    box-shadow: none;
+    width: 100%;
+    overflow: visible;
+}
+
+#metarsTable th {
+    text-align: center;
+    font-size: 10pt;
+    height: 28px;
+    vertical-align: middle;
+}
+
+#metarsTable td {
+    white-space: pre-wrap;
+    overflow: visible;
+    text-overflow: clip;
+    font-family: "DejaVu Sans Mono", monospace;
+    font-size: 10pt;
+}
+
+#metarsContainer {
+    position: absolute;
+    top: 180px;
+    left: 10px;
+    right: 10px;
+}
+
+.chartbox {
+    border: 1px solid gray; 
+    border-radius: 4px; 
+    margin: 4px;
 }

@@ -1,5 +1,5 @@
 #topContainer {
-    background: linear-gradient(to bottom,  rgba(64,150,238,1) 0%,rgba(96,171,248,1) 56%,rgba(145,200,255,1) 100%);
+    background: linear-gradient(to bottom,  rgba(145,200,255,1) 0%,rgba(96,171,248,1) 44%,rgba(64,150,238,1) 100%);
 }
 
 table {
@@ -25,6 +25,10 @@ body {
 
 #awosTopContainer {
     background-color: #e6f2fe;
+}
+
+.topNav {
+    background: linear-gradient(to bottom,  rgba(64,150,238,1) 0%,rgba(96,171,248,1) 56%,rgba(145,200,255,1) 100%);
 }
 
 #awosTopMenu {
@@ -73,11 +77,11 @@ body {
 .maxWindHighlight {fill:#f3cd76;}
 .variableHighlight {fill:#d1862f;}
 .variableTextHighlight {fill:black;}
-.topMenuHighlight {background-color: #e3bb73;}
+.topMenuHighlight {background-color: #e3bb73; box-shadow: inset 0px 10px 10px -9px rgba(36, 36, 36, 0.8);}
 .noAtisHighlight {background-color: #e66464;}
 
 footer {
-    background-color: #7aabde;
+    background: linear-gradient(to bottom, #76bbff 0%, #60abf8 100%);
 }
 
 #compassDiv {
@@ -92,4 +96,28 @@ footer {
 
 .footerText2 { 
     color: white;
+}
+
+.topNavButton {
+    border: 1px solid #4682B4;
+    color: white;
+    background-color: #80b0e0;
+}
+
+.topNavActive {
+    background: linear-gradient(to bottom,  rgba(57,128,204,1) 0%,rgba(135,180,229,1) 100%);
+}
+
+#metarsTable {
+    border: 1px solid white;
+}
+
+#metarsTable th {
+    border: 1px solid white;
+    background-color: #e7eeee;
+}
+
+#metarsTable td {
+    border: 1px solid white;
+    background-color: #f0f0f5;
 }

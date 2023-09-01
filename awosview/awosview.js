@@ -2,13 +2,18 @@
 var windDirection = 0;
 var windSpeed = 0;
 var windCalm = false;
+var chartData;
+let fmiStoredId = "101118";
+let storedICAO = "EFTP";
+let currentTime = new Date().getTime();
+let fiveMinutesAgo = currentTime - (5 * 60 * 1000);
+let cbState = [[fiveMinutesAgo, 0], [currentTime, 0]];
 
 // get UTC time displayed on AWOS
 function getDate(){
     var dateUtc = new Date();
     var day = dateUtc.getUTCDate();
     var month = dateUtc.getUTCMonth() + 1;
-    var year = dateUtc.getUTCFullYear();
     if ( day < 10 ) { day = "0" + day; }
     if ( month < 10 ) { month = "0" + month; }
 
@@ -233,6 +238,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // load current weather data from FMI
 async function loadFMI(icaoCode, fmisid, qfeSub) {
+    fmiStoredId = fmisid;
+    storedICAO = icaoCode;
     try {
       const response = await fetch(`https://opendata.fmi.fi/wfs?service=WFS&version=2.0.0&request=getFeature&storedquery_id=fmi::observations::weather::simple&fmisid=${fmisid}`);
   
@@ -821,9 +828,11 @@ function setMetarData(xmlDoc) {
         if (metar.includes("CB")) {
             cbField.textContent = "CB";
             document.getElementById("cbBackground").classList.add("topMenuHighlight");
+            cbState = [[fiveMinutesAgo, 2], [currentTime, 2]];
         } else {
             cbField.textContent = "";
             document.getElementById("cbBackground").classList.remove("topMenuHighlight");
+            cbState = [[fiveMinutesAgo, 1], [currentTime, 1]];
         }
     }
 
@@ -1467,9 +1476,18 @@ document.addEventListener('DOMContentLoaded', function() {
         if (currentTheme === 'dark') {
             themeStylesheet.setAttribute('href', 'dark-mode.css');
             themeToggleButton.textContent = "To light mode";
+            document.querySelector('.logo').src = 'images/vatsca.png';
+            if (document.getElementById("chartsContainer").style.display == "flex") {
+                loadCharts(fmiStoredId);
+            }
         } else {
             themeStylesheet.setAttribute('href', 'light-mode.css');
             themeToggleButton.textContent = "To dark mode";
+            document.querySelector('.logo').src = 'images/vatscaDark.png';
+
+            if (document.getElementById("chartsContainer").style.display == "flex") {
+                loadCharts(fmiStoredId);
+            }
         }
     }
 });

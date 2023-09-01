@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title>Mikkeli ❄️</title>
         <link rel="icon" href="../src/favicon.ico">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=0.6, maximum-scale=1" />
         <meta name="apple-mobile-web-app-capable" content="yes"/>
         <meta http-equiv="Pragma" content="no-cache" />
         <meta http-equiv="Expires" content="0" />
@@ -15,9 +15,15 @@
         <link rel="stylesheet" href="https://use.typekit.net/lft2uwa.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.time.min.js"></script>
+        <script src="jquery.flot.axislabels.js"></script>
+        <script src="charts.js"></script>
     </head>
     <body onload="getDate(); loadData('EFMI', '855522', '12.0');">
         <div id="topContainer">
+            <img src="images/home.png" alt="home" class="homeIcon" onclick="airfieldView()">
             <h3 class="title">SIMULATOR AWOSVIEW - EFMI</h3>
 
             <select id="actions" onchange="performAction(this.value)">
@@ -50,6 +56,24 @@
             <img src="images/vatsca.png" alt="logo" class="logo">
         </div>
         <div id="awosTopContainer">
+            <div class="topNav">
+                <button id="airfieldViewButton" class="topNavButton topNavActive" onclick="airfieldView()">
+                    <img src="images/airfieldView.png" alt="airfieldView" class="topNavIcon">
+                    Airfield<br>view
+                </button>
+                <button id="chartdisplayButton" class="topNavButton" onclick="chartDisplay()">
+                    <img src="images/chart.png" alt="chart" class="topNavIcon">
+                    Chart<br>display
+                </button>
+                <button id="latestMETARsButton" class="topNavButton" onclick="latestMetarView()">
+                    <img src="images/metars.png" alt="chart" class="topNavIcon">
+                    Latest<br>METARs
+                </button>
+                <button id="screenCleaningButton" class="topNavButton" onclick="screenCleaning()">
+                    <img src="images/screen.png" alt="chart" class="topNavIcon">
+                    Screen<br>cleaning
+                </button>
+            </div>
             <table id="awosTopMenu">
                 <tr>
                     <td class="runwayContainer" style=" border-left: none;">RWY
@@ -407,6 +431,47 @@
                 </g>
             </svg>
             <div id="compassDiv" style="transform: rotate(-23deg);" data-state="off" onclick="compassPressed(23, 'EFMI')"></div>
+        </div>
+        <!-- Charts -->
+        <div id="chartsContainer" class="chartsContainer" style="display: none;">
+            <div class="chartbox">
+                <p class="chartTitle" style="padding-left: 24pt;">Wind dir (MAG) <gray style="color: gray;">(EFMIRWY1129MIDL)</gray></p>
+                <div class="chartwidget" id="windDirectionChart"></div>
+            </div>
+            <div class="chartbox">
+                <p class="chartTitle" style="padding-left: 16pt;">Wind speed (kt) <gray style="color: gray;">(EFMIRWY1129MIDL)</gray></p>
+                <div class="chartwidget" id="windSpeedChart"></div>
+            </div>
+            <div class="chartbox">
+                <p class="chartTitle" style="padding-left: 26pt;">Temp, dew point, humidity <gray style="color: gray;">(EFMIRWY1129MIDL)</gray></p>
+                <div class="chartwidget" id="temperaturesChart"></div>
+            </div>
+            <div class="chartbox">
+                <p class="chartTitle" style="padding-left: 36pt;">QNH (hPa) <gray style="color: gray;">(EFMIRWY1129MIDL)</gray></p>
+                <div class="chartwidget" id="qnhChart"></div>
+            </div>
+            <div class="chartbox">
+                <p class="chartTitle" style="padding-left: 36pt;">Prevailing VIS <gray style="color: gray;">(EFMIGENERIC)</gray></p>
+                <div class="chartwidget" id="visibilityChart"></div>
+            </div>
+            <div class="chartbox">
+                <p class="chartTitle" style="padding-left: 26pt;">CB on/off <gray style="color: gray;">(EFMIGENERIC)</gray></p>
+                <div class="chartwidget" id="cbChart"></div>
+            </div>
+        </div>
+        <!-- Latest METARs -->
+        <div id="metarsContainer" style="display: none;">
+            <table id="metarsTable">
+                <tr>
+                    <th>Report</th>
+                    <th>Sent</th>
+                </tr>
+            </table>
+        </div>
+        <!-- Screen cleaning -->
+        <div id="screenCleaningContainer" style="display: none;">
+            <br>
+            <h4>You may now clean the touch screen.<br>Use the home button in the top menu to return to AWOS.</h4>
         </div>
     </body>
     <footer>
