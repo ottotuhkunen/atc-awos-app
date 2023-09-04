@@ -168,7 +168,7 @@ function setData(xmlDoc) {
 
       document.getElementById("arrow04R").style.display = "block";
       document.getElementById("arrow04L").style.display = "block";
-      //document.getElementById("arrow15").style.display = "block"; EXTRA
+      document.getElementById("arrow15").style.display = "block";
       document.getElementById("arrow33").style.display = "block";
       document.getElementById("arrow22L").style.display = "block";
       document.getElementById("arrow22R").style.display = "block";
@@ -552,7 +552,7 @@ function setMetarData(xmlDoc) {
   if (windProblems) {
     noWindData();
   }
-  rwy15Closed();
+  // rwy15Closed();
 }
 
 function makeAtisText(atisText) {
