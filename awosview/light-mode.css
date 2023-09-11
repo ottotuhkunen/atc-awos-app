@@ -125,3 +125,12 @@ footer {
 .tickLabel {
     color: black;
 }
+
+.legend {
+    background-color: white;
+    box-shadow: inset 0px 10px 10px -9px rgba(36, 36, 36, 0.8) !important;
+}
+
+.legendLabel {
+    color: #545454 !important;
+}

@@ -732,7 +732,7 @@ function dep15() {
 
     //if pressed true 
     if (checkbox.checked == true) {
-        // EXTRA: document.getElementById("arrow15").style.fill = "black";
+        document.getElementById("arrow15").style.fill = "black";
         document.getElementById("display15").style.fill = "white";
         document.getElementById("15_windSpd").style.fill = "black";
         document.getElementById("15_windDir").style.fill = "black";
@@ -757,7 +757,7 @@ function dep15() {
         document.getElementById("dep15").style.display = "none";
         //if arr is inactive
         if (otherType.checked == false) {
-            //EXTRA: document.getElementById("arrow15").style.fill = "none";
+            document.getElementById("arrow15").style.fill = "none";
             document.getElementById("display15").style.fill = "#DADADA";
             document.getElementById("15_windSpd").style.fill = "#B9B8BA";
             document.getElementById("15_windDir").style.fill = "#B9B8BA";
@@ -795,7 +795,7 @@ function arr15() {
 
     //if pressed true 
     if (checkbox.checked == true) {
-        //EXTRA: document.getElementById("arrow15").style.fill = "black";
+        document.getElementById("arrow15").style.fill = "black";
         document.getElementById("display15").style.fill = "white";
         document.getElementById("15_windSpd").style.fill = "black";
         document.getElementById("15_windDir").style.fill = "black";
@@ -820,7 +820,7 @@ function arr15() {
         document.getElementById("arr15").style.display = "none";
         //if arr is inactive
         if (otherType.checked == false) {
-            //EXTRA: document.getElementById("arrow15").style.fill = "none";
+            document.getElementById("arrow15").style.fill = "none";
             document.getElementById("display15").style.fill = "#DADADA";
             document.getElementById("15_windSpd").style.fill = "#B9B8BA";
             document.getElementById("15_windDir").style.fill = "#B9B8BA";

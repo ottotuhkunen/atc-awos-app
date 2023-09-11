@@ -1477,17 +1477,10 @@ document.addEventListener('DOMContentLoaded', function() {
             themeStylesheet.setAttribute('href', 'dark-mode.css');
             themeToggleButton.textContent = "To light mode";
             document.querySelector('.logo').src = 'images/vatsca.png';
-            if (document.getElementById("chartsContainer").style.display == "flex") {
-                loadCharts(fmiStoredId);
-            }
         } else {
             themeStylesheet.setAttribute('href', 'light-mode.css');
             themeToggleButton.textContent = "To dark mode";
             document.querySelector('.logo').src = 'images/vatscaDark.png';
-
-            if (document.getElementById("chartsContainer").style.display == "flex") {
-                loadCharts(fmiStoredId);
-            }
         }
     }
 });

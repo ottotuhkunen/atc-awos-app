@@ -7,6 +7,7 @@ body {
     background-color: rgb(232,232,232);
     background-image: url('pattern.png');
     background-repeat: repeat;
+    overflow: hidden;
 }
 p {
     margin-top: 2px;
@@ -451,15 +452,15 @@ svg { width: 100%; }
 .st6{font-size:29px;}
 .st7{fill:#DADADA;}
 .st8{font-family:'Verdana';}
-.st9{font-size:29px;}
+.st9{font-size:34px;}
 .st10{fill:none;stroke:#000000;stroke-miterlimit:10; transform-box: fill-box; transform-origin: center;}
 .st11{fill:#D80000;}
 .st12{font-family:'Verdana';}
 .st13{font-size:18px;}
 .st14{fill:#F09B36;stroke:#000000;stroke-miterlimit:10;display: none;}
-.rwycc1{fill:#515151;}
-.rwycc2{font-size:16px;}
-.rwycc3{fill:none;stroke:#B5B5B5;stroke-miterlimit:10;}
+.rwycc1{fill:#333333;}
+.rwycc2{font-size:21px;}
+.rwycc3{fill:none;stroke:#dadada;stroke-miterlimit:10; stroke-width: 2px; fill: #ececec;}
 .st15{fill:#4397C3;stroke:#000000;stroke-miterlimit:10;display: none;}
 .st16{text-anchor: end;}
 .st17{font-size:17px; fill:#404040;}

@@ -123,11 +123,11 @@ footer {
 }
 
 .legend {
-    background-color: rgb(70,80,90);
+    background-color: rgb(70,80,90) !important;
 }
 
 .legendLabel {
-    color: white;
+    color: white !important;
 }
 
 .tickLabel {
