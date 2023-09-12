@@ -417,7 +417,7 @@ svg { width: 100%; }
 
 #leftNavSvg {
     height: 100%;
-    max-height: 900px;
+    max-height: 700px;
 }
 .metButtons {
     background-color: #E6E6E6; 
@@ -488,9 +488,12 @@ th {
     padding-top: 12px;
     padding-bottom: 14px;
 }
-@media (max-width: 1100px) {
-    table { font-size: 8pt; }
-    .snowtamContainer h2 { font-size: 12pt; }
+@media (max-width: 1000px) {
+    table { font-size: 1.5vw; }
+    .snowtamContainer h3 { font-size: 1.5vw; }
+    #snowtamTitle { font-size: 1.5vw; }
+    #snowtamTime1, #snowtamTime2, #snowtamLine1 { font-size: 1.5vw; }
+    .snowtamContainer h2 { font-size: 2vw; }
 }
 
 #metButton1, #snowtamButton1 { pointer-events: none; }
