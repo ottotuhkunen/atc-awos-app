@@ -976,20 +976,25 @@ function loadActualMet(xml) {
             const allCloudsElement = document.getElementById('metClouds');
             cloudAltPreset = String(Math.floor(cloud.base_feet_agl / 100)).padStart(3, '0'); 
 
-
             // Update fields
             if (allCloudsText.includes("CAVOK")) {
                 if (allCloudsElement) allCloudsElement.textContent = "";
                 if (feetElement) feetElement.textContent = "";
                 if (codeElement) codeElement.textContent = "";
                 document.getElementById("metWx").textContent = "CAVOK";
-            } else {
+            } 
+            else if (allCloudsText.includes("CLR")) {
+                if (allCloudsElement) allCloudsElement.textContent = "";
+                if (feetElement) feetElement.textContent = "";
+                if (codeElement) codeElement.textContent = "";
+                document.getElementById("metWx").textContent = "";
+            } 
+            else {
                 if (feetElement) feetElement.textContent = cloudAltPreset;
                 if (codeElement) codeElement.textContent = cloud.code;
                 if (allCloudsElement) allCloudsElement.textContent = allCloudsText;
                 document.getElementById("metWx").textContent = allConditionsText;
             }
-            
         });
     })
     .catch(error => console.log('error', error));
