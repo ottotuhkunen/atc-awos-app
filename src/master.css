@@ -97,12 +97,17 @@ hr {
 }
 .container {
     position: absolute;
-    left: 84px;
+    left: 12.5vh;
     top: 4vw;
     bottom: 100px;
     right: 0px;
     width: calc(100% - 84px);
     height: calc(100vh - 4vw - 100px);
+}
+@media (min-height: 740px) {
+    .container {
+        left: 92px;
+    }
 }
 @media (min-width: 1200px) {
     .container {
@@ -492,10 +497,11 @@ svg { width: 100%; }
     width: calc(100%);
     height: calc(100vh - 4vw - 110px);
 }
+
+/* SNOWTAM */
+
 table {
-    text-align: left;
     margin-top: 12px;
-    color: red;
     width: 100%;
     border-collapse: collapse;
 }
@@ -511,6 +517,35 @@ th {
     #snowtamTitle { font-size: 1.5vw; }
     #snowtamTime1, #snowtamTime2, #snowtamLine1 { font-size: 1.5vw; }
     .snowtamContainer h2 { font-size: 2vw; }
+}
+.snowtamTwyLeft {
+    border-right: none;
+    text-align: left;
+    width: 23.333%;
+    font-weight: normal;
+    font-size: 9pt;
+}
+.snowtamTwyRight {
+    border-left: none;
+    text-align: right;
+    width: 10%;
+    font-weight: normal;
+    font-size: 9pt;
+}
+.snowtamTwyTitle {
+    font-size: 12pt;
+}
+
+@media (max-width: 1070px) {
+    .snowtamTwyLeft {
+        font-size: 1vw;
+    }
+    .snowtamTwyRight {
+        font-size: 1vw;
+    }
+    .snowtamTwyTitle {
+        font-size: 1.1vw;
+    }
 }
 
 #metButton1, #snowtamButton1 { pointer-events: none; }
