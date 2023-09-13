@@ -495,9 +495,9 @@ svg { width: 100%; }
 .st12{font-family:'Verdana';}
 .st13{font-size:18px;}
 .st14{fill:#F09B36;stroke:#000000;stroke-miterlimit:10;display: none;}
-.rwycc1{fill:#333333;}
-.rwycc2{font-size:21px;}
-.rwycc3{fill:none;stroke:#dadada;stroke-miterlimit:10; stroke-width: 2px; fill: #ececec;}
+.rwyccBox1{fill:#333333;}
+.rwyccBox2{font-size:21px;}
+.rwyccBox3{fill:none;stroke:#dadada;stroke-miterlimit:10; stroke-width: 2px; fill: #ececec;}
 .st15{fill:#4397C3;stroke:#000000;stroke-miterlimit:10;display: none;}
 .st16{text-anchor: end;}
 .st17{font-size:17px; fill:#404040;}
