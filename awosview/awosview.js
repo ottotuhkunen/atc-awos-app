@@ -1476,11 +1476,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (currentTheme === 'dark') {
             themeStylesheet.setAttribute('href', 'dark-mode.css');
             themeToggleButton.textContent = "To light mode";
-            document.querySelector('.logo').src = 'images/vatsca.png';
         } else {
             themeStylesheet.setAttribute('href', 'light-mode.css');
             themeToggleButton.textContent = "To dark mode";
-            document.querySelector('.logo').src = 'images/vatscaDark.png';
         }
     }
 });

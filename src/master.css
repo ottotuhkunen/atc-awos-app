@@ -43,10 +43,16 @@ hr {
     width: 100%;
 }
 .leftnav {
-    width: 130px;
     position: absolute;
     top: 4vw;
     bottom: 0;
+    border-right: 2px inset #f4f4f4;
+    border-radius: 4px;
+}
+@media (min-width: 1200px) {
+    .leftnav {
+        top: 48px;
+    }
 }
 .button-container {
     display: flex;
@@ -91,12 +97,17 @@ hr {
 }
 .container {
     position: absolute;
-    left: 80px;
+    left: 84px;
     top: 4vw;
     bottom: 100px;
     right: 0px;
-    width: calc(100% - 80px);
+    width: calc(100% - 84px);
     height: calc(100vh - 4vw - 100px);
+}
+@media (min-width: 1200px) {
+    .container {
+        top: 48px;
+    }
 }
 .warningWindow {
     display: none;
@@ -106,18 +117,23 @@ hr {
 }
 footer {
     position: fixed;
-    left: 80px;
+    left: 12vh;
     bottom: 0;
     right: 0;
     height: 12vh;
     background-color: #E8E8E8;
-    border: 1px outset;
+    border: 2px outset #f4f4f4;
     border-radius: 4px;
     padding: 5px;
 }
+@media (min-height: 740px) {
+    footer {
+        left: 88px;
+    }
+}
 .metar {
     background-color: white;
-    border: 1px solid gray;
+    border: 1px solid #dadada;
     height: 100%;
     font-size: 1.4vw;
     padding-left: 4pt;
@@ -413,6 +429,7 @@ svg { width: 100%; }
 .leftNav9_1{fill:url(#metReportBackgroundGradient2);stroke:#C0D7F0;stroke-width:0.25;stroke-miterlimit:10;}
 .leftNav11{fill:url(#setupBackgroundGradient);stroke:#C0D7F0;stroke-width:0.25;stroke-miterlimit:10;}
 .leftNav11_1{fill:url(#setupBackgroundGradient2);stroke:#C0D7F0;stroke-width:0.25;stroke-miterlimit:10;}
+.leftNav12{fill:url(#awosViewBackgroundGradient);stroke:#C0D7F0;stroke-width:0.25;stroke-miterlimit:10;}
 .leftNav10{font-size:8px;}
 
 #leftNavSvg {
@@ -531,11 +548,12 @@ th {
     padding-left: 8pt;
     padding-right: 8pt;
     border-radius: 2px;
-    border: none;
     font-size: 9pt;
     font-weight: 600;
     text-align: center;
     color: #111;
-    background: linear-gradient(#C0D7F0, #85A7CC);
+    background: linear-gradient(#e4f0ff, #bfd6f0);
     cursor: pointer;
+    border: 0.5px solid #b3cbe6;; 
+    border-radius: 8px; 
 }

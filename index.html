@@ -156,7 +156,18 @@
                     <image style="overflow:visible;" width="512" height="512" xlink:href="src/settings.png" transform="matrix(0.0722 0 0 0.0722 9.0096 356.6096)"></image>
                     <polygon id="setupTriangle" class="leftNav4" points="56.1,371.74 56.1,388.54 65.25,379.94" style="display:none;"/>
                 </g>
+                <g id="buttonAwosview" style="cursor: pointer;" onclick="window.location.href='awosview/eftp.html'">
+                    <linearGradient id="awosViewBackgroundGradient" gradientUnits="userSpaceOnUse" x1="27.5" y1="101.4787" x2="27.5" y2="153.0186" gradientTransform="matrix(1 0 0 -1 0 566)">
+                        <stop  offset="0" style="stop-color:#C0D7F0"/>
+                        <stop  offset="1" style="stop-color:#E5F2FF"/>
+                    </linearGradient>
+                    <path id="awosViewBackground" class="leftNav12" d="M3.7,464.5h47.6c1.7,0,3-1.4,3-3V416c0-1.7-1.4-3-3-3H3.7c-1.7,0-3,1.4-3,3v45.4C0.7,463.2,2,464.5,3.7,464.5z"/>
+                    <polygon id="awosViewTriangle" class="leftNav4" points="56.1,430.4 56.1,447.2 65.2,438.6" style="display:none;"/>
+                    <text transform="matrix(1 0 0 1 4.4 461.3658)" class="leftNav2 leftNav3">AWOSVIEW</text>
+                    <image style="overflow:visible;" width="93" height="81" id="Ea4v71" xlink:href="9F40567A57C76148.png"  transform="matrix(0.3824 0 0 0.3824 9.7235 417.614)"></image>
+                </g>
             </svg>
+            <!--
             <select id="actions" onchange="performAction(this.value)">
                 <option value="efhk">EFHK</option>
                 <option value="efet">EFET - Enontekiö</option>
@@ -183,6 +194,7 @@
                 <option value="efut">EFUT - Utti</option>
                 <option value="efva">EFVA - Vaasa</option>
             </select>
+            -->
         </div>
         <div class="container" id="container">
             <svg style="user-select: none;" id="mainSvg" preserveAspectRatio="xMinYMin meet" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1106.47 787.76">
@@ -379,7 +391,7 @@
                         597.5,217.96"/>
                 </g>
             </svg>
-            <div id="setupDiv" style="display: none; width: 100%;">
+            <div id="setupDiv" style="display: none; width: 100%; margin-left: 6px;">
                 <div id="rwyAutoDisclamers">
                     <h2 id="atisDetector" style="color: red; font-weight: bold;"></h2>
                     <h3>Change configuration to MANUAL to set offline runway combination</h3>
