@@ -101,8 +101,8 @@ hr {
     top: 4vw;
     bottom: 100px;
     right: 0px;
-    width: calc(100% - 84px);
-    height: calc(100vh - 4vw - 100px);
+    width: calc(100% - 94px);
+    height: calc(100vh - 4vw - 64px);
 }
 @media (min-height: 740px) {
     .container {
@@ -112,6 +112,16 @@ hr {
 @media (min-width: 1200px) {
     .container {
         top: 48px;
+    }
+}
+@media (min-height: 400px) {
+    .container {
+        height: calc(100vh - 4vw - 80px);
+    }
+}
+@media (min-height: 580px) {
+    .container {
+        height: calc(100vh - 4vw - 92px);
     }
 }
 .warningWindow {
