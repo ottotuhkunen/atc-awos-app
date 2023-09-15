@@ -38,14 +38,14 @@ function openMainPage() {
     document.getElementById("atisDiv").style.display = "none";
 
     setTimeout(function() {
-        document.getElementById("rwyccDiv").style.display = "block";
+        document.getElementById("rwyccDiv").style.display = "none";
     }, 700);
 
     document.getElementById("mainSvg").style.display = "block";
     document.getElementById("setupDiv").style.display = "none";
     document.getElementById("metrepDiv").style.display = "none";
     document.getElementById("snowtamDiv").style.display = "none";
-
+    
     loadFMI();
 }
 
