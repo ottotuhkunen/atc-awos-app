@@ -440,9 +440,6 @@ svg { width: 100%; }
 .leftNav2{font-family:'verdana';}
 .leftNav3{font-size:8px;}
 .leftNav4{fill:#A5BFD6;}
-.leftNav5{fill:url(#rwy1BackgroundGradient);stroke:#C0D7F0;stroke-width:0.25;stroke-miterlimit:10;}
-.leftNav6{fill:url(#rwy2BackgroundGradient);stroke:#C0D7F0;stroke-width:0.25;stroke-miterlimit:10;}
-.leftNav7{fill:url(#rwy3BackgroundGradient);stroke:#C0D7F0;stroke-width:0.25;stroke-miterlimit:10;}
 .leftNav8{fill:url(#snowtamBackgroundGradient);stroke:#C0D7F0;stroke-width:0.25;stroke-miterlimit:10;}
 .leftNav8_1{fill:url(#snowtamBackgroundGradient2);stroke:#C0D7F0;stroke-width:0.25;stroke-miterlimit:10;}
 .leftNav9{fill:url(#metReportBackgroundGradient);stroke:#C0D7F0;stroke-width:0.25;stroke-miterlimit:10;}
@@ -451,6 +448,13 @@ svg { width: 100%; }
 .leftNav11_1{fill:url(#setupBackgroundGradient2);stroke:#C0D7F0;stroke-width:0.25;stroke-miterlimit:10;}
 .leftNav12{fill:url(#awosViewBackgroundGradient);stroke:#C0D7F0;stroke-width:0.25;stroke-miterlimit:10;}
 .leftNav10{font-size:8px;}
+
+.rwy04RButtonInactive{fill:url(#rwy1BackgroundGradient);stroke:#C0D7F0;stroke-width:0.25;stroke-miterlimit:10;}
+.rwy04RButtonactive{fill:url(#rwy1BackgroundGradient2);stroke:#C0D7F0;stroke-width:0.25;stroke-miterlimit:10;}
+.rwy15ButtonInactive{fill:url(#rwy2BackgroundGradient);stroke:#C0D7F0;stroke-width:0.25;stroke-miterlimit:10;}
+.rwy15Buttonactive{fill:url(#rwy2BackgroundGradient2);stroke:#C0D7F0;stroke-width:0.25;stroke-miterlimit:10;}
+.rwy04LButtonInactive{fill:url(#rwy3BackgroundGradient);stroke:#C0D7F0;stroke-width:0.25;stroke-miterlimit:10;}
+.rwy04LButtonactive{fill:url(#rwy3BackgroundGradient2);stroke:#C0D7F0;stroke-width:0.25;stroke-miterlimit:10;}
 
 #leftNavSvg {
     height: 100%;
@@ -616,7 +620,7 @@ th {
 .rwycc5{fill:url(#pattern1);}
 .rwycc6{fill:#FFFFFF;}
 .rwycc7{fill:#F4A625;}
-.rwycc8{font-family:'Arial'; font-width:'bold';}
+.rwycc8{font-family: Arial;font-weight: bold;}
 .rwycc9{font-size:22px;}
 .rwycc10{fill:none;stroke:#F4A625;stroke-width:2;stroke-miterlimit:10;}
 .rwycc11{fill:#F5A623;}
