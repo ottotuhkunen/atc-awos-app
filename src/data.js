@@ -218,19 +218,17 @@ function getMaxSpeed(roundedGust, roundedWindSpeed, display, font1, font2, runwa
   var maxSpeed = Math.floor(Math.random() * (maxGust - roundedGust) + roundedGust);
   var activeDep = JSON.parse(sessionStorage.getItem("depBox" + runway));
   var activeArr = JSON.parse(sessionStorage.getItem("arrBox" + runway));
+  var gustLimit = roundedWindSpeed + 10;
 
-  if (activeDep || activeArr){
-      if (maxSpeed > (roundedWindSpeed + 9)) {
-          document.getElementById(font1).style.fill = "black";
-          document.getElementById(font2).style.fill = "black";
-      } else {
-          document.getElementById(font1).style.fill = "#B9B8BA";
-          document.getElementById(font2).style.fill = "#B9B8BA";
-      }
-  } else {
-      document.getElementById(font1).style.fill = "#B9B8BA";
-      document.getElementById(font2).style.fill = "#B9B8BA";
-  }
+  console.log(runway + " AVG: " + roundedWindSpeed);
+  console.log(runway + " MAX: " + maxSpeed);
+
+  let color;
+  if (maxSpeed >= gustLimit && (activeDep || activeArr)) color = "black";
+  else color = "#B9B8BA";
+
+  document.getElementById(font1).style.fill = color;
+  document.getElementById(font2).style.fill = color;
   document.getElementById(font1).innerHTML = maxSpeed;
 }
 

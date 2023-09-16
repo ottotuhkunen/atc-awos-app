@@ -225,6 +225,10 @@ function saveConfig(){
     sessionStorage.setItem("arrBox22L", arrBox22L.checked);
     sessionStorage.setItem("depBox22R", depBox22R.checked);
     sessionStorage.setItem("arrBox22R", arrBox22R.checked);
+    
+    if (document.getElementById("rwyConfigValue").textContent == "MANUAL") {
+        loadFMI();
+    }
 }
 
 function dep04L() {

@@ -43,8 +43,6 @@ function openMainPage(checkType) {
     if(checkType != "buttonClick") {
         loadFMI();
     }
-    
-    
 }
 
 function openRWYCC(runwayId) {
