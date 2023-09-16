@@ -506,8 +506,19 @@ svg { width: 100%; }
 .st16{text-anchor: end;}
 .st17{font-size:17px; fill:#404040;}
 
-.metRepDivContainer, #rwyccDiv {
+.metRepDivContainer {
     display: none; 
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 110px;
+    right: 0px;
+    width: calc(100%);
+    height: calc(100vh - 4vw - 110px);
+}
+
+#rwyccDiv {
+    visibility: hidden;
     position: absolute;
     left: 0;
     top: 0;

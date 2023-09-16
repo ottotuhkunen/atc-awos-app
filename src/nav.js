@@ -1,4 +1,4 @@
-function openMainPage() {
+function openMainPage(checkType) {
     saveConfig();
     // left nav triangles
     document.getElementById("mainTriangle").style.display = "block";
@@ -32,25 +32,23 @@ function openMainPage() {
     document.getElementById("buttonRwy2").style.pointerEvents = "auto";
     document.getElementById("buttonRwy3").style.pointerEvents = "auto";
 
-
     // displayed content
-    document.getElementById("rwyccDiv").style.display = "none";
+    document.getElementById("rwyccDiv").style.visibility = "hidden";
     document.getElementById("atisDiv").style.display = "none";
-
-    setTimeout(function() {
-        document.getElementById("rwyccDiv").style.display = "none";
-    }, 700);
-
     document.getElementById("mainSvg").style.display = "block";
     document.getElementById("setupDiv").style.display = "none";
     document.getElementById("metrepDiv").style.display = "none";
     document.getElementById("snowtamDiv").style.display = "none";
+
+    if(checkType != "buttonClick") {
+        loadFMI();
+    }
     
-    loadFMI();
+    
 }
 
 function openRWYCC(runwayId) {
-    document.getElementById("rwyccDiv").style.display = "none";
+    document.getElementById("rwyccDiv").style.visibility = "hidden";
     if (runwayId == "04R") {
         document.getElementById("rwy1Triangle").style.display = "block";
         document.getElementById("rwy2Triangle").style.display = "none";
@@ -122,10 +120,9 @@ function openRWYCC(runwayId) {
     document.getElementById("snowtamDiv").style.display = "none";
 
     // additions:
-    setTimeout(function() {
-        document.getElementById("rwyccDiv").style.display = "block";
-    }, 500);
 
+    document.getElementById("rwyccDiv").style.visibility = "visible";
+    
     // set data on page
     setRWYCC(runwayId);
 }
@@ -169,7 +166,7 @@ function metrep() {
     document.getElementById("setupDiv").style.display = "none";
     document.getElementById("metrepDiv").style.display = "block";
     document.getElementById("snowtamDiv").style.display = "none";
-    document.getElementById("rwyccDiv").style.display = "none";
+    document.getElementById("rwyccDiv").style.visibility = "hidden";
 
     loadMetRep();
     loadCurrentMet();
@@ -214,7 +211,7 @@ function setup() {
     document.getElementById("atisDiv").style.display = "none";
     document.getElementById("mainSvg").style.display = "none";
     document.getElementById("setupDiv").style.display = "block";
-    document.getElementById("rwyccDiv").style.display = "none";
+    document.getElementById("rwyccDiv").style.visibility = "hidden";
 }
 
 function openSnowtam() {
@@ -256,7 +253,7 @@ function openSnowtam() {
     document.getElementById("atisDiv").style.display = "none";
     document.getElementById("mainSvg").style.display = "none";
     document.getElementById("setupDiv").style.display = "none";
-    document.getElementById("rwyccDiv").style.display = "none";
+    document.getElementById("rwyccDiv").style.visibility = "hidden";
     
     loadSnowtam(); // function located in fetchInfo.js file
 }
@@ -750,6 +747,7 @@ function openAtisWindow(atisType){
     document.getElementById("setupTriangle").style.display = "none";
     document.getElementById("mainSvg").style.display = "none";
     document.getElementById("setupDiv").style.display = "none";
+    document.getElementById("rwyccDiv").style.visibility = "hidden";
 }
 
 function getParams() {

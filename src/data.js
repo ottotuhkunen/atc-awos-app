@@ -211,14 +211,16 @@ function getMaxSpeed(roundedGust, roundedWindSpeed, display, font1, font2, runwa
   var activeArr = JSON.parse(sessionStorage.getItem("arrBox" + runway));
 
   if (activeDep || activeArr){
-    if (maxSpeed > (roundedWindSpeed + 9)) {
-      document.getElementById(font1).style.fill = "black";
-      document.getElementById(font2).style.fill = "black";
-      console.log("moi");
-    } else {
+      if (maxSpeed > (roundedWindSpeed + 9)) {
+          document.getElementById(font1).style.fill = "black";
+          document.getElementById(font2).style.fill = "black";
+      } else {
+          document.getElementById(font1).style.fill = "#B9B8BA";
+          document.getElementById(font2).style.fill = "#B9B8BA";
+      }
+  } else {
       document.getElementById(font1).style.fill = "#B9B8BA";
       document.getElementById(font2).style.fill = "#B9B8BA";
-    }
   }
   
   // make gust
