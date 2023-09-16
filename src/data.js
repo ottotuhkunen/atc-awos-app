@@ -60,14 +60,16 @@ function setData(xmlDoc) {
         table[i][1] = xmlDoc.getElementsByTagName("BsWfs:ParameterValue")[i].childNodes[0].nodeValue;
     }
 
-    table = table.slice(-15, -1);
+    table = table.slice(-70, -1);
     
     var windSpeed = 0;
     var windGust = 0;
+    var qnhArray = [];
 
     for (var i = 0; i < table.length; i++) {
         if (table[i][0] === "p_sea") {
           qnh = table[i][1];
+          qnhArray.push(table[i][1]);
         }
         if (table[i][0] === "ws_10min") {
           windSpeed = table[i][1];
@@ -96,7 +98,18 @@ function setData(xmlDoc) {
         }
     }
 
+    qnhArray = qnhArray.map(Number);
+
+    // get the rounded QNH average
+    if (qnhArray.length >= 4) {
+      var fourLatestQnh = qnhArray.slice(-4);
+      var qnhSum = fourLatestQnh.reduce((acc, val) => acc + val, 0);
+      var averageQnh = qnhSum / 4;
+      roundedQnh = Math.floor(averageQnh);
+  } else {
     roundedQnh = Math.floor(qnh);
+  }
+
     var roundedGust = Math.ceil(windGust * 1.943);
     var roundedWindSpeed = Math.round(windSpeed * 1.943);
 
