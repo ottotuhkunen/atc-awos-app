@@ -203,10 +203,6 @@ function getMinSpeed(roundedWindSpeed) {
 function getMaxSpeed(roundedGust, roundedWindSpeed, display, font1, font2, runway) {
   var maxGust = roundedGust + 3;
   var maxSpeed = Math.floor(Math.random() * (maxGust - roundedGust) + roundedGust);
-
-  // console.log(maxSpeed);
-  // console.log(roundedWindSpeed);
-
   var activeDep = JSON.parse(sessionStorage.getItem("depBox" + runway));
   var activeArr = JSON.parse(sessionStorage.getItem("arrBox" + runway));
 
@@ -222,9 +218,7 @@ function getMaxSpeed(roundedGust, roundedWindSpeed, display, font1, font2, runwa
       document.getElementById(font1).style.fill = "#B9B8BA";
       document.getElementById(font2).style.fill = "#B9B8BA";
   }
-  
-  // make gust
-  document.getElementById(font1).innerHTML = roundedGust;
+  document.getElementById(font1).innerHTML = maxSpeed;
 }
 
 function randomWindDirection(realDirection, arrowID, maxDirID, windSpeed) { // 29.0
