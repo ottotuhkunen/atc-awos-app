@@ -32,7 +32,6 @@ async function setRWYCC(runwayId) {
 
     */
 
-
     /*
         Data to be added according to ID:
 
@@ -186,6 +185,10 @@ function manualRWYCC() {
 
             if (record.fields['Name'] === 'rwyWidth') {
                 document.getElementById('rwyWidth').textContent = record.fields['content'] + " m";
+                document.getElementById('reducedRunwayWidth').textContent = record.fields['content'] + " meters";
+            } else {
+                document.getElementById('rwyWidth').textContent = "60 m";
+                document.getElementById('reducedRunwayWidth').textContent = "NIL";
             }
         }
         setConditionIcon(toggleContaminantIcon);
