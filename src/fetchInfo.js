@@ -139,7 +139,7 @@ async function loadSnowtam() {
         observationTime = match ? match[0] : null;
         observationTime2 = observationTime ? observationTime.slice(-5) : "OUTDATED";
 
-        // Insert linechanges
+        // Insert linechanges to SNOWTAM text
         let finalSnowtam = data.data.replace(/ (\d{8}) /g, '<br>$1 ');
 
         document.getElementById('snowtamLine1').innerHTML = "(" + finalSnowtam + ")";
@@ -148,8 +148,8 @@ async function loadSnowtam() {
     }
 
     let currentDate = new Date();
-    let year = currentDate.getUTCFullYear().toString(); // gets the full year as four digits
-    let month = (currentDate.getUTCMonth() + 1).toString().padStart(2, '0');  // +1 because months are 0-indexed in JS
+    let year = currentDate.getUTCFullYear().toString();
+    let month = (currentDate.getUTCMonth() + 1).toString().padStart(2, '0');
     let day = currentDate.getUTCDate().toString().padStart(2, '0');
     let formattedDate = year + month + day;
 

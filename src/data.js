@@ -220,9 +220,6 @@ function getMaxSpeed(roundedGust, roundedWindSpeed, display, font1, font2, runwa
   var activeArr = JSON.parse(sessionStorage.getItem("arrBox" + runway));
   var gustLimit = roundedWindSpeed + 10;
 
-  console.log(runway + " AVG: " + roundedWindSpeed);
-  console.log(runway + " MAX: " + maxSpeed);
-
   let color;
   if (maxSpeed >= gustLimit && (activeDep || activeArr)) color = "black";
   else color = "#B9B8BA";
