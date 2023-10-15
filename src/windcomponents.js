@@ -15,7 +15,6 @@ function windComponentCalculator(windSpeed, windDirection, runway) {
        else {
               if (runway == "arrow04L") {
                      // NO TAILWIND COMPONENT
-                     console.log(windDirection);
                      if (windDirection >= 10 && windDirection <= 130 || windDirection >= 310){ 
                             crosswind = windSpeed * (Math.sin((38 - windDirection) * Math.PI / 180));
                             crosswind = crosswind.toString().replace('-','');

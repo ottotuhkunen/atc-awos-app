@@ -68,9 +68,9 @@ function fetchInformation(){
                     document.getElementById('04L_RWYCC_1').textContent = "5" + "\u00A0".repeat(1) + "•";
                     document.getElementById('04L_RWYCC_2').textContent = "5" + "\u00A0".repeat(1) + "•";
                     document.getElementById('04L_RWYCC_3').textContent = "5" + "\u00A0".repeat(1) + "•";
-                    document.getElementById('04R_RWYCC_1').textContent = "3" + "\u00A0".repeat(1) + "•";
-                    document.getElementById('04R_RWYCC_2').textContent = "3" + "\u00A0".repeat(1) + "•";
-                    document.getElementById('04R_RWYCC_3').textContent = "3" + "\u00A0".repeat(1) + "•";
+                    document.getElementById('04R_RWYCC_1').textContent = "5" + "\u00A0".repeat(1) + "•";
+                    document.getElementById('04R_RWYCC_2').textContent = "5" + "\u00A0".repeat(1) + "•";
+                    document.getElementById('04R_RWYCC_3').textContent = "5" + "\u00A0".repeat(1) + "•";
                     document.getElementById('15_RWYCC_1').textContent = "5" + "\u00A0".repeat(1) + "•";
                     document.getElementById('15_RWYCC_2').textContent = "5" + "\u00A0".repeat(1) + "•";
                     document.getElementById('15_RWYCC_3').textContent = "5" + "\u00A0".repeat(1) + "•";
