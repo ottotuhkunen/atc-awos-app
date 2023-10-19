@@ -157,9 +157,9 @@ function manualRWYCC() {
             }
             if (record.fields['Name'] === 'contaminants')  {
                 if (record.fields['content']) {
-                    document.getElementById('contaminantText1').textContent = record.fields['content'] + " mm";
-                    document.getElementById('contaminantText2').textContent = record.fields['content'] + " mm";
-                    document.getElementById('contaminantText3').textContent = record.fields['content'] + " mm";
+                    document.getElementById('contaminantText1').textContent = record.fields['content'] + " 1mm";
+                    document.getElementById('contaminantText2').textContent = record.fields['content'] + " 1mm";
+                    document.getElementById('contaminantText3').textContent = record.fields['content'] + " 1mm";
                     document.getElementById('contaminantTypeSimple1').textContent = record.fields['content'];
                     document.getElementById('contaminantTypeSimple2').textContent = record.fields['content'];
                     document.getElementById('contaminantTypeSimple3').textContent = record.fields['content'];
