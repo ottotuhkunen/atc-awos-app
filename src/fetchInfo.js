@@ -141,6 +141,7 @@ async function loadSnowtam() {
 
         // Insert linechanges to SNOWTAM text
         let finalSnowtam = data.data.replace(/ (\d{8}) /g, '<br>$1 ');
+        finalSnowtam = finalSnowtam.replace(/REMARK/g, '<br><br>REMARK');
 
         document.getElementById('snowtamLine1').innerHTML = "(" + finalSnowtam + ")";
     } catch (error) {

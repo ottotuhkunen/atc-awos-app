@@ -1014,7 +1014,15 @@ function loadActualMet(xml) {
     };
 
     fetch("/api/taf/EFHK")
-    .then(response => response.json())
+    .then(response => {
+        // Check if response is in JSON format
+        if (response.headers.get("content-type") && response.headers.get("content-type").includes("application/json")) {
+            return response.json();
+        } else {
+            console.log("TAF is not JSON");
+            throw new Error('Not a JSON response');
+        }
+    })
     .then(result => {
         if (result.data[0] && result.data[0].length > 100) {
             if (result.data[0] && result.data[0].length > 200) {
