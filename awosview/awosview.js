@@ -300,7 +300,7 @@ function setData(xmlDoc, icaoCode, qfeSub) {
 
     for (var i = 0; i < table.length; i++) {
         if (table[i][0] === "p_sea") {
-            qnh = table[i][1];
+            qnh = (table[i][1]);
             qfe = qnh - qfeSub;
         }
         if (table[i][0] === "ws_10min") {
@@ -311,7 +311,7 @@ function setData(xmlDoc, icaoCode, qfeSub) {
             if (windSpeed < 0.9) {
                 windSpeed = 0;
                 windCalm = true;
-            }   
+            }
         }
         if (table[i][0] === "wd_10min") {
             windDirection = Math.floor(table[i][1] / 10) * 10;
@@ -428,8 +428,15 @@ function setData(xmlDoc, icaoCode, qfeSub) {
         windDirectionField3.textContent = windDirText + "°";
     }
     if(qnhField) {
-        qnhField.textContent = qnhParts[0];
-        qnhDecimalField.textContent = "." + qnhParts[1];
+        //EXTRA: qnhField.textContent = qnhParts[0]; 
+        // qnhDecimalField.textContent = "." + qnhParts[1]; (delete below)
+        qnhField.textContent = "//";
+        qnhDecimalField.textContent = "";
+        qnhField.classList.add("noAtisHighlight");
+        qnhField.style.lineHeight = "24pt";
+        qnhField.style.marginTop = "1px";
+        qnhField.style.width = "34px";
+        
         qfeField.textContent = (Math.floor(qfe * 10) / 10).toFixed(1);
         trlField.textContent = calculateTrl(Math.floor(qnh));
     }
