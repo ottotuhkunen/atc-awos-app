@@ -49,6 +49,8 @@ let qnh = 0;
 let atisCode = "//";
 let windDirection = 0;
 let windProblems = false;
+let metar = "//";
+let atisType;
 
 function setData(xmlDoc) {
     var xmlSize = xmlDoc.getElementsByTagName("BsWfs:ParameterName");
@@ -280,7 +282,7 @@ function setMetarData(xmlDoc) {
   let clockwises = latestRecord.getElementsByTagName("iwxxm:extremeClockwiseWindDirection");
 
   var metars = xmlDoc.getElementsByTagName('avi:input');
-  var metar = metars[metars.length-1].childNodes[0].nodeValue;
+  metar = metars[metars.length-1].childNodes[0].nodeValue;
   document.getElementById("metar").innerHTML = metar;
 
   // set METREP trend
@@ -537,14 +539,14 @@ function setMetarData(xmlDoc) {
   .then(data => {
     for (let item of data.atis) {
       if (item.callsign === "EFHK_ATIS") {
+        atisType = 1;
         var atisWithLines = item.text_atis.join(' ').replace(/\.\./g, '.').split('.');
         makeAtisText(atisWithLines.join('<br>'));
         break;
       }
       else {
-        document.getElementById('atisId1').textContent = "//";
-        document.getElementById('atisId2').textContent = "//";
-        document.getElementById('atisInfoField').innerHTML = "EFHK ATIS NIL";
+        atisType = 0;
+        makeClosedAtisText(metar);
         if (document.getElementById("rwyConfigValue").textContent == "AUTO") {
           // make all runways inactive
           loadConfig();
@@ -557,6 +559,35 @@ function setMetarData(xmlDoc) {
     noWindData();
   }
   // rwy15Closed();
+}
+
+function makeClosedAtisText(metar) {
+  let closedAtisText = metar;
+  let closedAtisId = getCurrentLetter();
+  closedAtisText = closedAtisText.replace(/ /g, `<br/>`);
+  closedAtisText = closedAtisText.replace(/METAR<br\/>EFHK<br\/>/g, `EFHK ARR AND DEP INFO ${closedAtisId}<br/>`);
+  closedAtisText = closedAtisText.replace(/\d{2}(\d{4})Z<br\/>/g, '$1<br/>TRL ' + + calculateTrl(qnh) + "<br/>TWR IS CLOSED<br/>AUTOMATIC REPORT<br/>");
+  closedAtisText = closedAtisText.replace(/=/g, ``);
+  document.getElementById('atisInfoField').innerHTML = closedAtisText;
+  document.getElementById('atisId1').textContent = closedAtisId;
+  document.getElementById('atisId2').textContent = closedAtisId;
+
+}
+
+function getCurrentLetter() {
+  const now = new Date();
+  const hours = now.getUTCHours();
+  const minutes = now.getUTCMinutes();
+  const totalMinutes = hours * 60 + minutes;
+
+  if (totalMinutes >= 20) {
+      const minutesSinceStart = totalMinutes - 20;
+      const letterIndex = Math.floor(minutesSinceStart / 30);
+      
+      const charCode = 65 + (letterIndex % 26);
+      return String.fromCharCode(charCode);
+  }
+  return 'Z';
 }
 
 function makeAtisText(atisText) {

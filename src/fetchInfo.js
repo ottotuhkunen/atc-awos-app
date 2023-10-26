@@ -110,13 +110,25 @@ function fetchInformation(){
             // if warnings exist:
             if (record.fields['Name'] === 'warnings') {
                 if(record.fields['content'] == "..."){
-                    document.getElementById('infoWindow4').style.display = "none";
+                    if (atisType == 0) {
+                        document.getElementById('infoWindow4').style.display = "block";
+                        document.getElementById('infoWindow4_line2').textContent = "ATIS: TWR IS CLOSED";
+                    } else {
+                        document.getElementById('infoWindow4').style.display = "none";
+                        document.getElementById('infoWindow4_line2').textContent = "";
+                    }
+                    document.getElementById('infoWindow4_line1').textContent = "";
                     document.getElementById('metWarnings').textContent = "NO ACTUAL WARNINGS";
                 }
                 else{
                     document.getElementById('infoWindow4').style.display = "block";
                     document.getElementById('infoWindow4_line1').textContent = "MET WARNINGS EXIST";
                     document.getElementById('metWarnings').textContent = record.fields['content'];
+                    if (atisType == 0) {
+                        document.getElementById('infoWindow4_line2').textContent = "ATIS: TWR IS CLOSED";
+                    } else {
+                        document.getElementById('infoWindow4_line2').textContent = "";
+                    }
                 }
             }
             if (record.fields['Name'] === 'warnings_line_2') {

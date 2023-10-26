@@ -152,7 +152,6 @@ function manualRWYCC() {
                     [tspans1[0].textContent, tspans1[1].textContent] = ['100%', '1mm'];
                     [tspans2[0].textContent, tspans2[1].textContent] = ['100%', '1mm'];
                     [tspans3[0].textContent, tspans3[1].textContent] = ['100%', '1mm'];
-                    toggleContaminantIcon = 2; // wet icon
                 }
             }
             if (record.fields['Name'] === 'contaminants')  {
@@ -166,20 +165,11 @@ function manualRWYCC() {
                     document.getElementById('contaminantType1').textContent = record.fields['content'];
                     document.getElementById('contaminantType2').textContent = record.fields['content'];
                     document.getElementById('contaminantType3').textContent = record.fields['content'];
-                    if (record.fields['content'] != "WET" || record.fields['content'] != "SLIPPERY WET" || record.fields['content'] != "STANDING WATER") {
+                    if (record.fields['content'] != "WET" && record.fields['content'] != "SLIPPERY WET" && record.fields['content'] != "STANDING WATER") {
                         toggleContaminantIcon = 3; // snow icon
+                    } else {
+                        toggleContaminantIcon = 2; // wet icon
                     }
-                } else {
-                    document.getElementById('contaminantText1').textContent = "WET 1mm";
-                    document.getElementById('contaminantText2').textContent = "WET 1mm";
-                    document.getElementById('contaminantText3').textContent = "WET 1mm";
-                    document.getElementById('contaminantTypeSimple1').textContent = "WET";
-                    document.getElementById('contaminantTypeSimple2').textContent = "WET";
-                    document.getElementById('contaminantTypeSimple3').textContent = "WET";
-                    document.getElementById('contaminantType1').textContent = "WET";
-                    document.getElementById('contaminantType2').textContent = "WET";
-                    document.getElementById('contaminantType3').textContent = "WET";
-                    toggleContaminantIcon = 2; // wet icon
                 }
             }
 
