@@ -977,7 +977,7 @@ function loadActualMet(xml) {
 
     for (var i = 0; i < table.length; i++) {
         if (table[i][0] === "p_sea") {
-          currentQnh = table[i][1];
+          currentQnh = table[i][1] - 0.5;
         }
         if (table[i][0] === "vis") {
           currentVisibility = table[i][1];
