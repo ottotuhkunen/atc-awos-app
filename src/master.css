@@ -562,6 +562,8 @@ th {
     width: 10%;
     font-weight: normal;
     font-size: 9pt;
+    white-space: nowrap;
+    overflow: hidden;
 }
 .snowtamTwyTitle {
     font-size: 12pt;

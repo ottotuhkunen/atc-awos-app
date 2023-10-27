@@ -165,6 +165,15 @@ function manualRWYCC() {
                     document.getElementById('contaminantType1').textContent = record.fields['content'];
                     document.getElementById('contaminantType2').textContent = record.fields['content'];
                     document.getElementById('contaminantType3').textContent = record.fields['content'];
+
+                    // taxiway and apron conditions (SNOWTAM page)
+                    for (let i = 1; i <= 6; i++) {
+                        document.getElementById(`twyCond${i}`).textContent = record.fields['content'];
+                    }
+                    for (let i = 1; i <= 9; i++) {
+                        document.getElementById(`apronCond${i}`).textContent = record.fields['content'];
+                    }
+
                     if (record.fields['content'] != "WET" && record.fields['content'] != "SLIPPERY WET" && record.fields['content'] != "STANDING WATER") {
                         toggleContaminantIcon = 3; // snow icon
                     } else {
