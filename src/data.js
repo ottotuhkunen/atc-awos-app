@@ -587,7 +587,7 @@ function makeClosedAtisText(metar) {
   closedAtisText = closedAtisText.replace("CB<br/>", " CB CLOUDS<br/>");
   closedAtisText = closedAtisText.replace("TCU<br/>", " TCU CLOUDS<br/>");
   closedAtisText = closedAtisText.replace(/([A-Z]{3}\d{3})/, "CLD $1");
-  closedAtisText = closedAtisText.replace(/0*(\d{1,3})<br\/>/g, function(match, number) {
+  closedAtisText = closedAtisText.replace(/0*(\d{3})<br\/>/g, function(match, number) {
     return " " + (parseInt(number, 10) * 100) + " FT<br/>";
   });
   closedAtisText = closedAtisText.replace(/<br\/>(FEW|BKN|SCT|OVC)/g, " $1 ");
