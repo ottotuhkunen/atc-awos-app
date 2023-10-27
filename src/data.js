@@ -567,7 +567,7 @@ function makeClosedAtisText(metar) {
   closedAtisText = closedAtisText.replace(/ /g, `<br/>`);
   closedAtisText = closedAtisText.replace(/METAR<br\/>EFHK<br\/>/g, `EFHK ARR AND DEP INFO ${closedAtisId}<br/>`);
   closedAtisText = closedAtisText.replace(/\d{2}(\d{4})Z<br\/>/g, '$1Z<br/>TRL ' + + calculateTrl(qnh) + "<br/>TWR IS CLOSED<br/>AUTOMATIC REPORT<br/>");
-  closedAtisText = closedAtisText.replace(/=/g, ``);
+  closedAtisText = closedAtisText.replace(/=/g, "<br/>");
 
   // wind
   closedAtisText = closedAtisText.replace(/00000KT/, "WIND RWY 22L TDZ CALM");
@@ -585,11 +585,12 @@ function makeClosedAtisText(metar) {
   });
   // clouds
   closedAtisText = closedAtisText.replace("CB<br/>", " CB CLOUDS<br/>");
-  closedAtisText = closedAtisText.replace(/([A-Z]{3}\d{3}(CB|TCU)?)/, "CLD RWY 22L $1");
+  closedAtisText = closedAtisText.replace("TCU<br/>", " TCU CLOUDS<br/>");
+  closedAtisText = closedAtisText.replace(/([A-Z]{3}\d{3})/, "CLD $1");
   closedAtisText = closedAtisText.replace(/0*(\d{1,3})<br\/>/g, function(match, number) {
     return " " + (parseInt(number, 10) * 100) + " FT<br/>";
   });
-  closedAtisText = closedAtisText.replace(/<br\/>(FEW|BKN|SCT|OVC) /g, ". $1 ");
+  closedAtisText = closedAtisText.replace(/<br\/>(FEW|BKN|SCT|OVC)/g, " $1 ");
   // misc
   closedAtisText = closedAtisText.replace(/-/g, "FBL ");
   closedAtisText = closedAtisText.replace(/\+/g, "HVY ");
