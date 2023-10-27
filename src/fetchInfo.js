@@ -77,34 +77,15 @@ function fetchInformation(){
                 }
                 else{
                     document.getElementById('RWYCC_windows').style.display = "block";
-
-                    if (JSON.parse(sessionStorage.getItem("04L_closed"))) {
-                        document.getElementById('04L_RWYCC_1').textContent = "//" + "\u00A0".repeat(1) + "•";
-                        document.getElementById('04L_RWYCC_2').textContent = "//" + "\u00A0".repeat(1) + "•";
-                        document.getElementById('04L_RWYCC_3').textContent = "//" + "\u00A0".repeat(1) + "•";
-                    } else {
-                        document.getElementById('04L_RWYCC_1').textContent = record.fields['content'] + "\u00A0".repeat(1) + record.fields['rwycc_upgr_dngr'];
-                        document.getElementById('04L_RWYCC_2').textContent = record.fields['content'] + "\u00A0".repeat(1) + record.fields['rwycc_upgr_dngr'];
-                        document.getElementById('04L_RWYCC_3').textContent = record.fields['content'] + "\u00A0".repeat(1) + record.fields['rwycc_upgr_dngr'];
-                    }
-                    if (JSON.parse(sessionStorage.getItem("04R_closed"))) {
-                        document.getElementById('04R_RWYCC_1').textContent = "//" + "\u00A0".repeat(1) + "•";
-                        document.getElementById('04R_RWYCC_2').textContent = "//" + "\u00A0".repeat(1) + "•";
-                        document.getElementById('04R_RWYCC_3').textContent = "//" + "\u00A0".repeat(1) + "•";
-                    } else {
-                        document.getElementById('04R_RWYCC_1').textContent = record.fields['content'] + "\u00A0".repeat(1) + record.fields['rwycc_upgr_dngr'];
-                        document.getElementById('04R_RWYCC_2').textContent = record.fields['content'] + "\u00A0".repeat(1) + record.fields['rwycc_upgr_dngr'];
-                        document.getElementById('04R_RWYCC_3').textContent = record.fields['content'] + "\u00A0".repeat(1) + record.fields['rwycc_upgr_dngr'];  
-                    }
-                    if (JSON.parse(sessionStorage.getItem("15_closed"))) {
-                        document.getElementById('15_RWYCC_1').textContent = "//" + "\u00A0".repeat(1) + "•";
-                        document.getElementById('15_RWYCC_2').textContent = "//" + "\u00A0".repeat(1) + "•";
-                        document.getElementById('15_RWYCC_3').textContent = "//" + "\u00A0".repeat(1) + "•";
-                    } else {
-                        document.getElementById('15_RWYCC_1').textContent = record.fields['content'] + "\u00A0".repeat(1) + record.fields['rwycc_upgr_dngr'];
-                        document.getElementById('15_RWYCC_2').textContent = record.fields['content'] + "\u00A0".repeat(1) + record.fields['rwycc_upgr_dngr'];
-                        document.getElementById('15_RWYCC_3').textContent = record.fields['content'] + "\u00A0".repeat(1) + record.fields['rwycc_upgr_dngr'];  
-                    }
+                    document.getElementById('04L_RWYCC_1').textContent = record.fields['content'] + "\u00A0".repeat(1) + record.fields['rwycc_upgr_dngr'];
+                    document.getElementById('04L_RWYCC_2').textContent = record.fields['content'] + "\u00A0".repeat(1) + record.fields['rwycc_upgr_dngr'];
+                    document.getElementById('04L_RWYCC_3').textContent = record.fields['content'] + "\u00A0".repeat(1) + record.fields['rwycc_upgr_dngr'];
+                    document.getElementById('04R_RWYCC_1').textContent = record.fields['content'] + "\u00A0".repeat(1) + record.fields['rwycc_upgr_dngr'];
+                    document.getElementById('04R_RWYCC_2').textContent = record.fields['content'] + "\u00A0".repeat(1) + record.fields['rwycc_upgr_dngr'];
+                    document.getElementById('04R_RWYCC_3').textContent = record.fields['content'] + "\u00A0".repeat(1) + record.fields['rwycc_upgr_dngr'];  
+                    document.getElementById('15_RWYCC_1').textContent = record.fields['content'] + "\u00A0".repeat(1) + record.fields['rwycc_upgr_dngr'];
+                    document.getElementById('15_RWYCC_2').textContent = record.fields['content'] + "\u00A0".repeat(1) + record.fields['rwycc_upgr_dngr'];
+                    document.getElementById('15_RWYCC_3').textContent = record.fields['content'] + "\u00A0".repeat(1) + record.fields['rwycc_upgr_dngr'];  
                 }
             }
             // if warnings exist:
