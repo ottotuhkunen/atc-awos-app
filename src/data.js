@@ -566,8 +566,61 @@ function makeClosedAtisText(metar) {
   let closedAtisId = getCurrentLetter();
   closedAtisText = closedAtisText.replace(/ /g, `<br/>`);
   closedAtisText = closedAtisText.replace(/METAR<br\/>EFHK<br\/>/g, `EFHK ARR AND DEP INFO ${closedAtisId}<br/>`);
-  closedAtisText = closedAtisText.replace(/\d{2}(\d{4})Z<br\/>/g, '$1<br/>TRL ' + + calculateTrl(qnh) + "<br/>TWR IS CLOSED<br/>AUTOMATIC REPORT<br/>");
+  closedAtisText = closedAtisText.replace(/\d{2}(\d{4})Z<br\/>/g, '$1Z<br/>TRL ' + + calculateTrl(qnh) + "<br/>TWR IS CLOSED<br/>AUTOMATIC REPORT<br/>");
   closedAtisText = closedAtisText.replace(/=/g, ``);
+
+  // wind
+  closedAtisText = closedAtisText.replace(/00000KT/, "WIND RWY 22L TDZ CALM");
+  closedAtisText = closedAtisText.replace(/(\d{3})(\d{2})KT<br\/>/g, "WIND RWY 22L TDZ $1 DEG $2 KT<br/>");
+  closedAtisText = closedAtisText.replace(/(\d{3})(\d{2})G(\d{2})KT/g, "WIND RWY 22L TDZ $1 DEG $2 KT MAX $3 KT");
+  closedAtisText = closedAtisText.replace(/VRB(\d{2})KT/, "WIND RWY 22L TDZ VRB $1 KT");
+  closedAtisText = closedAtisText.replace(/<br\/>(\d{3})V(\d{3})<br\/>/g, " VRB BTN $1 AND $2 DEG<br/>");
+  closedAtisText = closedAtisText.replace(/(\d{3})V(\d{3})<br\/>/g, "VRB BTN $1 AND $2 DEG<br/>");
+  // visibility
+  closedAtisText = closedAtisText.replace(/<br\/>9999<br\/>/g, "<br/>VIS 10KM OR MORE<br/>");
+  closedAtisText = closedAtisText.replace(/<br\/>0*(\d{1,4})<br\/>/g, "<br/>VIS $1M<br/>");
+  // QNH
+  closedAtisText = closedAtisText.replace(/<br\/>Q0*(\d{4})<br\/>/g, function(match, number) {
+    return " QNH " + parseInt(number, 10) + " <br/>";
+  });
+  // clouds
+  closedAtisText = closedAtisText.replace("CB<br/>", " CB CLOUDS<br/>");
+  closedAtisText = closedAtisText.replace(/([A-Z]{3}\d{3}(CB|TCU)?)/, "CLD RWY 22L $1");
+  closedAtisText = closedAtisText.replace(/0*(\d{1,3})<br\/>/g, function(match, number) {
+    return " " + (parseInt(number, 10) * 100) + " FT<br/>";
+  });
+  closedAtisText = closedAtisText.replace(/<br\/>(FEW|BKN|SCT|OVC) /g, ". $1 ");
+  // misc
+  closedAtisText = closedAtisText.replace(/-/g, "FBL ");
+  closedAtisText = closedAtisText.replace(/\+/g, "HVY ");
+  // temperature
+  closedAtisText = closedAtisText.replace(/M?0*(\d{1,2})\/M?0*(\d{1,2})/g, function(match, p1, p2, offset, string, groups) {
+    let temp1 = p1;
+    let temp2 = p2;
+    
+    if (match.charAt(0) === 'M') {
+        temp1 = "-" + temp1;
+    }
+    if (match.indexOf('/M') !== -1) {
+        temp2 = "-" + temp2;
+    }
+
+    return "T " + parseInt(temp1, 10) + " DP " + parseInt(temp2, 10);
+  });
+  // RVR values R04L/P2000
+  let isFirstReplacement = true;
+  closedAtisText = closedAtisText.replace(/R\d{2}[LR]?\/.*?<br\/>/g, function(match) {
+      if (isFirstReplacement) {
+          isFirstReplacement = false;
+          return "RVR VALUES BLW 2000M<br/>";
+      }
+      return '';
+  });
+  // vertical visibility
+  closedAtisText = closedAtisText.replace(/VV0*(\d{1,3})/g, function(match, p1) {
+    return "VV " + (parseInt(p1, 10) * 100) + " FT";
+  });
+
   document.getElementById('atisInfoField').innerHTML = closedAtisText;
   document.getElementById('atisId1').textContent = closedAtisId;
   document.getElementById('atisId2').textContent = closedAtisId;
@@ -580,8 +633,8 @@ function getCurrentLetter() {
   const minutes = now.getUTCMinutes();
   const totalMinutes = hours * 60 + minutes;
 
-  if (totalMinutes >= 20) {
-      const minutesSinceStart = totalMinutes - 20;
+  if (totalMinutes >= 21) {
+      const minutesSinceStart = totalMinutes - 21;
       const letterIndex = Math.floor(minutesSinceStart / 30);
       
       const charCode = 65 + (letterIndex % 26);
