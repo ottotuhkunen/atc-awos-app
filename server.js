@@ -3,6 +3,7 @@ const express = require('express');
 const basicAuth = require('express-basic-auth')
 const app = express();
 const axios = require('axios');
+// const fetch = require('node-fetch');
 
 app.get('/api/data', async (req, res) => {
   const baseUrl = "https://api.airtable.com/v0/appGAYI2wFvY7jZVG/Table%201";

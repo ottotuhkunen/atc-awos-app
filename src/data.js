@@ -541,7 +541,7 @@ function setMetarData(xmlDoc) {
       if (item.callsign === "EFHK_ATIS") {
         atisType = 1;
         var atisWithLines = item.text_atis.join(' ').replace(/\.\./g, '.').split('.');
-        makeAtisText(atisWithLines.join('<br>'));
+        makeAtisText(atisWithLines.join('<br/>'));
         break;
       }
       else {
@@ -598,14 +598,8 @@ function makeClosedAtisText(metar) {
   closedAtisText = closedAtisText.replace(/M?0*(\d{1,2})\/M?0*(\d{1,2})/g, function(match, p1, p2, offset, string, groups) {
     let temp1 = p1;
     let temp2 = p2;
-    
-    if (match.charAt(0) === 'M') {
-        temp1 = "-" + temp1;
-    }
-    if (match.indexOf('/M') !== -1) {
-        temp2 = "-" + temp2;
-    }
-
+    if (match.charAt(0) === 'M') temp1 = "-" + temp1;
+    if (match.indexOf('/M') !== -1) temp2 = "-" + temp2;
     return "T " + parseInt(temp1, 10) + " DP " + parseInt(temp2, 10);
   });
   // RVR values R04L/P2000
@@ -730,6 +724,16 @@ function makeAtisText(atisText) {
     atisText = atisText.replace(/FEET/g, 'FT');
     atisText = atisText.replace(/NOSIG/g, 'NOSIG');
     atisText = atisText.replace(/BECOMING/g, '<br/>BECMG');
+  } else {
+    atisText = atisText.replace(/(?:\s*|<br\/>)*(FEW|BKN|SCT|OVC) (\d{3})/g, function(match, cloudCover, altitude) {
+      let newAltitude = parseInt(altitude, 10) * 100;
+      return `<br/>${cloudCover} ${newAltitude} FT`;
+  });
+    atisText = atisText.replace(/T (M?)0*(\d{1,2}) DP (M?)0*(\d{1,2})/g, function(match, m1, p1, m2, p2) {
+      let temp1 = m1 === "M" ? "-" + p1 : p1;
+      let temp2 = m2 === "M" ? "-" + p2 : p2;
+      return "T " + parseInt(temp1, 10) + " DP " + parseInt(temp2, 10);
+    });
   }
   let pattern = /INFO\s([A-Z])/;
 
@@ -872,3 +876,5 @@ function rwy15Closed() {
 
   document.getElementById("arrow15").style.display = "none";
 }
+
+// send ATIS to Airtable:
