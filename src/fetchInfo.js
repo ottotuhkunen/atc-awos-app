@@ -93,7 +93,7 @@ function fetchInformation(){
                 if(record.fields['content'] == "..."){
                     if (atisType == 0) {
                         document.getElementById('infoWindow4').style.display = "block";
-                        document.getElementById('infoWindow4_line2').textContent = "ATIS: TWR IS CLOSED";
+                        document.getElementById('infoWindow4_line2').textContent = "TWR IS CLOSED";
                     } else {
                         document.getElementById('infoWindow4').style.display = "none";
                         document.getElementById('infoWindow4_line2').textContent = "";
@@ -106,7 +106,7 @@ function fetchInformation(){
                     document.getElementById('infoWindow4_line1').textContent = "MET WARNINGS EXIST";
                     document.getElementById('metWarnings').textContent = record.fields['content'];
                     if (atisType == 0) {
-                        document.getElementById('infoWindow4_line2').textContent = "ATIS: TWR IS CLOSED";
+                        document.getElementById('infoWindow4_line2').textContent = "TWR IS CLOSED";
                     } else {
                         document.getElementById('infoWindow4_line2').textContent = "";
                     }
@@ -153,4 +153,32 @@ async function loadSnowtam() {
     document.getElementById("snowtamId").innerHTML = snowtamId;
     document.getElementById("snowtamTime1").innerHTML = observationTime;
     document.getElementById("snowtamTime2").innerHTML = observationTime;
+
+    fetch('/dataEFHK')
+    .then(response => response.json())
+    .then(result => {
+        for (let record of result.records) {
+            // taxiway and apron conditions (SNOWTAM page)
+            if (record.fields['Name'] === 'twyConditions') { 
+                if (record.fields['content'] === '...') {
+                    // check from SNOWTAM
+                } else {
+                    for (let i = 1; i <= 6; i++) {
+                        document.getElementById(`twyCond${i}`).textContent = record.fields['content'];
+                    }
+                }
+            }
+            if (record.fields['Name'] === 'apronConditions') { 
+                if (record.fields['content'] === '...') {
+                    // check from SNOWTAM
+                } else {
+                    for (let i = 1; i <= 9; i++) {
+                        document.getElementById(`apronCond${i}`).textContent = record.fields['content'];
+                    }
+                }
+            }
+        }
+        setConditionIcon(toggleContaminantIcon);
+    })
+    .catch(error => console.log('error', error));
 }

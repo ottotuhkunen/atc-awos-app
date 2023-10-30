@@ -1,8 +1,11 @@
+let runwayName;
+
 async function setRWYCC(runwayId) {
     // set runways
     document.getElementById("rwyNumber").textContent = "EFHK " + runwayId;
-    document.getElementById("rwyNumber2").textContent = "RUNWAY " + runwayId;
     document.getElementById("rwyNumber3").textContent = runwayId;
+
+    runwayName = runwayId;
 
     manualRWYCC();
 
@@ -166,14 +169,6 @@ function manualRWYCC() {
                     document.getElementById('contaminantType2').textContent = record.fields['content'];
                     document.getElementById('contaminantType3').textContent = record.fields['content'];
 
-                    // taxiway and apron conditions (SNOWTAM page)
-                    for (let i = 1; i <= 6; i++) {
-                        document.getElementById(`twyCond${i}`).textContent = record.fields['content'];
-                    }
-                    for (let i = 1; i <= 9; i++) {
-                        document.getElementById(`apronCond${i}`).textContent = record.fields['content'];
-                    }
-
                     if (record.fields['content'] != "WET" && record.fields['content'] != "SLIPPERY WET" && record.fields['content'] != "STANDING WATER") {
                         toggleContaminantIcon = 3; // snow icon
                     } else {
@@ -181,19 +176,19 @@ function manualRWYCC() {
                     }
                 }
             }
-
+            // runway width (RWYCC page)
             if (record.fields['Name'] === 'rwyWidth') {
-                document.getElementById('rwyWidth').textContent = record.fields['content'] + " m";
-                document.getElementById('reducedRunwayWidth').textContent = record.fields['content'] + " meters";
-            } else {
-                document.getElementById('rwyWidth').textContent = "60 m";
-                document.getElementById('reducedRunwayWidth').textContent = "NIL";
+                if (record.fields['content']) {
+                    document.getElementById('rwyWidth').textContent = record.fields['content'] + " m";
+                    document.getElementById('reducedRunwayWidth').textContent = record.fields['content'];
+                }
             }
         }
         setConditionIcon(toggleContaminantIcon);
     })
     .catch(error => console.log('error', error));
-    
+
+    loadFromSnowtam();
 }
 
 function setConditionIcon(contaminantType) {
@@ -229,4 +224,82 @@ function setConditionIcon(contaminantType) {
             document.getElementById(`contaminantSnow${num}`).style.display = config.snow;
         });
     }    
+}
+
+async function loadFromSnowtam() {
+    try {
+        const response = await fetch('/snowtam');
+        const data = await response.json();
+
+        // snow bank distance from centerline (m)
+        let matchSnowbankDistance = (/SNOW BANK LR(\d{2})/g).exec(data.data);
+
+        if (matchSnowbankDistance) {
+            let snowbankDistance = parseInt(matchSnowbankDistance[1], 10);
+            document.getElementById("snbanks_left1").textContent = snowbankDistance + " m";
+            document.getElementById("snbanks_right1").textContent = snowbankDistance + " m";
+            document.getElementById("snowbanksDistanceText").textContent = snowbankDistance + " / " + snowbankDistance;
+            document.getElementById("snowBackground1").style.display = "block";
+            document.getElementById("snowBackground2").style.display = "block";
+            document.getElementById("snowBackground3").style.display = "block";
+            document.getElementById("snowBackground4").style.display = "block";
+            document.getElementById("snowBackground5").style.display = "block";
+            document.getElementById("snowBackground6").style.display = "block";
+        } else {
+            document.getElementById("snbanks_left1").textContent = "";
+            document.getElementById("snbanks_right1").textContent = "";
+            document.getElementById("snowbanksDistanceText").textContent = "NIL / NIL";
+            document.getElementById("snowBackground1").style.display = "none";
+            document.getElementById("snowBackground2").style.display = "none";
+            document.getElementById("snowBackground3").style.display = "none";
+            document.getElementById("snowBackground4").style.display = "none";
+            document.getElementById("snowBackground5").style.display = "none";
+            document.getElementById("snowBackground6").style.display = "none";
+        }
+
+        // snow bank height (cm)
+        let matchSnowbankHeight = (/SNBANK HEIGHT LR(\d+)CM/g).exec(data.data);
+
+        if (matchSnowbankHeight) {
+            let snowbankHeight = matchSnowbankHeight[1];
+            document.getElementById("snbanksHeightText1").textContent = snowbankHeight;
+            document.getElementById("snbanksHeightText2").textContent = snowbankHeight;
+            document.getElementById("snowbanksHeightText").textContent = snowbankHeight + " / " + snowbankHeight;
+            document.getElementById("snowBanksBackground1").style.display = "block";
+            document.getElementById("snowBanksBackground2").style.display = "block";
+            document.getElementById("snbanksHeight1").style.display = "block";
+            document.getElementById("snbanksHeight2").style.display = "block";
+        } else {
+            document.getElementById("snbanksHeightText1").textContent = "";
+            document.getElementById("snbanksHeightText2").textContent = "";
+            document.getElementById("snowbanksHeightText").textContent = "NIL / NIL";
+            document.getElementById("snowBanksBackground1").style.display = "none";
+            document.getElementById("snowBanksBackground2").style.display = "none";
+            document.getElementById("snbanksHeight1").style.display = "none";
+            document.getElementById("snbanksHeight2").style.display = "none";
+        }
+
+        // check if runway not in use
+        let matchClosedRunway = (/RWY (\d{2}[LR]?) NOT IN USE/g).exec(data.data);
+        let matchChemicallyTreated = (/RWY (\d{2}[LR]?) CHEMICALLY TREATED/g).exec(data.data);
+        
+        if (matchClosedRunway && matchClosedRunway[1] === runwayName) {
+            // runway is closed
+            document.getElementById("rwyNumber2").textContent = "RUNWAY " + runwayName + " NOT IN USE";
+            document.getElementById("rwyNumber2").style.fill = "red";
+        } else {
+            document.getElementById("rwyNumber2").textContent = "RUNWAY " + runwayName;
+            document.getElementById("rwyNumber2").style.fill = "black";
+        }
+
+        if (matchChemicallyTreated && matchChemicallyTreated[1] === runwayName) {
+            document.getElementById("chemicallyTreated").textContent = "YES";
+        } else {
+            document.getElementById("chemicallyTreated").textContent = "NO";
+        }
+
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+
 }

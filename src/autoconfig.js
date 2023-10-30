@@ -189,8 +189,6 @@ function fetchRwyStatus(){
                     document.getElementById("04R_number").style.fill = "#dad7d4";
                     document.getElementById("22L_number").style.fill = "#dad7d4";
                     sessionStorage.setItem("04R_closed", true);
-                    document.getElementById("rwy04RCondWindow").disabled = "true";
-                    document.getElementById("rwy04RCondWindow").style.cursor = "not-allowed";
                 }
                 // open
                 else{
@@ -202,8 +200,6 @@ function fetchRwyStatus(){
                         document.getElementById("checkboxArr04R").disabled = false;
                         document.getElementById("checkboxDep22L").disabled = false;
                         document.getElementById("checkboxArr22L").disabled = false;
-                        document.getElementById("rwy04RCondWindow").disabled = "false";
-                        document.getElementById("rwy04RCondWindow").style.cursor = "pointer";
                     }
                     sessionStorage.setItem("04R_closed", false);
                 }
@@ -229,8 +225,6 @@ function fetchRwyStatus(){
                     document.getElementById("15_number").style.fill = "#dad7d4";
                     document.getElementById("33_number").style.fill = "#dad7d4";
                     sessionStorage.setItem("15_closed", true);
-                    document.getElementById("rwy15CondWindow").disabled = "true";
-                    document.getElementById("rwy15CondWindow").style.cursor = "not-allowed";
                 }
                 // open
                 else{
@@ -238,12 +232,10 @@ function fetchRwyStatus(){
                         document.getElementById("rwy15").style.fill = "#B5B5B5";
                         document.getElementById("15_number").style.fill = "#DADADA";
                         document.getElementById("33_number").style.fill = "#DADADA";
-                        document.getElementById("rwy15CondWindow").disabled = "false";
                         document.getElementById("checkboxDep15").disabled = false;
                         document.getElementById("checkboxArr15").disabled = false;
                         document.getElementById("checkboxDep33").disabled = false;
                         document.getElementById("checkboxArr33").disabled = false;
-                        document.getElementById("rwy15CondWindow").style.cursor = "pointer";
                     }
                     sessionStorage.setItem("15_closed", false);
                 }
@@ -268,8 +260,6 @@ function fetchRwyStatus(){
                     document.getElementById("04L_number").style.fill = "#dad7d4";
                     document.getElementById("22R_number").style.fill = "#dad7d4";
                     sessionStorage.setItem("04L_closed", true);
-                    document.getElementById("rwy04LCondWindow").disabled = "true";
-                    document.getElementById("rwy04LCondWindow").style.cursor = "not-allowed";
                 }
                 // open
                 else{
@@ -281,8 +271,6 @@ function fetchRwyStatus(){
                         document.getElementById("checkboxArr04L").disabled = false;
                         document.getElementById("checkboxDep22R").disabled = false;
                         document.getElementById("checkboxArr22R").disabled = false;
-                        document.getElementById("rwy04LCondWindow").disabled = "false";
-                        document.getElementById("rwy04LCondWindow").style.cursor = "pointer";
                     }
                     sessionStorage.setItem("04L_closed", false);
                 }
