@@ -14,7 +14,6 @@ async function loadFMI() {
       const parser = new DOMParser();
       const data = parser.parseFromString(responseText, "application/xml");
       setData(data);
-      fetchInformation();
       fetchRwyStatus();
       console.log("FMI data loaded at", new Date().toLocaleTimeString());
     }
@@ -558,7 +557,8 @@ function setMetarData(xmlDoc) {
   if (windProblems) {
     noWindData();
   }
-  // rwy15Closed();
+  // fetch other information
+  fetchInformation();
 }
 
 function makeClosedAtisText(metar) {
@@ -619,6 +619,10 @@ function makeClosedAtisText(metar) {
   document.getElementById('atisInfoField').innerHTML = closedAtisText;
   document.getElementById('atisId1').textContent = closedAtisId;
   document.getElementById('atisId2').textContent = closedAtisId;
+
+}
+
+function generateATISWarning() {
 
 }
 
