@@ -180,7 +180,12 @@ function manualRWYCC() {
             if (record.fields['Name'] === 'rwyWidth') {
                 if (record.fields['content']) {
                     document.getElementById('rwyWidth').textContent = record.fields['content'] + " m";
-                    document.getElementById('reducedRunwayWidth').textContent = record.fields['content'];
+                    if (record.fields['content'] === 60) {
+                        document.getElementById('reducedRunwayWidth').textContent = "NIL";
+                    } else {
+                        document.getElementById('reducedRunwayWidth').textContent = record.fields['content'];
+                    }
+                    
                 }
             }
         }
