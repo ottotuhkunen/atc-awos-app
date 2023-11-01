@@ -541,11 +541,13 @@ function setMetarData(xmlDoc) {
         atisType = 1;
         var atisWithLines = item.text_atis.join(' ').replace(/\.\./g, '.').split('.');
         makeAtisText(atisWithLines.join('<br/>'));
+        fetchInformation();
         break;
       }
       else {
         atisType = 0;
         makeClosedAtisText(metar);
+        fetchInformation();
         if (document.getElementById("rwyConfigValue").textContent == "AUTO") {
           // make all runways inactive
           loadConfig();
@@ -557,8 +559,6 @@ function setMetarData(xmlDoc) {
   if (windProblems) {
     noWindData();
   }
-  // fetch other information
-  fetchInformation();
 }
 
 function makeClosedAtisText(metar) {
