@@ -69,8 +69,8 @@ function setData(xmlDoc) {
 
     for (var i = 0; i < table.length; i++) {
         if (table[i][0] === "p_sea") {
-          qnh = (table[i][1] - 0.5);
-          qnhArray.push(table[i][1] - 0.5);
+          qnh = (table[i][1] - 0.2);
+          qnhArray.push(table[i][1] - 0.2);
         }
         if (table[i][0] === "ws_10min") {
           windSpeed = table[i][1];
@@ -619,10 +619,6 @@ function makeClosedAtisText(metar) {
   document.getElementById('atisInfoField').innerHTML = closedAtisText;
   document.getElementById('atisId1').textContent = closedAtisId;
   document.getElementById('atisId2').textContent = closedAtisId;
-
-}
-
-function generateATISWarning() {
 
 }
 
