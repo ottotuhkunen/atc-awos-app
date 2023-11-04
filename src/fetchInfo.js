@@ -160,21 +160,13 @@ async function loadSnowtam() {
         for (let record of result.records) {
             // taxiway and apron conditions (SNOWTAM page)
             if (record.fields['Name'] === 'twyConditions') { 
-                if (record.fields['content'] === '...') {
-                    // check from SNOWTAM
-                } else {
-                    for (let i = 1; i <= 6; i++) {
-                        document.getElementById(`twyCond${i}`).textContent = record.fields['content'];
-                    }
+                for (let i = 1; i <= 6; i++) {
+                    document.getElementById(`twyCond${i}`).textContent = record.fields['content'];
                 }
             }
             if (record.fields['Name'] === 'apronConditions') { 
-                if (record.fields['content'] === '...') {
-                    // check from SNOWTAM
-                } else {
-                    for (let i = 1; i <= 9; i++) {
-                        document.getElementById(`apronCond${i}`).textContent = record.fields['content'];
-                    }
+                for (let i = 1; i <= 9; i++) {
+                    document.getElementById(`apronCond${i}`).textContent = record.fields['content'];
                 }
             }
         }
