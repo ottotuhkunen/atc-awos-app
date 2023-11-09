@@ -65,12 +65,10 @@ function setData(xmlDoc) {
     
     var windSpeed = 0;
     var windGust = 0;
-    var qnhArray = [];
 
     for (var i = 0; i < table.length; i++) {
         if (table[i][0] === "p_sea") {
           qnh = table[i][1];
-          qnhArray.push(table[i][1]);
         }
         if (table[i][0] === "ws_10min") {
           windSpeed = table[i][1];
@@ -99,17 +97,8 @@ function setData(xmlDoc) {
         }
     }
 
-    qnhArray = qnhArray.map(Number);
-
     // get the rounded QNH average
-    if (qnhArray.length >= 4) {
-      var fourLatestQnh = qnhArray.slice(-4);
-      var qnhSum = fourLatestQnh.reduce((acc, val) => acc + val, 0);
-      var averageQnh = qnhSum / 4;
-      roundedQnh = Math.floor(averageQnh);
-  } else {
     roundedQnh = Math.floor(qnh);
-  }
 
     var roundedGust = Math.ceil(windGust * 1.943);
     var roundedWindSpeed = Math.round(windSpeed * 1.943);
@@ -728,15 +717,20 @@ function makeAtisText(atisText) {
     atisText = atisText.replace(/(?:\s*|<br\/>)*(FEW|BKN|SCT|OVC) (\d{3})/g, function(match, cloudCover, altitude) {
       let newAltitude = parseInt(altitude, 10) * 100;
       return `<br/>${cloudCover} ${newAltitude} FT`;
-  });
+    });
     atisText = atisText.replace(/T (M?)0*(\d{1,2}) DP (M?)0*(\d{1,2})/g, function(match, m1, p1, m2, p2) {
       let temp1 = m1 === "M" ? "-" + p1 : p1;
       let temp2 = m2 === "M" ? "-" + p2 : p2;
       return "T " + parseInt(temp1, 10) + " DP " + parseInt(temp2, 10);
     });
-  }
-  let pattern = /INFO\s([A-Z])/;
+    atisText = atisText.replace(/VV 0*(\d{1,3})/g, function(match, num) {
+      let value = parseInt(num, 10) * 100;
+      return "OBSC VER VIS " + value + "FT";
+    });
 
+  }
+
+  let pattern = /INFO\s([A-Z])/;
   let match = atisText.match(pattern);
 
   if (match && match[1]) {
