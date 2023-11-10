@@ -41,7 +41,8 @@ function modeSelectorPressed() {
     }
 }
 
-function loadConfig() {
+async function loadConfig() {
+    try {
     if (document.getElementById("rwyConfigValue").innerHTML == "AUTO") {
         getRwyFromAtis();
     } else {
@@ -97,6 +98,9 @@ function loadConfig() {
         if (checked12 == true){
             document.getElementById('checkboxArr22R').click();
         }  
+    }
+    } catch (error) {
+        console.log('Error in closedATIS function:', error);
     }
 }
 

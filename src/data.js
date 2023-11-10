@@ -4,7 +4,9 @@ function startDataFetching() {
 }
 
 async function loadFMI() {
+  const loadingIcon = document.getElementById("loadingIcon");
   try {
+    loadingIcon.style.display = "block";
     const response = await fetch("https://opendata.fmi.fi/wfs?service=WFS&version=2.0.0&request=getFeature&storedquery_id=fmi::observations::weather::simple&fmisid=100968");
 
     if (!response.ok) {
@@ -13,8 +15,8 @@ async function loadFMI() {
       const responseText = await response.text();
       const parser = new DOMParser();
       const data = parser.parseFromString(responseText, "application/xml");
-      setData(data);
-      fetchRwyStatus();
+      await setData(data);
+      await fetchRwyStatus();
       console.log("FMI data loaded at", new Date().toLocaleTimeString());
     }
   } catch (error) {
@@ -32,11 +34,11 @@ async function loadMetar() {
           const responseText = await response.text();
           const parser = new DOMParser();
           const data = parser.parseFromString(responseText, "application/xml");
-          setMetarData(data);
+          await setMetarData(data);
           console.log("METAR data loaded at", new Date().toLocaleTimeString());
       }
   } catch (error) {
-      console.log('Fetch API error -', error);
+      console.log('error in loadMetar function:', error);
   }
 }
 
@@ -51,7 +53,8 @@ let windProblems = false;
 let metar = "//";
 let atisType;
 
-function setData(xmlDoc) {
+async function setData(xmlDoc) {
+  try {
     var xmlSize = xmlDoc.getElementsByTagName("BsWfs:ParameterName");
     var table = new Array(xmlSize.length);
 
@@ -191,8 +194,11 @@ function setData(xmlDoc) {
     document.getElementById("04R_minSpd").innerHTML = getMinSpeed(roundedWindSpeed);
     document.getElementById("04L_minSpd").innerHTML = getMinSpeed(roundedWindSpeed);
 
-    loadMetar();
+    await loadMetar();
     setCurrentWx(Math.floor(wawa));
+    } catch (error) {
+      console.log('Error in setData function:', error);
+  }
 }
 
 function getMinSpeed(roundedWindSpeed) {
@@ -261,7 +267,8 @@ function randomWindDirection(realDirection, arrowID, maxDirID, windSpeed) { // 2
   return randomDirection;
 }
 
-function setMetarData(xmlDoc) {
+async function setMetarData(xmlDoc) {
+  try {
 
   let records = xmlDoc.getElementsByTagName("iwxxm:MeteorologicalAerodromeObservationRecord");
   let latestRecord = records[records.length - 1];
@@ -521,36 +528,38 @@ function setMetarData(xmlDoc) {
   let qfeValue = Math.floor(qnh - 6.5);
   populateTopMenu(roundedQnh, qfeValue, metCond);
 
-  // get ATIS
   fetch('https://data.vatsim.net/v3/vatsim-data.json')
-  .then(response => response.json())
-  .then(data => {
+  .then(async response => {
+    const data = await response.json(); // Parse JSON inside the async callback
+
     for (let item of data.atis) {
       if (item.callsign === "EFHK_ATIS") {
         atisType = 1;
         var atisWithLines = item.text_atis.join(' ').replace(/\.\./g, '.').split('.');
         makeAtisText(atisWithLines.join('<br/>'));
-        fetchInformation();
+        await fetchInformation(); // Await the asynchronous function
         break;
-      }
-      else {
+      } else {
         atisType = 0;
         makeClosedAtisText(metar);
-        fetchInformation();
+        await fetchInformation(); // Await here if it's necessary
+
         if (document.getElementById("rwyConfigValue").textContent == "AUTO") {
-          // make all runways inactive
-          loadConfig();
+          await loadConfig();
         }
       }
     }
-  })
-  .catch(error => console.error('Error:', error));
-  if (windProblems) {
-    noWindData();
+    // Handle wind problems after the loop
+    if (windProblems) {
+      noWindData();
+    }})
+  } catch (error) {
+    console.log('Error in closedATIS function:', error);
   }
 }
 
-function makeClosedAtisText(metar) {
+async function makeClosedAtisText(metar) {
+  try {
   let closedAtisText = metar;
   let closedAtisId = getCurrentLetter();
   closedAtisText = closedAtisText.replace(/ /g, `<br/>`);
@@ -608,7 +617,9 @@ function makeClosedAtisText(metar) {
   document.getElementById('atisInfoField').innerHTML = closedAtisText;
   document.getElementById('atisId1').textContent = closedAtisId;
   document.getElementById('atisId2').textContent = closedAtisId;
-
+  } catch (error) {
+    console.log('Error in closedATIS function:', error);
+  }
 }
 
 function getCurrentLetter() {
@@ -627,7 +638,8 @@ function getCurrentLetter() {
   return 'Z';
 }
 
-function makeAtisText(atisText) {
+async function makeAtisText(atisText) {
+  try {
   if (atisText.includes("THIS IS HELSINKI-VANTAA")) {
     atisText = atisText.replace(/(THIS IS HELSINKI-VANTAA ARRIVAL AND DEPARTURE INFORMATION) (\w)/, "EFHK ARR AND DEP INFO $2<br/>");
     atisText = atisText.replace(/AT TIME (\d{4})/g, '$1<br/>');
@@ -746,6 +758,9 @@ function makeAtisText(atisText) {
   if (document.getElementById("rwyConfigValue").textContent == "AUTO") {
     // load automatic rwy config
     loadConfig();
+  }
+  } catch (error) {
+    console.log('Error in makeAtisText function:', error);
   }
 }
 

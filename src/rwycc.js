@@ -190,10 +190,12 @@ function manualRWYCC() {
             }
         }
         setConditionIcon(toggleContaminantIcon);
+        document.getElementById("loadingIconRWYCC").style.display = "none";
     })
     .catch(error => console.log('error', error));
 
     loadFromSnowtam();
+
 }
 
 function setConditionIcon(contaminantType) {

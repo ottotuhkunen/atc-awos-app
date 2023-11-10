@@ -45,84 +45,90 @@ function openMainPage(checkType) {
     }
 }
 
-function openRWYCC(runwayId) {
-    document.getElementById("rwyccDiv").style.visibility = "hidden";
-    if (runwayId == "04R") {
-        document.getElementById("rwy1Triangle").style.display = "block";
-        document.getElementById("rwy2Triangle").style.display = "none";
-        document.getElementById("rwy3Triangle").style.display = "none";
-        document.getElementById("rwy1Background").classList.remove("rwy04RButtonInactive");
-        document.getElementById("rwy1Background").classList.add("rwy04RButtonactive");
-        document.getElementById("rwy2Background").classList.remove("rwy15Buttonactive");
-        document.getElementById("rwy2Background").classList.add("rwy15ButtonInactive");
-        document.getElementById("rwy3Background").classList.remove("rwy04LButtonactive");
-        document.getElementById("rwy3Background").classList.add("rwy04LButtonInactive");
-        document.getElementById("buttonRwy1").style.pointerEvents = "none";
-        document.getElementById("buttonRwy2").style.pointerEvents = "auto";
-        document.getElementById("buttonRwy3").style.pointerEvents = "auto";
-
-    } else if (runwayId == "15") {
-        document.getElementById("rwy1Triangle").style.display = "none";
-        document.getElementById("rwy2Triangle").style.display = "block";
-        document.getElementById("rwy3Triangle").style.display = "none";
-        document.getElementById("rwy1Background").classList.remove("rwy04RButtonactive");
-        document.getElementById("rwy1Background").classList.add("rwy04RButtonInactive");
-        document.getElementById("rwy2Background").classList.remove("rwy15ButtonInactive");
-        document.getElementById("rwy2Background").classList.add("rwy15Buttonactive");
-        document.getElementById("rwy3Background").classList.remove("rwy04LButtonactive");
-        document.getElementById("rwy3Background").classList.add("rwy04LButtonInactive");
-        document.getElementById("buttonRwy1").style.pointerEvents = "auto";
-        document.getElementById("buttonRwy2").style.pointerEvents = "none";
-        document.getElementById("buttonRwy3").style.pointerEvents = "auto";
-
-    } else if (runwayId == "04L") {
-        document.getElementById("rwy1Triangle").style.display = "none";
-        document.getElementById("rwy2Triangle").style.display = "none";
-        document.getElementById("rwy3Triangle").style.display = "block";
-        document.getElementById("rwy1Background").classList.remove("rwy04RButtonactive");
-        document.getElementById("rwy1Background").classList.add("rwy04RButtonInactive");
-        document.getElementById("rwy2Background").classList.remove("rwy15Buttonactive");
-        document.getElementById("rwy2Background").classList.add("rwy04RButtonInactive");
-        document.getElementById("rwy3Background").classList.remove("rwy04LButtonInactive");
-        document.getElementById("rwy3Background").classList.add("rwy04LButtonactive");
-        document.getElementById("buttonRwy1").style.pointerEvents = "auto";
-        document.getElementById("buttonRwy2").style.pointerEvents = "auto";
-        document.getElementById("buttonRwy3").style.pointerEvents = "none";
-    }
-
-    // other left nav triangles
-    document.getElementById("mainTriangle").style.display = "none";
-    document.getElementById("snowtamTriangle").style.display = "none";
-    document.getElementById("metReportTriangle").style.display = "none";
-    document.getElementById("setupTriangle").style.display = "none";
-
-    // left nav buttons
-    document.getElementById("mainBackground").classList.remove("leftNav1");
-    document.getElementById("mainBackground").classList.add("leftNav1_1");
-    document.getElementById("metReportBackground").classList.remove("leftNav9_1");
-    document.getElementById("metReportBackground").classList.add("leftNav9");
-    document.getElementById("setupBackground").classList.remove("leftNav11_1");
-    document.getElementById("setupBackground").classList.add("leftNav11");
-    document.getElementById("snowtamBackground").classList.remove("leftNav8_1");
-    document.getElementById("snowtamBackground").classList.add("leftNav8");
-    document.getElementById("buttonMain").style.pointerEvents = "auto";
-    document.getElementById("buttonSnowtam").style.pointerEvents = "auto";
-    document.getElementById("buttonMetReport").style.pointerEvents = "auto";
-    document.getElementById("buttonSetup").style.pointerEvents = "auto";
-
-    // displayed content
-    document.getElementById("atisDiv").style.display = "none";
-    document.getElementById("mainSvg").style.display = "none";
-    document.getElementById("setupDiv").style.display = "none";
-    document.getElementById("metrepDiv").style.display = "none";
-    document.getElementById("snowtamDiv").style.display = "none";
-
-    // additions:
-
-    document.getElementById("rwyccDiv").style.visibility = "visible";
+async function openRWYCC(runwayId) {
+    const loadingIconRWYCC = document.getElementById("loadingIconRWYCC");
     
-    // set data on page
-    setRWYCC(runwayId);
+    try {
+        document.getElementById("rwyccDiv").style.visibility = "visible";
+        loadingIconRWYCC.style.display = "block";
+
+        if (runwayId == "04R") {
+            document.getElementById("rwy1Triangle").style.display = "block";
+            document.getElementById("rwy2Triangle").style.display = "none";
+            document.getElementById("rwy3Triangle").style.display = "none";
+            document.getElementById("rwy1Background").classList.remove("rwy04RButtonInactive");
+            document.getElementById("rwy1Background").classList.add("rwy04RButtonactive");
+            document.getElementById("rwy2Background").classList.remove("rwy15Buttonactive");
+            document.getElementById("rwy2Background").classList.add("rwy15ButtonInactive");
+            document.getElementById("rwy3Background").classList.remove("rwy04LButtonactive");
+            document.getElementById("rwy3Background").classList.add("rwy04LButtonInactive");
+            document.getElementById("buttonRwy1").style.pointerEvents = "none";
+            document.getElementById("buttonRwy2").style.pointerEvents = "auto";
+            document.getElementById("buttonRwy3").style.pointerEvents = "auto";
+
+        } else if (runwayId == "15") {
+            document.getElementById("rwy1Triangle").style.display = "none";
+            document.getElementById("rwy2Triangle").style.display = "block";
+            document.getElementById("rwy3Triangle").style.display = "none";
+            document.getElementById("rwy1Background").classList.remove("rwy04RButtonactive");
+            document.getElementById("rwy1Background").classList.add("rwy04RButtonInactive");
+            document.getElementById("rwy2Background").classList.remove("rwy15ButtonInactive");
+            document.getElementById("rwy2Background").classList.add("rwy15Buttonactive");
+            document.getElementById("rwy3Background").classList.remove("rwy04LButtonactive");
+            document.getElementById("rwy3Background").classList.add("rwy04LButtonInactive");
+            document.getElementById("buttonRwy1").style.pointerEvents = "auto";
+            document.getElementById("buttonRwy2").style.pointerEvents = "none";
+            document.getElementById("buttonRwy3").style.pointerEvents = "auto";
+
+        } else if (runwayId == "04L") {
+            document.getElementById("rwy1Triangle").style.display = "none";
+            document.getElementById("rwy2Triangle").style.display = "none";
+            document.getElementById("rwy3Triangle").style.display = "block";
+            document.getElementById("rwy1Background").classList.remove("rwy04RButtonactive");
+            document.getElementById("rwy1Background").classList.add("rwy04RButtonInactive");
+            document.getElementById("rwy2Background").classList.remove("rwy15Buttonactive");
+            document.getElementById("rwy2Background").classList.add("rwy04RButtonInactive");
+            document.getElementById("rwy3Background").classList.remove("rwy04LButtonInactive");
+            document.getElementById("rwy3Background").classList.add("rwy04LButtonactive");
+            document.getElementById("buttonRwy1").style.pointerEvents = "auto";
+            document.getElementById("buttonRwy2").style.pointerEvents = "auto";
+            document.getElementById("buttonRwy3").style.pointerEvents = "none";
+        }
+
+        // other left nav triangles
+        document.getElementById("mainTriangle").style.display = "none";
+        document.getElementById("snowtamTriangle").style.display = "none";
+        document.getElementById("metReportTriangle").style.display = "none";
+        document.getElementById("setupTriangle").style.display = "none";
+
+        // left nav buttons
+        document.getElementById("mainBackground").classList.remove("leftNav1");
+        document.getElementById("mainBackground").classList.add("leftNav1_1");
+        document.getElementById("metReportBackground").classList.remove("leftNav9_1");
+        document.getElementById("metReportBackground").classList.add("leftNav9");
+        document.getElementById("setupBackground").classList.remove("leftNav11_1");
+        document.getElementById("setupBackground").classList.add("leftNav11");
+        document.getElementById("snowtamBackground").classList.remove("leftNav8_1");
+        document.getElementById("snowtamBackground").classList.add("leftNav8");
+        document.getElementById("buttonMain").style.pointerEvents = "auto";
+        document.getElementById("buttonSnowtam").style.pointerEvents = "auto";
+        document.getElementById("buttonMetReport").style.pointerEvents = "auto";
+        document.getElementById("buttonSetup").style.pointerEvents = "auto";
+
+        // displayed content
+        document.getElementById("atisDiv").style.display = "none";
+        document.getElementById("mainSvg").style.display = "none";
+        document.getElementById("setupDiv").style.display = "none";
+        document.getElementById("metrepDiv").style.display = "none";
+        document.getElementById("snowtamDiv").style.display = "none";
+        
+        // set data on page
+        await setRWYCC(runwayId);
+
+    } catch (error) {
+        console.error('Error in RWYCC function:', error);
+
+    }
 }
 
 function metrep() {

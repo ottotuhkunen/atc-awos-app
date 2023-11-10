@@ -1,8 +1,7 @@
-function fetchInformation(){
-    fetch('/dataEFHK')
-    .then(response => response.json())
-
-    .then(result => {
+async function fetchInformation(){
+    try {
+        const response = await fetch('/dataEFHK');
+        const result = await response.json();
         for (let record of result.records) {
             // information window 04L
             if (record.fields['Name'] === 'infowindow_04L line1') {
@@ -116,8 +115,11 @@ function fetchInformation(){
                 document.getElementById('metWarnings2').textContent = record.fields['content'];
             }
         }
-    })
-    .catch(error => console.log('error', error));
+    } catch (error) {
+        console.log('Error in setMetarData function:', error);
+    } finally {
+        document.getElementById("loadingIcon").style.display = "none";
+    }
 }
 
 // SNOWTAMs:
