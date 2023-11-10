@@ -132,6 +132,7 @@ async function openRWYCC(runwayId) {
 }
 
 function metrep() {
+    document.getElementById("loadingIconMETREP").style.display = "inline-block";
     // left nav triangles
     document.getElementById("mainTriangle").style.display = "none";
     document.getElementById("rwy1Triangle").style.display = "none";
@@ -311,6 +312,7 @@ function metNav1() {
 }
 
 function metNav2() {
+    document.getElementById("loadingIconMETREP").style.display = "inline-block";
     document.getElementById("metrepSvg").style.display = "none";
     document.getElementById("metarsSvg").style.display = "block";
     document.getElementById("tafsSvg").style.display = "none";
@@ -448,11 +450,14 @@ function metNav2() {
         else {
             document.getElementById("metarULLI1").textContent = result.data[0] + "=";
         }
+
+        document.getElementById("loadingIconMETREP").style.display = "none";
     })
     .catch(error => console.log('error', error));
 }
 
 function metNav3() {
+    document.getElementById("loadingIconMETREP").style.display = "inline-block";
     document.getElementById("metrepSvg").style.display = "none";
     document.getElementById("metarsSvg").style.display = "none";
     document.getElementById("tafsSvg").style.display = "block";
@@ -721,7 +726,7 @@ function metNav3() {
         else {
             document.getElementById("metTaf1_ulli").textContent = result.data[0] + "=";
         }
-        
+        document.getElementById("loadingIconMETREP").style.display = "none";
     })
     .catch(error => console.log('error', error));
 }
@@ -946,6 +951,7 @@ function setMetRep(xml) {
     var qnhs = xmlDoc.getElementsByTagName('iwxxm:qnh');
     var qnh = qnhs[qnhs.length-1].childNodes[0].nodeValue;
     document.getElementById("metQnh").textContent = Math.round(qnh);
+
 }
 
 function loadCurrentMet() {
@@ -1128,6 +1134,8 @@ function loadActualMet(xml) {
                 document.getElementById("metWx").textContent = allConditionsText;
             }
         });
+
+        document.getElementById("loadingIconMETREP").style.display = "none";
     })
     .catch(error => console.log('error', error));
 }

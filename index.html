@@ -455,7 +455,7 @@
                         </table>
                     </div>
                     <hr>
-                    <h3>Current version: 3.6.6</h3>
+                    <h3>Current version: 3.6.7</h3>
                 </div>
             </div>
 
@@ -464,6 +464,10 @@
                     <button id="metButton1" onclick="metNav1();" class="metButtons" style="margin-left: 10px; background-color: #D8E5F3;">MET EFHK</button>
                     <button id="metButton2" onclick="metNav2();" class="metButtons">METARs</button>
                     <button id="metButton3" onclick="metNav3();" class="metButtons">TAFs</button>
+                    <div id="loadingIconMETREP" style="display:inline-block;">
+                        <span style="font-size: 10pt; padding-left: 10pt;">Loading data </span>
+                        <img src="src/ajax-loader.gif" alt="Loading" style="width: 17px; vertical-align: middle;"/>
+                    </div>
                 </div>
                 <svg id="metrepSvg" preserveAspectRatio="xMinYMin meet" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                     viewBox="0 0 1202 610" style="enable-background:new 0 0 1202 610;" xml:space="preserve">
@@ -636,6 +640,7 @@
                             <text id="metCurrentCloud_alt1" transform="matrix(1 0 0 1 1082.4202 216.9001)" class="stt5 stt10"></text>
                         </g>
                     </g>
+                    
                 </svg>
                 <svg id="metarsSvg" preserveAspectRatio="xMinYMin meet" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                     viewBox="0 0 1195.09 623.35" style="enable-background:new 0 0 1195.09 623.35; display: none;" xml:space="preserve">
