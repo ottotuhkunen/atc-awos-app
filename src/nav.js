@@ -977,7 +977,7 @@ function loadActualMet(xml) {
 
     for (var i = 0; i < table.length; i++) {
         if (table[i][0] === "p_sea") {
-          currentQnh = table[i][1] - 0.5;
+          currentQnh = table[i][1] - 0.3;
         }
         if (table[i][0] === "vis") {
           currentVisibility = table[i][1];
@@ -998,7 +998,7 @@ function loadActualMet(xml) {
     document.getElementById("metCurrentVis").textContent = roundedCurrentVisibility;
     document.getElementById("metCurrentTemp").textContent = currentTemperature;
     document.getElementById("metCurrentDewpoint").textContent = currentDewpoint;
-    document.getElementById("metCurrentQnh").textContent = currentQnh;
+    document.getElementById("metCurrentQnh").textContent = currentQnh.toFixed(1);
     document.getElementById("metCurrentQfe04R").textContent = (currentQnh - 5.9).toFixed(1);
     document.getElementById("metCurrentQfe22L").textContent = (currentQnh - 6.5).toFixed(1);
 
