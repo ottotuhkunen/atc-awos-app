@@ -185,7 +185,6 @@ function manualRWYCC() {
                     } else {
                         document.getElementById('reducedRunwayWidth').textContent = record.fields['content'];
                     }
-                    
                 }
             }
         }
@@ -195,7 +194,6 @@ function manualRWYCC() {
     .catch(error => console.log('error', error));
 
     loadFromSnowtam();
-
 }
 
 function setConditionIcon(contaminantType) {

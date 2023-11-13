@@ -530,29 +530,32 @@ async function setMetarData(xmlDoc) {
 
   fetch('https://data.vatsim.net/v3/vatsim-data.json')
   .then(async response => {
-    const data = await response.json(); // Parse JSON inside the async callback
+    const data = await response.json();
+    let efhkAtisFound = false;
 
     for (let item of data.atis) {
       if (item.callsign === "EFHK_ATIS") {
+        efhkAtisFound = true;
         atisType = 1;
         var atisWithLines = item.text_atis.join(' ').replace(/\.\./g, '.').split('.');
-        makeAtisText(atisWithLines.join('<br/>'));
-        await fetchInformation(); // Await the asynchronous function
+        await makeAtisText(atisWithLines.join('<br/>'));
+        await fetchInformation();
         break;
-      } else {
-        atisType = 0;
-        makeClosedAtisText(metar);
-        await fetchInformation(); // Await here if it's necessary
-
-        if (document.getElementById("rwyConfigValue").textContent == "AUTO") {
-          await loadConfig();
-        }
-      }
+      } 
     }
-    // Handle wind problems after the loop
+      
+    // EFHK ATIS not found:
+    if (!efhkAtisFound) {
+        atisType = 0;
+        await makeClosedAtisText(metar);
+        await fetchInformation();
+        if (document.getElementById("rwyConfigValue").textContent == "AUTO") await loadConfig();
+    }
+
     if (windProblems) {
       noWindData();
     }})
+    
   } catch (error) {
     console.log('Error in closedATIS function:', error);
   }
