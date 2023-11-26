@@ -156,6 +156,11 @@ function manualRWYCC() {
                     [tspans2[0].textContent, tspans2[1].textContent] = ['100%', '1mm'];
                     [tspans3[0].textContent, tspans3[1].textContent] = ['100%', '1mm'];
                 }
+                if (record.fields["rwycc_upgr_dngr"] == "↓"){
+                    document.getElementById('downgradedReport').style.display = "block";
+                } else {
+                    document.getElementById('downgradedReport').style.display = "none";
+                }
             }
             if (record.fields['Name'] === 'contaminants')  {
                 if (record.fields['content']) {
