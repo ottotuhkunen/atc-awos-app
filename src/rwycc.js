@@ -1,4 +1,5 @@
 let runwayName;
+let contaminantDepth = 1;
 
 async function setRWYCC(runwayId) {
     // set runways
@@ -95,6 +96,28 @@ function manualRWYCC() {
     .then(response => response.json())
     .then(result => {
         for (let record of result.records) {
+            if (record.fields['Name'] === 'contaminants')  {
+                if (record.fields["rwycc_upgr_dngr"]) {
+                    contaminantDepth = record.fields["rwycc_upgr_dngr"];
+                }
+                if (record.fields['content']) {
+                    document.getElementById('contaminantText1').textContent = record.fields['content'] + " " + contaminantDepth + "mm";
+                    document.getElementById('contaminantText2').textContent = record.fields['content'] + " " + contaminantDepth + "mm";
+                    document.getElementById('contaminantText3').textContent = record.fields['content'] + " " + contaminantDepth + "mm";
+                    document.getElementById('contaminantTypeSimple1').textContent = record.fields['content'];
+                    document.getElementById('contaminantTypeSimple2').textContent = record.fields['content'];
+                    document.getElementById('contaminantTypeSimple3').textContent = record.fields['content'];
+                    document.getElementById('contaminantType1').textContent = record.fields['content'];
+                    document.getElementById('contaminantType2').textContent = record.fields['content'];
+                    document.getElementById('contaminantType3').textContent = record.fields['content'];
+
+                    if (record.fields['content'] != "WET" && record.fields['content'] != "SLIPPERY WET" && record.fields['content'] != "STANDING WATER") {
+                        toggleContaminantIcon = 3; // snow icon
+                    } else {
+                        toggleContaminantIcon = 2; // wet icon
+                    }
+                }
+            }
             if (record.fields['Name'] === 'rwycc_all_rwys') {
                 document.getElementById('rwyccValue_1').textContent = record.fields['content'];
                 document.getElementById('rwyccValue_2').textContent = record.fields['content'];
@@ -139,12 +162,12 @@ function manualRWYCC() {
                     toggleContaminantIcon = 1; // sun icon
 
                 } else {
-                    document.getElementById('depth1').textContent = "1 MM";
-                    document.getElementById('depth2').textContent = "1 MM";
-                    document.getElementById('depth3').textContent = "1 MM";
-                    document.getElementById('depth1_1').textContent = "1 MM";
-                    document.getElementById('depth2_1').textContent = "1 MM";
-                    document.getElementById('depth3_1').textContent = "1 MM";
+                    document.getElementById('depth1').textContent = contaminantDepth + " MM";
+                    document.getElementById('depth2').textContent = contaminantDepth + " MM";
+                    document.getElementById('depth3').textContent = contaminantDepth + " MM";
+                    document.getElementById('depth1_1').textContent = contaminantDepth + " MM";
+                    document.getElementById('depth2_1').textContent = contaminantDepth + " MM";
+                    document.getElementById('depth3_1').textContent = contaminantDepth + " MM";
                     document.getElementById('to_signif_cont').textContent = "THIN RWYCC " + (record.fields['content'] + "/").repeat(3) + ".";
                     document.getElementById('pattern1').style.display = "block";
                     document.getElementById('pattern2').style.display = "block";
@@ -152,33 +175,14 @@ function manualRWYCC() {
                     let tspans1 = document.querySelectorAll('#coveragePercent1 > tspan');
                     let tspans2 = document.querySelectorAll('#coveragePercent2 > tspan');
                     let tspans3 = document.querySelectorAll('#coveragePercent3 > tspan');
-                    [tspans1[0].textContent, tspans1[1].textContent] = ['100%', '1mm'];
-                    [tspans2[0].textContent, tspans2[1].textContent] = ['100%', '1mm'];
-                    [tspans3[0].textContent, tspans3[1].textContent] = ['100%', '1mm'];
+                    [tspans1[0].textContent, tspans1[1].textContent] = ['100%', contaminantDepth + "mm"];
+                    [tspans2[0].textContent, tspans2[1].textContent] = ['100%', contaminantDepth + "mm"];
+                    [tspans3[0].textContent, tspans3[1].textContent] = ['100%', contaminantDepth + "mm"];
                 }
                 if (record.fields["rwycc_upgr_dngr"] == "↓"){
                     document.getElementById('downgradedReport').style.display = "block";
                 } else {
                     document.getElementById('downgradedReport').style.display = "none";
-                }
-            }
-            if (record.fields['Name'] === 'contaminants')  {
-                if (record.fields['content']) {
-                    document.getElementById('contaminantText1').textContent = record.fields['content'] + " 1mm";
-                    document.getElementById('contaminantText2').textContent = record.fields['content'] + " 1mm";
-                    document.getElementById('contaminantText3').textContent = record.fields['content'] + " 1mm";
-                    document.getElementById('contaminantTypeSimple1').textContent = record.fields['content'];
-                    document.getElementById('contaminantTypeSimple2').textContent = record.fields['content'];
-                    document.getElementById('contaminantTypeSimple3').textContent = record.fields['content'];
-                    document.getElementById('contaminantType1').textContent = record.fields['content'];
-                    document.getElementById('contaminantType2').textContent = record.fields['content'];
-                    document.getElementById('contaminantType3').textContent = record.fields['content'];
-
-                    if (record.fields['content'] != "WET" && record.fields['content'] != "SLIPPERY WET" && record.fields['content'] != "STANDING WATER") {
-                        toggleContaminantIcon = 3; // snow icon
-                    } else {
-                        toggleContaminantIcon = 2; // wet icon
-                    }
                 }
             }
             // runway width (RWYCC page)
