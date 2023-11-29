@@ -34,7 +34,7 @@ async function loadMetar() {
           const responseText = await response.text();
           const parser = new DOMParser();
           const data = parser.parseFromString(responseText, "application/xml");
-          //await setMetarData(data);
+          await setMetarData(data);
           console.log("METAR data loaded at", new Date().toLocaleTimeString());
       }
   } catch (error) {
@@ -80,7 +80,7 @@ async function setData(xmlDoc) {
             document.getElementById('fmiProblems').style.display = "block";
             windProblems = true;
           } else {
-            //document.getElementById('fmiProblems').style.display = "none";
+            document.getElementById('fmiProblems').style.display = "none";
             windProblems = false;
           }
         }
