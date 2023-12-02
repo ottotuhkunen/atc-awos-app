@@ -49,7 +49,7 @@ app.get('/dataEFHK', async (req, res) => {
 // fetch SNWOTAM:
 app.get('/snowtam', async (req, res) => {
     try {
-        const { data } = await axios.get('https://www.ais.fi/ais/bulletins/efinen.htm');
+        const { data } = await axios.get('https://www.ais.fi/bulletins/efinen.htm');
         
         // Remove all HTML tags
         let contentWithoutHtml = data.replace(/<\/?[^>]+(>|$)/g, " ");
