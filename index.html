@@ -455,7 +455,7 @@
                         </table>
                     </div>
                     <hr>
-                    <h3>Current version: 3.6.8</h3>
+                    <h3>Current version: 3.7.0</h3>
                 </div>
             </div>
 
@@ -803,9 +803,7 @@
                     </div>
                     <div id="snowtamContainer3" class="snowtamContainer">
                         <h2 style="padding: 5pt; font-size: 2vw; margin-top: 0; margin-bottom: 0;">AIRPORT COMMENTS</h2>
-                        <h3 style="margin-top: 4px;">COMMENT SNOWTAM:<br>NIL</h3>
-                        <h3>COMMENT ATIS:<br>NIL</h3>
-                        <h3>COMMENT 'TORNI':<br>NIL</h3>
+                        <h3 id="commentSnowtam" style="margin-top: 4px;">COMMENT SNOWTAM:<br></h3>
                     </div>
                 </div>
                 <div id="taxiways" style="display: none; margin-right: 12px;">
@@ -818,49 +816,37 @@
                                 <b class="snowtamTwyTitle">TWY Y:</b> <br>
                                 CONDITION: <br>
                                 SNOWBANKS: <br>
-                                COMMENT SNOWTAM: <br>
-                                COMMENT ATIS: <br>
                                 COMMENT 'TORNI': <br>
+                                <comment class="commentTaxiway">NIL</comment>
                             </th>
                             <th class="snowtamTwyRight">
                                 <b class="snowtamTwyTitle">IN USE</b><br>
                                 <span class="snowtamTwyRight" id="twyCond1">N/A</span><br>
-                                NO<br>
-                                NIL<br>
-                                NIL<br>
-                                NIL
+                                NO<br><br><br>
                             </th>
                             <th class="snowtamTwyLeft">
                                 <b class="snowtamTwyTitle">TWY Z:</b> <br>
                                 CONDITION: <br>
                                 SNOWBANKS: <br>
-                                COMMENT SNOWTAM: <br>
-                                COMMENT ATIS: <br>
                                 COMMENT 'TORNI': <br>
+                                <comment class="commentTaxiway">NIL</comment>
                             </th>
                             <th class="snowtamTwyRight">
                                 <b class="snowtamTwyTitle">IN USE</b><br>
                                 <span class="snowtamTwyRight" id="twyCond2">N/A</span><br>
-                                NO<br>
-                                NIL<br>
-                                NIL<br>
-                                NIL
+                                NO<br><br><br>
                             </th>
                             <th class="snowtamTwyLeft">
                                 <b class="snowtamTwyTitle">TWY S:</b> <br>
                                 CONDITION: <br>
                                 SNOWBANKS: <br>
-                                COMMENT SNOWTAM: <br>
-                                COMMENT ATIS: <br>
                                 COMMENT 'TORNI': <br>
+                                <comment class="commentTaxiway">NIL</comment>
                             </th>
                             <th class="snowtamTwyRight">
                                 <b class="snowtamTwyTitle">IN USE</b><br>
                                 <span class="snowtamTwyRight" id="twyCond3">N/A</span><br>
-                                NO<br>
-                                NIL<br>
-                                NIL<br>
-                                NIL
+                                NO<br><br><br>
                             </th>
                         </tr>
                         <tr>
@@ -868,49 +854,37 @@
                                 <b class="snowtamTwyTitle">TWY D:</b> <br>
                                 CONDITION: <br>
                                 SNOWBANKS: <br>
-                                COMMENT SNOWTAM: <br>
-                                COMMENT ATIS: <br>
                                 COMMENT 'TORNI': <br>
+                                <comment class="commentTaxiway">NIL</comment>
                             </th>
                             <th class="snowtamTwyRight">
                                 <b class="snowtamTwyTitle">IN USE</b><br>
                                 <span class="snowtamTwyRight" id="twyCond4">N/A</span><br>
-                                NO<br>
-                                NIL<br>
-                                NIL<br>
-                                NIL
+                                NO<br><br><br>
                             </th>
                             <th class="snowtamTwyLeft">
                                 <b class="snowtamTwyTitle">TWY G:</b> <br>
                                 CONDITION: <br>
                                 SNOWBANKS: <br>
-                                COMMENT SNOWTAM: <br>
-                                COMMENT ATIS: <br>
                                 COMMENT 'TORNI': <br>
+                                <comment class="commentTaxiway">NIL</comment>
                             </th>
                             <th class="snowtamTwyRight">
                                 <b class="snowtamTwyTitle">IN USE</b><br>
                                 <span class="snowtamTwyRight" id="twyCond5">N/A</span><br>
-                                NO<br>
-                                NIL<br>
-                                NIL<br>
-                                NIL
+                                NO<br><br><br>
                             </th>
                             <th class="snowtamTwyLeft">
                                 <b class="snowtamTwyTitle">TWY W:</b> <br>
                                 CONDITION: <br>
                                 SNOWBANKS: <br>
-                                COMMENT SNOWTAM: <br>
-                                COMMENT ATIS: <br>
                                 COMMENT 'TORNI': <br>
+                                <comment class="commentTaxiway">NIL</comment>
                             </th>
                             <th class="snowtamTwyRight">
                                 <b class="snowtamTwyTitle">IN USE</b><br>
                                 <span class="snowtamTwyRight" id="twyCond6">N/A</span><br>
-                                NO<br>
-                                NIL<br>
-                                NIL<br>
-                                NIL
+                                NO<br><br><br>
                             </th>
                         </tr>
                     </table>
@@ -924,132 +898,105 @@
                             <th class="snowtamTwyLeft">
                                 <b class="snowtamTwyTitle">APN 1N/1W:</b> <br>
                                 CONDITION: <br>
-                                COMMENT SNOWTAM: <br>
-                                COMMENT ATIS: <br>
                                 COMMENT 'TORNI': <br>
+                                <comment class="commentApron">NIL</comment>
                             </th>
                             <th class="snowtamTwyRight">
                                 <b class="snowtamTwyTitle">IN USE</b><br>
-                                <span class="snowtamTwyRight" id="apronCond1">N/A</span><br>
-                                NIL<br>
-                                NIL<br>
-                                STANDS SLIPPERY
+                                <span class="snowtamTwyRight" id="apronCond1">N/A</span>
+                                <br><br><br>
                             </th>
                             <th class="snowtamTwyLeft">
                                 <b class="snowtamTwyTitle">APN 1E:</b> <br>
                                 CONDITION: <br>
-                                COMMENT SNOWTAM: <br>
-                                COMMENT ATIS: <br>
                                 COMMENT 'TORNI': <br>
+                                <comment class="commentApron">NIL</comment>
                             </th>
                             <th class="snowtamTwyRight">
                                 <b class="snowtamTwyTitle">IN USE</b><br>
-                                <span class="snowtamTwyRight" id="apronCond2">N/A</span><br>
-                                NIL<br>
-                                NIL<br>
-                                STANDS SLIPPERY
+                                <span class="snowtamTwyRight" id="apronCond2">N/A</span>
+                                <br><br><br>
                             </th>
                             <th class="snowtamTwyLeft">
                                 <b class="snowtamTwyTitle">APN 1S:</b> <br>
                                 CONDITION: <br>
-                                COMMENT SNOWTAM: <br>
-                                COMMENT ATIS: <br>
                                 COMMENT 'TORNI': <br>
+                                <comment class="commentApron">NIL</comment>
                             </th>
                             <th class="snowtamTwyRight">
                                 <b class="snowtamTwyTitle">IN USE</b><br>
-                                <span class="snowtamTwyRight" id="apronCond3">N/A</span><br>
-                                NIL<br>
-                                NIL<br>
-                                STANDS SLIPPERY
+                                <span class="snowtamTwyRight" id="apronCond3">N/A</span>
+                                <br><br><br>
                             </th>
                         </tr>
                         <tr>
                             <th class="snowtamTwyLeft">
                                 <b class="snowtamTwyTitle">APN 2:</b> <br>
                                 CONDITION: <br>
-                                COMMENT SNOWTAM: <br>
-                                COMMENT ATIS: <br>
                                 COMMENT 'TORNI': <br>
+                                <comment class="commentApron">NIL</comment>
                             </th>
                             <th class="snowtamTwyRight">
                                 <b class="snowtamTwyTitle">IN USE</b><br>
-                                <span class="snowtamTwyRight" id="apronCond4">N/A</span><br>
-                                NIL<br>
-                                NIL<br>
-                                STANDS SLIPPERY
+                                <span class="snowtamTwyRight" id="apronCond4">N/A</span>
+                                <br><br><br>
                             </th>
                             <th class="snowtamTwyLeft">
                                 <b class="snowtamTwyTitle">APN 3:</b> <br>
                                 CONDITION: <br>
-                                COMMENT SNOWTAM: <br>
-                                COMMENT ATIS: <br>
                                 COMMENT 'TORNI': <br>
+                                <comment class="commentApron">NIL</comment>
                             </th>
                             <th class="snowtamTwyRight">
                                 <b class="snowtamTwyTitle">IN USE</b><br>
-                                <span class="snowtamTwyRight" id="apronCond5">N/A</span><br>
-                                NIL<br>
-                                NIL<br>
-                                STANDS SLIPPERY
+                                <span class="snowtamTwyRight" id="apronCond5">N/A</span>
+                                <br><br><br>
                             </th>
                             <th class="snowtamTwyLeft">
                                 <b class="snowtamTwyTitle">APN 4:</b> <br>
                                 CONDITION: <br>
-                                COMMENT SNOWTAM: <br>
-                                COMMENT ATIS: <br>
                                 COMMENT 'TORNI': <br>
+                                <comment class="commentApron">NIL</comment>
                             </th>
                             <th class="snowtamTwyRight">
                                 <b class="snowtamTwyTitle">IN USE</b><br>
-                                <span class="snowtamTwyRight" id="apronCond6">N/A</span><br>
-                                NIL<br>
-                                NIL<br>
-                                STANDS SLIPPERY
+                                <span class="snowtamTwyRight" id="apronCond6">N/A</span>
+                                <br><br><br>
                             </th>
                         </tr>
                         <tr>
                             <th class="snowtamTwyLeft">
                                 <b class="snowtamTwyTitle">APN 6:</b> <br>
                                 CONDITION: <br>
-                                COMMENT SNOWTAM: <br>
-                                COMMENT ATIS: <br>
                                 COMMENT 'TORNI': <br>
+                                <comment class="commentApron">NIL</comment>
                             </th>
                             <th class="snowtamTwyRight">
                                 <b class="snowtamTwyTitle">IN USE</b><br>
-                                <span class="snowtamTwyRight" id="apronCond7">N/A</span><br>
-                                NIL<br>
-                                NIL<br>
-                                STANDS SLIPPERY
+                                <span class="snowtamTwyRight" id="apronCond7">N/A</span>
+                                <br><br><br>
                             </th>
                             <th class="snowtamTwyLeft">
                                 <b class="snowtamTwyTitle">APN 8:</b> <br>
                                 CONDITION: <br>
-                                COMMENT SNOWTAM: <br>
-                                COMMENT ATIS: <br>
                                 COMMENT 'TORNI': <br>
+                                <comment class="commentApron">NIL</comment>
                             </th>
                             <th class="snowtamTwyRight">
                                 <b class="snowtamTwyTitle">IN USE</b><br>
-                                <span class="snowtamTwyRight" id="apronCond8">N/A</span><br>
-                                NIL<br>
-                                NIL<br>
-                                STANDS SLIPPERY
+                                <span class="snowtamTwyRight" id="apronCond8">N/A</span>
+                                <br><br><br>
                             </th>
                             <th class="snowtamTwyLeft">
                                 <b class="snowtamTwyTitle">APN 9:</b> <br>
                                 CONDITION: <br>
-                                COMMENT SNOWTAM: <br>
-                                COMMENT ATIS: <br>
                                 COMMENT 'TORNI': <br>
+                                <comment class="commentApron">NIL</comment>
                             </th>
                             <th class="snowtamTwyRight">
                                 <b class="snowtamTwyTitle">IN USE</b><br>
-                                <span class="snowtamTwyRight" id="apronCond9">N/A</span><br>
-                                NIL<br>
-                                NIL<br>
-                                STANDS SLIPPERY
+                                <span class="snowtamTwyRight" id="apronCond9">N/A</span>
+                                <br><br><br>
                             </th>
                         </tr>
                     </table>
@@ -1269,7 +1216,7 @@
                             <text transform="matrix(1 0 0 1 533.3274 144.3939)"><tspan x="0" y="0" class="rwycc8 rwycc20">REP. RWYCC:</tspan><tspan x="3.1" y="17" class="rwycc8 rwycc20">RCAM CONT:</tspan><tspan x="23.8" y="34" class="rwycc8 rwycc20">CONT #2:</tspan><tspan x="23.8" y="51" class="rwycc8 rwycc20">CONT #1:</tspan></text>
                             <text transform="matrix(1 0 0 1 533.3274 258.0409)"><tspan x="0" y="0" class="rwycc8 rwycc20">REP. RWYCC:</tspan><tspan x="3.1" y="17" class="rwycc8 rwycc20">RCAM CONT:</tspan><tspan x="23.8" y="34" class="rwycc8 rwycc20">CONT #2:</tspan><tspan x="23.8" y="51" class="rwycc8 rwycc20">CONT #1:</tspan></text>
                             <text transform="matrix(1 0 0 1 533.3274 370.2751)"><tspan x="0" y="0" class="rwycc8 rwycc20">REP. RWYCC:</tspan><tspan x="3.1" y="17" class="rwycc8 rwycc20">RCAM CONT:</tspan><tspan x="23.8" y="34" class="rwycc8 rwycc20">CONT #2:</tspan><tspan x="23.8" y="51" class="rwycc8 rwycc20">CONT #1:</tspan></text>
-                            <text transform="matrix(1 0 0 1 526.5918 483.8418)"><tspan x="0" y="0" class="rwycc8 rwycc20">REDUCED WIDTH (M):</tspan><tspan x="0" y="15.5" class="rwycc8 rwycc20">REDUCED LENGTH LDA - A/C (M):</tspan><tspan x="0" y="31" class="rwycc8 rwycc20">SNOWBANK DISTANCES L/R (M):</tspan><tspan x="0" y="46.5" class="rwycc8 rwycc20">SNOWBANK HEIGHTS L/R (CM):</tspan><tspan x="0" y="62" class="rwycc8 rwycc20">DRIFTING SNOW:</tspan><tspan x="0" y="77.5" class="rwycc8 rwycc20">LOOSE SAND:</tspan><tspan x="0" y="93" class="rwycc8 rwycc20">CHEMICALLY TREATED:</tspan><tspan x="0" y="108.5" class="rwycc8 rwycc20">ADJ. SNOWBANKS:</tspan><tspan x="0" y="124" class="rwycc8 rwycc20">OBSCURED LIGHTS:</tspan><tspan x="0" y="139.5" class="rwycc8 rwycc20">COMMENT SNOWTAM:</tspan><tspan x="0" y="155" class="rwycc8 rwycc20">COMMENT ATIS:</tspan><tspan x="0" y="170.5" class="rwycc8 rwycc20">COMMENT ‘TORNI’:</tspan></text>
+                            <text transform="matrix(1 0 0 1 526.5918 483.8418)"><tspan x="0" y="0" class="rwycc8 rwycc20">REDUCED WIDTH (M):</tspan><tspan x="0" y="15.5" class="rwycc8 rwycc20">REDUCED LENGTH LDA - A/C (M):</tspan><tspan x="0" y="31" class="rwycc8 rwycc20">SNOWBANK DISTANCES L/R (M):</tspan><tspan x="0" y="46.5" class="rwycc8 rwycc20">SNOWBANK HEIGHTS L/R (CM):</tspan><tspan x="0" y="62" class="rwycc8 rwycc20">DRIFTING SNOW:</tspan><tspan x="0" y="77.5" class="rwycc8 rwycc20">LOOSE SAND:</tspan><tspan x="0" y="93" class="rwycc8 rwycc20">CHEMICALLY TREATED:</tspan><tspan x="0" y="108.5" class="rwycc8 rwycc20">ADJ. SNOWBANKS:</tspan><tspan x="0" y="124" class="rwycc8 rwycc20">OBSCURED LIGHTS:</tspan><tspan x="0" y="139.5" class="rwycc8 rwycc20">COMMENT SNOWTAM:</tspan><tspan x="0" y="155" class="rwycc8 rwycc20">COMMENT ATIS:</tspan><tspan id="rcrCommentTorni" x="0" y="170.5" class="rwycc8 rwycc20">COMMENT 'TORNI':</tspan></text>
                             <text transform="matrix(1 0 0 1 525.4333 69.889)" class="rwycc8 rwycc20">REPORTED</text>
                             <text transform="matrix(1 0 0 1 525.4333 55.2024)" class="rwycc8 rwycc20">ASSESSED</text>
                             <text transform="matrix(1 0 0 1 519.0059 127.2797)" class="rwycc8 rwycc19">THIRD C</text>
@@ -1302,10 +1249,7 @@
                             <tspan text-anchor="end" x="0" y="77.5" class="rwycc8 rwycc20">NO</tspan>
                             <tspan id="chemicallyTreated" text-anchor="end" x="0" y="93" class="rwycc8 rwycc20">NO</tspan>
                             <tspan text-anchor="end" x="0" y="108.5" class="rwycc8 rwycc20">NO</tspan>
-                            <tspan text-anchor="end" x="0" y="124" class="rwycc8 rwycc20">NO</tspan>
-                            <tspan text-anchor="end" x="0" y="139.5" class="rwycc8 rwycc20">NIL</tspan>
-                            <tspan text-anchor="end" x="0" y="155" class="rwycc8 rwycc20">NIL</tspan>
-                            <tspan text-anchor="end" x="-5" y="170.5" class="rwycc8 rwycc20">NIL</tspan>
+                            <tspan text-anchor="end" x="-5" y="124" class="rwycc8 rwycc20">NO</tspan>
                         </text>                            
                         <text id="rwycc1" transform="matrix(1 0 0 1 870.993 144.3939)" class="rwycc8 rwycc20">RWYCC # ///</text>
                         <text id="contaminantTypeSimple2" transform="matrix(1 0 0 1 698.0779 161.3939)" class="rwycc8 rwycc20">///</text>

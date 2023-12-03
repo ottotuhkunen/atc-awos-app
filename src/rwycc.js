@@ -10,31 +10,20 @@ async function setRWYCC(runwayId) {
 
     manualRWYCC();
 
-    // try to load SNOWTAM if available
-
-    /*
-    try {
-        const response = await fetch('/snowtam');
-        const data = await response.json();
-
-        if (data.data === "SNOWTAM NIL") {
-            manualRWYCC();
-        } else {
-            // SNOWTAM available
-            // assesment time + reported time
-            let assesmentTimeData = data.data.match(/ (\d{8}) /);
-            assesmentTimeData = assesmentTimeData ? assesmentTimeData[0] : null;
-
-            // Insert linechanges
-            let finalSnowtam = data.data.replace(/ (\d{8}) /g, '<br>$1 ');
-
-            document.getElementById('snowtamLine1').innerHTML = "(" + finalSnowtam + ")";
+    // load comment 'torni'
+    fetch('/dataEFHK')
+    .then(response => response.json())
+    .then(result => {
+        for (let record of result.records) {
+            if (record.fields['Name'] === 'rcrComments') {
+                var content = record.fields['content'] || "";
+                document.getElementById("rcrCommentTorni").innerHTML = "COMMENT 'TORNI': " + content;
+            }
         }
-    } catch (error) {
-        console.error('Error fetching data:', error);
-    }
+        setConditionIcon(toggleContaminantIcon);
+    })
+    .catch(error => console.log('error', error));
 
-    */
 
     /*
         Data to be added according to ID:

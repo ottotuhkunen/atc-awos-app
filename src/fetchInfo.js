@@ -171,6 +171,29 @@ async function loadSnowtam() {
                     document.getElementById(`apronCond${i}`).textContent = record.fields['content'];
                 }
             }
+            if (record.fields['Name'] === 'snowtamComments') {
+                if (record.fields['content'] != null) {
+                    document.getElementById("commentSnowtam").innerHTML = "COMMENT SNOWTAM:<br>" + record.fields['content'];
+                } else {
+                    document.getElementById("commentSnowtam").innerHTML = "COMMENT SNOWTAM:<br>NIL";
+                }
+            }
+            if (record.fields['Name'] === 'taxiwayComments') {
+                var elements = document.querySelectorAll(".commentTaxiway");
+                var content = record.fields['content'] || "NIL";
+            
+                elements.forEach(function(element) {
+                    element.innerHTML = content;
+                });
+            }
+            if (record.fields['Name'] === 'apronComments') {
+                var elements = document.querySelectorAll(".commentApron");
+                var content = record.fields['content'] || "NIL";
+            
+                elements.forEach(function(element) {
+                    element.innerHTML = content;
+                });
+            }
         }
         setConditionIcon(toggleContaminantIcon);
     })

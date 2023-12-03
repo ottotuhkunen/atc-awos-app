@@ -651,3 +651,12 @@ th {
 .rwycc22{font-size:24px;}
 .rwycc23{enable-background:new;}
 .rwycc24{fill:#0000FF;}
+
+.commentTaxiway {
+    margin-left: 12pt;
+    display: inline-block;
+}
+.commentApron {
+    margin-left: 12pt;
+    display: inline-block;
+}
