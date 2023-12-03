@@ -564,6 +564,7 @@ th {
     font-size: 9pt;
     white-space: nowrap;
     overflow: hidden;
+    vertical-align: top;
 }
 .snowtamTwyTitle {
     font-size: 12pt;
