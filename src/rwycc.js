@@ -301,6 +301,12 @@ async function loadFromSnowtam() {
             document.getElementById("chemicallyTreated").textContent = "NO";
         }
 
+        if (data.data.includes("DRIFTING SNOW")) {
+            document.getElementById("driftingSnow").textContent = "YES";
+        } else {
+            document.getElementById("driftingSnow").textContent = "NO";
+        }
+
     } catch (error) {
         console.error('Error fetching data:', error);
     }
