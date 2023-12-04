@@ -136,8 +136,8 @@ async function loadSnowtam() {
 
         // Insert linechanges to SNOWTAM text
         let finalSnowtam = data.data.replace(/ (\d{8}) /g, '<br>$1 ');
-        finalSnowtam = finalSnowtam.replace(/REMARK/g, '<br><br>REMARK');
-
+        finalSnowtam = finalSnowtam.replace(/(\s)([4-9]\d*|100)(\s)/g, '$1$2<br><br>');
+        finalSnowtam = finalSnowtam.replace(/SNOWTAM<br> EFHK/g, 'SNOWTAM EFHK<br>');
         document.getElementById('snowtamLine1').innerHTML = "(" + finalSnowtam + ")";
     } catch (error) {
         console.error('Error fetching data:', error);

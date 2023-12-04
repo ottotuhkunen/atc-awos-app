@@ -133,6 +133,9 @@ function makeContaminants(snowtam) {
             if (snowtam.includes("CONTAMINANT THIN DUE TO SMALL COVERAGE")) {
                 rcr += "TAKEOFF SIGNIFICANT CONTAMINANT THIN DUE TO SMALL COVERAGE.<br>"
             }
+            else if (snowtam.includes("RWY 04L TAKEOFF SIGNIFICANT CONTAMINANT DRY DUE TO SMALL COVERAGE")) {
+                rcr += "TAKEOFF SIGNIFICANT CONTAMINANT DRY DUE TO SMALL COVERAGE.<br>"
+            }
             else if (snowtam.includes("CONTAMINANT THIN")) {
                 rcr += "TAKEOFF SIGNIFICANT CONTAMINANT THIN.<br>"
             }
@@ -147,6 +150,9 @@ function makeContaminants(snowtam) {
         
         if (snowtam.includes("CONTAMINANT THIN DUE TO SMALL COVERAGE")) {
             rcr += "TAKEOFF SIGNIFICANT CONTAMINANT THIN DUE TO SMALL COVERAGE.<br>"
+        }
+        else if (snowtam.includes("RWY 04L TAKEOFF SIGNIFICANT CONTAMINANT DRY DUE TO SMALL COVERAGE")) {
+            rcr += "TAKEOFF SIGNIFICANT CONTAMINANT DRY DUE TO SMALL COVERAGE.<br>"
         }
         else if (snowtam.includes("CONTAMINANT THIN")) {
             rcr += "TAKEOFF SIGNIFICANT CONTAMINANT THIN.<br>"
