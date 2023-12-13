@@ -69,6 +69,7 @@ app.get('/snowtam', async (req, res) => {
         if (matches) {
             rawSnowtam = matches[0];
             rawSnowtam = rawSnowtam.replace(" +", "");
+            rawSnowtam = rawSnowtam.replace(/EFIV.*$/, "");
         }
 
         res.json({ data: rawSnowtam });
@@ -128,18 +129,6 @@ app.get('/api/metar/:location', async (req, res) => {
   res.json(data);
 });
 
-app.use((req, res, next) => {
-    if (req.header('x-forwarded-proto') !== 'https') {
-      res.redirect(`https://${req.header('host')}${req.url}`);
-    } else {
-      next();
-    }
-});
-
-app.use(basicAuth({
-    users: { [process.env.BASIC_AUTH_USER]: process.env.BASIC_AUTH_PASSWORD },
-    challenge: true
-}));
 
 app.use(express.static('.'));
 
