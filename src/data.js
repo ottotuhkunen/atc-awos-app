@@ -294,7 +294,9 @@ async function setMetarData(xmlDoc) {
     var clockwise = clockwises[clockwises.length-1].childNodes[0].nodeValue;
 
     counterClockwise = Math.round(counterClockwise);
-    clockwise = Math.round(clockwise)
+    clockwise = Math.round(clockwise);
+    // changes made here:
+    windDirection = Math.floor(windDirection / 10) * 10;
 
     if (clockwise < counterClockwise) {
       // adjust clockwise if windDirection is outside of the sector
