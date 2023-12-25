@@ -90,9 +90,15 @@ function manualRWYCC() {
                     contaminantDepth = record.fields["rwycc_upgr_dngr"];
                 }
                 if (record.fields['content']) {
-                    document.getElementById('contaminantText1').textContent = record.fields['content'] + " " + contaminantDepth + "mm";
-                    document.getElementById('contaminantText2').textContent = record.fields['content'] + " " + contaminantDepth + "mm";
-                    document.getElementById('contaminantText3').textContent = record.fields['content'] + " " + contaminantDepth + "mm";
+                    if (record.fields['content'] == "FROST") {
+                        document.getElementById('contaminantText1').textContent = record.fields['content'];
+                        document.getElementById('contaminantText2').textContent = record.fields['content'];
+                        document.getElementById('contaminantText3').textContent = record.fields['content'];
+                    } else {
+                        document.getElementById('contaminantText1').textContent = record.fields['content'] + " " + contaminantDepth + "mm";
+                        document.getElementById('contaminantText2').textContent = record.fields['content'] + " " + contaminantDepth + "mm";
+                        document.getElementById('contaminantText3').textContent = record.fields['content'] + " " + contaminantDepth + "mm";
+                    }
                     document.getElementById('contaminantTypeSimple1').textContent = record.fields['content'];
                     document.getElementById('contaminantTypeSimple2').textContent = record.fields['content'];
                     document.getElementById('contaminantTypeSimple3').textContent = record.fields['content'];
@@ -284,7 +290,6 @@ async function loadFromSnowtam() {
 
         // check if runway not in use
         let matchClosedRunway = (/RWY (\d{2}[LR]?) NOT IN USE/g).exec(data.data);
-        let matchChemicallyTreated = (/RWY (\d{2}[LR]?) CHEMICALLY TREATED/g).exec(data.data);
         
         if (matchClosedRunway && matchClosedRunway[1] === runwayName) {
             // runway is closed
@@ -295,11 +300,14 @@ async function loadFromSnowtam() {
             document.getElementById("rwyNumber2").style.fill = "black";
         }
 
-        if (matchChemicallyTreated && matchChemicallyTreated[1] === runwayName) {
-            document.getElementById("chemicallyTreated").textContent = "YES";
-        } else {
-            document.getElementById("chemicallyTreated").textContent = "NO";
+        function isRunwayChemicallyTreated(runwayName) {
+            return data.data.includes(runwayName + " CHEMICALLY TREATED");
         }
+        
+        const runways = ["04L", "04R", "15"];
+        const treated = runways.some(runway => isRunwayChemicallyTreated(runway) && runwayName === runway);
+        document.getElementById("chemicallyTreated").textContent = treated ? "YES" : "NO";
+        
 
         if (data.data.includes("DRIFTING SNOW")) {
             document.getElementById("driftingSnow").textContent = "YES";
