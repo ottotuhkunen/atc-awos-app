@@ -8,7 +8,7 @@
 	.st2{fill:#D3D3D3;}
 	.st3{fill:none;stroke:#B4B4B4;stroke-width:4;stroke-miterlimit:10;}
 	.st4{fill:none;stroke:#B4B4B4;stroke-width:4;stroke-miterlimit:10;stroke-dasharray:14.738,14.738;}
-	.st5{fill:url(#pattern_00000116231850210511101680000012252018738785188517_);}
+	.st5{fill:url(#pattern_00000126290163583316476200000003030318472279019447_);}
 	.st6{fill:#FFFFFF;}
 	.st7{fill:#F4A625;}
 	.st8{font-family:'ArialMT';}
@@ -16,17 +16,19 @@
 	.st10{fill:none;stroke:#F4A625;stroke-width:2;stroke-miterlimit:10;}
 	.st11{fill:#F5A623;}
 	.st12{fill:#F5A623;stroke:#000000;stroke-miterlimit:10;}
-	.st13{font-size:36px;}
-	.st14{font-size:12px;}
-	.st15{font-size:18px;}
-	.st16{font-size:16px;}
-	.st17{fill:url(#pattern2_00000161597651160046141480000014498914932542137221_);}
-	.st18{fill:url(#SVGID_00000139259280096249431530000015668863995748959121_);}
-	.st19{font-size:23px;}
-	.st20{font-size:11px;}
-	.st21{fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:10;}
-	.st22{font-size:24px;}
-	.st23{fill:#0000FF;}
+	.st13{display:none;}
+	.st14{display:inline;}
+	.st15{font-size:36px;}
+	.st16{font-size:12px;}
+	.st17{font-size:18px;}
+	.st18{font-size:16px;}
+	.st19{fill:url(#pattern2_00000163051266583760901370000013260604922997836438_);}
+	.st20{fill:url(#SVGID_00000052813499011256871860000007639642913044465340_);}
+	.st21{font-size:23px;}
+	.st22{font-size:11px;}
+	.st23{fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:10;}
+	.st24{font-size:24px;}
+	.st25{fill:#0000FF;}
 </style>
 <pattern  y="768" width="72" height="72" patternUnits="userSpaceOnUse" id="SVGID_1_" viewBox="72.2 -72 72 72" style="overflow:visible;">
 	<g>
@@ -36,46 +38,52 @@
 			<g>
 				<rect x="72.2" y="-72" class="st0" width="72" height="72"/>
 				<g>
-					<line class="st1" x1="144" y1="-3.6" x2="216.5" y2="-3.6"/>
-					<line class="st1" x1="144" y1="-18" x2="216.5" y2="-18"/>
-					<line class="st1" x1="144" y1="-32.4" x2="216.5" y2="-32.4"/>
-					<line class="st1" x1="144" y1="-46.8" x2="216.5" y2="-46.8"/>
-					<line class="st1" x1="144" y1="-61.2" x2="216.5" y2="-61.2"/>
-					<line class="st1" x1="144" y1="-10.8" x2="216.5" y2="-10.8"/>
-					<line class="st1" x1="144" y1="-25.2" x2="216.5" y2="-25.2"/>
-					<line class="st1" x1="144" y1="-39.6" x2="216.5" y2="-39.6"/>
-					<line class="st1" x1="144" y1="-54" x2="216.5" y2="-54"/>
-					<line class="st1" x1="144" y1="-68.4" x2="216.5" y2="-68.4"/>
-				</g>
-				<g>
-					<line class="st1" x1="72" y1="-3.6" x2="144.5" y2="-3.6"/>
-					<line class="st1" x1="72" y1="-18" x2="144.5" y2="-18"/>
-					<line class="st1" x1="72" y1="-32.4" x2="144.5" y2="-32.4"/>
-					<line class="st1" x1="72" y1="-46.8" x2="144.5" y2="-46.8"/>
-					<line class="st1" x1="72" y1="-61.2" x2="144.5" y2="-61.2"/>
-					<line class="st1" x1="72" y1="-10.8" x2="144.5" y2="-10.8"/>
-					<line class="st1" x1="72" y1="-25.2" x2="144.5" y2="-25.2"/>
-					<line class="st1" x1="72" y1="-39.6" x2="144.5" y2="-39.6"/>
-					<line class="st1" x1="72" y1="-54" x2="144.5" y2="-54"/>
-					<line class="st1" x1="72" y1="-68.4" x2="144.5" y2="-68.4"/>
-				</g>
-				<g>
-					<line class="st1" x1="0" y1="-3.6" x2="72.5" y2="-3.6"/>
-					<line class="st1" x1="0" y1="-18" x2="72.5" y2="-18"/>
-					<line class="st1" x1="0" y1="-32.4" x2="72.5" y2="-32.4"/>
-					<line class="st1" x1="0" y1="-46.8" x2="72.5" y2="-46.8"/>
-					<line class="st1" x1="0" y1="-61.2" x2="72.5" y2="-61.2"/>
-					<line class="st1" x1="0" y1="-10.8" x2="72.5" y2="-10.8"/>
-					<line class="st1" x1="0" y1="-25.2" x2="72.5" y2="-25.2"/>
-					<line class="st1" x1="0" y1="-39.6" x2="72.5" y2="-39.6"/>
-					<line class="st1" x1="0" y1="-54" x2="72.5" y2="-54"/>
-					<line class="st1" x1="0" y1="-68.4" x2="72.5" y2="-68.4"/>
+					<rect x="72.2" y="-72" class="st0" width="72" height="72"/>
+					<g>
+						<rect x="72.2" y="-72" class="st0" width="72" height="72"/>
+						<g>
+							<line class="st1" x1="144" y1="-3.6" x2="216.5" y2="-3.6"/>
+							<line class="st1" x1="144" y1="-18" x2="216.5" y2="-18"/>
+							<line class="st1" x1="144" y1="-32.4" x2="216.5" y2="-32.4"/>
+							<line class="st1" x1="144" y1="-46.8" x2="216.5" y2="-46.8"/>
+							<line class="st1" x1="144" y1="-61.2" x2="216.5" y2="-61.2"/>
+							<line class="st1" x1="144" y1="-10.8" x2="216.5" y2="-10.8"/>
+							<line class="st1" x1="144" y1="-25.2" x2="216.5" y2="-25.2"/>
+							<line class="st1" x1="144" y1="-39.6" x2="216.5" y2="-39.6"/>
+							<line class="st1" x1="144" y1="-54" x2="216.5" y2="-54"/>
+							<line class="st1" x1="144" y1="-68.4" x2="216.5" y2="-68.4"/>
+						</g>
+						<g>
+							<line class="st1" x1="72" y1="-3.6" x2="144.5" y2="-3.6"/>
+							<line class="st1" x1="72" y1="-18" x2="144.5" y2="-18"/>
+							<line class="st1" x1="72" y1="-32.4" x2="144.5" y2="-32.4"/>
+							<line class="st1" x1="72" y1="-46.8" x2="144.5" y2="-46.8"/>
+							<line class="st1" x1="72" y1="-61.2" x2="144.5" y2="-61.2"/>
+							<line class="st1" x1="72" y1="-10.8" x2="144.5" y2="-10.8"/>
+							<line class="st1" x1="72" y1="-25.2" x2="144.5" y2="-25.2"/>
+							<line class="st1" x1="72" y1="-39.6" x2="144.5" y2="-39.6"/>
+							<line class="st1" x1="72" y1="-54" x2="144.5" y2="-54"/>
+							<line class="st1" x1="72" y1="-68.4" x2="144.5" y2="-68.4"/>
+						</g>
+						<g>
+							<line class="st1" x1="0" y1="-3.6" x2="72.5" y2="-3.6"/>
+							<line class="st1" x1="0" y1="-18" x2="72.5" y2="-18"/>
+							<line class="st1" x1="0" y1="-32.4" x2="72.5" y2="-32.4"/>
+							<line class="st1" x1="0" y1="-46.8" x2="72.5" y2="-46.8"/>
+							<line class="st1" x1="0" y1="-61.2" x2="72.5" y2="-61.2"/>
+							<line class="st1" x1="0" y1="-10.8" x2="72.5" y2="-10.8"/>
+							<line class="st1" x1="0" y1="-25.2" x2="72.5" y2="-25.2"/>
+							<line class="st1" x1="0" y1="-39.6" x2="72.5" y2="-39.6"/>
+							<line class="st1" x1="0" y1="-54" x2="72.5" y2="-54"/>
+							<line class="st1" x1="0" y1="-68.4" x2="72.5" y2="-68.4"/>
+						</g>
+					</g>
 				</g>
 			</g>
 		</g>
 	</g>
 </pattern>
-<pattern  y="768" width="72" height="72" patternUnits="userSpaceOnUse" id="pattern_00000027602982757221300" viewBox="72.2 -72 72 72" style="overflow:visible;">
+<pattern  y="768" width="72" height="72" patternUnits="userSpaceOnUse" id="pattern_00000105422768002439274" viewBox="72.2 -72 72 72" style="overflow:visible;">
 	<g>
 		<rect x="72.2" y="-72" class="st0" width="72" height="72"/>
 		<g>
@@ -83,46 +91,52 @@
 			<g>
 				<rect x="72.2" y="-72" class="st0" width="72" height="72"/>
 				<g>
-					<line class="st1" x1="144" y1="-3.6" x2="216.5" y2="-3.6"/>
-					<line class="st1" x1="144" y1="-18" x2="216.5" y2="-18"/>
-					<line class="st1" x1="144" y1="-32.4" x2="216.5" y2="-32.4"/>
-					<line class="st1" x1="144" y1="-46.8" x2="216.5" y2="-46.8"/>
-					<line class="st1" x1="144" y1="-61.2" x2="216.5" y2="-61.2"/>
-					<line class="st1" x1="144" y1="-10.8" x2="216.5" y2="-10.8"/>
-					<line class="st1" x1="144" y1="-25.2" x2="216.5" y2="-25.2"/>
-					<line class="st1" x1="144" y1="-39.6" x2="216.5" y2="-39.6"/>
-					<line class="st1" x1="144" y1="-54" x2="216.5" y2="-54"/>
-					<line class="st1" x1="144" y1="-68.4" x2="216.5" y2="-68.4"/>
-				</g>
-				<g>
-					<line class="st1" x1="72" y1="-3.6" x2="144.5" y2="-3.6"/>
-					<line class="st1" x1="72" y1="-18" x2="144.5" y2="-18"/>
-					<line class="st1" x1="72" y1="-32.4" x2="144.5" y2="-32.4"/>
-					<line class="st1" x1="72" y1="-46.8" x2="144.5" y2="-46.8"/>
-					<line class="st1" x1="72" y1="-61.2" x2="144.5" y2="-61.2"/>
-					<line class="st1" x1="72" y1="-10.8" x2="144.5" y2="-10.8"/>
-					<line class="st1" x1="72" y1="-25.2" x2="144.5" y2="-25.2"/>
-					<line class="st1" x1="72" y1="-39.6" x2="144.5" y2="-39.6"/>
-					<line class="st1" x1="72" y1="-54" x2="144.5" y2="-54"/>
-					<line class="st1" x1="72" y1="-68.4" x2="144.5" y2="-68.4"/>
-				</g>
-				<g>
-					<line class="st1" x1="0" y1="-3.6" x2="72.5" y2="-3.6"/>
-					<line class="st1" x1="0" y1="-18" x2="72.5" y2="-18"/>
-					<line class="st1" x1="0" y1="-32.4" x2="72.5" y2="-32.4"/>
-					<line class="st1" x1="0" y1="-46.8" x2="72.5" y2="-46.8"/>
-					<line class="st1" x1="0" y1="-61.2" x2="72.5" y2="-61.2"/>
-					<line class="st1" x1="0" y1="-10.8" x2="72.5" y2="-10.8"/>
-					<line class="st1" x1="0" y1="-25.2" x2="72.5" y2="-25.2"/>
-					<line class="st1" x1="0" y1="-39.6" x2="72.5" y2="-39.6"/>
-					<line class="st1" x1="0" y1="-54" x2="72.5" y2="-54"/>
-					<line class="st1" x1="0" y1="-68.4" x2="72.5" y2="-68.4"/>
+					<rect x="72.2" y="-72" class="st0" width="72" height="72"/>
+					<g>
+						<rect x="72.2" y="-72" class="st0" width="72" height="72"/>
+						<g>
+							<line class="st1" x1="144" y1="-3.6" x2="216.5" y2="-3.6"/>
+							<line class="st1" x1="144" y1="-18" x2="216.5" y2="-18"/>
+							<line class="st1" x1="144" y1="-32.4" x2="216.5" y2="-32.4"/>
+							<line class="st1" x1="144" y1="-46.8" x2="216.5" y2="-46.8"/>
+							<line class="st1" x1="144" y1="-61.2" x2="216.5" y2="-61.2"/>
+							<line class="st1" x1="144" y1="-10.8" x2="216.5" y2="-10.8"/>
+							<line class="st1" x1="144" y1="-25.2" x2="216.5" y2="-25.2"/>
+							<line class="st1" x1="144" y1="-39.6" x2="216.5" y2="-39.6"/>
+							<line class="st1" x1="144" y1="-54" x2="216.5" y2="-54"/>
+							<line class="st1" x1="144" y1="-68.4" x2="216.5" y2="-68.4"/>
+						</g>
+						<g>
+							<line class="st1" x1="72" y1="-3.6" x2="144.5" y2="-3.6"/>
+							<line class="st1" x1="72" y1="-18" x2="144.5" y2="-18"/>
+							<line class="st1" x1="72" y1="-32.4" x2="144.5" y2="-32.4"/>
+							<line class="st1" x1="72" y1="-46.8" x2="144.5" y2="-46.8"/>
+							<line class="st1" x1="72" y1="-61.2" x2="144.5" y2="-61.2"/>
+							<line class="st1" x1="72" y1="-10.8" x2="144.5" y2="-10.8"/>
+							<line class="st1" x1="72" y1="-25.2" x2="144.5" y2="-25.2"/>
+							<line class="st1" x1="72" y1="-39.6" x2="144.5" y2="-39.6"/>
+							<line class="st1" x1="72" y1="-54" x2="144.5" y2="-54"/>
+							<line class="st1" x1="72" y1="-68.4" x2="144.5" y2="-68.4"/>
+						</g>
+						<g>
+							<line class="st1" x1="0" y1="-3.6" x2="72.5" y2="-3.6"/>
+							<line class="st1" x1="0" y1="-18" x2="72.5" y2="-18"/>
+							<line class="st1" x1="0" y1="-32.4" x2="72.5" y2="-32.4"/>
+							<line class="st1" x1="0" y1="-46.8" x2="72.5" y2="-46.8"/>
+							<line class="st1" x1="0" y1="-61.2" x2="72.5" y2="-61.2"/>
+							<line class="st1" x1="0" y1="-10.8" x2="72.5" y2="-10.8"/>
+							<line class="st1" x1="0" y1="-25.2" x2="72.5" y2="-25.2"/>
+							<line class="st1" x1="0" y1="-39.6" x2="72.5" y2="-39.6"/>
+							<line class="st1" x1="0" y1="-54" x2="72.5" y2="-54"/>
+							<line class="st1" x1="0" y1="-68.4" x2="72.5" y2="-68.4"/>
+						</g>
+					</g>
 				</g>
 			</g>
 		</g>
 	</g>
 </pattern>
-<pattern  y="768" width="72" height="72" patternUnits="userSpaceOnUse" id="pattern2_0000012631459333705298" viewBox="72.2 -72 72 72" style="overflow:visible;">
+<pattern  y="768" width="72" height="72" patternUnits="userSpaceOnUse" id="pattern2_0000009244797999001804" viewBox="72.2 -72 72 72" style="overflow:visible;">
 	<g>
 		<rect x="72.2" y="-72" class="st0" width="72" height="72"/>
 		<g>
@@ -130,40 +144,46 @@
 			<g>
 				<rect x="72.2" y="-72" class="st0" width="72" height="72"/>
 				<g>
-					<line class="st1" x1="144" y1="-3.6" x2="216.5" y2="-3.6"/>
-					<line class="st1" x1="144" y1="-18" x2="216.5" y2="-18"/>
-					<line class="st1" x1="144" y1="-32.4" x2="216.5" y2="-32.4"/>
-					<line class="st1" x1="144" y1="-46.8" x2="216.5" y2="-46.8"/>
-					<line class="st1" x1="144" y1="-61.2" x2="216.5" y2="-61.2"/>
-					<line class="st1" x1="144" y1="-10.8" x2="216.5" y2="-10.8"/>
-					<line class="st1" x1="144" y1="-25.2" x2="216.5" y2="-25.2"/>
-					<line class="st1" x1="144" y1="-39.6" x2="216.5" y2="-39.6"/>
-					<line class="st1" x1="144" y1="-54" x2="216.5" y2="-54"/>
-					<line class="st1" x1="144" y1="-68.4" x2="216.5" y2="-68.4"/>
-				</g>
-				<g>
-					<line class="st1" x1="72" y1="-3.6" x2="144.5" y2="-3.6"/>
-					<line class="st1" x1="72" y1="-18" x2="144.5" y2="-18"/>
-					<line class="st1" x1="72" y1="-32.4" x2="144.5" y2="-32.4"/>
-					<line class="st1" x1="72" y1="-46.8" x2="144.5" y2="-46.8"/>
-					<line class="st1" x1="72" y1="-61.2" x2="144.5" y2="-61.2"/>
-					<line class="st1" x1="72" y1="-10.8" x2="144.5" y2="-10.8"/>
-					<line class="st1" x1="72" y1="-25.2" x2="144.5" y2="-25.2"/>
-					<line class="st1" x1="72" y1="-39.6" x2="144.5" y2="-39.6"/>
-					<line class="st1" x1="72" y1="-54" x2="144.5" y2="-54"/>
-					<line class="st1" x1="72" y1="-68.4" x2="144.5" y2="-68.4"/>
-				</g>
-				<g>
-					<line class="st1" x1="0" y1="-3.6" x2="72.5" y2="-3.6"/>
-					<line class="st1" x1="0" y1="-18" x2="72.5" y2="-18"/>
-					<line class="st1" x1="0" y1="-32.4" x2="72.5" y2="-32.4"/>
-					<line class="st1" x1="0" y1="-46.8" x2="72.5" y2="-46.8"/>
-					<line class="st1" x1="0" y1="-61.2" x2="72.5" y2="-61.2"/>
-					<line class="st1" x1="0" y1="-10.8" x2="72.5" y2="-10.8"/>
-					<line class="st1" x1="0" y1="-25.2" x2="72.5" y2="-25.2"/>
-					<line class="st1" x1="0" y1="-39.6" x2="72.5" y2="-39.6"/>
-					<line class="st1" x1="0" y1="-54" x2="72.5" y2="-54"/>
-					<line class="st1" x1="0" y1="-68.4" x2="72.5" y2="-68.4"/>
+					<rect x="72.2" y="-72" class="st0" width="72" height="72"/>
+					<g>
+						<rect x="72.2" y="-72" class="st0" width="72" height="72"/>
+						<g>
+							<line class="st1" x1="144" y1="-3.6" x2="216.5" y2="-3.6"/>
+							<line class="st1" x1="144" y1="-18" x2="216.5" y2="-18"/>
+							<line class="st1" x1="144" y1="-32.4" x2="216.5" y2="-32.4"/>
+							<line class="st1" x1="144" y1="-46.8" x2="216.5" y2="-46.8"/>
+							<line class="st1" x1="144" y1="-61.2" x2="216.5" y2="-61.2"/>
+							<line class="st1" x1="144" y1="-10.8" x2="216.5" y2="-10.8"/>
+							<line class="st1" x1="144" y1="-25.2" x2="216.5" y2="-25.2"/>
+							<line class="st1" x1="144" y1="-39.6" x2="216.5" y2="-39.6"/>
+							<line class="st1" x1="144" y1="-54" x2="216.5" y2="-54"/>
+							<line class="st1" x1="144" y1="-68.4" x2="216.5" y2="-68.4"/>
+						</g>
+						<g>
+							<line class="st1" x1="72" y1="-3.6" x2="144.5" y2="-3.6"/>
+							<line class="st1" x1="72" y1="-18" x2="144.5" y2="-18"/>
+							<line class="st1" x1="72" y1="-32.4" x2="144.5" y2="-32.4"/>
+							<line class="st1" x1="72" y1="-46.8" x2="144.5" y2="-46.8"/>
+							<line class="st1" x1="72" y1="-61.2" x2="144.5" y2="-61.2"/>
+							<line class="st1" x1="72" y1="-10.8" x2="144.5" y2="-10.8"/>
+							<line class="st1" x1="72" y1="-25.2" x2="144.5" y2="-25.2"/>
+							<line class="st1" x1="72" y1="-39.6" x2="144.5" y2="-39.6"/>
+							<line class="st1" x1="72" y1="-54" x2="144.5" y2="-54"/>
+							<line class="st1" x1="72" y1="-68.4" x2="144.5" y2="-68.4"/>
+						</g>
+						<g>
+							<line class="st1" x1="0" y1="-3.6" x2="72.5" y2="-3.6"/>
+							<line class="st1" x1="0" y1="-18" x2="72.5" y2="-18"/>
+							<line class="st1" x1="0" y1="-32.4" x2="72.5" y2="-32.4"/>
+							<line class="st1" x1="0" y1="-46.8" x2="72.5" y2="-46.8"/>
+							<line class="st1" x1="0" y1="-61.2" x2="72.5" y2="-61.2"/>
+							<line class="st1" x1="0" y1="-10.8" x2="72.5" y2="-10.8"/>
+							<line class="st1" x1="0" y1="-25.2" x2="72.5" y2="-25.2"/>
+							<line class="st1" x1="0" y1="-39.6" x2="72.5" y2="-39.6"/>
+							<line class="st1" x1="0" y1="-54" x2="72.5" y2="-54"/>
+							<line class="st1" x1="0" y1="-68.4" x2="72.5" y2="-68.4"/>
+						</g>
+					</g>
 				</g>
 			</g>
 		</g>
@@ -183,10 +203,10 @@
 			</g>
 		</g>
 		
-			<pattern  id="pattern_00000098923712640477381780000000284853329607017108_" xlink:href="#pattern_00000027602982757221300" patternTransform="matrix(0.7071 -0.7071 0.7071 0.7071 -517.6954 4486.417)">
+			<pattern  id="pattern_00000003801721755011446760000003230707024040831908_" xlink:href="#pattern_00000105422768002439274" patternTransform="matrix(0.7071 -0.7071 0.7071 0.7071 -5018.5732 16716.418)">
 		</pattern>
 		
-			<rect id="pattern" x="84.5" y="11.1" style="fill:url(#pattern_00000098923712640477381780000000284853329607017108_);" width="297.4" height="148.6"/>
+			<rect id="pattern" x="84.5" y="11.1" style="fill:url(#pattern_00000003801721755011446760000003230707024040831908_);" width="297.4" height="148.6"/>
 		<rect id="snowBackground1" x="84.5" y="11.1" class="st6" width="63.7" height="148.6"/>
 		<rect id="snowBackground2" x="318.2" y="11.1" class="st6" width="63.7" height="148.6"/>
 		<rect x="13.7" y="185" class="st6" width="37.1" height="40.8"/>
@@ -219,17 +239,18 @@
 		<rect x="198.7" y="71.7" class="st12" width="70" height="28"/>
 	</g>
 	<g id="inputFields">
-		<g id="contaminantWet">
-			<path d="M350.5,111.5c0,0,1.2,12.7-4,20.2s-0.6,16.2,5.1,15.3c5.7-0.8,13.7-8.8,9.6-21.4S350.5,111.5,350.5,111.5z"/>
+		<g id="contaminantWet" class="st13">
+			<path class="st14" d="M350.5,111.5c0,0,1.2,12.7-4,20.2s-0.6,16.2,5.1,15.3c5.7-0.8,13.7-8.8,9.6-21.4S350.5,111.5,350.5,111.5z"
+				/>
 		</g>
-		<text id="coverage_1" transform="matrix(1 0 0 1 205.5709 94.3508)" class="st8 st9">100%</text>
-		<text id="rwyccValue_1" transform="matrix(1 0 0 1 385.0748 219.4207)" class="st8 st13">3</text>
-		<text transform="matrix(1 0 0 1 98.2195 127.28)" class="st8 st14">100% </text>
-		<text transform="matrix(1 0 0 1 99.5195 142.28)" class="st8 st14">1mm</text>
-		<text id="lfc_1" transform="matrix(1 0 0 1 77.3143 213.0525)" class="st8 st15">LFC</text>
-		<text id="ldg_1" transform="matrix(1 0 0 1 180.8851 213.0525)" class="st8 st15">LDG 3</text>
-		<text id="rcam_1" transform="matrix(1 0 0 1 284.2377 213.2442)" class="st8 st15">RCAM 3</text>
-		<text id="contaminantText1" transform="matrix(1 0 0 1 152.8603 177.9196)" class="st8 st16">SLIPPERY WET 1mm</text>
+		<text id="contaminantFrost1" transform="matrix(1 0 0 1 205.5709 94.3508)" class="st8 st9">100%</text>
+		<text id="rwyccValue_1" transform="matrix(1 0 0 1 385.0748 219.4207)" class="st8 st15">3</text>
+		<text transform="matrix(1 0 0 1 98.2195 127.28)" class="st8 st16">100% </text>
+		<text transform="matrix(1 0 0 1 99.5195 142.28)" class="st8 st16">1mm</text>
+		<text id="lfc_1" transform="matrix(1 0 0 1 77.3143 213.0525)" class="st8 st17">LFC</text>
+		<text id="ldg_1" transform="matrix(1 0 0 1 180.8851 213.0525)" class="st8 st17">LDG 3</text>
+		<text id="rcam_1" transform="matrix(1 0 0 1 284.2377 213.2442)" class="st8 st17">RCAM 3</text>
+		<text id="contaminantText1" transform="matrix(1 0 0 1 152.8603 177.9196)" class="st8 st18">SLIPPERY WET 1mm</text>
 	</g>
 </g>
 <g id="RWYPart2">
@@ -242,10 +263,10 @@
 		</g>
 	</g>
 	
-		<pattern  id="pattern2_00000076596441176962353180000003047987616420372102_" xlink:href="#pattern2_0000012631459333705298" patternTransform="matrix(0.7071 -0.7071 0.7071 0.7071 -466.3199 4556.7412)">
+		<pattern  id="pattern2_00000006706681618965950840000000141943326019151802_" xlink:href="#pattern2_0000009244797999001804" patternTransform="matrix(0.7071 -0.7071 0.7071 0.7071 -4967.1982 16786.7422)">
 	</pattern>
 	
-		<rect id="pattern2" x="85" y="234.2" style="fill:url(#pattern2_00000076596441176962353180000003047987616420372102_);" width="297.4" height="148.6"/>
+		<rect id="pattern2" x="85" y="234.2" style="fill:url(#pattern2_00000006706681618965950840000000141943326019151802_);" width="297.4" height="148.6"/>
 	<rect id="snowBackground3" x="84.5" y="234.5" class="st6" width="63.7" height="148.6"/>
 	<rect id="snowBackground4" x="319.6" y="234.5" class="st6" width="63.7" height="148.6"/>
 	<rect x="14.6" y="408.1" class="st6" width="37.1" height="40.8"/>
@@ -278,13 +299,13 @@
 	<rect x="199.2" y="294.8" class="st12" width="70" height="28"/>
 	<path d="M351,334.6c0,0,1.2,12.7-4,20.2s-0.6,16.2,5.1,15.3s13.7-8.8,9.6-21.4C357.5,336.2,351,334.6,351,334.6z"/>
 	<text id="coverage_2" transform="matrix(1 0 0 1 206.0349 317.4099)" class="st8 st9">100%</text>
-	<text id="rwyccValue_2" transform="matrix(1 0 0 1 385.5388 442.4799)" class="st8 st13">3</text>
-	<text transform="matrix(1 0 0 1 98.6835 350.3391)" class="st8 st14">100% </text>
-	<text transform="matrix(1 0 0 1 99.9835 365.3391)" class="st8 st14">1mm</text>
-	<text id="lfc_2" transform="matrix(1 0 0 1 77.7783 436.1116)" class="st8 st15">LFC</text>
-	<text id="ldg_2" transform="matrix(1 0 0 1 181.3491 436.1116)" class="st8 st15">LDG 3</text>
-	<text id="rcam_2" transform="matrix(1 0 0 1 284.7017 436.3033)" class="st8 st15">RCAM 3</text>
-	<text id="contaminantText2" transform="matrix(1 0 0 1 153.3243 400.9787)" class="st8 st16">SLIPPERY WET 1mm</text>
+	<text id="rwyccValue_2" transform="matrix(1 0 0 1 385.5388 442.4799)" class="st8 st15">3</text>
+	<text transform="matrix(1 0 0 1 98.6835 350.3391)" class="st8 st16">100% </text>
+	<text transform="matrix(1 0 0 1 99.9835 365.3391)" class="st8 st16">1mm</text>
+	<text id="lfc_2" transform="matrix(1 0 0 1 77.7783 436.1116)" class="st8 st17">LFC</text>
+	<text id="ldg_2" transform="matrix(1 0 0 1 181.3491 436.1116)" class="st8 st17">LDG 3</text>
+	<text id="rcam_2" transform="matrix(1 0 0 1 284.7017 436.3033)" class="st8 st17">RCAM 3</text>
+	<text id="contaminantText2" transform="matrix(1 0 0 1 153.3243 400.9787)" class="st8 st18">SLIPPERY WET 1mm</text>
 </g>
 <g id="RWYPart3">
 	<rect x="60" y="454.8" width="348.5" height="148.6"/>
@@ -298,10 +319,10 @@
 	<rect id="snowBackground6" x="84.7" y="454.8" class="st6" width="63.7" height="148.6"/>
 	<rect id="snowBackground5" x="319.8" y="454.8" class="st6" width="63.7" height="148.6"/>
 	
-		<pattern  id="SVGID_00000044885395045004751890000011763217496800332959_" xlink:href="#SVGID_1_" patternTransform="matrix(0.7071 -0.7071 0.7071 0.7071 -516.7676 4522.7861)">
+		<pattern  id="SVGID_00000032634757027494720350000005291766622696216984_" xlink:href="#SVGID_1_" patternTransform="matrix(0.7071 -0.7071 0.7071 0.7071 -5017.6455 16752.7871)">
 	</pattern>
 	
-		<rect x="85.4" y="454.8" style="fill:url(#SVGID_00000044885395045004751890000011763217496800332959_);" width="297.4" height="148.6"/>
+		<rect x="85.4" y="454.8" style="fill:url(#SVGID_00000032634757027494720350000005291766622696216984_);" width="297.4" height="148.6"/>
 	<rect x="414.6" y="628.7" class="st6" width="39.1" height="40.8"/>
 	<rect x="14.6" y="628.7" class="st6" width="37.1" height="40.8"/>
 	<text transform="matrix(1 0 0 1 25.7548 656.8107)" class="st7 st8 st9">A</text>
@@ -332,122 +353,128 @@
 	<rect x="199.6" y="515.4" class="st12" width="70" height="28"/>
 	<path d="M351.5,555.2c0,0,1.2,12.7-4,20.2s-0.6,16.2,5.1,15.3c5.7-0.8,13.7-8.8,9.6-21.4S351.5,555.2,351.5,555.2z"/>
 	<text id="coverage_3" transform="matrix(1 0 0 1 206.4989 538.0132)" class="st8 st9">100%</text>
-	<text id="rwyccValue_3" transform="matrix(1 0 0 1 386.0028 663.0831)" class="st8 st13">3</text>
-	<text transform="matrix(1 0 0 1 99.1475 570.9424)" class="st8 st14">100% </text>
-	<text transform="matrix(1 0 0 1 100.4475 585.9424)" class="st8 st14">1mm</text>
-	<text id="lfc_3" transform="matrix(1 0 0 1 78.2423 656.7149)" class="st8 st15">LFC</text>
-	<text id="ldg_3" transform="matrix(1 0 0 1 181.8131 656.7149)" class="st8 st15">LDG 3</text>
-	<text id="rcam_3" transform="matrix(1 0 0 1 285.1657 656.9066)" class="st8 st15">RCAM 3</text>
-	<text id="contaminantText3" transform="matrix(1 0 0 1 153.7883 621.582)" class="st8 st16">SLIPPERY WET 1mm</text>
+	<text id="rwyccValue_3" transform="matrix(1 0 0 1 386.0028 663.0831)" class="st8 st15">3</text>
+	<text transform="matrix(1 0 0 1 99.1475 570.9424)" class="st8 st16">100% </text>
+	<text transform="matrix(1 0 0 1 100.4475 585.9424)" class="st8 st16">1mm</text>
+	<text id="lfc_3" transform="matrix(1 0 0 1 78.2423 656.7149)" class="st8 st17">LFC</text>
+	<text id="ldg_3" transform="matrix(1 0 0 1 181.8131 656.7149)" class="st8 st17">LDG 3</text>
+	<text id="rcam_3" transform="matrix(1 0 0 1 285.1657 656.9066)" class="st8 st17">RCAM 3</text>
+	<text id="contaminantText3" transform="matrix(1 0 0 1 153.7883 621.582)" class="st8 st18">SLIPPERY WET 1mm</text>
 </g>
 <g id="AssesmentPart">
 	<g id="static">
-		<text id="text" transform="matrix(1 0 0 1 831.0249 39.96)" class="st8 st19">TAKEOFF SIGNIF.CONT</text>
-		<text transform="matrix(1 0 0 1 525.4333 85.21)" class="st8 st20">VALID</text>
-		<text transform="matrix(1 0 0 1 698.4628 178.394)" class="st8 st20">NIL</text>
-		<text transform="matrix(1 0 0 1 871.9885 178.394)" class="st8 st20">NIL</text>
-		<text transform="matrix(1 0 0 1 990.4108 178.394)" class="st8 st20">NIL</text>
-		<text transform="matrix(1 0 0 1 698.4628 292.041)" class="st8 st20">NIL</text>
-		<text transform="matrix(1 0 0 1 871.9885 292.041)" class="st8 st20">NIL</text>
-		<text transform="matrix(1 0 0 1 990.4108 292.041)" class="st8 st20">NIL</text>
-		<text transform="matrix(1 0 0 1 698.4628 404.4181)" class="st8 st20">NIL</text>
-		<text transform="matrix(1 0 0 1 871.9885 404.4181)" class="st8 st20">NIL</text>
-		<text transform="matrix(1 0 0 1 990.4108 404.4181)" class="st8 st20">NIL</text>
-		<text transform="matrix(1 0 0 1 533.3274 144.3939)" class="st8 st20">REP. RWYCC:</text>
-		<text transform="matrix(1 0 0 1 536.4274 161.3939)" class="st8 st20">RCAM CONT:</text>
-		<text transform="matrix(1 0 0 1 557.1274 178.3939)" class="st8 st20">CONT #2:</text>
-		<text transform="matrix(1 0 0 1 557.1274 195.3939)" class="st8 st20">CONT #1:</text>
-		<text transform="matrix(1 0 0 1 533.3274 258.0409)" class="st8 st20">REP. RWYCC:</text>
-		<text transform="matrix(1 0 0 1 536.4274 275.0409)" class="st8 st20">RCAM CONT:</text>
-		<text transform="matrix(1 0 0 1 557.1274 292.0409)" class="st8 st20">CONT #2:</text>
-		<text transform="matrix(1 0 0 1 557.1274 309.0409)" class="st8 st20">CONT #1:</text>
-		<text transform="matrix(1 0 0 1 533.3274 370.2751)" class="st8 st20">REP. RWYCC:</text>
-		<text transform="matrix(1 0 0 1 536.4274 387.2751)" class="st8 st20">RCAM CONT:</text>
-		<text transform="matrix(1 0 0 1 557.1274 404.2751)" class="st8 st20">CONT #2:</text>
-		<text transform="matrix(1 0 0 1 557.1274 421.2751)" class="st8 st20">CONT #1:</text>
-		<text transform="matrix(1 0 0 1 526.5918 483.8418)" class="st8 st20">REDUCED WIDTH (M):</text>
-		<text transform="matrix(1 0 0 1 526.5918 499.3418)" class="st8 st20">REDUCED LENGTH LDA - A/C (M):</text>
-		<text transform="matrix(1 0 0 1 526.5918 514.8418)" class="st8 st20">SNOWBANK DISTANCES L/R (M):</text>
-		<text transform="matrix(1 0 0 1 526.5918 530.3418)" class="st8 st20">SNOWBANK HEIGHTS L/R (CM):</text>
-		<text transform="matrix(1 0 0 1 526.5918 545.8418)" class="st8 st20">DRIFTING SNOW:</text>
-		<text transform="matrix(1 0 0 1 526.5918 561.3418)" class="st8 st20">LOOSE SAND:</text>
-		<text transform="matrix(1 0 0 1 526.5918 576.8418)" class="st8 st20">CHEMICALLY TREATED:</text>
-		<text transform="matrix(1 0 0 1 526.5918 592.3418)" class="st8 st20">ADJ. SNOWBANKS:</text>
-		<text transform="matrix(1 0 0 1 526.5918 607.8418)" class="st8 st20">OBSCURED LIGHTS:</text>
-		<text transform="matrix(1 0 0 1 526.5918 623.3418)" class="st8 st20">COMMENT SNOWTAM:</text>
-		<text transform="matrix(1 0 0 1 526.5918 638.8418)" class="st8 st20">COMMENT ATIS:</text>
-		<text transform="matrix(1 0 0 1 526.5918 654.3418)" class="st8 st20">COMMENT ‘TORNI’:</text>
-		<text transform="matrix(1 0 0 1 525.4333 69.889)" class="st8 st20">REPORTED</text>
-		<text transform="matrix(1 0 0 1 525.4333 55.2024)" class="st8 st20">ASSESSED</text>
-		<text transform="matrix(1 0 0 1 519.0059 127.2797)" class="st8 st19">THIRD C</text>
-		<text transform="matrix(1 0 0 1 519.0059 239.1128)" class="st8 st19">THIRD B</text>
-		<text transform="matrix(1 0 0 1 519.0059 352.6887)" class="st8 st19">THIRD A</text>
-		<rect x="512.8" y="11.1" class="st21" width="292.1" height="82.9"/>
-		<rect x="818.7" y="11.1" class="st21" width="292.1" height="82.9"/>
-		<rect x="512.8" y="101.7" class="st21" width="598" height="104.9"/>
-		<rect x="512.8" y="214.2" class="st21" width="598" height="104.9"/>
-		<rect x="512.8" y="326.8" class="st21" width="598" height="104.9"/>
-		<rect x="512.8" y="439.4" class="st21" width="598" height="222.3"/>
+		<text id="text" transform="matrix(1 0 0 1 831.0249 39.96)" class="st8 st21">TAKEOFF SIGNIF.CONT</text>
+		<text transform="matrix(1 0 0 1 525.4333 85.21)" class="st8 st22">VALID</text>
+		<text transform="matrix(1 0 0 1 698.4628 178.394)" class="st8 st22">NIL</text>
+		<text transform="matrix(1 0 0 1 871.9885 178.394)" class="st8 st22">NIL</text>
+		<text transform="matrix(1 0 0 1 990.4108 178.394)" class="st8 st22">NIL</text>
+		<text transform="matrix(1 0 0 1 698.4628 292.041)" class="st8 st22">NIL</text>
+		<text transform="matrix(1 0 0 1 871.9885 292.041)" class="st8 st22">NIL</text>
+		<text transform="matrix(1 0 0 1 990.4108 292.041)" class="st8 st22">NIL</text>
+		<text transform="matrix(1 0 0 1 698.4628 404.4181)" class="st8 st22">NIL</text>
+		<text transform="matrix(1 0 0 1 871.9885 404.4181)" class="st8 st22">NIL</text>
+		<text transform="matrix(1 0 0 1 990.4108 404.4181)" class="st8 st22">NIL</text>
+		<text transform="matrix(1 0 0 1 533.3274 144.3939)" class="st8 st22">REP. RWYCC:</text>
+		<text transform="matrix(1 0 0 1 536.4274 161.3939)" class="st8 st22">RCAM CONT:</text>
+		<text transform="matrix(1 0 0 1 557.1274 178.3939)" class="st8 st22">CONT #2:</text>
+		<text transform="matrix(1 0 0 1 557.1274 195.3939)" class="st8 st22">CONT #1:</text>
+		<text transform="matrix(1 0 0 1 533.3274 258.0409)" class="st8 st22">REP. RWYCC:</text>
+		<text transform="matrix(1 0 0 1 536.4274 275.0409)" class="st8 st22">RCAM CONT:</text>
+		<text transform="matrix(1 0 0 1 557.1274 292.0409)" class="st8 st22">CONT #2:</text>
+		<text transform="matrix(1 0 0 1 557.1274 309.0409)" class="st8 st22">CONT #1:</text>
+		<text transform="matrix(1 0 0 1 533.3274 370.2751)" class="st8 st22">REP. RWYCC:</text>
+		<text transform="matrix(1 0 0 1 536.4274 387.2751)" class="st8 st22">RCAM CONT:</text>
+		<text transform="matrix(1 0 0 1 557.1274 404.2751)" class="st8 st22">CONT #2:</text>
+		<text transform="matrix(1 0 0 1 557.1274 421.2751)" class="st8 st22">CONT #1:</text>
+		<text transform="matrix(1 0 0 1 526.5918 483.8418)" class="st8 st22">REDUCED WIDTH (M):</text>
+		<text transform="matrix(1 0 0 1 526.5918 499.3418)" class="st8 st22">REDUCED LENGTH LDA - A/C (M):</text>
+		<text transform="matrix(1 0 0 1 526.5918 514.8418)" class="st8 st22">SNOWBANK DISTANCES L/R (M):</text>
+		<text transform="matrix(1 0 0 1 526.5918 530.3418)" class="st8 st22">SNOWBANK HEIGHTS L/R (CM):</text>
+		<text transform="matrix(1 0 0 1 526.5918 545.8418)" class="st8 st22">DRIFTING SNOW:</text>
+		<text transform="matrix(1 0 0 1 526.5918 561.3418)" class="st8 st22">LOOSE SAND:</text>
+		<text transform="matrix(1 0 0 1 526.5918 576.8418)" class="st8 st22">CHEMICALLY TREATED:</text>
+		<text transform="matrix(1 0 0 1 526.5918 592.3418)" class="st8 st22">ADJ. SNOWBANKS:</text>
+		<text transform="matrix(1 0 0 1 526.5918 607.8418)" class="st8 st22">OBSCURED LIGHTS:</text>
+		<text transform="matrix(1 0 0 1 526.5918 623.3418)" class="st8 st22">COMMENT SNOWTAM:</text>
+		<text transform="matrix(1 0 0 1 526.5918 638.8418)" class="st8 st22">COMMENT ATIS:</text>
+		<text transform="matrix(1 0 0 1 526.5918 654.3418)" class="st8 st22">COMMENT ‘TORNI’:</text>
+		<text transform="matrix(1 0 0 1 525.4333 69.889)" class="st8 st22">REPORTED</text>
+		<text transform="matrix(1 0 0 1 525.4333 55.2024)" class="st8 st22">ASSESSED</text>
+		<text transform="matrix(1 0 0 1 519.0059 127.2797)" class="st8 st21">THIRD C</text>
+		<text transform="matrix(1 0 0 1 519.0059 239.1128)" class="st8 st21">THIRD B</text>
+		<text transform="matrix(1 0 0 1 519.0059 352.6887)" class="st8 st21">THIRD A</text>
+		<rect x="512.8" y="11.1" class="st23" width="292.1" height="82.9"/>
+		<rect x="818.7" y="11.1" class="st23" width="292.1" height="82.9"/>
+		<rect x="512.8" y="101.7" class="st23" width="598" height="104.9"/>
+		<rect x="512.8" y="214.2" class="st23" width="598" height="104.9"/>
+		<rect x="512.8" y="326.8" class="st23" width="598" height="104.9"/>
+		<rect x="512.8" y="439.4" class="st23" width="598" height="222.3"/>
 	</g>
-	<text transform="matrix(1 0 0 1 946.7553 483.8418)" class="st8 st14">  </text>
-	<text transform="matrix(1 0 0 1 946.7553 483.8418)" class="st8 st20">NIL</text>
-	<text transform="matrix(1 0 0 1 892.3553 499.3418)" class="st8 st20">NIL - NIL / NIL</text>
-	<text transform="matrix(1 0 0 1 919.8553 514.8418)" class="st8 st20">NIL / NIL</text>
-	<text transform="matrix(1 0 0 1 919.8553 530.3418)" class="st8 st20">NIL / NIL</text>
-	<text transform="matrix(1 0 0 1 947.9553 545.8418)" class="st8 st20">NO</text>
-	<text transform="matrix(1 0 0 1 947.9553 561.3418)" class="st8 st20">NO</text>
-	<text transform="matrix(1 0 0 1 947.9553 576.8418)" class="st8 st20">NO</text>
-	<text transform="matrix(1 0 0 1 947.9553 592.3418)" class="st8 st20">NO</text>
-	<text transform="matrix(1 0 0 1 947.9553 607.8418)" class="st8 st20">NO</text>
-	<text transform="matrix(1 0 0 1 946.7553 623.3418)" class="st8 st20">NIL</text>
-	<text transform="matrix(1 0 0 1 946.7553 638.8418)" class="st8 st20">NIL</text>
-	<text transform="matrix(1 0 0 1 946.7553 654.3418)" class="st8 st20">NIL</text>
-	<text id="rwycc1" transform="matrix(1 0 0 1 870.993 144.3939)" class="st8 st20">RWYCC #3</text>
-	<text id="contaminantTypeSimple2" transform="matrix(1 0 0 1 698.0779 161.3939)" class="st8 st20">SLIPPERY WET</text>
-	<text id="contaminantType2" transform="matrix(1 0 0 1 698.0779 195.3939)" class="st8 st20">SLIPPERY WET</text>
-	<text id="depth2" transform="matrix(1 0 0 1 871.6036 161.3939)" class="st8 st20">1 MM</text>
-	<text id="depth2_1" transform="matrix(1 0 0 1 871.6036 195.3939)" class="st8 st20">1 MM</text>
-	<text id="coverage2" transform="matrix(1 0 0 1 990.0258 161.3939)" class="st8 st20">100%</text>
-	<text id="coverage2_1" transform="matrix(1 0 0 1 990.0258 195.3939)" class="st8 st20">100%</text>
-	<text id="contaminantTypeSimple3" transform="matrix(1 0 0 1 698.0779 275.0409)" class="st8 st20">SLIPPERY WET</text>
-	<text id="contaminantType3" transform="matrix(1 0 0 1 698.0779 309.0409)" class="st8 st20">SLIPPERY WET</text>
-	<text id="depth3" transform="matrix(1 0 0 1 871.6036 275.0409)" class="st8 st20">1 MM</text>
-	<text id="depth3_1" transform="matrix(1 0 0 1 871.6036 309.0409)" class="st8 st20">1 MM</text>
-	<text id="coverage3" transform="matrix(1 0 0 1 990.0258 275.0409)" class="st8 st20">100%</text>
-	<text id="coverage3_1" transform="matrix(1 0 0 1 990.0258 309.0409)" class="st8 st20">100%</text>
-	<text id="contaminantTypeSimple1" transform="matrix(1 0 0 1 698.0779 387.418)" class="st8 st20">SLIPPERY WET</text>
-	<text id="contaminantType1" transform="matrix(1 0 0 1 698.0779 421.418)" class="st8 st20">SLIPPERY WET</text>
-	<text id="depth1" transform="matrix(1 0 0 1 871.6036 387.418)" class="st8 st20">1 MM</text>
-	<text id="depth1_1" transform="matrix(1 0 0 1 871.6036 421.418)" class="st8 st20">1 MM</text>
-	<text id="coverage1" transform="matrix(1 0 0 1 990.0258 387.418)" class="st8 st20">100%</text>
-	<text id="coverage1_1" transform="matrix(1 0 0 1 990.0258 421.418)" class="st8 st20">100%</text>
-	<text id="rwycc2" transform="matrix(1 0 0 1 870.993 258.0407)" class="st8 st20">RWYCC #3</text>
-	<text id="rwycc3" transform="matrix(1 0 0 1 870.993 370.4071)" class="st8 st20">RWYCC #3</text>
-	<text id="nil" transform="matrix(1 0 0 1 617.3337 55.2024)" class="st8 st20">13.09.2023    16:18 UTC</text>
-	<text id="date_time" transform="matrix(1 0 0 1 617.3337 70.0211)" class="st8 st20">13.09.2023    16:18 UTC</text>
-	<text id="date_time_2" transform="matrix(1 0 0 1 617.3337 85.21)" class="st8 st20">NIL</text>
-	<text id="to_signif_cont" transform="matrix(1 0 0 1 831.5309 57.7966)" class="st8 st14">THIN RWYCC 3/3/3.</text>
-	<text id="rwyNumber2" transform="matrix(1 0 0 1 519.0059 465.6039)" class="st8 st19">RUNWAY 04R</text>
-	<text id="rwyNumber" transform="matrix(1 0 0 1 519.0059 36.6357)" class="st8 st19">EFHK 04R</text>
+	<text transform="matrix(1 0 0 1 946.7553 483.8418)" class="st8 st16">  </text>
+	<text transform="matrix(1 0 0 1 946.7553 483.8418)" class="st8 st22">NIL</text>
+	<text transform="matrix(1 0 0 1 892.3553 499.3418)" class="st8 st22">NIL - NIL / NIL</text>
+	<text transform="matrix(1 0 0 1 919.8553 514.8418)" class="st8 st22">NIL / NIL</text>
+	<text transform="matrix(1 0 0 1 919.8553 530.3418)" class="st8 st22">NIL / NIL</text>
+	<text transform="matrix(1 0 0 1 947.9553 545.8418)" class="st8 st22">NO</text>
+	<text transform="matrix(1 0 0 1 947.9553 561.3418)" class="st8 st22">NO</text>
+	<text transform="matrix(1 0 0 1 947.9553 576.8418)" class="st8 st22">NO</text>
+	<text transform="matrix(1 0 0 1 947.9553 592.3418)" class="st8 st22">NO</text>
+	<text transform="matrix(1 0 0 1 947.9553 607.8418)" class="st8 st22">NO</text>
+	<text transform="matrix(1 0 0 1 946.7553 623.3418)" class="st8 st22">NIL</text>
+	<text transform="matrix(1 0 0 1 946.7553 638.8418)" class="st8 st22">NIL</text>
+	<text transform="matrix(1 0 0 1 946.7553 654.3418)" class="st8 st22">NIL</text>
+	<text id="rwycc1" transform="matrix(1 0 0 1 870.993 144.3939)" class="st8 st22">RWYCC #3</text>
+	<text id="contaminantTypeSimple2" transform="matrix(1 0 0 1 698.0779 161.3939)" class="st8 st22">SLIPPERY WET</text>
+	<text id="contaminantType2" transform="matrix(1 0 0 1 698.0779 195.3939)" class="st8 st22">SLIPPERY WET</text>
+	<text id="depth2" transform="matrix(1 0 0 1 871.6036 161.3939)" class="st8 st22">1 MM</text>
+	<text id="depth2_1" transform="matrix(1 0 0 1 871.6036 195.3939)" class="st8 st22">1 MM</text>
+	<text id="coverage2" transform="matrix(1 0 0 1 990.0258 161.3939)" class="st8 st22">100%</text>
+	<text id="coverage2_1" transform="matrix(1 0 0 1 990.0258 195.3939)" class="st8 st22">100%</text>
+	<text id="contaminantTypeSimple3" transform="matrix(1 0 0 1 698.0779 275.0409)" class="st8 st22">SLIPPERY WET</text>
+	<text id="contaminantType3" transform="matrix(1 0 0 1 698.0779 309.0409)" class="st8 st22">SLIPPERY WET</text>
+	<text id="depth3" transform="matrix(1 0 0 1 871.6036 275.0409)" class="st8 st22">1 MM</text>
+	<text id="depth3_1" transform="matrix(1 0 0 1 871.6036 309.0409)" class="st8 st22">1 MM</text>
+	<text id="coverage3" transform="matrix(1 0 0 1 990.0258 275.0409)" class="st8 st22">100%</text>
+	<text id="coverage3_1" transform="matrix(1 0 0 1 990.0258 309.0409)" class="st8 st22">100%</text>
+	<text id="contaminantTypeSimple1" transform="matrix(1 0 0 1 698.0779 387.418)" class="st8 st22">SLIPPERY WET</text>
+	<text id="contaminantType1" transform="matrix(1 0 0 1 698.0779 421.418)" class="st8 st22">SLIPPERY WET</text>
+	<text id="depth1" transform="matrix(1 0 0 1 871.6036 387.418)" class="st8 st22">1 MM</text>
+	<text id="depth1_1" transform="matrix(1 0 0 1 871.6036 421.418)" class="st8 st22">1 MM</text>
+	<text id="coverage1" transform="matrix(1 0 0 1 990.0258 387.418)" class="st8 st22">100%</text>
+	<text id="coverage1_1" transform="matrix(1 0 0 1 990.0258 421.418)" class="st8 st22">100%</text>
+	<text id="rwycc2" transform="matrix(1 0 0 1 870.993 258.0407)" class="st8 st22">RWYCC #3</text>
+	<text id="rwycc3" transform="matrix(1 0 0 1 870.993 370.4071)" class="st8 st22">RWYCC #3</text>
+	<text id="nil" transform="matrix(1 0 0 1 617.3337 55.2024)" class="st8 st22">13.09.2023    16:18 UTC</text>
+	<text id="date_time" transform="matrix(1 0 0 1 617.3337 70.0211)" class="st8 st22">13.09.2023    16:18 UTC</text>
+	<text id="date_time_2" transform="matrix(1 0 0 1 617.3337 85.21)" class="st8 st22">NIL</text>
+	<text id="to_signif_cont" transform="matrix(1 0 0 1 831.5309 57.7966)" class="st8 st16">THIN RWYCC 3/3/3.</text>
+	<text id="rwyNumber2" transform="matrix(1 0 0 1 519.0059 465.6039)" class="st8 st21">RUNWAY 04R</text>
+	<text id="rwyNumber" transform="matrix(1 0 0 1 519.0059 36.6357)" class="st8 st21">EFHK 04R</text>
 </g>
 <g id="RunwayWidthPart">
 	<path id="snowBanksBackground2" class="st6" d="M139.4,680.5H65.5c-5,0-9,4-9,9V718h91.9v-28.5
 		C148.4,684.6,144.4,680.5,139.4,680.5z"/>
 	<path id="snowBanksBackground1" class="st6" d="M402,680.5h-73.8c-5,0-9,4-9,9V718H411v-28.5C411,684.6,407,680.5,402,680.5z"/>
 	<rect x="56.5" y="718.1" width="354.5" height="40"/>
-	<text id="rwyNumber3" transform="matrix(1 0 0 1 212.2283 707.8934)" class="st8 st22">04R</text>
-	<text id="width2" transform="matrix(1 0 0 1 213.2361 743.7399)" class="st6 st8 st15">60 m</text>
-	<text id="snbanks_left1" transform="matrix(1 0 0 1 129.093 743.7399)" class="st6 st8 st15">25 m</text>
-	<text transform="matrix(1 0 0 1 98.0027 697.252)" class="st8 st16">5</text>
-	<text transform="matrix(1 0 0 1 91.8027 711.252)" class="st8 st16">cm</text>
-	<text transform="matrix(1 0 0 1 360.5984 697.252)" class="st8 st16">5</text>
-	<text transform="matrix(1 0 0 1 354.3984 711.252)" class="st8 st16">cm</text>
-	<text id="snbanks_right1" transform="matrix(1 0 0 1 298.9664 743.7399)" class="st6 st8 st15">25 m</text>
+	<text id="rwyNumber3" transform="matrix(1 0 0 1 212.2283 707.8934)" class="st8 st24">04R</text>
+	<text id="width2" transform="matrix(1 0 0 1 213.2361 743.7399)" class="st6 st8 st17">60 m</text>
+	<text id="snbanks_left1" transform="matrix(1 0 0 1 129.093 743.7399)" class="st6 st8 st17">25 m</text>
+	<text transform="matrix(1 0 0 1 98.0027 697.252)" class="st8 st18">5</text>
+	<text transform="matrix(1 0 0 1 91.8027 711.252)" class="st8 st18">cm</text>
+	<text transform="matrix(1 0 0 1 360.5984 697.252)" class="st8 st18">5</text>
+	<text transform="matrix(1 0 0 1 354.3984 711.252)" class="st8 st18">cm</text>
+	<text id="snbanks_right1" transform="matrix(1 0 0 1 298.9664 743.7399)" class="st6 st8 st17">25 m</text>
 </g>
-<text id="downgradedText3" transform="matrix(1 0 0 1 698.0779 144.3939)" class="st23 st8 st20">DOWNGRADED</text>
-<text id="downgradedText2" transform="matrix(1 0 0 1 698.0779 258.1726)" class="st23 st8 st20">DOWNGRADED</text>
-<text id="downgradedText1" transform="matrix(1 0 0 1 698.0779 370.407)" class="st23 st8 st20">DOWNGRADED</text>
-<polygon id="downgraded3" class="st23" points="433.1,217.9 417.9,193.5 448.3,193.5"/>
-<polygon id="downgraded2" class="st23" points="433.1,440.7 417.9,416.3 448.3,416.3"/>
-<polygon id="downgraded1" class="st23" points="433.1,661.3 417.9,636.9 448.3,636.9"/>
+<text id="downgradedText3" transform="matrix(1 0 0 1 698.0779 144.3939)" class="st25 st8 st22">DOWNGRADED</text>
+<text id="downgradedText2" transform="matrix(1 0 0 1 698.0779 258.1726)" class="st25 st8 st22">DOWNGRADED</text>
+<text id="downgradedText1" transform="matrix(1 0 0 1 698.0779 370.407)" class="st25 st8 st22">DOWNGRADED</text>
+<polygon id="downgraded3" class="st25" points="433.1,217.9 417.9,193.5 448.3,193.5 "/>
+<polygon id="downgraded2" class="st25" points="433.1,440.7 417.9,416.3 448.3,416.3 "/>
+<polygon id="downgraded1" class="st25" points="433.1,661.3 417.9,636.9 448.3,636.9 "/>
+	
+		<image style="overflow:visible;" width="406" height="169" id="frost3" xlink:href="7D5B31E3AA65E84C.png"  transform="matrix(9.300095e-02 0 0 9.300095e-02 334.4208 124.5414)"></image>
+	
+		<image style="overflow:visible;" width="406" height="169" id="frost2" xlink:href="7D5B31E3AA65E84D.png"  transform="matrix(9.300095e-02 0 0 9.300095e-02 334.8985 347.5414)"></image>
+	
+		<image style="overflow:visible;" width="406" height="169" id="frost1" xlink:href="7D5B31E3AA65E84B.png"  transform="matrix(9.300095e-02 0 0 9.300095e-02 335.3208 568.1414)"></image>
 </svg>

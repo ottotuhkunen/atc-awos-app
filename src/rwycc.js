@@ -60,7 +60,7 @@ async function setRWYCC(runwayId) {
     */
 }
 
-let toggleContaminantIcon = 0; // 1=sun 2=wet 3=snow
+let toggleContaminantIcon = 0; // 1=sun 2=wet 3=snow 4=frost
 
 function manualRWYCC() {
     // always same:
@@ -106,9 +106,13 @@ function manualRWYCC() {
                     document.getElementById('contaminantType2').textContent = record.fields['content'];
                     document.getElementById('contaminantType3').textContent = record.fields['content'];
 
-                    if (record.fields['content'] != "WET" && record.fields['content'] != "SLIPPERY WET" && record.fields['content'] != "STANDING WATER") {
+                    if (record.fields['content'] != "WET" && record.fields['content'] != "SLIPPERY WET" && record.fields['content'] != "STANDING WATER" && record.fields['content'] != "FROST") {
                         toggleContaminantIcon = 3; // snow icon
-                    } else {
+                    } 
+                    else if (record.fields['content'] == "FROST" ) {
+                        toggleContaminantIcon = 4; // frost icon
+                    }
+                    else {
                         toggleContaminantIcon = 2; // wet icon
                     }
                 }
@@ -205,22 +209,32 @@ function setConditionIcon(contaminantType) {
         0: {
             dry: 'none',
             wet: 'none',
-            snow: 'none'
+            snow: 'none',
+            frost: 'none'
         },
         1: {
             dry: 'block',
             wet: 'none',
-            snow: 'none'
+            snow: 'none',
+            frost: 'none'
         },
         2: {
             dry: 'none',
             wet: 'block',
-            snow: 'none'
+            snow: 'none',
+            frost: 'none'
         },
         3: {
             dry: 'none',
             wet: 'none',
-            snow: 'block'
+            snow: 'block',
+            frost: 'none'
+        },
+        4: {
+            dry: 'none',
+            wet: 'none',
+            snow: 'none',
+            frost: 'block'
         }
     };
     
@@ -231,6 +245,7 @@ function setConditionIcon(contaminantType) {
             document.getElementById(`contaminantDry${num}`).style.display = config.dry;
             document.getElementById(`contaminantWet${num}`).style.display = config.wet;
             document.getElementById(`contaminantSnow${num}`).style.display = config.snow;
+            document.getElementById(`contaminantFrost${num}`).style.display = config.frost;
         });
     }    
 }

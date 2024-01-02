@@ -505,7 +505,7 @@ svg { width: 100%; }
 .rwyccBox3{fill:none;stroke:#dadada;stroke-miterlimit:10; stroke-width: 2px; fill: #ececec;}
 .st15{fill:#4397C3;stroke:#000000;stroke-miterlimit:10;display: none;}
 .st16{text-anchor: end;}
-.st17{font-size:17px; fill:#404040;}
+.st17{font-size:17px; fill:#000000;}
 
 .metRepDivContainer {
     display: none; 

@@ -76,15 +76,55 @@ async function fetchInformation(){
                 }
                 else{
                     document.getElementById('RWYCC_windows').style.display = "block";
-                    document.getElementById('04L_RWYCC_1').textContent = record.fields['content'] + "\u00A0".repeat(1) + record.fields['rwycc_upgr_dngr'];
-                    document.getElementById('04L_RWYCC_2').textContent = record.fields['content'] + "\u00A0".repeat(1) + record.fields['rwycc_upgr_dngr'];
-                    document.getElementById('04L_RWYCC_3').textContent = record.fields['content'] + "\u00A0".repeat(1) + record.fields['rwycc_upgr_dngr'];
-                    document.getElementById('04R_RWYCC_1').textContent = record.fields['content'] + "\u00A0".repeat(1) + record.fields['rwycc_upgr_dngr'];
-                    document.getElementById('04R_RWYCC_2').textContent = record.fields['content'] + "\u00A0".repeat(1) + record.fields['rwycc_upgr_dngr'];
-                    document.getElementById('04R_RWYCC_3').textContent = record.fields['content'] + "\u00A0".repeat(1) + record.fields['rwycc_upgr_dngr'];  
-                    document.getElementById('15_RWYCC_1').textContent = record.fields['content'] + "\u00A0".repeat(1) + record.fields['rwycc_upgr_dngr'];
-                    document.getElementById('15_RWYCC_2').textContent = record.fields['content'] + "\u00A0".repeat(1) + record.fields['rwycc_upgr_dngr'];
-                    document.getElementById('15_RWYCC_3').textContent = record.fields['content'] + "\u00A0".repeat(1) + record.fields['rwycc_upgr_dngr'];  
+
+                    if(record.fields['rwycc_upgr_dngr'] == "↑"){
+                        document.getElementById('04L_RWYCC_1').textContent = record.fields['content'];
+                        document.getElementById('04L_RWYCC_2').textContent = record.fields['content'];
+                        document.getElementById('04L_RWYCC_3').textContent = record.fields['content'];
+                        document.getElementById('04R_RWYCC_1').textContent = record.fields['content'];
+                        document.getElementById('04R_RWYCC_2').textContent = record.fields['content'];
+                        document.getElementById('04R_RWYCC_3').textContent = record.fields['content'];
+                        document.getElementById('15_RWYCC_1').textContent = record.fields['content'];
+                        document.getElementById('15_RWYCC_2').textContent = record.fields['content'];
+                        document.getElementById('15_RWYCC_3').textContent = record.fields['content'];
+
+                        const images = document.querySelectorAll('image[id^="rcrIndicator"]');
+                        images.forEach(image => {
+                            image.setAttribute('href', './src/upgraded.png');
+                        });
+                        document.getElementById('RCRIndicators').style.display = "block";
+                        
+                    }
+                    else if (record.fields['rwycc_upgr_dngr'] == "↓") {
+                        document.getElementById('04L_RWYCC_1').textContent = record.fields['content'];
+                        document.getElementById('04L_RWYCC_2').textContent = record.fields['content'];
+                        document.getElementById('04L_RWYCC_3').textContent = record.fields['content'];
+                        document.getElementById('04R_RWYCC_1').textContent = record.fields['content'];
+                        document.getElementById('04R_RWYCC_2').textContent = record.fields['content'];
+                        document.getElementById('04R_RWYCC_3').textContent = record.fields['content'];
+                        document.getElementById('15_RWYCC_1').textContent = record.fields['content'];
+                        document.getElementById('15_RWYCC_2').textContent = record.fields['content'];
+                        document.getElementById('15_RWYCC_3').textContent = record.fields['content'];
+
+                        const images = document.querySelectorAll('image[id^="rcrIndicator"]');
+                        images.forEach(image => {
+                            image.setAttribute('href', './src/downgraded.png');
+                        });
+                        document.getElementById('RCRIndicators').style.display = "block";
+                    }
+                    else {
+                        document.getElementById('04L_RWYCC_1').textContent = record.fields['content'] + "\u00A0".repeat(1) + "•";
+                        document.getElementById('04L_RWYCC_2').textContent = record.fields['content'] + "\u00A0".repeat(1) + "•";
+                        document.getElementById('04L_RWYCC_3').textContent = record.fields['content'] + "\u00A0".repeat(1) + "•";
+                        document.getElementById('04R_RWYCC_1').textContent = record.fields['content'] + "\u00A0".repeat(1) + "•";
+                        document.getElementById('04R_RWYCC_2').textContent = record.fields['content'] + "\u00A0".repeat(1) + "•";
+                        document.getElementById('04R_RWYCC_3').textContent = record.fields['content'] + "\u00A0".repeat(1) + "•";  
+                        document.getElementById('15_RWYCC_1').textContent = record.fields['content'] + "\u00A0".repeat(1) + "•";
+                        document.getElementById('15_RWYCC_2').textContent = record.fields['content'] + "\u00A0".repeat(1) + "•";
+                        document.getElementById('15_RWYCC_3').textContent = record.fields['content'] + "\u00A0".repeat(1) + "•";
+                        document.getElementById('RCRIndicators').style.display = "none";
+                    }
+
                 }
             }
             // if warnings exist:

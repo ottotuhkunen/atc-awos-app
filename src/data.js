@@ -276,6 +276,8 @@ async function setMetarData(xmlDoc) {
   let counterClockwises = latestRecord.getElementsByTagName("iwxxm:extremeCounterClockwiseWindDirection");
   let clockwises = latestRecord.getElementsByTagName("iwxxm:extremeClockwiseWindDirection");
 
+  console.log(counterClockwises);
+
   var metars = xmlDoc.getElementsByTagName('avi:input');
   metar = metars[metars.length-1].childNodes[0].nodeValue;
   document.getElementById("metar").innerHTML = metar;
