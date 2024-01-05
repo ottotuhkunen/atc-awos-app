@@ -217,6 +217,9 @@ function setup() {
     document.getElementById("mainSvg").style.display = "none";
     document.getElementById("setupDiv").style.display = "block";
     document.getElementById("rwyccDiv").style.visibility = "hidden";
+
+    // load ATS-units
+    loadATSunits();
 }
 
 function openSnowtam() {

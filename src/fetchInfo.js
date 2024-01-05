@@ -239,3 +239,85 @@ async function loadSnowtam() {
     })
     .catch(error => console.log('error', error));
 }
+
+async function loadATSunits() {
+    try {
+        const response = await fetch('https://data.vatsim.net/v3/vatsim-data.json');
+        const data = await response.json();
+    
+        const table = document.createElement('table');
+        table.id = 'atsunitsTable';
+
+        // creating table header
+        const headerRow = table.insertRow();
+        const th1 = document.createElement('th');
+        th1.textContent = 'Role';
+        const th2 = document.createElement('th');
+        th2.textContent = 'Frequency';
+        const th3 = document.createElement('th');
+        th3.textContent = 'ATCO';
+        headerRow.appendChild(th1);
+        headerRow.appendChild(th2);
+        headerRow.appendChild(th3);
+    
+        // Function to add a row to the ATS-unit table
+        function addRow(column1, column2, column3) {
+            const row = table.insertRow();
+            const cell1 = row.insertCell(0);
+            const cell2 = row.insertCell(1);
+            const cell3 = row.insertCell(2);
+    
+            cell1.textContent = column1;
+            cell2.textContent = column2;
+            cell3.textContent = column3;
+        }
+    
+        // Find ATS-units
+        for (let item of data.controllers) {
+            // Area control
+            if (item.callsign === "EFIN_CTR" || item.callsign === "EFIN_D_CTR" || item.callsign === "EFIN_D__CTR" || item.callsign === "EFIN_C_CTR") {
+                addRow("EFIN", item.frequency, item.name);
+            }
+            // Radar
+            else if (item.callsign === "EFHK_E_APP" || item.callsign === "EFHK_APP" || item.callsign === "EFHK_E__APP") {
+                addRow("RAD-E", item.frequency, item.name);
+            }
+            else if (item.callsign === "EFHK_W_APP" || item.callsign === "EFHK_W__APP") {
+                addRow("RAD-W", item.frequency, item.name);
+            }
+            // Arrival
+            else if (item.callsign === "EFHK_R_APP" || item.callsign === "EFHK_R__APP") {
+                addRow("ARR-E", item.frequency, item.name);
+            }
+            else if (item.callsign === "EFHK_A_APP" || item.callsign === "EFHK_A__APP") {
+                addRow("ARR-W", item.frequency, item.name);
+            }
+            // Tower
+            else if (item.callsign === "EFHK_E_TWR" || item.callsign === "EFHK_TWR" || item.callsign === "EFHK_E__TWR") {
+                addRow("TWR-E", item.frequency, item.name);
+            }
+            else if (item.callsign === "EFHK_W_TWR" || item.callsign === "EFHK_W__TWR") {
+                addRow("TWR-W", item.frequency, item.name);
+            }
+            // Ground
+            else if (item.callsign === "EFHK_GND" || item.callsign === "EFHK__GND") {
+                addRow("GND", item.frequency, item.name);
+            }
+            // Ground 2
+            else if (item.callsign === "EFHK_DEL" || item.callsign === "EFHK__DEL") {
+                addRow("CLD", item.frequency, item.name);
+            }
+            // De-icing
+            else if (item.callsign === "EFHK_D_GND" || item.callsign === "EFHK_C_GND") {
+                addRow("DEICE", "133.850", item.name);
+            }
+        }
+    
+        // Append the table to the HTML element with id "atsunitsTable"
+        const container = document.getElementById('atsunitsTable');
+        container.innerHTML = '';
+        container.appendChild(table);
+    } catch (error) {
+        console.log('Error in loadATSunits function:', error);
+    }    
+}

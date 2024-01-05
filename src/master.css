@@ -543,7 +543,7 @@ th {
     padding-bottom: 14px;
 }
 @media (max-width: 1000px) {
-    table { font-size: 1.5vw; }
+    table:not(.atsUnitsTable) { font-size: 1.5vw; }
     .snowtamContainer h3 { font-size: 1.5vw; }
     #snowtamTitle { font-size: 1.5vw; }
     #snowtamTime1, #snowtamTime2, #snowtamLine1 { font-size: 1.5vw; }
@@ -660,4 +660,23 @@ th {
 .commentApron {
     margin-left: 12pt;
     display: inline-block;
+}
+.atsUnitsTable th {
+    border: none;
+    padding: 0;
+    padding-bottom: 6pt;
+    font-size: 12pt;
+}
+.atsUnitsTable td {
+    font-size: 10pt;
+}
+.atsUnitsTable {
+    text-align: left;
+    margin-left: 10px;
+}
+.atsUnitsTable th:first-child {
+    width: 100px;
+}
+.atsUnitsTable th:nth-child(2) {
+    width: 160px;
 }
