@@ -63,17 +63,6 @@ async function setRWYCC(runwayId) {
 let toggleContaminantIcon = 0; // 1=sun 2=wet 3=snow 4=frost
 
 function manualRWYCC() {
-    // always same:
-    document.getElementById('coverage_1').textContent = "100%";
-    document.getElementById('coverage_2').textContent = "100%";
-    document.getElementById('coverage_3').textContent = "100%";
-    document.getElementById('coverage1').textContent = "100%";
-    document.getElementById('coverage2').textContent = "100%";
-    document.getElementById('coverage3').textContent = "100%";
-    document.getElementById('coverage1_1').textContent = "100%";
-    document.getElementById('coverage2_1').textContent = "100%";
-    document.getElementById('coverage3_1').textContent = "100%";
-
     // assesment time + reported time
     const formatDate = date => `${String(date.getDate()).padStart(2, '0')}.${String(date.getMonth() + 1).padStart(2, '0')}.${date.getFullYear()}`;
     const today = new Date();
@@ -117,6 +106,9 @@ function manualRWYCC() {
                     }
                 }
             }
+            
+            let depth = "NRmm";
+
             if (record.fields['Name'] === 'rwycc_all_rwys') {
                 document.getElementById('rwyccValue_1').textContent = record.fields['content'];
                 document.getElementById('rwyccValue_2').textContent = record.fields['content'];
@@ -151,13 +143,7 @@ function manualRWYCC() {
                     document.getElementById('contaminantType2').textContent = "DRY";
                     document.getElementById('contaminantType3').textContent = "DRY";
 
-                    let tspans1 = document.querySelectorAll('#coveragePercent1 > tspan');
-                    let tspans2 = document.querySelectorAll('#coveragePercent2 > tspan');
-                    let tspans3 = document.querySelectorAll('#coveragePercent3 > tspan');
-                    [tspans1[0].textContent, tspans1[1].textContent] = ['100%', 'NRmm'];
-                    [tspans2[0].textContent, tspans2[1].textContent] = ['100%', 'NRmm'];
-                    [tspans3[0].textContent, tspans3[1].textContent] = ['100%', 'NRmm'];
-
+                    depth = "NRmm";
                     toggleContaminantIcon = 1; // sun icon
 
                 } else {
@@ -171,12 +157,8 @@ function manualRWYCC() {
                     document.getElementById('pattern1').style.display = "block";
                     document.getElementById('pattern2').style.display = "block";
                     document.getElementById('pattern3').style.display = "block";
-                    let tspans1 = document.querySelectorAll('#coveragePercent1 > tspan');
-                    let tspans2 = document.querySelectorAll('#coveragePercent2 > tspan');
-                    let tspans3 = document.querySelectorAll('#coveragePercent3 > tspan');
-                    [tspans1[0].textContent, tspans1[1].textContent] = ['100%', contaminantDepth + "mm"];
-                    [tspans2[0].textContent, tspans2[1].textContent] = ['100%', contaminantDepth + "mm"];
-                    [tspans3[0].textContent, tspans3[1].textContent] = ['100%', contaminantDepth + "mm"];
+                    
+                    depth = contaminantDepth + "mm";
                 }
                 if (record.fields["rwycc_upgr_dngr"] == "↓"){
                     document.getElementById('downgradedReport').style.display = "block";
@@ -193,6 +175,41 @@ function manualRWYCC() {
                     } else {
                         document.getElementById('reducedRunwayWidth').textContent = record.fields['content'];
                     }
+                }
+            }
+            // coverage percent
+            let tspans1 = document.querySelectorAll('#coveragePercent1 > tspan');
+            let tspans2 = document.querySelectorAll('#coveragePercent2 > tspan');
+            let tspans3 = document.querySelectorAll('#coveragePercent3 > tspan');
+            if (record.fields['Name'] === 'coverage') {
+                if (record.fields['content']) {
+                    document.getElementById('coverage_1').textContent = record.fields['content'];
+                    document.getElementById('coverage_2').textContent = record.fields['content'];
+                    document.getElementById('coverage_3').textContent = record.fields['content'];
+                    document.getElementById('coverage1').textContent = record.fields['content'];
+                    document.getElementById('coverage2').textContent = record.fields['content'];
+                    document.getElementById('coverage3').textContent = record.fields['content'];
+                    document.getElementById('coverage1_1').textContent = record.fields['content'];
+                    document.getElementById('coverage2_1').textContent = record.fields['content'];
+                    document.getElementById('coverage3_1').textContent = record.fields['content'];
+
+                    [tspans1[0].textContent, tspans1[1].textContent] = [record.fields['content'], depth];
+                    [tspans2[0].textContent, tspans2[1].textContent] = [record.fields['content'], depth];
+                    [tspans3[0].textContent, tspans3[1].textContent] = [record.fields['content'], depth];
+
+                } else {
+                    document.getElementById('coverage_1').textContent = "100%";
+                    document.getElementById('coverage_2').textContent = "100%";
+                    document.getElementById('coverage_3').textContent = "100%";
+                    document.getElementById('coverage1').textContent = "100%";
+                    document.getElementById('coverage2').textContent = "100%";
+                    document.getElementById('coverage3').textContent = "100%";
+                    document.getElementById('coverage1_1').textContent = "100%";
+                    document.getElementById('coverage2_1').textContent = "100%";
+                    document.getElementById('coverage3_1').textContent = "100%";
+                    [tspans1[0].textContent, tspans1[1].textContent] = ["100%", depth];
+                    [tspans2[0].textContent, tspans2[1].textContent] = ["100%", depth];
+                    [tspans3[0].textContent, tspans3[1].textContent] = ["100%", depth];
                 }
             }
         }

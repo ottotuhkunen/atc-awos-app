@@ -271,6 +271,9 @@ async function loadATSunits() {
             cell2.textContent = column2;
             cell3.textContent = column3;
         }
+
+        // sort ATS-units
+        data.controllers.sort((a, b) => getCallsignPriority(a.callsign) - getCallsignPriority(b.callsign));
     
         // Find ATS-units
         for (let item of data.controllers) {
@@ -308,8 +311,8 @@ async function loadATSunits() {
                 addRow("CLD", item.frequency, item.name);
             }
             // De-icing
-            else if (item.callsign === "EFHK_D_GND" || item.callsign === "EFHK_C_GND") {
-                addRow("DEICE", "133.850", item.name);
+            else if (item.callsign === "EFHK_C_GND" || item.callsign === "EFHK_D_GND") {
+                addRow("DEICE", item.frequency, item.name);
             }
         }
     
@@ -320,4 +323,15 @@ async function loadATSunits() {
     } catch (error) {
         console.log('Error in loadATSunits function:', error);
     }    
+}
+
+function getCallsignPriority(callsign) {
+    // Define the order of callsigns based on your requirements
+    const priorityOrder = ["EFIN_CTR", "EFIN_D_CTR", "EFIN_D__CTR", "EFIN_A_CTR", 
+        "EFIN_C_CTR", "EFHK_E_APP", "EFHK_APP", "EFHK_E__APP", "EFHK_W_APP", 
+        "EFHK_W__APP", "EFHK_E_TWR", "EFHK_E__TWR", "EFHK_TWR", "EFHK_W_TWR",
+        "EFHK_W__TWR", "EFHK_GND", "EFHK__GND", "EFHK_DEL", "EFHK__DEL", "EFHK_C_GND", "EFHK_D_GND"];
+    
+    const index = priorityOrder.indexOf(callsign);
+    return index === -1 ? priorityOrder.length : index;
 }
