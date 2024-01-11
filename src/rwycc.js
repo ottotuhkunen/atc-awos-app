@@ -107,7 +107,7 @@ function manualRWYCC() {
                 }
             }
             
-            let depth = "NRmm";
+            let depth = "";
 
             if (record.fields['Name'] === 'rwycc_all_rwys') {
                 document.getElementById('rwyccValue_1').textContent = record.fields['content'];
@@ -196,20 +196,8 @@ function manualRWYCC() {
                     [tspans1[0].textContent, tspans1[1].textContent] = [record.fields['content'], depth];
                     [tspans2[0].textContent, tspans2[1].textContent] = [record.fields['content'], depth];
                     [tspans3[0].textContent, tspans3[1].textContent] = [record.fields['content'], depth];
+                    console.log(depth);
 
-                } else {
-                    document.getElementById('coverage_1').textContent = "100%";
-                    document.getElementById('coverage_2').textContent = "100%";
-                    document.getElementById('coverage_3').textContent = "100%";
-                    document.getElementById('coverage1').textContent = "100%";
-                    document.getElementById('coverage2').textContent = "100%";
-                    document.getElementById('coverage3').textContent = "100%";
-                    document.getElementById('coverage1_1').textContent = "100%";
-                    document.getElementById('coverage2_1').textContent = "100%";
-                    document.getElementById('coverage3_1').textContent = "100%";
-                    [tspans1[0].textContent, tspans1[1].textContent] = ["100%", depth];
-                    [tspans2[0].textContent, tspans2[1].textContent] = ["100%", depth];
-                    [tspans3[0].textContent, tspans3[1].textContent] = ["100%", depth];
                 }
             }
         }

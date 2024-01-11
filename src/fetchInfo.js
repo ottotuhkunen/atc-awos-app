@@ -329,7 +329,7 @@ function getCallsignPriority(callsign) {
     // Define the order of callsigns based on your requirements
     const priorityOrder = ["EFIN_CTR", "EFIN_D_CTR", "EFIN_D__CTR", "EFIN_A_CTR", 
         "EFIN_C_CTR", "EFHK_E_APP", "EFHK_APP", "EFHK_E__APP", "EFHK_W_APP", 
-        "EFHK_W__APP", "EFHK_E_TWR", "EFHK_E__TWR", "EFHK_TWR", "EFHK_W_TWR",
+        "EFHK_W__APP", "EFHK_R_APP", "EFHK_A_APP", "EFHK_E_TWR", "EFHK_E__TWR", "EFHK_TWR", "EFHK_W_TWR",
         "EFHK_W__TWR", "EFHK_GND", "EFHK__GND", "EFHK_DEL", "EFHK__DEL", "EFHK_C_GND", "EFHK_D_GND"];
     
     const index = priorityOrder.indexOf(callsign);

@@ -146,6 +146,7 @@ app.use((req, res, next) => {
     }
 });
 
+
 app.use(express.static('.'));
 
 app.listen(port, function () {
