@@ -196,8 +196,6 @@ function manualRWYCC() {
                     [tspans1[0].textContent, tspans1[1].textContent] = [record.fields['content'], depth];
                     [tspans2[0].textContent, tspans2[1].textContent] = [record.fields['content'], depth];
                     [tspans3[0].textContent, tspans3[1].textContent] = [record.fields['content'], depth];
-                    console.log(depth);
-
                 }
             }
         }
@@ -315,9 +313,22 @@ async function loadFromSnowtam() {
             // runway is closed
             document.getElementById("rwyNumber2").textContent = "RUNWAY " + runwayName + " NOT IN USE";
             document.getElementById("rwyNumber2").style.fill = "red";
+            // rwycc page blocks
+            for (var i = 1; i <= 6; i++) document.getElementById("snowBackground" + i).style.display = "none";
+            for (var j = 1; j <= 3; j++) document.getElementById("togglePattern" + j).style.display = "none";
+            document.getElementById("runwayClosedSymbols").style.display = "block";
+            document.querySelectorAll('.rwycc12').forEach(element => {
+                element.style.display = 'none';
+            }); 
         } else {
             document.getElementById("rwyNumber2").textContent = "RUNWAY " + runwayName;
             document.getElementById("rwyNumber2").style.fill = "black";
+            for (var i = 1; i <= 6; i++) document.getElementById("snowBackground" + i).style.display = "block";
+            for (var j = 1; j <= 3; j++) document.getElementById("togglePattern" + j).style.display = "block";
+            document.getElementById("runwayClosedSymbols").style.display = "none";
+            document.querySelectorAll('.rwycc12').forEach(element => {
+                element.style.display = 'block';
+            }); 
         }
 
         function isRunwayChemicallyTreated(runwayName) {

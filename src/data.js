@@ -597,6 +597,15 @@ async function makeClosedAtisText(metar) {
   // misc
   closedAtisText = closedAtisText.replace(/-/g, "FBL ");
   closedAtisText = closedAtisText.replace(/\+/g, "HVY ");
+  // RVR values R04L/P2000
+  let isFirstReplacement = true;
+  closedAtisText = closedAtisText.replace(/R\d{2}[LR]?\/.*?<br\/>/g, function(match) {
+      if (isFirstReplacement) {
+          isFirstReplacement = false;
+          return "RVR VALUES AVBL ON ATC FREQ<br/>";
+      }
+      return '';
+  });
   // temperature
   closedAtisText = closedAtisText.replace(/M?0*(\d{1,2})\/M?0*(\d{1,2})/g, function(match, p1, p2, offset, string, groups) {
     let temp1 = p1;
@@ -605,19 +614,8 @@ async function makeClosedAtisText(metar) {
     if (match.indexOf('/M') !== -1) temp2 = "-" + temp2;
     return "T " + parseInt(temp1, 10) + " DP " + parseInt(temp2, 10);
   });
-  // RVR values R04L/P2000
-  let isFirstReplacement = true;
-  closedAtisText = closedAtisText.replace(/R\d{2}[LR]?\/.*?<br\/>/g, function(match) {
-      if (isFirstReplacement) {
-          isFirstReplacement = false;
-          return "RVR VALUES BLW 2000M<br/>";
-      }
-      return '';
-  });
-  // vertical visibility
-  closedAtisText = closedAtisText.replace(/VV0*(\d{1,3})/g, function(match, p1) {
-    return "VV " + (parseInt(p1, 10) * 100) + " FT";
-  });
+  
+  closedAtisText = closedAtisText.replace("VV", "OBSC. VER VIS ");
 
   document.getElementById('atisInfoField').innerHTML = closedAtisText;
   document.getElementById('atisId1').textContent = closedAtisId;

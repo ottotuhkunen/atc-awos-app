@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 27.9.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!-- Generator: Adobe Illustrator 28.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 1366 768" style="enable-background:new 0 0 1366 768;" xml:space="preserve">
 <style type="text/css">
@@ -8,7 +8,7 @@
 	.st2{fill:#D3D3D3;}
 	.st3{fill:none;stroke:#B4B4B4;stroke-width:4;stroke-miterlimit:10;}
 	.st4{fill:none;stroke:#B4B4B4;stroke-width:4;stroke-miterlimit:10;stroke-dasharray:14.738,14.738;}
-	.st5{fill:url(#pattern_00000126290163583316476200000003030318472279019447_);}
+	.st5{fill:url(#pattern_00000171690843696604986750000017324208544412030082_);}
 	.st6{fill:#FFFFFF;}
 	.st7{fill:#F4A625;}
 	.st8{font-family:'ArialMT';}
@@ -22,15 +22,15 @@
 	.st16{font-size:12px;}
 	.st17{font-size:18px;}
 	.st18{font-size:16px;}
-	.st19{fill:url(#pattern2_00000163051266583760901370000013260604922997836438_);}
-	.st20{fill:url(#SVGID_00000052813499011256871860000007639642913044465340_);}
+	.st19{fill:url(#pattern2_00000044876409119143043870000001353486846117300872_);}
+	.st20{fill:url(#SVGID_1_);}
 	.st21{font-size:23px;}
 	.st22{font-size:11px;}
 	.st23{fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:10;}
 	.st24{font-size:24px;}
 	.st25{fill:#0000FF;}
 </style>
-<pattern  y="768" width="72" height="72" patternUnits="userSpaceOnUse" id="SVGID_1_" viewBox="72.2 -72 72 72" style="overflow:visible;">
+<pattern  y="768" width="72" height="72" patternUnits="userSpaceOnUse" id="SVGID_0000003263475702749472035" viewBox="72.2 -72 72 72" style="overflow:visible;">
 	<g>
 		<rect x="72.2" y="-72" class="st0" width="72" height="72"/>
 		<g>
@@ -42,40 +42,43 @@
 					<g>
 						<rect x="72.2" y="-72" class="st0" width="72" height="72"/>
 						<g>
-							<line class="st1" x1="144" y1="-3.6" x2="216.5" y2="-3.6"/>
-							<line class="st1" x1="144" y1="-18" x2="216.5" y2="-18"/>
-							<line class="st1" x1="144" y1="-32.4" x2="216.5" y2="-32.4"/>
-							<line class="st1" x1="144" y1="-46.8" x2="216.5" y2="-46.8"/>
-							<line class="st1" x1="144" y1="-61.2" x2="216.5" y2="-61.2"/>
-							<line class="st1" x1="144" y1="-10.8" x2="216.5" y2="-10.8"/>
-							<line class="st1" x1="144" y1="-25.2" x2="216.5" y2="-25.2"/>
-							<line class="st1" x1="144" y1="-39.6" x2="216.5" y2="-39.6"/>
-							<line class="st1" x1="144" y1="-54" x2="216.5" y2="-54"/>
-							<line class="st1" x1="144" y1="-68.4" x2="216.5" y2="-68.4"/>
-						</g>
-						<g>
-							<line class="st1" x1="72" y1="-3.6" x2="144.5" y2="-3.6"/>
-							<line class="st1" x1="72" y1="-18" x2="144.5" y2="-18"/>
-							<line class="st1" x1="72" y1="-32.4" x2="144.5" y2="-32.4"/>
-							<line class="st1" x1="72" y1="-46.8" x2="144.5" y2="-46.8"/>
-							<line class="st1" x1="72" y1="-61.2" x2="144.5" y2="-61.2"/>
-							<line class="st1" x1="72" y1="-10.8" x2="144.5" y2="-10.8"/>
-							<line class="st1" x1="72" y1="-25.2" x2="144.5" y2="-25.2"/>
-							<line class="st1" x1="72" y1="-39.6" x2="144.5" y2="-39.6"/>
-							<line class="st1" x1="72" y1="-54" x2="144.5" y2="-54"/>
-							<line class="st1" x1="72" y1="-68.4" x2="144.5" y2="-68.4"/>
-						</g>
-						<g>
-							<line class="st1" x1="0" y1="-3.6" x2="72.5" y2="-3.6"/>
-							<line class="st1" x1="0" y1="-18" x2="72.5" y2="-18"/>
-							<line class="st1" x1="0" y1="-32.4" x2="72.5" y2="-32.4"/>
-							<line class="st1" x1="0" y1="-46.8" x2="72.5" y2="-46.8"/>
-							<line class="st1" x1="0" y1="-61.2" x2="72.5" y2="-61.2"/>
-							<line class="st1" x1="0" y1="-10.8" x2="72.5" y2="-10.8"/>
-							<line class="st1" x1="0" y1="-25.2" x2="72.5" y2="-25.2"/>
-							<line class="st1" x1="0" y1="-39.6" x2="72.5" y2="-39.6"/>
-							<line class="st1" x1="0" y1="-54" x2="72.5" y2="-54"/>
-							<line class="st1" x1="0" y1="-68.4" x2="72.5" y2="-68.4"/>
+							<rect x="72.2" y="-72" class="st0" width="72" height="72"/>
+							<g>
+								<line class="st1" x1="144" y1="-68.4" x2="216.5" y2="-68.4"/>
+								<line class="st1" x1="144" y1="-54" x2="216.5" y2="-54"/>
+								<line class="st1" x1="144" y1="-39.6" x2="216.5" y2="-39.6"/>
+								<line class="st1" x1="144" y1="-25.2" x2="216.5" y2="-25.2"/>
+								<line class="st1" x1="144" y1="-10.8" x2="216.5" y2="-10.8"/>
+								<line class="st1" x1="144" y1="-61.2" x2="216.5" y2="-61.2"/>
+								<line class="st1" x1="144" y1="-46.8" x2="216.5" y2="-46.8"/>
+								<line class="st1" x1="144" y1="-32.4" x2="216.5" y2="-32.4"/>
+								<line class="st1" x1="144" y1="-18" x2="216.5" y2="-18"/>
+								<line class="st1" x1="144" y1="-3.6" x2="216.5" y2="-3.6"/>
+							</g>
+							<g>
+								<line class="st1" x1="72" y1="-68.4" x2="144.5" y2="-68.4"/>
+								<line class="st1" x1="72" y1="-54" x2="144.5" y2="-54"/>
+								<line class="st1" x1="72" y1="-39.6" x2="144.5" y2="-39.6"/>
+								<line class="st1" x1="72" y1="-25.2" x2="144.5" y2="-25.2"/>
+								<line class="st1" x1="72" y1="-10.8" x2="144.5" y2="-10.8"/>
+								<line class="st1" x1="72" y1="-61.2" x2="144.5" y2="-61.2"/>
+								<line class="st1" x1="72" y1="-46.8" x2="144.5" y2="-46.8"/>
+								<line class="st1" x1="72" y1="-32.4" x2="144.5" y2="-32.4"/>
+								<line class="st1" x1="72" y1="-18" x2="144.5" y2="-18"/>
+								<line class="st1" x1="72" y1="-3.6" x2="144.5" y2="-3.6"/>
+							</g>
+							<g>
+								<line class="st1" x1="0" y1="-68.4" x2="72.5" y2="-68.4"/>
+								<line class="st1" x1="0" y1="-54" x2="72.5" y2="-54"/>
+								<line class="st1" x1="0" y1="-39.6" x2="72.5" y2="-39.6"/>
+								<line class="st1" x1="0" y1="-25.2" x2="72.5" y2="-25.2"/>
+								<line class="st1" x1="0" y1="-10.8" x2="72.5" y2="-10.8"/>
+								<line class="st1" x1="0" y1="-61.2" x2="72.5" y2="-61.2"/>
+								<line class="st1" x1="0" y1="-46.8" x2="72.5" y2="-46.8"/>
+								<line class="st1" x1="0" y1="-32.4" x2="72.5" y2="-32.4"/>
+								<line class="st1" x1="0" y1="-18" x2="72.5" y2="-18"/>
+								<line class="st1" x1="0" y1="-3.6" x2="72.5" y2="-3.6"/>
+							</g>
 						</g>
 					</g>
 				</g>
@@ -83,7 +86,7 @@
 		</g>
 	</g>
 </pattern>
-<pattern  y="768" width="72" height="72" patternUnits="userSpaceOnUse" id="pattern_00000105422768002439274" viewBox="72.2 -72 72 72" style="overflow:visible;">
+<pattern  y="768" width="72" height="72" patternUnits="userSpaceOnUse" id="pattern_00000003801721755011446" viewBox="72.2 -72 72 72" style="overflow:visible;">
 	<g>
 		<rect x="72.2" y="-72" class="st0" width="72" height="72"/>
 		<g>
@@ -95,40 +98,43 @@
 					<g>
 						<rect x="72.2" y="-72" class="st0" width="72" height="72"/>
 						<g>
-							<line class="st1" x1="144" y1="-3.6" x2="216.5" y2="-3.6"/>
-							<line class="st1" x1="144" y1="-18" x2="216.5" y2="-18"/>
-							<line class="st1" x1="144" y1="-32.4" x2="216.5" y2="-32.4"/>
-							<line class="st1" x1="144" y1="-46.8" x2="216.5" y2="-46.8"/>
-							<line class="st1" x1="144" y1="-61.2" x2="216.5" y2="-61.2"/>
-							<line class="st1" x1="144" y1="-10.8" x2="216.5" y2="-10.8"/>
-							<line class="st1" x1="144" y1="-25.2" x2="216.5" y2="-25.2"/>
-							<line class="st1" x1="144" y1="-39.6" x2="216.5" y2="-39.6"/>
-							<line class="st1" x1="144" y1="-54" x2="216.5" y2="-54"/>
-							<line class="st1" x1="144" y1="-68.4" x2="216.5" y2="-68.4"/>
-						</g>
-						<g>
-							<line class="st1" x1="72" y1="-3.6" x2="144.5" y2="-3.6"/>
-							<line class="st1" x1="72" y1="-18" x2="144.5" y2="-18"/>
-							<line class="st1" x1="72" y1="-32.4" x2="144.5" y2="-32.4"/>
-							<line class="st1" x1="72" y1="-46.8" x2="144.5" y2="-46.8"/>
-							<line class="st1" x1="72" y1="-61.2" x2="144.5" y2="-61.2"/>
-							<line class="st1" x1="72" y1="-10.8" x2="144.5" y2="-10.8"/>
-							<line class="st1" x1="72" y1="-25.2" x2="144.5" y2="-25.2"/>
-							<line class="st1" x1="72" y1="-39.6" x2="144.5" y2="-39.6"/>
-							<line class="st1" x1="72" y1="-54" x2="144.5" y2="-54"/>
-							<line class="st1" x1="72" y1="-68.4" x2="144.5" y2="-68.4"/>
-						</g>
-						<g>
-							<line class="st1" x1="0" y1="-3.6" x2="72.5" y2="-3.6"/>
-							<line class="st1" x1="0" y1="-18" x2="72.5" y2="-18"/>
-							<line class="st1" x1="0" y1="-32.4" x2="72.5" y2="-32.4"/>
-							<line class="st1" x1="0" y1="-46.8" x2="72.5" y2="-46.8"/>
-							<line class="st1" x1="0" y1="-61.2" x2="72.5" y2="-61.2"/>
-							<line class="st1" x1="0" y1="-10.8" x2="72.5" y2="-10.8"/>
-							<line class="st1" x1="0" y1="-25.2" x2="72.5" y2="-25.2"/>
-							<line class="st1" x1="0" y1="-39.6" x2="72.5" y2="-39.6"/>
-							<line class="st1" x1="0" y1="-54" x2="72.5" y2="-54"/>
-							<line class="st1" x1="0" y1="-68.4" x2="72.5" y2="-68.4"/>
+							<rect x="72.2" y="-72" class="st0" width="72" height="72"/>
+							<g>
+								<line class="st1" x1="144" y1="-68.4" x2="216.5" y2="-68.4"/>
+								<line class="st1" x1="144" y1="-54" x2="216.5" y2="-54"/>
+								<line class="st1" x1="144" y1="-39.6" x2="216.5" y2="-39.6"/>
+								<line class="st1" x1="144" y1="-25.2" x2="216.5" y2="-25.2"/>
+								<line class="st1" x1="144" y1="-10.8" x2="216.5" y2="-10.8"/>
+								<line class="st1" x1="144" y1="-61.2" x2="216.5" y2="-61.2"/>
+								<line class="st1" x1="144" y1="-46.8" x2="216.5" y2="-46.8"/>
+								<line class="st1" x1="144" y1="-32.4" x2="216.5" y2="-32.4"/>
+								<line class="st1" x1="144" y1="-18" x2="216.5" y2="-18"/>
+								<line class="st1" x1="144" y1="-3.6" x2="216.5" y2="-3.6"/>
+							</g>
+							<g>
+								<line class="st1" x1="72" y1="-68.4" x2="144.5" y2="-68.4"/>
+								<line class="st1" x1="72" y1="-54" x2="144.5" y2="-54"/>
+								<line class="st1" x1="72" y1="-39.6" x2="144.5" y2="-39.6"/>
+								<line class="st1" x1="72" y1="-25.2" x2="144.5" y2="-25.2"/>
+								<line class="st1" x1="72" y1="-10.8" x2="144.5" y2="-10.8"/>
+								<line class="st1" x1="72" y1="-61.2" x2="144.5" y2="-61.2"/>
+								<line class="st1" x1="72" y1="-46.8" x2="144.5" y2="-46.8"/>
+								<line class="st1" x1="72" y1="-32.4" x2="144.5" y2="-32.4"/>
+								<line class="st1" x1="72" y1="-18" x2="144.5" y2="-18"/>
+								<line class="st1" x1="72" y1="-3.6" x2="144.5" y2="-3.6"/>
+							</g>
+							<g>
+								<line class="st1" x1="0" y1="-68.4" x2="72.5" y2="-68.4"/>
+								<line class="st1" x1="0" y1="-54" x2="72.5" y2="-54"/>
+								<line class="st1" x1="0" y1="-39.6" x2="72.5" y2="-39.6"/>
+								<line class="st1" x1="0" y1="-25.2" x2="72.5" y2="-25.2"/>
+								<line class="st1" x1="0" y1="-10.8" x2="72.5" y2="-10.8"/>
+								<line class="st1" x1="0" y1="-61.2" x2="72.5" y2="-61.2"/>
+								<line class="st1" x1="0" y1="-46.8" x2="72.5" y2="-46.8"/>
+								<line class="st1" x1="0" y1="-32.4" x2="72.5" y2="-32.4"/>
+								<line class="st1" x1="0" y1="-18" x2="72.5" y2="-18"/>
+								<line class="st1" x1="0" y1="-3.6" x2="72.5" y2="-3.6"/>
+							</g>
 						</g>
 					</g>
 				</g>
@@ -136,7 +142,7 @@
 		</g>
 	</g>
 </pattern>
-<pattern  y="768" width="72" height="72" patternUnits="userSpaceOnUse" id="pattern2_0000009244797999001804" viewBox="72.2 -72 72 72" style="overflow:visible;">
+<pattern  y="768" width="72" height="72" patternUnits="userSpaceOnUse" id="pattern2_0000000670668161896595" viewBox="72.2 -72 72 72" style="overflow:visible;">
 	<g>
 		<rect x="72.2" y="-72" class="st0" width="72" height="72"/>
 		<g>
@@ -148,40 +154,43 @@
 					<g>
 						<rect x="72.2" y="-72" class="st0" width="72" height="72"/>
 						<g>
-							<line class="st1" x1="144" y1="-3.6" x2="216.5" y2="-3.6"/>
-							<line class="st1" x1="144" y1="-18" x2="216.5" y2="-18"/>
-							<line class="st1" x1="144" y1="-32.4" x2="216.5" y2="-32.4"/>
-							<line class="st1" x1="144" y1="-46.8" x2="216.5" y2="-46.8"/>
-							<line class="st1" x1="144" y1="-61.2" x2="216.5" y2="-61.2"/>
-							<line class="st1" x1="144" y1="-10.8" x2="216.5" y2="-10.8"/>
-							<line class="st1" x1="144" y1="-25.2" x2="216.5" y2="-25.2"/>
-							<line class="st1" x1="144" y1="-39.6" x2="216.5" y2="-39.6"/>
-							<line class="st1" x1="144" y1="-54" x2="216.5" y2="-54"/>
-							<line class="st1" x1="144" y1="-68.4" x2="216.5" y2="-68.4"/>
-						</g>
-						<g>
-							<line class="st1" x1="72" y1="-3.6" x2="144.5" y2="-3.6"/>
-							<line class="st1" x1="72" y1="-18" x2="144.5" y2="-18"/>
-							<line class="st1" x1="72" y1="-32.4" x2="144.5" y2="-32.4"/>
-							<line class="st1" x1="72" y1="-46.8" x2="144.5" y2="-46.8"/>
-							<line class="st1" x1="72" y1="-61.2" x2="144.5" y2="-61.2"/>
-							<line class="st1" x1="72" y1="-10.8" x2="144.5" y2="-10.8"/>
-							<line class="st1" x1="72" y1="-25.2" x2="144.5" y2="-25.2"/>
-							<line class="st1" x1="72" y1="-39.6" x2="144.5" y2="-39.6"/>
-							<line class="st1" x1="72" y1="-54" x2="144.5" y2="-54"/>
-							<line class="st1" x1="72" y1="-68.4" x2="144.5" y2="-68.4"/>
-						</g>
-						<g>
-							<line class="st1" x1="0" y1="-3.6" x2="72.5" y2="-3.6"/>
-							<line class="st1" x1="0" y1="-18" x2="72.5" y2="-18"/>
-							<line class="st1" x1="0" y1="-32.4" x2="72.5" y2="-32.4"/>
-							<line class="st1" x1="0" y1="-46.8" x2="72.5" y2="-46.8"/>
-							<line class="st1" x1="0" y1="-61.2" x2="72.5" y2="-61.2"/>
-							<line class="st1" x1="0" y1="-10.8" x2="72.5" y2="-10.8"/>
-							<line class="st1" x1="0" y1="-25.2" x2="72.5" y2="-25.2"/>
-							<line class="st1" x1="0" y1="-39.6" x2="72.5" y2="-39.6"/>
-							<line class="st1" x1="0" y1="-54" x2="72.5" y2="-54"/>
-							<line class="st1" x1="0" y1="-68.4" x2="72.5" y2="-68.4"/>
+							<rect x="72.2" y="-72" class="st0" width="72" height="72"/>
+							<g>
+								<line class="st1" x1="144" y1="-68.4" x2="216.5" y2="-68.4"/>
+								<line class="st1" x1="144" y1="-54" x2="216.5" y2="-54"/>
+								<line class="st1" x1="144" y1="-39.6" x2="216.5" y2="-39.6"/>
+								<line class="st1" x1="144" y1="-25.2" x2="216.5" y2="-25.2"/>
+								<line class="st1" x1="144" y1="-10.8" x2="216.5" y2="-10.8"/>
+								<line class="st1" x1="144" y1="-61.2" x2="216.5" y2="-61.2"/>
+								<line class="st1" x1="144" y1="-46.8" x2="216.5" y2="-46.8"/>
+								<line class="st1" x1="144" y1="-32.4" x2="216.5" y2="-32.4"/>
+								<line class="st1" x1="144" y1="-18" x2="216.5" y2="-18"/>
+								<line class="st1" x1="144" y1="-3.6" x2="216.5" y2="-3.6"/>
+							</g>
+							<g>
+								<line class="st1" x1="72" y1="-68.4" x2="144.5" y2="-68.4"/>
+								<line class="st1" x1="72" y1="-54" x2="144.5" y2="-54"/>
+								<line class="st1" x1="72" y1="-39.6" x2="144.5" y2="-39.6"/>
+								<line class="st1" x1="72" y1="-25.2" x2="144.5" y2="-25.2"/>
+								<line class="st1" x1="72" y1="-10.8" x2="144.5" y2="-10.8"/>
+								<line class="st1" x1="72" y1="-61.2" x2="144.5" y2="-61.2"/>
+								<line class="st1" x1="72" y1="-46.8" x2="144.5" y2="-46.8"/>
+								<line class="st1" x1="72" y1="-32.4" x2="144.5" y2="-32.4"/>
+								<line class="st1" x1="72" y1="-18" x2="144.5" y2="-18"/>
+								<line class="st1" x1="72" y1="-3.6" x2="144.5" y2="-3.6"/>
+							</g>
+							<g>
+								<line class="st1" x1="0" y1="-68.4" x2="72.5" y2="-68.4"/>
+								<line class="st1" x1="0" y1="-54" x2="72.5" y2="-54"/>
+								<line class="st1" x1="0" y1="-39.6" x2="72.5" y2="-39.6"/>
+								<line class="st1" x1="0" y1="-25.2" x2="72.5" y2="-25.2"/>
+								<line class="st1" x1="0" y1="-10.8" x2="72.5" y2="-10.8"/>
+								<line class="st1" x1="0" y1="-61.2" x2="72.5" y2="-61.2"/>
+								<line class="st1" x1="0" y1="-46.8" x2="72.5" y2="-46.8"/>
+								<line class="st1" x1="0" y1="-32.4" x2="72.5" y2="-32.4"/>
+								<line class="st1" x1="0" y1="-18" x2="72.5" y2="-18"/>
+								<line class="st1" x1="0" y1="-3.6" x2="72.5" y2="-3.6"/>
+							</g>
 						</g>
 					</g>
 				</g>
@@ -203,10 +212,10 @@
 			</g>
 		</g>
 		
-			<pattern  id="pattern_00000003801721755011446760000003230707024040831908_" xlink:href="#pattern_00000105422768002439274" patternTransform="matrix(0.7071 -0.7071 0.7071 0.7071 -5018.5732 16716.418)">
+			<pattern  id="pattern_00000155126021433283975040000007794434061478788531_" xlink:href="#pattern_00000003801721755011446" patternTransform="matrix(0.7071 -0.7071 -0.7071 -0.7071 -13384.0127 -36809.9805)">
 		</pattern>
 		
-			<rect id="pattern" x="84.5" y="11.1" style="fill:url(#pattern_00000003801721755011446760000003230707024040831908_);" width="297.4" height="148.6"/>
+			<rect id="pattern" x="84.5" y="11.1" style="fill:url(#pattern_00000155126021433283975040000007794434061478788531_);" width="297.4" height="148.6"/>
 		<rect id="snowBackground1" x="84.5" y="11.1" class="st6" width="63.7" height="148.6"/>
 		<rect id="snowBackground2" x="318.2" y="11.1" class="st6" width="63.7" height="148.6"/>
 		<rect x="13.7" y="185" class="st6" width="37.1" height="40.8"/>
@@ -263,10 +272,10 @@
 		</g>
 	</g>
 	
-		<pattern  id="pattern2_00000006706681618965950840000000141943326019151802_" xlink:href="#pattern2_0000009244797999001804" patternTransform="matrix(0.7071 -0.7071 0.7071 0.7071 -4967.1982 16786.7422)">
+		<pattern  id="pattern2_00000012469114605116004630000013309642747950214533_" xlink:href="#pattern2_0000000670668161896595" patternTransform="matrix(0.7071 -0.7071 -0.7071 -0.7071 -13332.6377 -36880.3047)">
 	</pattern>
 	
-		<rect id="pattern2" x="85" y="234.2" style="fill:url(#pattern2_00000006706681618965950840000000141943326019151802_);" width="297.4" height="148.6"/>
+		<rect id="pattern2" x="85" y="234.2" style="fill:url(#pattern2_00000012469114605116004630000013309642747950214533_);" width="297.4" height="148.6"/>
 	<rect id="snowBackground3" x="84.5" y="234.5" class="st6" width="63.7" height="148.6"/>
 	<rect id="snowBackground4" x="319.6" y="234.5" class="st6" width="63.7" height="148.6"/>
 	<rect x="14.6" y="408.1" class="st6" width="37.1" height="40.8"/>
@@ -319,10 +328,9 @@
 	<rect id="snowBackground6" x="84.7" y="454.8" class="st6" width="63.7" height="148.6"/>
 	<rect id="snowBackground5" x="319.8" y="454.8" class="st6" width="63.7" height="148.6"/>
 	
-		<pattern  id="SVGID_00000032634757027494720350000005291766622696216984_" xlink:href="#SVGID_1_" patternTransform="matrix(0.7071 -0.7071 0.7071 0.7071 -5017.6455 16752.7871)">
+		<pattern  id="SVGID_1_" xlink:href="#SVGID_0000003263475702749472035" patternTransform="matrix(0.7071 -0.7071 -0.7071 -0.7071 -13383.085 -36846.3477)">
 	</pattern>
-	
-		<rect x="85.4" y="454.8" style="fill:url(#SVGID_00000032634757027494720350000005291766622696216984_);" width="297.4" height="148.6"/>
+	<rect x="85.4" y="454.8" class="st20" width="297.4" height="148.6"/>
 	<rect x="414.6" y="628.7" class="st6" width="39.1" height="40.8"/>
 	<rect x="14.6" y="628.7" class="st6" width="37.1" height="40.8"/>
 	<text transform="matrix(1 0 0 1 25.7548 656.8107)" class="st7 st8 st9">A</text>
@@ -471,10 +479,10 @@
 <polygon id="downgraded3" class="st25" points="433.1,217.9 417.9,193.5 448.3,193.5 "/>
 <polygon id="downgraded2" class="st25" points="433.1,440.7 417.9,416.3 448.3,416.3 "/>
 <polygon id="downgraded1" class="st25" points="433.1,661.3 417.9,636.9 448.3,636.9 "/>
-	
-		<image style="overflow:visible;" width="406" height="169" id="frost3" xlink:href="7D5B31E3AA65E84C.png"  transform="matrix(9.300095e-02 0 0 9.300095e-02 334.4208 124.5414)"></image>
-	
-		<image style="overflow:visible;" width="406" height="169" id="frost2" xlink:href="7D5B31E3AA65E84D.png"  transform="matrix(9.300095e-02 0 0 9.300095e-02 334.8985 347.5414)"></image>
-	
-		<image style="overflow:visible;" width="406" height="169" id="frost1" xlink:href="7D5B31E3AA65E84B.png"  transform="matrix(9.300095e-02 0 0 9.300095e-02 335.3208 568.1414)"></image>
+<polygon id="closed1" class="st6" points="277.3,53.3 266.6,42.6 234,75.2 201.4,42.6 190.7,53.3 223.3,85.9 190.7,118.5 
+	201.4,129.2 234,96.6 266.6,129.2 277.3,118.5 244.7,85.9 "/>
+<polygon id="closed2" class="st6" points="277.3,276.4 266.6,265.8 234,298.4 201.4,265.8 190.7,276.4 223.3,309 190.7,341.6 
+	201.4,352.3 234,319.7 266.6,352.3 277.3,341.6 244.7,309 "/>
+<polygon id="closed3" class="st6" points="277.3,496.8 266.6,486.1 234,518.7 201.4,486.1 190.7,496.8 223.3,529.4 190.7,562 
+	201.4,572.7 234,540.1 266.6,572.7 277.3,562 244.7,529.4 "/>
 </svg>

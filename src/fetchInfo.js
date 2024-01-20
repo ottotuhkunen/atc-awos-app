@@ -315,8 +315,7 @@ async function loadATSunits() {
                 addRow("DEICE", item.frequency, item.name);
             }
         }
-    
-        // Append the table to the HTML element with id "atsunitsTable"
+
         const container = document.getElementById('atsunitsTable');
         container.innerHTML = '';
         container.appendChild(table);
@@ -326,7 +325,7 @@ async function loadATSunits() {
 }
 
 function getCallsignPriority(callsign) {
-    // Define the order of callsigns based on your requirements
+    // ATC list priority
     const priorityOrder = ["EFIN_CTR", "EFIN_D_CTR", "EFIN_D__CTR", "EFIN_A_CTR", 
         "EFIN_C_CTR", "EFHK_E_APP", "EFHK_APP", "EFHK_E__APP", "EFHK_W_APP", 
         "EFHK_W__APP", "EFHK_R_APP", "EFHK_A_APP", "EFHK_E_TWR", "EFHK_E__TWR", "EFHK_TWR", "EFHK_W_TWR",
