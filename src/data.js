@@ -273,11 +273,24 @@ async function setMetarData(xmlDoc) {
   let records = xmlDoc.getElementsByTagName("iwxxm:MeteorologicalAerodromeObservationRecord");
   let latestRecord = records[records.length - 1];
 
-  let counterClockwises = latestRecord.getElementsByTagName("iwxxm:extremeCounterClockwiseWindDirection");
-  let clockwises = latestRecord.getElementsByTagName("iwxxm:extremeClockwiseWindDirection");
+  let counterClockwises = latestRecord
+  ? latestRecord.getElementsByTagName("iwxxm:extremeCounterClockwiseWindDirection")
+  : null;
+
+  let clockwises = latestRecord
+    ? latestRecord.getElementsByTagName("iwxxm:extremeClockwiseWindDirection")
+    : null;
+
+  counterClockwises = counterClockwises && counterClockwises.length > 0 ? counterClockwises : [0];
+  clockwises = clockwises && clockwises.length > 0 ? clockwises : [0];
 
   var metars = xmlDoc.getElementsByTagName('avi:input');
-  metar = metars[metars.length-1].childNodes[0].nodeValue;
+  let metar = metars.length > 0 && metars[metars.length - 1].childNodes.length > 0
+  ? metars[metars.length - 1].childNodes[0].nodeValue
+  : "EFHK METAR NIL=";
+
+  let dataProblem = metar === "EFHK METAR NIL=";
+
   document.getElementById("metar").innerHTML = metar;
 
   // set METREP trend
@@ -287,8 +300,9 @@ async function setMetarData(xmlDoc) {
     document.getElementById("metTrend").textContent = trend[2];
   }
 
+
   // VARIABLE BETWEEN
-  if (counterClockwises.length > 0) {
+  if (counterClockwises.length > 0 && dataProblem == false) {
 
     var counterClockwise = counterClockwises[counterClockwises.length-1].childNodes[0].nodeValue;
     var clockwise = clockwises[clockwises.length-1].childNodes[0].nodeValue;
@@ -397,7 +411,10 @@ async function setMetarData(xmlDoc) {
   }
 
   var viss = xmlDoc.getElementsByTagName("iwxxm:prevailingVisibility");
-  var vis = viss[viss.length-1].childNodes[0].nodeValue;
+  var vis = viss.length > 0 && viss[viss.length - 1].childNodes.length > 0
+  ? viss[viss.length - 1].childNodes[0].nodeValue
+  : "10000";
+
 
   // IMC VMC INDICATOR
   if (vis < 5000 && vis > 10 || metar.match(/\W*(BKN00)/g) || metar.match(/\W*(OVC00)/g) || metar.match(" VV")){
@@ -539,7 +556,7 @@ async function setMetarData(xmlDoc) {
       if (item.callsign === "EFHK_ATIS") {
         efhkAtisFound = true;
         atisType = 1;
-        var atisWithLines = item.text_atis.join(' ').replace(/\.\./g, '.').split('.');
+        let atisWithLines = item.text_atis ? item.text_atis.join(' ').replace(/\.\./g, '.').split('.') : ["EFHK ATIS NIL"];
         await makeAtisText(atisWithLines.join('<br/>'));
         await fetchInformation();
         break;
