@@ -273,16 +273,11 @@ async function setMetarData(xmlDoc) {
   let records = xmlDoc.getElementsByTagName("iwxxm:MeteorologicalAerodromeObservationRecord");
   let latestRecord = records[records.length - 1];
 
-  let counterClockwises = latestRecord
-  ? latestRecord.getElementsByTagName("iwxxm:extremeCounterClockwiseWindDirection")
-  : null;
+  let counterClockwises = latestRecord ? latestRecord.getElementsByTagName("iwxxm:extremeCounterClockwiseWindDirection") : null;
+  let clockwises = latestRecord ? latestRecord.getElementsByTagName("iwxxm:extremeClockwiseWindDirection") : null;
 
-  let clockwises = latestRecord
-    ? latestRecord.getElementsByTagName("iwxxm:extremeClockwiseWindDirection")
-    : null;
-
-  counterClockwises = counterClockwises && counterClockwises.length > 0 ? counterClockwises : [0];
-  clockwises = clockwises && clockwises.length > 0 ? clockwises : [0];
+  // counterClockwises = counterClockwises && counterClockwises.length > 0 ? counterClockwises : [0];
+  // clockwises = clockwises && clockwises.length > 0 ? clockwises : [0];
 
   var metars = xmlDoc.getElementsByTagName('avi:input');
   let metar = metars.length > 0 && metars[metars.length - 1].childNodes.length > 0
@@ -299,7 +294,6 @@ async function setMetarData(xmlDoc) {
   if (trend && trend[2]) {
     document.getElementById("metTrend").textContent = trend[2];
   }
-
 
   // VARIABLE BETWEEN
   if (counterClockwises.length > 0 && dataProblem == false) {
