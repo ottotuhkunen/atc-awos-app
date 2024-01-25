@@ -738,7 +738,7 @@ async function makeAtisText(atisText) {
     atisText = atisText.replace(/VICINITY/g, 'VC');
     atisText = atisText.replace(/FEET/g, 'FT');
     atisText = atisText.replace(/NOSIG/g, 'NOSIG');
-    atisText = atisText.replace(/BECOMING/g, '<br/>BECMG');
+    atisText = atisText.replace(/BECOMING/g, 'BECMG');
   } else {
     atisText = atisText.replace(/(?:\s*|<br\/>)*(FEW|BKN|SCT|OVC) (\d{3})/g, function(match, cloudCover, altitude) {
       let newAltitude = parseInt(altitude, 10) * 100;
