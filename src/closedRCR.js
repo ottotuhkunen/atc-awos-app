@@ -18,6 +18,7 @@ async function makeClosedRCR() {
     makeReducedWidth(snowtam);
     makeOtherInformation(snowtam);
     makeTwyAndApnConditions(snowtam);
+    checkForSmallCoverage();
 
     return rcr;
 }
@@ -27,7 +28,7 @@ function makeHeader(snowtam) {
 
     if (match) {
         rcr = "RUNWAY CONDITION REPORT AT ";
-        rcr += match[2] + " UTC.<br>";
+        rcr += match[2] + " UTC<br>";
     }
 }
 
@@ -68,8 +69,8 @@ function makeRWYCC(snowtam) {
         if (secondGradeEFHK) digit2 += ' ' + secondGradeEFHK + ', ';
         else digit2 += ', ';
 
-        if (thirdGradeEFHK) digit3 += ' ' + thirdGradeEFHK + '.<br>';
-        else digit3 += '.<br>';
+        if (thirdGradeEFHK) digit3 += ' ' + thirdGradeEFHK;
+        else digit3 += '<br>';
 
     } else {
         // regional aerodrome
@@ -90,8 +91,8 @@ function makeRWYCC(snowtam) {
         if (secondGrade) digit2 += ' ' + secondGrade + ', ';
         else digit2 += ', ';
 
-        if (thirdGrade) digit3 += ' ' + thirdGrade + '.<br>';
-        else digit3 += '.<br>';
+        if (thirdGrade) digit3 += ' ' + thirdGrade + '';
+        else digit3 += '<br>';
     }
     rcr += digit1 + digit2 + digit3;
 }
@@ -112,7 +113,7 @@ function makeContaminants(snowtam) {
 
     if (contaminants[0] === contaminants[1] && contaminants[1] === contaminants[2]) {
         if (contaminants[0] == "DRY") {
-            rcr += "CONTAMINANTS ALL PARTS DRY.<br>";
+            rcr += "CONTAMINANTS ALL PARTS DRY<br>";
         }
         else {
             if (depthValues[0] != "NR") {
@@ -121,41 +122,41 @@ function makeContaminants(snowtam) {
                 rcr += "CONTAMINANTS ALL PARTS 100 PERCENT ";
             }
             if (depthValues[1] != "NR") {
-                rcr += depthValues[1] + " MILLIMETERS " + contaminants[0] + ".<br>";
+                rcr += depthValues[1] + " MILLIMETERS " + contaminants[0] + "<br>";
             } else {
-                rcr += contaminants[0] + ".<br>";
+                rcr += contaminants[0] + "<br>";
             }
 
             if (snowtam.includes("CHEMICALLY TREATED")) {
-                rcr += "RUNWAY CHEMICALLY TREATED.<br>"
+                rcr += "RUNWAY CHEMICALLY TREATED<br>"
             }
 
             if (snowtam.includes("CONTAMINANT THIN DUE TO SMALL COVERAGE")) {
-                rcr += "TAKEOFF SIGNIFICANT CONTAMINANT THIN DUE TO SMALL COVERAGE.<br>"
+                rcr += "TAKEOFF SIGNIFICANT CONTAMINANT THIN DUE TO SMALL COVERAGE<br>"
             }
             else if (snowtam.includes("RWY 04L TAKEOFF SIGNIFICANT CONTAMINANT DRY DUE TO SMALL COVERAGE")) {
-                rcr += "TAKEOFF SIGNIFICANT CONTAMINANT DRY DUE TO SMALL COVERAGE.<br>"
+                rcr += "TAKEOFF SIGNIFICANT CONTAMINANT DRY DUE TO SMALL COVERAGE<br>"
             }
             else if (snowtam.includes("CONTAMINANT THIN")) {
-                rcr += "TAKEOFF SIGNIFICANT CONTAMINANT THIN.<br>"
+                rcr += "TAKEOFF SIGNIFICANT CONTAMINANT THIN<br>"
             }
         }
         
     } else {
         if (depthValues[1] != "NR") {
-            rcr += "CONTAMINANTS FIRST PART 100 PERCENT " + depthValues[1] + " MILLIMETERS " + contaminants[0] + ", SECOND PART 100 PERCENT " + depthValues[1] + " MILLIMETERS " + contaminants[1] + ", THIRD PART 100 PERCENT " + depthValues[1] + " MILLIMETERS " + contaminants[2] + ".<br>";
+            rcr += "CONTAMINANTS FIRST PART 100 PERCENT " + depthValues[1] + " MILLIMETERS " + contaminants[0] + ", SECOND PART 100 PERCENT " + depthValues[1] + " MILLIMETERS " + contaminants[1] + ", THIRD PART 100 PERCENT " + depthValues[1] + " MILLIMETERS " + contaminants[2] + "<br>";
         } else {
-            rcr += "CONTAMINANTS FIRST PART 100 PERCENT " + contaminants[0] + ", SECOND PART 100 PERCENT " + contaminants[1] + ", THIRD PART 100 PERCENT " + contaminants[2] + ".<br>";
+            rcr += "CONTAMINANTS FIRST PART 100 PERCENT " + contaminants[0] + ", SECOND PART 100 PERCENT " + contaminants[1] + ", THIRD PART 100 PERCENT " + contaminants[2] + "<br>";
         }
         
         if (snowtam.includes("CONTAMINANT THIN DUE TO SMALL COVERAGE")) {
-            rcr += "TAKEOFF SIGNIFICANT CONTAMINANT THIN DUE TO SMALL COVERAGE.<br>"
+            rcr += "TAKEOFF SIGNIFICANT CONTAMINANT THIN DUE TO SMALL COVERAGE<br>"
         }
         else if (snowtam.includes("RWY 04L TAKEOFF SIGNIFICANT CONTAMINANT DRY DUE TO SMALL COVERAGE")) {
-            rcr += "TAKEOFF SIGNIFICANT CONTAMINANT DRY DUE TO SMALL COVERAGE.<br>"
+            rcr += "TAKEOFF SIGNIFICANT CONTAMINANT DRY DUE TO SMALL COVERAGE<br>"
         }
         else if (snowtam.includes("CONTAMINANT THIN")) {
-            rcr += "TAKEOFF SIGNIFICANT CONTAMINANT THIN.<br>"
+            rcr += "TAKEOFF SIGNIFICANT CONTAMINANT THIN<br>"
         }
     }
 }
@@ -165,7 +166,7 @@ function makeReducedWidth(snowtam) {
     var match = snowtam.match(regex);
 
     if (match) {
-        rcr += "REDUCED WIDTH " + match[1] + " METERS.<br>"
+        rcr += "REDUCED WIDTH " + match[1] + " METERS<br>"
     }
 }
 
@@ -180,10 +181,10 @@ function makeTwyAndApnConditions(snowtam) {
     var apronsCondition = apronsMatch ? apronsMatch[1] : '';
 
     if (twysMatch) {
-        rcr += "TAXIWAY CONDITIONS " + twysCondition + ".<br>";
+        rcr += "TAXIWAY CONDITIONS " + twysCondition + "<br>";
     }
     if (apronsMatch) {
-        rcr += "APRON CONDITIONS " + apronsCondition + ".<br>";
+        rcr += "APRON CONDITIONS " + apronsCondition + "<br>";
     }
 
 }
@@ -200,7 +201,7 @@ function makeOtherInformation(snowtam) {
 
     if (match && match[1]) {
         var snowBankNumber = match[1];
-        rcr += "SNOW BANKS LEFT " + snowBankNumber + " METERS RIGHT " + snowBankNumber + " METERS FROM CENTERLINE.<br>"
+        rcr += "SNOW BANKS LEFT " + snowBankNumber + " METERS RIGHT " + snowBankNumber + " METERS FROM CENTERLINE<br>"
     }
 
     // different snowbanks
@@ -211,19 +212,19 @@ function makeOtherInformation(snowtam) {
 
     if (matchLeft && matchLeft[1]) {
         if (matchRight && matchRight[1]) {
-            rcr += "SNOW BANKS LEFT " + matchLeft[1] + " METERS RIGHT " + matchRight[1] + " METERS FROM CENTERLINE.<br>"
+            rcr += "SNOW BANKS LEFT " + matchLeft[1] + " METERS RIGHT " + matchRight[1] + " METERS FROM CENTERLINE<br>"
         }
     }
 
     // contaminant outside of cleared area
     if (snowtam.includes("ICE ACCUMULATION")) {
-        rcr += "ICE ACCUMULATION ON EDGES OF CLEARED AREA.<br>"
+        rcr += "ICE ACCUMULATION ON EDGES OF CLEARED AREA<br>"
     }
     else if (snowtam.includes("ICE FORMATION OUTSIDE CLEARED AREA")) {
-        rcr += "ICE FORMATION OUTSIDE CLEARED AREA.<br>"
+        rcr += "ICE FORMATION OUTSIDE CLEARED AREA<br>"
     }
     if (snowtam.includes("COMPACTED SN OUTSIDE CLEARED AREA")) {
-        rcr += "COMPACTED SNOW OUTSIDE CLEARED AREA.<br>"
+        rcr += "COMPACTED SNOW OUTSIDE CLEARED AREA<br>"
     }
 }
 
@@ -257,4 +258,10 @@ function copyTextToClipboard() {
     setTimeout(function() {
         aerodromeElement.textContent = header;
     }, 2000);
+}
+
+function checkForSmallCoverage() {
+    if (rcr.includes("DUE TO SMALL COVERAGE") && rcr.includes("100 PERCENT")) {
+        rcr = rcr.replace("100 PERCENT", "LESS THAN 10 PERCENT");
+    }
 }
