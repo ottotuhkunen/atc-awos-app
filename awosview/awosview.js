@@ -404,10 +404,10 @@ function setData(xmlDoc, icaoCode, qfeSub) {
     const windDirectionField1 = document.getElementById('direction_1');
     const windDirectionField2 = document.getElementById('direction_2');
     const windDirectionField3 = document.getElementById('direction_3');
-    const qnhField = document.getElementById('qnh');
+    // const qnhField = document.getElementById('qnh');
     const qnhDecimalField = document.getElementById('qnhDecimal');
     const qfeField = document.getElementById('qfe');
-    const trlField = document.getElementById('trl');
+    // const trlField = document.getElementById('trl');
     const taField = document.getElementById('ta');
     const tdField = document.getElementById('td');
     const wxField = document.getElementById('weather');
@@ -427,19 +427,16 @@ function setData(xmlDoc, icaoCode, qfeSub) {
         windDirectionField2.textContent = windDirText + "°";
         windDirectionField3.textContent = windDirText + "°";
     }
-    if(qnhField) {
+    //if(qnhField) {
         //EXTRA: qnhField.textContent = qnhParts[0]; 
         // qnhDecimalField.textContent = "." + qnhParts[1]; (delete below)
-        qnhField.textContent = "//";
+        // qnhField.textContent = "//";
+        // QNH is moved to setMetarData() function due to FMI data problems!
         qnhDecimalField.textContent = "";
-        qnhField.classList.add("noAtisHighlight");
-        qnhField.style.lineHeight = "24pt";
-        qnhField.style.marginTop = "1px";
-        qnhField.style.width = "34px";
         
         qfeField.textContent = (Math.floor(qfe * 10) / 10).toFixed(1);
-        trlField.textContent = calculateTrl(Math.floor(qnh));
-    }
+        // trlField.textContent = calculateTrl(Math.floor(qnh)); (moved)
+    //}
     if(taField) {
         taField.textContent = ta;
         tdField.textContent = td;
@@ -589,6 +586,17 @@ function setMetarData(xmlDoc) {
     let metar = metars[metars.length-1].childNodes[0].nodeValue;
     let viss = xmlDoc.getElementsByTagName("iwxxm:prevailingVisibility");
     let vis = viss[viss.length-1].childNodes[0].nodeValue;
+
+    // temporary QNH value taken from METAR due to FMI data problems
+    const regexQnh = /Q0*([1-9]\d{0,3})/;
+    const matchQnh = metar.match(regexQnh);
+    const resultQnh = matchQnh ? matchQnh[1] : null;
+
+    const qnhField = document.getElementById('qnh');
+    const trlField = document.getElementById('trl');
+    
+    qnhField.textContent = resultQnh;
+    trlField.textContent = calculateTrl(Math.floor(resultQnh));
 
     let records = xmlDoc.getElementsByTagName("iwxxm:MeteorologicalAerodromeObservationRecord");
 

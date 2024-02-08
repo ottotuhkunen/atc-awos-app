@@ -69,7 +69,7 @@ function makeRWYCC(snowtam) {
         if (secondGradeEFHK) digit2 += ' ' + secondGradeEFHK + ', ';
         else digit2 += ', ';
 
-        if (thirdGradeEFHK) digit3 += ' ' + thirdGradeEFHK;
+        if (thirdGradeEFHK) digit3 += ' ' + thirdGradeEFHK + '. ';
         else digit3 += '<br>';
 
     } else {
@@ -91,7 +91,7 @@ function makeRWYCC(snowtam) {
         if (secondGrade) digit2 += ' ' + secondGrade + ', ';
         else digit2 += ', ';
 
-        if (thirdGrade) digit3 += ' ' + thirdGrade + '';
+        if (thirdGrade) digit3 += ' ' + thirdGrade + '. ';
         else digit3 += '<br>';
     }
     rcr += digit1 + digit2 + digit3;
