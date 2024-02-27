@@ -274,6 +274,7 @@ async function loadMetar(icaoCode) {
         }
     } catch (error) {
         console.log('Fetch API error -', error);
+        document.getElementById("metarText").innerHTML = "COULD NOT GET DATABASE CONNECTION TO FMI=";
     }
 }
 

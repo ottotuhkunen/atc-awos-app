@@ -39,6 +39,7 @@ async function loadMetar() {
       }
   } catch (error) {
       console.log('error in loadMetar function:', error);
+      document.getElementById("metar").innerHTML = "COULD NOT GET DATABASE CONNECTION TO FMI=";
   }
 }
 
