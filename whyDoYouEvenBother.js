@@ -129,7 +129,22 @@ app.get('/api/metar/:location', async (req, res) => {
   res.json(data);
 });
 
+// Basic Auth Configuration
+app.use(basicAuth({
+    users: { 
+        [process.env.BASIC_AUTH_USER]: process.env.BASIC_AUTH_PASSWORD 
+    },
+    challenge: true
+}));
 
+// Enforce HTTPS
+app.use((req, res, next) => {
+    if (req.header('x-forwarded-proto') !== 'https' && process.env.NODE_ENV === 'production') {
+        res.redirect(`https://${req.header('host')}${req.url}`);
+    } else {
+        next();
+    }
+});
 
 app.use(express.static('.'));
 
