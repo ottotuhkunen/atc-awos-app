@@ -170,7 +170,7 @@ function manualRWYCC() {
             if (record.fields['Name'] === 'rwyWidth') {
                 if (record.fields['content']) {
                     document.getElementById('rwyWidth').textContent = record.fields['content'] + " m";
-                    if (record.fields['content'] === 60) {
+                    if (record.fields['content'] == "60") {
                         document.getElementById('reducedRunwayWidth').textContent = "NIL";
                     } else {
                         document.getElementById('reducedRunwayWidth').textContent = record.fields['content'];
@@ -261,7 +261,7 @@ async function loadFromSnowtam() {
         // snow bank distance from centerline (m)
         let matchSnowbankDistance = (/SNOW BANK LR(\d{2})/g).exec(data.data);
 
-        if (matchSnowbankDistance) {
+        if (matchSnowbankDistance !== null) {
             let snowbankDistance = parseInt(matchSnowbankDistance[1], 10);
             document.getElementById("snbanks_left1").textContent = snowbankDistance + " m";
             document.getElementById("snbanks_right1").textContent = snowbankDistance + " m";
@@ -323,7 +323,7 @@ async function loadFromSnowtam() {
         } else {
             document.getElementById("rwyNumber2").textContent = "RUNWAY " + runwayName;
             document.getElementById("rwyNumber2").style.fill = "black";
-            for (var i = 1; i <= 6; i++) document.getElementById("snowBackground" + i).style.display = "block";
+            // for (var i = 1; i <= 6; i++) document.getElementById("snowBackground" + i).style.display = "block"; TODO SNOW
             for (var j = 1; j <= 3; j++) document.getElementById("togglePattern" + j).style.display = "block";
             document.getElementById("runwayClosedSymbols").style.display = "none";
             document.querySelectorAll('.rwycc12').forEach(element => {
