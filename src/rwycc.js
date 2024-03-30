@@ -323,7 +323,7 @@ async function loadFromSnowtam() {
         } else {
             document.getElementById("rwyNumber2").textContent = "RUNWAY " + runwayName;
             document.getElementById("rwyNumber2").style.fill = "black";
-            // for (var i = 1; i <= 6; i++) document.getElementById("snowBackground" + i).style.display = "block"; TODO SNOW
+            // for (var i = 1; i <= 6; i++) document.getElementById("snowBackground" + i).style.display = "block"; EXTRA: SNOW (during winter only)
             for (var j = 1; j <= 3; j++) document.getElementById("togglePattern" + j).style.display = "block";
             document.getElementById("runwayClosedSymbols").style.display = "none";
             document.querySelectorAll('.rwycc12').forEach(element => {

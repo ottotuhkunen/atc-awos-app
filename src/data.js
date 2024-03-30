@@ -584,7 +584,8 @@ async function makeClosedAtisText(metar) {
   let closedAtisId = getCurrentLetter();
   closedAtisText = closedAtisText.replace(/ /g, `<br/>`);
   closedAtisText = closedAtisText.replace(/METAR<br\/>EFHK<br\/>/g, `EFHK ARR AND DEP INFO ${closedAtisId}<br/>`);
-  closedAtisText = closedAtisText.replace(/\d{2}(\d{4})Z<br\/>/g, '$1Z<br/>TRL ' + + calculateTrl(parseInt(qnh)) + "<br/>TWR IS CLOSED<br/>" + await makeClosedRCR() + "AUTOMATIC REPORT<br/>");
+  // after TWR IS CLOSED: await makeClosedRCR() EXTRA: (during winter only!)
+  closedAtisText = closedAtisText.replace(/\d{2}(\d{4})Z<br\/>/g, '$1Z<br/>TRL ' + + calculateTrl(parseInt(qnh)) + "<br/>TWR IS CLOSED<br/>" + "AUTOMATIC REPORT<br/>");
   closedAtisText = closedAtisText.replace(/=/g, "<br/>");
 
   // wind
