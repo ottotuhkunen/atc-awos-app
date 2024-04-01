@@ -580,6 +580,7 @@ th {
 }
 .snowtamTwyTitle {
     font-size: 12pt;
+    color: red;
 }
 
 @media (max-width: 1070px) {

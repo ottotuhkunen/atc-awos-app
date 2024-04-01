@@ -201,6 +201,8 @@ async function loadSnowtam() {
     .then(result => {
         for (let record of result.records) {
             // taxiway and apron conditions (SNOWTAM page)
+            // EXTRA! WINTER ONLY BELOW. CORRECT HTML TABLES IN DISCORD!
+            /*
             if (record.fields['Name'] === 'twyConditions') { 
                 for (let i = 1; i <= 6; i++) {
                     document.getElementById(`twyCond${i}`).textContent = record.fields['content'];
@@ -211,6 +213,7 @@ async function loadSnowtam() {
                     document.getElementById(`apronCond${i}`).textContent = record.fields['content'];
                 }
             }
+            */
             if (record.fields['Name'] === 'snowtamComments') {
                 if (record.fields['content'] != null) {
                     document.getElementById("commentSnowtam").innerHTML = "COMMENT SNOWTAM:<br>" + record.fields['content'];
