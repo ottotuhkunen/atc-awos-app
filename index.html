@@ -19,7 +19,7 @@
         <script type="text/javascript" src="src/windcomponents.js"></script>
         <script type="text/javascript" src="src/topMenu.js"></script>
         <script type="text/javascript" src="src/rwycc.js"></script>
-        <script type="text/javascript" src="src/closedRCR.js"></script>
+        <script type="text/javascript" src="src/atisReplacementRules.js"></script>
         <link rel="stylesheet" href="https://use.typekit.net/nju1yva.css">
     </head>
     <body onload="getDate(); startDataFetching();">
@@ -41,13 +41,13 @@
             <rect x="258.31" y="18.46" class="topMenu4" style="stroke: #dadada" width="145.31" height="0.1"/>
             <rect x="729.97" y="0.6" class="topMenu4" width="102.02" height="35.73"/>
             <rect x="831.99" y="0.6" class="topMenu4" width="51.01" height="35.73"/>
-            <rect style="cursor: pointer;" onclick="modeSelectorPressed();" x="899.36" y="1.94" class="topMenu5" width="49.54" height="34.12"/>
+            <!--<rect style="cursor: pointer;" onclick="modeSelectorPressed();" x="899.36" y="1.94" class="topMenu5" width="49.54" height="34.12"/>-->
             <text style="cursor: pointer;" onclick="openDepATIS();" transform="matrix(1 0 0 1 85.205 9.9785)" class="topMenu6 topMenu7">DEP</text>
-            <text style="cursor: pointer;" id="atisId2" onclick="openDepATIS();" transform="matrix(1 0 0 1 94 32.0903)" text-anchor="middle" class="topMenu6 topMenu8">//</text>
-            <text style="cursor: pointer;" id="atisId1" onclick="openArrATIS();" transform="matrix(1 0 0 1 147 32.0903)" text-anchor="middle" class="topMenu6 topMenu8">//</text>
+            <text style="cursor: pointer;" id="atisId1" onclick="openDepATIS();" transform="matrix(1 0 0 1 94 32.0903)" text-anchor="middle" class="topMenu6 topMenu8">--</text>
+            <text style="cursor: pointer;" id="atisId2" onclick="openArrATIS();" transform="matrix(1 0 0 1 147 32.0903)" text-anchor="middle" class="topMenu6 topMenu8">--</text>
             <text style="cursor: pointer;" onclick="openArrATIS();" transform="matrix(1 0 0 1 138.6792 9.9789)" class="topMenu6 topMenu7">ARR</text>
-            <text style="cursor: pointer;" onclick="modeSelectorPressed();" transform="matrix(1 0 0 1 900.8391 13.9417)" class="topMenu6 topMenu9">RWY CONFIG</text>
-            <text onclick="modeSelectorPressed();" id="rwyConfigValue" transform="matrix(1 0 0 1 924 28.4647)" text-anchor="middle" class="topMenu6 topMenu10 topMenuGreen">AUTO</text>
+            <!--<text style="cursor: pointer;" onclick="modeSelectorPressed();" transform="matrix(1 0 0 1 900.8391 13.9417)" class="topMenu6 topMenu9">RWY CONFIG</text>
+            <text onclick="modeSelectorPressed();" id="rwyConfigValue" transform="matrix(1 0 0 1 924 28.4647)" text-anchor="middle" class="topMenu6 topMenu10 topMenuGreen">AUTO</text>-->
             <text transform="matrix(1 0 0 1 262.3049 11.8475)" class="topMenu6 topMenu10">QFE</text>
             <text id="qfeValue" transform="matrix(1 0 0 1 400 14.7992)" text-anchor="end" class="topMenu6 topMenu11">//</text>
             <text id="dateValue" transform="matrix(1 0 0 1 652 26)" text-anchor="middle" class="topMenu12 topMenu6 topMenu16">//</text>
@@ -428,7 +428,6 @@
             <div id="setupDiv" style="display: none; width: 100%; margin-left: 6px;">
                 <div id="rwyAutoDisclamers">
                     <h2 id="atisDetector" style="color: red; font-weight: bold;"></h2>
-                    <h3>Change configuration to MANUAL to set offline runway combination</h3>
                 </div>
                 
                 <div id="rwySelectionContainers" style="display: none;">
@@ -1244,7 +1243,8 @@
 
             <div id="atisDiv" style="display: none;">
                 <div id="atisDeporArr" class="atisWindow"></div>
-                <div id="atisInfoField" class="atisText">EFHK ATIS NIL</div>
+                <div id="atisInfoFieldDep" class="atisText" style="display: none;">EFHK DEP ATIS NIL</div>
+                <div id="atisInfoFieldArr" class="atisText" style="display: none;">EFHK ARR ATIS NIL</div>
             </div>
         </div>
     </body>

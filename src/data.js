@@ -45,14 +45,13 @@ async function loadMetar() {
 
 // global scope
 let wawa = 0;
-let roundedQnh;
 let metCond = "//";
 let qnh = 0;
 let atisCode = "//";
 let windDirection = 0;
 let windProblems = false;
 let metar = "//";
-let atisType;
+let atisType = 0;
 
 async function setData(xmlDoc) {
   try {
@@ -72,7 +71,7 @@ async function setData(xmlDoc) {
 
     for (var i = 0; i < table.length; i++) {
         if (table[i][0] === "p_sea") {
-          qnh = table[i][1] - 0.6;
+          qnh = table[i][1];
         }
         if (table[i][0] === "ws_10min") {
           windSpeed = table[i][1];
@@ -100,9 +99,6 @@ async function setData(xmlDoc) {
           wawa = table[i][1];
         }
     }
-
-    // get the rounded QNH average
-    roundedQnh = Math.floor(qnh);
 
     var roundedGust = Math.ceil(windGust * 1.943);
     var roundedWindSpeed = Math.round(windSpeed * 1.943);
@@ -543,7 +539,7 @@ async function setMetarData(xmlDoc) {
 
   // populate the top menu (qnh, qfe, metCond)
   let qfeValue = Math.floor(qnh - 6.5);
-  populateTopMenu(roundedQnh, qfeValue, metCond);
+  populateTopMenu(Math.floor(qnh), qfeValue, metCond);
 
   fetch('https://data.vatsim.net/v3/vatsim-data.json')
   .then(async response => {
@@ -551,91 +547,67 @@ async function setMetarData(xmlDoc) {
     let efhkAtisFound = false;
 
     for (let item of data.atis) {
-      if (item.callsign === "EFHK_ATIS") {
+      // checking for ATIS DEP
+      if (item.callsign === "EFHK_D_ATIS") {
         efhkAtisFound = true;
         atisType = 1;
-        let atisWithLines = item.text_atis ? item.text_atis.join(' ').replace(/\.\./g, '.').split('.') : ["EFHK ATIS NIL"];
+        let atisWithLines = item.text_atis ? item.text_atis.join(' ').replace(/\.\./g, '.').split('.') : ["EFHK DEP ATIS NIL"];
         await makeAtisText(atisWithLines.join('<br/>'));
         await fetchInformation();
-        break;
+      }
+
+      // checking for ATIS ARR
+      if (item.callsign === "EFHK_A_ATIS") {
+        efhkAtisFound = true;
+        atisType = 1;
+        let atisWithLines = item.text_atis ? item.text_atis.join(' ').replace(/\.\./g, '.').split('.') : ["EFHK ARR ATIS NIL"];
+        await makeAtisText(atisWithLines.join('<br/>'));
+        await fetchInformation();
       }
     }
+
+    // if ATIS DEP or ATIS ARR are not found, checking for ATIS combined
+    if (!efhkAtisFound) {
+      for (let item of data.atis) {
+          if (item.callsign === "EFHK_ATIS") {
+              efhkAtisFound = true;
+              atisType = 2;
+
+              let text = item.text_atis.replace(/\.\./g, '.')
+              let atisWithLines = text ? text.replace(/\./g, '<br/>') : ["EFHK ATIS NIL"];
+              // console.log(atisWithLines);
+
+              await makeAtisText(atisWithLines);
+              await fetchInformation();
+              break;
+          }
+      }
+  }
       
     // EFHK ATIS not found:
     if (!efhkAtisFound) {
         atisType = 0;
-        await makeClosedAtisText(metar);
+        document.getElementById('atisId1').textContent = "--";
+        document.getElementById('atisId2').textContent = "--";
+        document.getElementById("atisInfoFieldDep").innerHTML = "EFHK DEP ATIS NIL";
+        document.getElementById("atisInfoFieldArr").innerHTML = "EFHK ARR ATIS NIL";
+
+        // TESTING:
+
+        // let text = "THIS IS HELSINKI-VANTAA ARRIVAL AND DEPARTURE INFORMATION GOLF AT TIME 1950 EXPECT ILS APPROACH ARRIVAL RUNWAY 15 CLEAR AND DRY DEPARTURE RUNWAY 22L CLEAR AND DRY TRANSITION LEVEL 60 WIND 180 DEGREES 3 KNOTS CAVOK TEMPERATURE 13 DEW POINT 8 QNH 1018 NOSIG ADVISE ON INITIAL CONTACT YOU HAVE INFORMATION GOLF";
+        // text = text.replace(/\.\./g, '.')
+        // let atisWithLines = text ? text.replace(/\./g, '<br/>') : ["EFHK ATIS NIL"];
+        // console.log(atisWithLines);
+        // makeAtisText(atisWithLines);
+
         await fetchInformation();
-        if (document.getElementById("rwyConfigValue").textContent == "AUTO") await loadConfig();
+        await loadConfig();
     }
 
     if (windProblems) {
       noWindData();
     }})
     
-  } catch (error) {
-    console.log('Error in closedATIS function:', error);
-  }
-}
-
-async function makeClosedAtisText(metar) {
-  try {
-  let closedAtisText = metar;
-  let closedAtisId = getCurrentLetter();
-  closedAtisText = closedAtisText.replace(/ /g, `<br/>`);
-  closedAtisText = closedAtisText.replace(/METAR<br\/>EFHK<br\/>/g, `EFHK ARR AND DEP INFO ${closedAtisId}<br/>`);
-  // after TWR IS CLOSED: await makeClosedRCR() EXTRA: (during winter only!)
-  closedAtisText = closedAtisText.replace(/\d{2}(\d{4})Z<br\/>/g, '$1Z<br/>TRL ' + + calculateTrl(parseInt(qnh)) + "<br/>TWR IS CLOSED<br/>" + "AUTOMATIC REPORT<br/>");
-  closedAtisText = closedAtisText.replace(/=/g, "<br/>");
-
-  // wind
-  closedAtisText = closedAtisText.replace(/00000KT/, "WIND RWY 22L TDZ CALM");
-  closedAtisText = closedAtisText.replace(/(\d{3})(\d{2})KT<br\/>/g, "WIND RWY 22L TDZ $1 DEG $2 KT<br/>");
-  closedAtisText = closedAtisText.replace(/(\d{3})(\d{2})G(\d{2})KT/g, "WIND RWY 22L TDZ $1 DEG $2 KT MAX $3 KT");
-  closedAtisText = closedAtisText.replace(/VRB(\d{2})KT/, "WIND RWY 22L TDZ VRB $1 KT");
-  closedAtisText = closedAtisText.replace(/<br\/>(\d{3})V(\d{3})<br\/>/g, " VRB BTN $1 AND $2 DEG<br/>");
-  closedAtisText = closedAtisText.replace(/(\d{3})V(\d{3})<br\/>/g, "VRB BTN $1 AND $2 DEG<br/>");
-  // visibility
-  closedAtisText = closedAtisText.replace(/<br\/>9999<br\/>/g, "<br/>VIS 10KM OR MORE<br/>");
-  closedAtisText = closedAtisText.replace(/<br\/>0*(\d{1,4})<br\/>/g, "<br/>VIS $1M<br/>");
-  // QNH
-  closedAtisText = closedAtisText.replace(/<br\/>Q0*(\d{4})<br\/>/g, function(match, number) {
-    return " QNH " + parseInt(number, 10) + " <br/>";
-  });
-  // clouds
-  closedAtisText = closedAtisText.replace("CB<br/>", " CB CLOUDS<br/>");
-  closedAtisText = closedAtisText.replace("TCU<br/>", " TCU CLOUDS<br/>");
-  closedAtisText = closedAtisText.replace(/([A-Z]{3}\d{3})/, "CLD $1");
-  closedAtisText = closedAtisText.replace(/0*(\d{3})<br\/>/g, function(match, number) {
-    return " " + (parseInt(number, 10) * 100) + " FT<br/>";
-  });
-  closedAtisText = closedAtisText.replace(/<br\/>(FEW|BKN|SCT|OVC)/g, " $1 ");
-  // misc
-  closedAtisText = closedAtisText.replace(/-/g, "FBL ");
-  closedAtisText = closedAtisText.replace(/\+/g, "HVY ");
-  // RVR values R04L/P2000
-  let isFirstReplacement = true;
-  closedAtisText = closedAtisText.replace(/R\d{2}[LR]?\/.*?<br\/>/g, function(match) {
-      if (isFirstReplacement) {
-          isFirstReplacement = false;
-          return "RVR VALUES AVBL ON ATC FREQ<br/>";
-      }
-      return '';
-  });
-  // temperature
-  closedAtisText = closedAtisText.replace(/M?0*(\d{1,2})\/M?0*(\d{1,2})/g, function(match, p1, p2, offset, string, groups) {
-    let temp1 = p1;
-    let temp2 = p2;
-    if (match.charAt(0) === 'M') temp1 = "-" + temp1;
-    if (match.indexOf('/M') !== -1) temp2 = "-" + temp2;
-    return "T " + parseInt(temp1, 10) + " DP " + parseInt(temp2, 10);
-  });
-  
-  closedAtisText = closedAtisText.replace("VV", "OBSC. VER VIS ");
-
-  document.getElementById('atisInfoField').innerHTML = closedAtisText;
-  document.getElementById('atisId1').textContent = closedAtisId;
-  document.getElementById('atisId2').textContent = closedAtisId;
   } catch (error) {
     console.log('Error in closedATIS function:', error);
   }
@@ -659,125 +631,66 @@ function getCurrentLetter() {
 
 async function makeAtisText(atisText) {
   try {
-  if (atisText.includes("THIS IS HELSINKI-VANTAA")) {
-    atisText = atisText.replace(/(THIS IS HELSINKI-VANTAA ARRIVAL AND DEPARTURE INFORMATION) (\w)/, "EFHK ARR AND DEP INFO $2<br/>");
-    atisText = atisText.replace(/AT TIME (\d{4})/g, '$1<br/>');
-    atisText = atisText.replace(/APPROACH/g, 'APCH');
-    atisText = atisText.replace(/ARRIVAL/g, '<br/>ARR');
-    atisText = atisText.replace(/DEPARTURE/g, '<br/>DEP');
-    atisText = atisText.replace(/RUNWAY/g, 'RWY');
-    atisText = atisText.replace(/RUNWAYS/g, 'RWYS');
-    atisText = atisText.replace(/DEP RWY 22L AND 22R/g, 'DEP RWYS 22R AND 22L');
-    atisText = atisText.replace(/ARR RWY 04L AND 04R/g, 'ARR RWYS 04L AND 04R');
-    atisText = atisText.replace(/ARR RWY 22L AND 22R/g, 'ARR RWYS 22L AND 22R');
-    atisText = atisText.replace(/CLEAR AND DRY/g, '');
-    atisText = atisText.replace(/TRANSITION LEVEL (\d{2})/g, '<br/>TRL $1<br/>');
-    atisText = atisText.replace(/DEGREES/g, 'DEG');
-    atisText = atisText.replace(/KNOTS/g, 'KT');
-    atisText = atisText.replace(/MAXIMUM/g, 'MAX');
-    atisText = atisText.replace(/TEMPERATURE/g, '<br/>T');
-    atisText = atisText.replace(/DEW POINT/g, 'DP');
-    atisText = atisText.replace(/QNH (\d{4})/g, 'QNH $1<br/>');
-    atisText = atisText.replace(/ADVISE ON INITIAL CONTACT YOU HAVE INFORMATION/g, '<br/>ACK INFO');
-    atisText = atisText.replace(/VERTICAL VISIBILITY/g, '<br/>VV');
-    atisText = atisText.replace(/VISIBILITY/g, '<br/>VIS');
-    atisText = atisText.replace(/CAVOK/g, '<br/>CAVOK');
-    atisText = atisText.replace(/BROKEN/g, '<br/>BKN');
-    atisText = atisText.replace(/SCATTERED/g, '<br/>SCT');
-    atisText = atisText.replace(/OVERCAST/g, '<br/>OVC');
-    atisText = atisText.replace(/FEW/g, '<br/>FEW');
-    atisText = atisText.replace(/PROBABILITY/g, 'PROB');
-    atisText = atisText.replace(/LIGHT/g, 'FBL');
-    atisText = atisText.replace(/HEAVY/g, 'HVY');
-    atisText = atisText.replace(/MODERATE/g, 'MOD');
-    atisText = atisText.replace(/CUMULONIMBUS/g, 'CB');
-    atisText = atisText.replace(/MOVING/g, 'MOV');
-    atisText = atisText.replace(/EAST/g, 'E');
-    atisText = atisText.replace(/NORTH/g, 'N');
-    atisText = atisText.replace(/WEST/g, 'W');
-    atisText = atisText.replace(/SOUTH/g, 'S');
-    atisText = atisText.replace(/NORTHWEST/g, 'NW');
-    atisText = atisText.replace(/SOUTHWEST/g, 'SW');
-    atisText = atisText.replace(/NORTHEAST/g, 'NE');
-    atisText = atisText.replace(/SOUTHEAST/g, 'SE');
-    atisText = atisText.replace(/ABOVE/g, 'ABV');
-    atisText = atisText.replace(/FORECASTED/g, 'FCST');
-    atisText = atisText.replace(/FLIGHT LEVEL/g, 'FL');
-    atisText = atisText.replace(/NO SIGNIFICANT CLOUDS/g, 'NSC');
-    atisText = atisText.replace(/SEVERE/g, 'SEV');
-    atisText = atisText.replace(/CLEAR SKY/g, 'SKC');
-    atisText = atisText.replace(/TEMPORARY/g, 'TEMPO');
-    atisText = atisText.replace(/WIND SHEAR/g, 'WS');
-    atisText = atisText.replace(/REPORTED/g, 'REP');
-    atisText = atisText.replace(/BETWEEN/g, 'BTN');
-    atisText = atisText.replace(/FROM/g, 'FM');
-    atisText = atisText.replace(/FREEZING/g, 'FZ');
-    atisText = atisText.replace(/ICING/g, 'ICE');
-    atisText = atisText.replace(/NO CLOUDS DETECTED/g, 'NCD');
-    atisText = atisText.replace(/RUNWAY VISUAL RANGE/g, 'RVR');
-    atisText = atisText.replace(/TOWERING CUMULUS/g, 'TCU');
-    atisText = atisText.replace(/VARIABLE/g, 'VRB');
-    atisText = atisText.replace(/GUSTING/g, 'MAX');
-    atisText = atisText.replace(/GUST/g, 'MAX');
-    atisText = atisText.replace(/GUSTS/g, 'MAX');
-    atisText = atisText.replace(/ SHALLOW/g, ' MI');
-    atisText = atisText.replace(/ PARTIAL/g, ' PR');
-    atisText = atisText.replace(/ PATCHES/g, ' BC');
-    atisText = atisText.replace(/ LOW DRIFTING/g, ' DR');
-    atisText = atisText.replace(/ BLOWING/g, ' BL');
-    atisText = atisText.replace(/ SHOWERS/g, ' SH');
-    atisText = atisText.replace(/ THUNDERSTORM/g, ' TS');
-    atisText = atisText.replace(/DRIZZLE /g, 'DZ ');
-    atisText = atisText.replace(/RAIN /g, 'RA ');
-    atisText = atisText.replace(/SNOW GRAINS /g, 'SG ');
-    atisText = atisText.replace(/SNOW /g, 'SN ');
-    atisText = atisText.replace(/ICE CRYSTALS /g, 'IC ');
-    atisText = atisText.replace(/ICE PELLETS /g, 'PL ');
-    atisText = atisText.replace(/SMALL HAIL /g, 'GS ');
-    atisText = atisText.replace(/HAIL /g, 'GR ');
-    atisText = atisText.replace(/MIST /g, 'BR ');
-    atisText = atisText.replace(/FOG /g, 'FG ');
-    atisText = atisText.replace(/WIDESPREAD DUST /g, 'DU ');
-    atisText = atisText.replace(/KILOMETERS/g, 'KM');
-    atisText = atisText.replace(/METERS/g, 'M');
-    atisText = atisText.replace(/VICINITY/g, 'VC');
-    atisText = atisText.replace(/FEET/g, 'FT');
-    atisText = atisText.replace(/NOSIG/g, 'NOSIG');
-    atisText = atisText.replace(/BECOMING/g, 'BECMG');
-  } else {
-    atisText = atisText.replace(/(?:\s*|<br\/>)*(FEW|BKN|SCT|OVC) (\d{3})/g, function(match, cloudCover, altitude) {
-      let newAltitude = parseInt(altitude, 10) * 100;
-      return `<br/>${cloudCover} ${newAltitude} FT`;
-    });
-    atisText = atisText.replace(/T (M?)0*(\d{1,2}) DP (M?)0*(\d{1,2})/g, function(match, m1, p1, m2, p2) {
-      let temp1 = m1 === "M" ? "-" + p1 : p1;
-      let temp2 = m2 === "M" ? "-" + p2 : p2;
-      return "T " + parseInt(temp1, 10) + " DP " + parseInt(temp2, 10);
-    });
-    atisText = atisText.replace(/VV 0*(\d{1,3})/g, function(match, num) {
-      let value = parseInt(num, 10) * 100;
-      return "OBSC VER VIS " + value + "FT";
-    });
+    if (atisText.includes("THIS IS HELSINKI-VANTAA")) {
+      // using replacementRules from atisReplacementRules.js file
 
-  }
+      // check if new VATATIS format (else UniATIS)
+      if (atisText.includes("<br/>")) {
+        for (const [pattern, replacement] of Object.entries(replacementRules)) {
+          const regex = new RegExp(pattern, 'g');
+          atisText = atisText.replace(regex, replacement);
+        }
+      } else {
+        for (const [pattern, replacement] of Object.entries(replacementRulesOld)) {
+          const regex = new RegExp(pattern, 'g');
+          atisText = atisText.replace(regex, replacement);
+        }
+      }
 
-  let pattern = /INFO\s([A-Z])/;
-  let match = atisText.match(pattern);
+    } else {
+      // format clouds to show correctly (no vATIS support)
+      atisText = atisText.replace(/(?:\s*|<br\/>)*(FEW|BKN|SCT|OVC) (\d{3})/g, function(match, cloudCover, altitude) {
+        let newAltitude = parseInt(altitude, 10) * 100;
+        return `<br/>${cloudCover} ${newAltitude} FT`;
+      });
+      atisText = atisText.replace(/T (M?)0*(\d{1,2}) DP (M?)0*(\d{1,2})/g, function(match, m1, p1, m2, p2) {
+        let temp1 = m1 === "M" ? "-" + p1 : p1;
+        let temp2 = m2 === "M" ? "-" + p2 : p2;
+        return "T " + parseInt(temp1, 10) + " DP " + parseInt(temp2, 10);
+      });
+      // format vertical visibility (no vATIS suppport)
+      atisText = atisText.replace(/VV 0*(\d{1,3})/g, function(match, num) {
+        let value = parseInt(num, 10) * 100;
+        return "OBSC VER VIS " + value + "FT";
+      });
+    }
 
-  if (match && match[1]) {
-    // ATIS ID
-    atisCode = match[1];
-  }
+    let pattern = /INFO\s([A-Z])/;
+    let match = atisText.match(pattern);
 
-  document.getElementById('atisId1').textContent = atisCode;
-  document.getElementById('atisId2').textContent = atisCode;
-  
-  document.getElementById("atisInfoField").innerHTML = atisText;
+    if (match && match[1]) {
+      // ATIS ID
+      atisCode = match[1];
+    }
 
-  if (document.getElementById("rwyConfigValue").textContent == "AUTO") {
-    // load automatic rwy config
-    loadConfig();
-  }
+    // set ATIS DEP and ATIS ARR identifiers and content
+    if (atisText.includes("EFHK DEP INFO")) {
+      document.getElementById('atisId1').textContent = atisCode;
+      document.getElementById("atisInfoFieldDep").innerHTML = atisText;
+    }
+    else if (atisText.includes("EFHK ARR INFO")) {
+      document.getElementById('atisId2').textContent = atisCode;
+      document.getElementById("atisInfoFieldArr").innerHTML = atisText;
+    }
+    else if (atisText.includes("EFHK ARR AND DEP INFO")) {
+      document.getElementById('atisId1').textContent = atisCode;
+      document.getElementById("atisInfoFieldDep").innerHTML = atisText;
+      document.getElementById('atisId2').textContent = atisCode;
+      document.getElementById("atisInfoFieldArr").innerHTML = atisText;
+    }
+
+    loadConfig(); // load runway configuration
+
   } catch (error) {
     console.log('Error in makeAtisText function:', error);
   }
@@ -904,5 +817,3 @@ function rwy15Closed() {
 
   document.getElementById("arrow15").style.display = "none";
 }
-
-// send ATIS to Airtable:

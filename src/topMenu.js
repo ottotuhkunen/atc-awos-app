@@ -1,3 +1,5 @@
+let intervalId;
+
 function populateTopMenu(qnh, qfe, metCond) {
     // set values
     document.getElementById('qnhValue').textContent = qnh;
@@ -10,10 +12,29 @@ function populateTopMenu(qnh, qfe, metCond) {
     var qnhChanger = JSON.parse(sessionStorage.efhkQnh);
 
     if (qnh != qnhChanger){
-        sessionStorage.efhkQnh = JSON.stringify(roundedQnh);
-        document.getElementById('qnhBox').style.fill = "black";
-        document.getElementById('qnhValue').style.fill = "white";
+        sessionStorage.efhkQnh = JSON.stringify(qnh);
+        startToggle();
     }
+}
+
+function toggleStyles() {
+    [qnhBox.style.fill, qnhValue.style.fill] = [qnhValue.style.fill, qnhBox.style.fill];
+}
+
+function startToggle() {
+    intervalId = setInterval(toggleStyles, 500);
+}
+
+function stopToggle() {
+    clearInterval(intervalId);
+    document.getElementById('qnhBox').style.fill = "black";
+    document.getElementById('qnhValue').style.fill = "white";
+}
+
+function qnhClick() {
+    stopToggle();
+    document.getElementById('qnhBox').style.fill = "white";
+    document.getElementById('qnhValue').style.fill = "black";
 }
 
 function calculateTrl(qnh) {
@@ -34,7 +55,3 @@ function calculateTrl(qnh) {
     return 0;
 }
 
-function qnhClick() {
-    document.getElementById('qnhBox').style.fill = "white";
-    document.getElementById('qnhValue').style.fill = "black";
-}

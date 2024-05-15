@@ -742,15 +742,28 @@ function openArrATIS(){
     openAtisWindow(2);
 }
 
-function openAtisWindow(atisType){
+function openAtisWindow(atisWindow){
     document.getElementById("metrepDiv").style.display = "none";
     document.getElementById("snowtamDiv").style.display = "none";
     document.getElementById("buttonMain").style.pointerEvents = "auto";
 
-    if (atisType == 1) {
+    let atisDepContent = document.getElementById("atisInfoFieldDep");
+    let atisArrContent = document.getElementById("atisInfoFieldArr");
+
+    if (atisType == 2) {
+        document.getElementById("atisDeporArr").innerHTML = "ARRIVAL AND DEPARTURE ATIS";
+        atisDepContent.style.display = "none";
+        atisArrContent.style.display = "block";
+    }
+    else if (atisWindow == 1) {
         document.getElementById("atisDeporArr").innerHTML = "DEPARTURE ATIS";
-    }else {
+        atisArrContent.style.display = "none";
+        atisDepContent.style.display = "block";
+    }
+    else {
         document.getElementById("atisDeporArr").innerHTML = "ARRIVAL ATIS";
+        atisDepContent.style.display = "none";
+        atisArrContent.style.display = "block";
     }
 
     document.getElementById("atisDiv").style.display = "block";
@@ -992,7 +1005,7 @@ function loadActualMet(xml) {
 
     for (var i = 0; i < table.length; i++) {
         if (table[i][0] === "p_sea") {
-          currentQnh = table[i][1] - 0.3;
+          currentQnh = table[i][1] - 0.0;
         }
         if (table[i][0] === "vis") {
           currentVisibility = table[i][1];

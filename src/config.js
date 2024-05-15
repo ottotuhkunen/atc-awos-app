@@ -1,111 +1,14 @@
-function modeSelectorPressed() {
-    if (document.getElementById("rwyConfigValue").textContent == "AUTO") {
-        // change mode to manual
-        document.getElementById("rwyConfigValue").textContent = "MANUAL";
-        document.getElementById("rwyConfigValue").style.fill = "darkred";
-        document.getElementById("rwyAutoDisclamers").style.display = "none";
-        document.getElementById("rwySelectionContainers").style.display = "block";
-
-        const checkboxIds = [
-            "checkboxDep22R",
-            "checkboxDep22L",
-            "checkboxDep15",
-            "checkboxDep33",
-            "checkboxDep04L",
-            "checkboxDep04R",
-            "checkboxArr22L",
-            "checkboxArr22R",
-            "checkboxArr15",
-            "checkboxArr33",
-            "checkboxArr04L",
-            "checkboxArr04R"
-          ];
-          
-          checkboxIds.forEach(checkboxId => {
-            const checkbox = document.getElementById(checkboxId);
-            if (checkbox.checked) {
-              checkbox.click();
-            }
-          });
-        saveConfig();
-        loadConfig();
-        loadFMI();
-    } else if (document.getElementById("rwyConfigValue").textContent == "MANUAL") {
-        // change mode to automatic
-        document.getElementById("rwySelectionContainers").style.display = "none";
-        document.getElementById("rwyConfigValue").textContent = "AUTO";
-        document.getElementById("rwyConfigValue").style.fill = "green";
-        document.getElementById("rwyAutoDisclamers").style.display = "block";
-        loadConfig();
-        loadFMI();
-    }
-}
-
 async function loadConfig() {
-    try {
-    if (document.getElementById("rwyConfigValue").innerHTML == "AUTO") {
-        getRwyFromAtis();
-    } else {
-        //document.getElementById("setupContainer1").diabled = "false";
-        document.getElementById("setupContainer2").diabled = "false";
-        // RWY selection based on Setup page
-        var checked1 = JSON.parse(sessionStorage.getItem("depBox04L"));
-        var checked2 = JSON.parse(sessionStorage.getItem("arrBox04L"));
-        var checked3 = JSON.parse(sessionStorage.getItem("depBox04R"));
-        var checked4 = JSON.parse(sessionStorage.getItem("arrBox04R"));
-        var checked5 = JSON.parse(sessionStorage.getItem("depBox15"));
-        var checked6 = JSON.parse(sessionStorage.getItem("arrBox15"));
-        var checked7 = JSON.parse(sessionStorage.getItem("depBox33"));
-        var checked8 = JSON.parse(sessionStorage.getItem("arrBox33"));
-        var checked9 = JSON.parse(sessionStorage.getItem("depBox22L"));
-        var checked10 = JSON.parse(sessionStorage.getItem("arrBox22L"));
-        var checked11 = JSON.parse(sessionStorage.getItem("depBox22R"));
-        var checked12 = JSON.parse(sessionStorage.getItem("arrBox22R"));
-
-        if (checked1 == true){
-            document.getElementById('checkboxDep04L').click();
-        }
-        if (checked2 == true){
-            document.getElementById('checkboxArr04L').click();
-        }
-        if (checked3 == true){
-            document.getElementById('checkboxDep04R').click();
-        }
-        if (checked4 == true){
-            document.getElementById('checkboxArr04R').click();
-        }
-        if (checked5 == true){
-            document.getElementById('checkboxDep15').click();
-        }
-        if (checked6 == true){
-            document.getElementById('checkboxArr15').click();
-        }
-        if (checked7 == true){
-            document.getElementById('checkboxDep33').click();
-        }
-        if (checked8 == true){
-            document.getElementById('checkboxArr33').click();
-        }
-        if (checked9 == true){
-            document.getElementById('checkboxDep22L').click();
-        }
-        if (checked10 == true){
-            document.getElementById('checkboxArr22L').click();
-        }
-        if (checked11 == true){
-            document.getElementById('checkboxDep22R').click();
-        }
-        if (checked12 == true){
-            document.getElementById('checkboxArr22R').click();
-        }  
-    }
-    } catch (error) {
-        console.log('Error in closedATIS function:', error);
-    }
+    getRwyFromAtis();
 }
 
 function getRwyFromAtis() {
-    let atisText = document.getElementById("atisInfoField").innerHTML;
+    let atisDepText = document.getElementById("atisInfoFieldDep").innerHTML;
+    let atisArrText = document.getElementById("atisInfoFieldArr").innerHTML;
+
+    let atisText = atisDepText + " " + atisArrText;
+    
+    // deselect all runways
     const checkboxIds = [
         "checkboxDep22R",
         "checkboxDep22L",
@@ -127,6 +30,7 @@ function getRwyFromAtis() {
         }
       });
 
+    // load all active runways
     switch (true) {
       case atisText.includes("DEP RWY 22L AND 22R"):
         document.getElementById('checkboxDep22L').click();
@@ -135,6 +39,14 @@ function getRwyFromAtis() {
       case atisText.includes("DEP RWYS 22R AND 22L"):
         document.getElementById('checkboxDep22L').click();
         document.getElementById('checkboxDep22R').click();
+        break;
+      case atisText.includes("DEP RWYS 22L AND 15"):
+        document.getElementById('checkboxDep22L').click();
+        document.getElementById('checkboxDep15').click();
+        break;
+      case atisText.includes("DEP RWYS 04R AND 15"):
+        document.getElementById('checkboxDep04R').click();
+        document.getElementById('checkboxDep15').click();
         break;
       case atisText.includes("DEP RWY 22R"):
         document.getElementById('checkboxDep22R').click();
@@ -229,10 +141,6 @@ function saveConfig(){
     sessionStorage.setItem("arrBox22L", arrBox22L.checked);
     sessionStorage.setItem("depBox22R", depBox22R.checked);
     sessionStorage.setItem("arrBox22R", arrBox22R.checked);
-    
-    if (document.getElementById("rwyConfigValue").textContent == "MANUAL") {
-        loadFMI();
-    }
 }
 
 function dep04L() {
