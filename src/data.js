@@ -573,11 +573,11 @@ async function setMetarData(xmlDoc) {
               efhkAtisFound = true;
               atisType = 2;
 
-              let text = item.text_atis.replace(/\.\./g, '.')
-              let atisWithLines = text ? text.replace(/\./g, '<br/>') : ["EFHK ATIS NIL"];
+              let atisWithLines = item.text_atis ? item.text_atis.join(' ').replace(/\.\./g, '.').split('.') : ["EFHK ATIS NIL"];
+
               // console.log(atisWithLines);
 
-              await makeAtisText(atisWithLines);
+              await makeAtisText(atisWithLines.join('<br/>'));
               await fetchInformation();
               break;
           }
