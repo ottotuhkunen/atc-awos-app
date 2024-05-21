@@ -7,13 +7,13 @@ function populateTopMenu(qnh, qfe, metCond) {
     document.getElementById('trlValue').textContent = calculateTrl(qnh);
     document.getElementById('metCondValue').textContent = metCond;
 
-    if (sessionStorage.getItem('efhkQnh') === null) sessionStorage.efhkQnh = JSON.stringify(1);
+    if (localStorage.getItem('efhkQnh') === null) localStorage.efhkQnh = JSON.stringify(1);
   
-    var qnhChanger = JSON.parse(sessionStorage.efhkQnh);
+    var qnhChanger = JSON.parse(localStorage.efhkQnh);
 
     if (qnh != qnhChanger){
         stopToggle();
-        sessionStorage.efhkQnh = JSON.stringify(qnh);
+        localStorage.efhkQnh = JSON.stringify(qnh);
         startToggle();
     }
 }
