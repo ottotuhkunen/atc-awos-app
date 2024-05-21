@@ -24,7 +24,6 @@ async function setRWYCC(runwayId) {
     })
     .catch(error => console.log('error', error));
 
-
     /*
         Data to be added according to ID:
 
@@ -306,31 +305,34 @@ async function loadFromSnowtam() {
             document.getElementById("snbanksHeight2").style.display = "none";
         }
 
-        // check if runway not in use
-        let matchClosedRunway = (/RWY (\d{2}[LR]?) NOT IN USE/g).exec(data.data);
-        
-        if (matchClosedRunway && matchClosedRunway[1] === runwayName) {
-            // runway is closed
-            document.getElementById("rwyNumber2").textContent = "RUNWAY " + runwayName + " NOT IN USE";
-            document.getElementById("rwyNumber2").style.fill = "red";
-            // rwycc page blocks
-            for (var i = 1; i <= 6; i++) document.getElementById("snowBackground" + i).style.display = "none";
-            for (var j = 1; j <= 3; j++) document.getElementById("togglePattern" + j).style.display = "none";
-            document.getElementById("runwayClosedSymbols").style.display = "block";
-            document.querySelectorAll('.rwycc12').forEach(element => {
-                element.style.display = 'none';
-            }); 
-        } else {
-            document.getElementById("rwyNumber2").textContent = "RUNWAY " + runwayName;
-            document.getElementById("rwyNumber2").style.fill = "black";
-            // for (var i = 1; i <= 6; i++) document.getElementById("snowBackground" + i).style.display = "block"; EXTRA: SNOW (during winter only)
-            for (var j = 1; j <= 3; j++) document.getElementById("togglePattern" + j).style.display = "block";
-            document.getElementById("runwayClosedSymbols").style.display = "none";
-            document.querySelectorAll('.rwycc12').forEach(element => {
-                element.style.display = 'block';
-            }); 
-        }
+        // check if runway is marked CLOSED
+        let matchClosedRunway = [];
 
+        try {
+            const { records } = await (await fetch('/dataEFHK')).json();
+            for (let rec of records) {
+                for (let runway of ['04L', '04R', '15']) {
+                    if (rec.fields['Name'] === `rwy_${runway}_clsd` && rec.fields['content'] == 1) {
+                        matchClosedRunway.push(runway);
+                    }
+                }
+            }
+        } catch (error) {
+            console.log('Error in match closed runway:', error);
+        }
+        
+        const isRunwayClosed = matchClosedRunway.includes(runwayName);
+        
+        document.getElementById("rwyNumber2").textContent = "RUNWAY " + runwayName + (isRunwayClosed ? " NOT IN USE" : "");
+        document.getElementById("rwyNumber2").style.fill = isRunwayClosed ? "red" : "black";
+        // WINTER ONLY: for (let i = 1; i <= 6; i++) document.getElementById("snowBackground" + i).style.display = isRunwayClosed ? "none" : "block";
+        for (let j = 1; j <= 3; j++) document.getElementById("togglePattern" + j).style.display = isRunwayClosed ? "none" : "block";
+        document.getElementById("runwayClosedSymbols").style.display = isRunwayClosed ? "block" : "none";
+        document.querySelectorAll('.rwycc12').forEach(element => {
+            element.style.display = isRunwayClosed ? 'none' : 'block';
+        });
+
+        // Check if runway is chemically treated (SNOWTAM only)
         function isRunwayChemicallyTreated(runwayName) {
             return data.data.includes(runwayName + " CHEMICALLY TREATED");
         }
@@ -339,12 +341,11 @@ async function loadFromSnowtam() {
         const treated = runways.some(runway => isRunwayChemicallyTreated(runway) && runwayName === runway);
         document.getElementById("chemicallyTreated").textContent = treated ? "YES" : "NO";
         
-
-        if (data.data.includes("DRIFTING SNOW")) {
+        // Check if SNOWTAM contains DRIFTING SNOW
+        if (data.data.includes("DRIFTING SNOW")) 
             document.getElementById("driftingSnow").textContent = "YES";
-        } else {
+        else 
             document.getElementById("driftingSnow").textContent = "NO";
-        }
 
     } catch (error) {
         console.error('Error fetching data:', error);

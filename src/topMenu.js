@@ -12,6 +12,7 @@ function populateTopMenu(qnh, qfe, metCond) {
     var qnhChanger = JSON.parse(sessionStorage.efhkQnh);
 
     if (qnh != qnhChanger){
+        stopToggle();
         sessionStorage.efhkQnh = JSON.stringify(qnh);
         startToggle();
     }
@@ -54,4 +55,3 @@ function calculateTrl(qnh) {
     }
     return 0;
 }
-

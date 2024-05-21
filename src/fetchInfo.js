@@ -1,3 +1,5 @@
+const runwaysRCC = ['04L', '04R', '15'];
+
 async function fetchInformation(){
     try {
         const response = await fetch('/dataEFHK');
@@ -57,76 +59,85 @@ async function fetchInformation(){
                 document.getElementById('infoWindow3_line3').textContent = record.fields['content'];
             }
 
-            // Runway condition report (RWYCC)
+            // Runway Condition Codes (RCC) on Main page
             if (record.fields['Name'] === 'rwycc_all_rwys') {
-                if(record.fields['content'] == "..."){
-                    document.getElementById('RWYCC_windows').style.display = "none";
-                }
-                else if ((record.fields['information'] === 'AUTO') && ((wawa >= 22 && wawa <= 25) || wawa >= 40)) {
-                    document.getElementById('RWYCC_windows').style.display = "block";
-                    document.getElementById('04L_RWYCC_1').textContent = "5" + "\u00A0".repeat(2) + "•";
-                    document.getElementById('04L_RWYCC_2').textContent = "5" + "\u00A0".repeat(2) + "•";
-                    document.getElementById('04L_RWYCC_3').textContent = "5" + "\u00A0".repeat(2) + "•";
-                    document.getElementById('04R_RWYCC_1').textContent = "5" + "\u00A0".repeat(2) + "•";
-                    document.getElementById('04R_RWYCC_2').textContent = "5" + "\u00A0".repeat(2) + "•";
-                    document.getElementById('04R_RWYCC_3').textContent = "5" + "\u00A0".repeat(2) + "•";
-                    document.getElementById('15_RWYCC_1').textContent = "5" + "\u00A0".repeat(2) + "•";
-                    document.getElementById('15_RWYCC_2').textContent = "5" + "\u00A0".repeat(2) + "•";
-                    document.getElementById('15_RWYCC_3').textContent = "5" + "\u00A0".repeat(2) + "•";
-                }
-                else{
-                    document.getElementById('RWYCC_windows').style.display = "block";
+                const RWYCCWindows = document.getElementById('RWYCC_windows');
+                const RCRIndicators = document.getElementById('RCRIndicators');
+                
+                if (record.fields['content'] === "...") RWYCCWindows.style.display = "none"; // no RCC reported (...)
 
-                    if(record.fields['rwycc_upgr_dngr'] == "↑"){
-                        document.getElementById('04L_RWYCC_1').textContent = record.fields['content'];
-                        document.getElementById('04L_RWYCC_2').textContent = record.fields['content'];
-                        document.getElementById('04L_RWYCC_3').textContent = record.fields['content'];
-                        document.getElementById('04R_RWYCC_1').textContent = record.fields['content'];
-                        document.getElementById('04R_RWYCC_2').textContent = record.fields['content'];
-                        document.getElementById('04R_RWYCC_3').textContent = record.fields['content'];
-                        document.getElementById('15_RWYCC_1').textContent = record.fields['content'];
-                        document.getElementById('15_RWYCC_2').textContent = record.fields['content'];
-                        document.getElementById('15_RWYCC_3').textContent = record.fields['content'];
+                else {
+                    RWYCCWindows.style.display = "block";
 
-                        const images = document.querySelectorAll('image[id^="rcrIndicator"]');
-                        images.forEach(image => {
-                            image.setAttribute('href', './src/upgraded.png');
-                        });
-                        document.getElementById('RCRIndicators').style.display = "block";
-                        
-                    }
-                    else if (record.fields['rwycc_upgr_dngr'] == "↓") {
-                        document.getElementById('04L_RWYCC_1').textContent = record.fields['content'];
-                        document.getElementById('04L_RWYCC_2').textContent = record.fields['content'];
-                        document.getElementById('04L_RWYCC_3').textContent = record.fields['content'];
-                        document.getElementById('04R_RWYCC_1').textContent = record.fields['content'];
-                        document.getElementById('04R_RWYCC_2').textContent = record.fields['content'];
-                        document.getElementById('04R_RWYCC_3').textContent = record.fields['content'];
-                        document.getElementById('15_RWYCC_1').textContent = record.fields['content'];
-                        document.getElementById('15_RWYCC_2').textContent = record.fields['content'];
-                        document.getElementById('15_RWYCC_3').textContent = record.fields['content'];
-
-                        const images = document.querySelectorAll('image[id^="rcrIndicator"]');
-                        images.forEach(image => {
-                            image.setAttribute('href', './src/downgraded.png');
-                        });
-                        document.getElementById('RCRIndicators').style.display = "block";
-                    }
+                    let content, showRCRIndicators = false, indicatorSrc = '';
+                    
+                    if ((record.fields['information'] === 'AUTO') && ((wawa >= 22 && wawa <= 25) || wawa >= 40)) {
+                        content = "5" + "\u00A0".repeat(2) + "•";
+                    } 
                     else {
-                        document.getElementById('04L_RWYCC_1').textContent = record.fields['content'] + "\u00A0".repeat(2) + "•";
-                        document.getElementById('04L_RWYCC_2').textContent = record.fields['content'] + "\u00A0".repeat(2) + "•";
-                        document.getElementById('04L_RWYCC_3').textContent = record.fields['content'] + "\u00A0".repeat(2) + "•";
-                        document.getElementById('04R_RWYCC_1').textContent = record.fields['content'] + "\u00A0".repeat(2) + "•";
-                        document.getElementById('04R_RWYCC_2').textContent = record.fields['content'] + "\u00A0".repeat(2) + "•";
-                        document.getElementById('04R_RWYCC_3').textContent = record.fields['content'] + "\u00A0".repeat(2) + "•";  
-                        document.getElementById('15_RWYCC_1').textContent = record.fields['content'] + "\u00A0".repeat(2) + "•";
-                        document.getElementById('15_RWYCC_2').textContent = record.fields['content'] + "\u00A0".repeat(2) + "•";
-                        document.getElementById('15_RWYCC_3').textContent = record.fields['content'] + "\u00A0".repeat(2) + "•";
-                        document.getElementById('RCRIndicators').style.display = "none";
+                        content = record.fields['content'];
+                        if (record.fields['rwycc_upgr_dngr'] === "↑") { // upgraded
+                            indicatorSrc = './src/upgraded.png';
+                            showRCRIndicators = true;
+                        } else if (record.fields['rwycc_upgr_dngr'] === "↓") { // downgraded
+                            indicatorSrc = './src/downgraded.png';
+                            showRCRIndicators = true;
+                        } else {
+                            content += "\u00A0".repeat(2) + "•"; // normal
+                        }
                     }
+
+                    const images = document.querySelectorAll('image[id^="rcrIndicator"]');
+                    
+                    if (showRCRIndicators) {
+                        images.forEach(image => {
+                            image.setAttribute('href', indicatorSrc);
+                        });
+                        RCRIndicators.style.display = "block";
+                    } else {
+                        images.forEach(image => {
+                            image.setAttribute('href', "");
+                        });
+                        RCRIndicators.style.display = "none";
+                    }
+
+
+                    // check if runway is closed --> RCC displayed as "0 dngr"
+                    let matchClosedRunway = [];
+                    try {
+                        const { records } = await (await fetch('/dataEFHK')).json();
+                        for (let rec of records) {
+                            for (let runway of ['04L', '04R', '15']) {
+                                if (rec.fields['Name'] === `rwy_${runway}_clsd` && rec.fields['content'] == 1) {
+                                    matchClosedRunway.push(runway);
+                                }
+                            }
+                        }
+                    } catch (error) {
+                        console.log('Error in match closed runway:', error);
+                    }
+                    
+                    runwaysRCC.forEach(runway => { // set RCC values to HTML page
+                        let runwayContent = matchClosedRunway.includes(runway) ? "0" : content;
+                        for (let i = 1; i <= 3; i++) {
+                            const rcrIndicatorID = `rcrIndicator${(runwaysRCC.indexOf(runway) * 3) + i}`;
+                            document.getElementById(`${runway}_RWYCC_${i}`).textContent = runwayContent;
+                            if (runwayContent == "0") {
+                                document.getElementById("RCRIndicators").style.display = "block";
+                                document.getElementById(rcrIndicatorID).style.display = "block";
+                                document.getElementById(rcrIndicatorID).setAttribute('href', './src/downgraded.png');
+                            }
+                        }
+                    });
+                    
+                    
+                    
+
 
                 }
             }
+
+            
             // if warnings exist:
             if (record.fields['Name'] === 'warnings') {
                 if(record.fields['content'] == "..."){
@@ -275,47 +286,14 @@ async function loadATSunits() {
             cell3.textContent = column3;
         }
 
-        // sort ATS-units
+        // Sort ATS-units in correct order (priorityOrder)
         data.controllers.sort((a, b) => getCallsignPriority(a.callsign) - getCallsignPriority(b.callsign));
     
-        // Find ATS-units
+        // Add ATS-units to list (displayed on Setup page)
         for (let item of data.controllers) {
-            // Area control
-            if (item.callsign === "EFIN_CTR" || item.callsign === "EFIN_D_CTR" || item.callsign === "EFIN_D__CTR" || item.callsign === "EFIN_C_CTR") {
-                addRow("EFIN", item.frequency, item.name);
-            }
-            // Radar
-            else if (item.callsign === "EFHK_E_APP" || item.callsign === "EFHK_APP" || item.callsign === "EFHK_E__APP") {
-                addRow("RAD-E", item.frequency, item.name);
-            }
-            else if (item.callsign === "EFHK_W_APP" || item.callsign === "EFHK_W__APP") {
-                addRow("RAD-W", item.frequency, item.name);
-            }
-            // Arrival
-            else if (item.callsign === "EFHK_R_APP" || item.callsign === "EFHK_R__APP") {
-                addRow("ARR-E", item.frequency, item.name);
-            }
-            else if (item.callsign === "EFHK_A_APP" || item.callsign === "EFHK_A__APP") {
-                addRow("ARR-W", item.frequency, item.name);
-            }
-            // Tower
-            else if (item.callsign === "EFHK_E_TWR" || item.callsign === "EFHK_TWR" || item.callsign === "EFHK_E__TWR") {
-                addRow("TWR-E", item.frequency, item.name);
-            }
-            else if (item.callsign === "EFHK_W_TWR" || item.callsign === "EFHK_W__TWR") {
-                addRow("TWR-W", item.frequency, item.name);
-            }
-            // Ground
-            else if (item.callsign === "EFHK_GND" || item.callsign === "EFHK__GND") {
-                addRow("GND", item.frequency, item.name);
-            }
-            // Ground 2
-            else if (item.callsign === "EFHK_DEL" || item.callsign === "EFHK__DEL") {
-                addRow("CLD", item.frequency, item.name);
-            }
-            // De-icing
-            else if (item.callsign === "EFHK_C_GND" || item.callsign === "EFHK_D_GND") {
-                addRow("DEICE", item.frequency, item.name);
+            const rowType = callsignMapping[item.callsign];
+            if (rowType) {
+                addRow(rowType, item.frequency, item.name);
             }
         }
 
@@ -329,11 +307,48 @@ async function loadATSunits() {
 
 function getCallsignPriority(callsign) {
     // ATC list priority
-    const priorityOrder = ["EFIN_CTR", "EFIN_D_CTR", "EFIN_D__CTR", "EFIN_A_CTR", 
-        "EFIN_C_CTR", "EFHK_E_APP", "EFHK_APP", "EFHK_E__APP", "EFHK_W_APP", 
+    const priorityOrder = ["EFIN_CTR", "EFIN_D_CTR", "EFIN_D__CTR", "EFIN_A_CTR",
+        "EFIN_C_CTR", "EFIN__C_CTR", "EFHK_E_APP", "EFHK_APP", "EFHK_E__APP", "EFHK_W_APP", 
         "EFHK_W__APP", "EFHK_R_APP", "EFHK_A_APP", "EFHK_E_TWR", "EFHK_E__TWR", "EFHK_TWR", "EFHK_W_TWR",
         "EFHK_W__TWR", "EFHK_GND", "EFHK__GND", "EFHK_DEL", "EFHK__DEL", "EFHK_C_GND", "EFHK_D_GND"];
     
     const index = priorityOrder.indexOf(callsign);
     return index === -1 ? priorityOrder.length : index;
 }
+
+const callsignMapping = {
+    "EFIN_CTR": "EFIN",
+    "EFIN_D_CTR": "EFIN",
+    "EFIN_D__CTR": "EFIN",
+    "EFIN__D_CTR": "EFIN",
+    "EFIN_A_CTR": "EFIN A",
+    "EFIN_C_CTR": "EFIN C",
+    "EFIN__C_CTR": "EFIN C",
+    "EFIN_C__CTR": "EFIN C",
+    "EFHK_E_APP": "RAD-E",
+    "EFHK_APP": "RAD-E",
+    "EFHK_E__APP": "RAD-E",
+    "EFHK__E_APP": "RAD-E",
+    "EFHK_W_APP": "RAD-W",
+    "EFHK_W__APP": "RAD-W",
+    "EFHK__W_APP": "RAD-W",
+    "EFHK_R_APP": "ARR-E",
+    "EFHK_R__APP": "ARR-E",
+    "EFHK__R_APP": "ARR-E",
+    "EFHK_A_APP": "ARR-W",
+    "EFHK_A__APP": "ARR-W",
+    "EFHK__A_APP": "ARR-W",
+    "EFHK_E_TWR": "TWR-E",
+    "EFHK_TWR": "TWR-E",
+    "EFHK_E__TWR": "TWR-E",
+    "EFHK__E_TWR": "TWR-E",
+    "EFHK_W_TWR": "TWR-W",
+    "EFHK_W__TWR": "TWR-W",
+    "EFHK__W_TWR": "TWR-W",
+    "EFHK_GND": "GND",
+    "EFHK__GND": "GND",
+    "EFHK_DEL": "CLD",
+    "EFHK__DEL": "CLD",
+    "EFHK_C_GND": "DEICE",
+    "EFHK_D_GND": "DEICE"
+};

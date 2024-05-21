@@ -52,6 +52,7 @@ let windDirection = 0;
 let windProblems = false;
 let metar = "//";
 let atisType = 0;
+const runways = ["22R", "22L", "15", "33", "04R", "04L"];
 
 async function setData(xmlDoc) {
   try {
@@ -59,9 +60,9 @@ async function setData(xmlDoc) {
     var table = new Array(xmlSize.length);
 
     for(var i = 0; i < xmlSize.length; i++) {
-        table[i] = new Array(2);
-        table[i][0] = xmlDoc.getElementsByTagName("BsWfs:ParameterName")[i].childNodes[0].nodeValue;
-        table[i][1] = xmlDoc.getElementsByTagName("BsWfs:ParameterValue")[i].childNodes[0].nodeValue;
+      table[i] = new Array(2);
+      table[i][0] = xmlDoc.getElementsByTagName("BsWfs:ParameterName")[i].childNodes[0].nodeValue;
+      table[i][1] = xmlDoc.getElementsByTagName("BsWfs:ParameterValue")[i].childNodes[0].nodeValue;
     }
 
     table = table.slice(-70, -1);
@@ -70,12 +71,10 @@ async function setData(xmlDoc) {
     var windGust = 0;
 
     for (var i = 0; i < table.length; i++) {
-        if (table[i][0] === "p_sea") {
-          qnh = table[i][1];
-        }
-        if (table[i][0] === "ws_10min") {
+        if (table[i][0] === "p_sea") qnh = table[i][1]; // set QNH
+        if (table[i][0] === "ws_10min") { // set wind speed
           windSpeed = table[i][1];
-          if (isNaN(windSpeed)) {
+          if (isNaN(windSpeed)) { // wind speed not found
             windSpeed = 5;
             document.getElementById('fmiProblems').style.display = "block";
             windProblems = true;
@@ -86,7 +85,7 @@ async function setData(xmlDoc) {
         }
         if (table[i][0] === "wd_10min") {
           windDirection = table[i][1];
-          if (isNaN(windDirection)) {
+          if (isNaN(windDirection)) { // wind direction not found
             windDirection = 360;
             windProblems = true;
           }
@@ -95,9 +94,7 @@ async function setData(xmlDoc) {
           windGust = table[i][1];
           if (isNaN(windGust)) windGust = windSpeed + 4;
         }
-        if (table[i][0] === "wawa") {
-          wawa = table[i][1];
-        }
+        if (table[i][0] === "wawa") wawa = table[i][1];
     }
 
     var roundedGust = Math.ceil(windGust * 1.943);
@@ -111,70 +108,23 @@ async function setData(xmlDoc) {
     document.getElementById("04L_windDir").innerHTML = randomWindDirection(windDirection, "arrow04L", "04L_maxDir", roundedWindSpeed);
     document.getElementById("04R_windDir").innerHTML = randomWindDirection(windDirection, "arrow04R", "04R_maxDir", roundedWindSpeed);
 
-    //WIND CALM
+    // WIND CALM
     if (roundedWindSpeed < 2) {
-      document.getElementById("22R_windDir").style.display = "none";
-      document.getElementById("22R_maxDir").style.display = "none";
-      document.getElementById("22R_windSpd").innerHTML = "CALM";
-      document.getElementById("arrow22R").style.display = "none";
-
-      document.getElementById("22L_windDir").style.display = "none";
-      document.getElementById("22L_maxDir").style.display = "none";
-      document.getElementById("22L_windSpd").innerHTML = "CALM";
-      document.getElementById("arrow22L").style.display = "none";
-
-      document.getElementById("15_windDir").style.display = "none";
-      document.getElementById("15_maxDir").style.display = "none";
-      document.getElementById("15_windSpd").innerHTML = "CALM";
-      document.getElementById("arrow15").style.display = "none";
-
-      document.getElementById("33_windDir").style.display = "none";
-      document.getElementById("33_maxDir").style.display = "none";
-      document.getElementById("33_windSpd").innerHTML = "CALM";
-      document.getElementById("arrow33").style.display = "none";
-
-      document.getElementById("04R_windDir").style.display = "none";
-      document.getElementById("04R_maxDir").style.display = "none";
-      document.getElementById("04R_windSpd").innerHTML = "CALM";
-      document.getElementById("arrow04R").style.display = "none";
-
-      document.getElementById("04L_windDir").style.display = "none";
-      document.getElementById("04L_maxDir").style.display = "none";
-      document.getElementById("04L_windSpd").innerHTML = "CALM";
-      document.getElementById("arrow04L").style.display = "none";
+      runways.forEach(runway => {
+        document.getElementById(`${runway}_windDir`).style.display = "none";
+        document.getElementById(`${runway}_maxDir`).style.display = "none";
+        document.getElementById(`${runway}_windSpd`).innerHTML = "CALM";
+        document.getElementById(`arrow${runway}`).style.display = "none";
+      });
     }
+    // WIND NOT CALM
     else {
-      document.getElementById("22R_windSpd").innerHTML = roundedWindSpeed;
-      document.getElementById("22L_windSpd").innerHTML = roundedWindSpeed;
-      document.getElementById("15_windSpd").innerHTML = roundedWindSpeed;
-      document.getElementById("33_windSpd").innerHTML = roundedWindSpeed;
-      document.getElementById("04R_windSpd").innerHTML = roundedWindSpeed;
-      document.getElementById("04L_windSpd").innerHTML = roundedWindSpeed;
-
-      document.getElementById("22R_windDir").style.display = "block";
-      document.getElementById("22R_maxDir").style.display = "block";
-
-      document.getElementById("22L_windDir").style.display = "block";
-      document.getElementById("22L_maxDir").style.display = "block";
-
-      document.getElementById("15_windDir").style.display = "block";
-      document.getElementById("15_maxDir").style.display = "block";
-
-      document.getElementById("33_windDir").style.display = "block";
-      document.getElementById("33_maxDir").style.display = "block";
-
-      document.getElementById("04R_windDir").style.display = "block";
-      document.getElementById("04R_maxDir").style.display = "block";
-
-      document.getElementById("04L_windDir").style.display = "block";
-      document.getElementById("04L_maxDir").style.display = "block";
-
-      document.getElementById("arrow04R").style.display = "block";
-      document.getElementById("arrow04L").style.display = "block";
-      document.getElementById("arrow15").style.display = "block";
-      document.getElementById("arrow33").style.display = "block";
-      document.getElementById("arrow22L").style.display = "block";
-      document.getElementById("arrow22R").style.display = "block";
+      runways.forEach(runway => {
+        document.getElementById(`${runway}_windSpd`).innerHTML = roundedWindSpeed;
+        document.getElementById(`${runway}_windDir`).style.display = "block";
+        document.getElementById(`${runway}_maxDir`).style.display = "block";
+        document.getElementById(`arrow${runway}`).style.display = "block";
+      });
     }
 
     getMaxSpeed(roundedGust, roundedWindSpeed, "display22R", "22R_maxSpd", "22R_minSpd", "22R");
@@ -184,12 +134,10 @@ async function setData(xmlDoc) {
     getMaxSpeed(roundedGust, roundedWindSpeed, "display04L", "04L_maxSpd", "04L_minSpd", "04L");
     getMaxSpeed(roundedGust, roundedWindSpeed, "display04R", "04R_maxSpd", "04R_minSpd", "04R");
 
-    document.getElementById("22R_minSpd").innerHTML = getMinSpeed(roundedWindSpeed);
-    document.getElementById("22L_minSpd").innerHTML = getMinSpeed(roundedWindSpeed);
-    document.getElementById("15_minSpd").innerHTML = getMinSpeed(roundedWindSpeed);
-    document.getElementById("33_minSpd").innerHTML = getMinSpeed(roundedWindSpeed);
-    document.getElementById("04R_minSpd").innerHTML = getMinSpeed(roundedWindSpeed);
-    document.getElementById("04L_minSpd").innerHTML = getMinSpeed(roundedWindSpeed);
+    // SET MINIMUM WIND SPEED
+    runways.forEach(runway => {
+      document.getElementById(`${runway}_minSpd`).innerHTML = getMinSpeed(roundedWindSpeed);
+    });
 
     await loadMetar();
     setCurrentWx(Math.floor(wawa));
@@ -222,7 +170,7 @@ function getMaxSpeed(roundedGust, roundedWindSpeed, display, font1, font2, runwa
   document.getElementById(font1).innerHTML = maxSpeed;
 }
 
-function randomWindDirection(realDirection, arrowID, maxDirID, windSpeed) { // 29.0
+function randomWindDirection(realDirection, arrowID, maxDirID, windSpeed) {
   var min = (realDirection - 10);
   var max = (realDirection + 10);
   var randomDirection = Math.floor(Math.random() * (max - min) + min);
@@ -240,28 +188,19 @@ function randomWindDirection(realDirection, arrowID, maxDirID, windSpeed) { // 2
 
   windComponentCalculator(windSpeed, randomDirection, arrowID);
 
-  if (randomDirection == 0) {
-    randomDirection = 360;
-  }
-  if (randomDirection < 100) {
-    randomDirection = "0" + randomDirection;
-  }
-  if (minimumRandomDirection == 0) {
-    minimumRandomDirection = 360;
-  }
-  if (minimumRandomDirection < 100) {
-    minimumRandomDirection = "0" + minimumRandomDirection;
-  }
-  if (maximumRandomDirection == 0) {
-    maximumRandomDirection = 360;
-  }
-  if (maximumRandomDirection < 100) {
-    maximumRandomDirection = "0" + maximumRandomDirection;
-  }
+  randomDirection = adjustDirection(randomDirection);
+  minimumRandomDirection = adjustDirection(minimumRandomDirection);
+  maximumRandomDirection = adjustDirection(maximumRandomDirection);
   
   document.getElementById(maxDirID).innerHTML = minimumRandomDirection + "-" + maximumRandomDirection;
   
   return randomDirection;
+}
+
+function adjustDirection(direction) {
+  if (direction == 0) direction = 360;
+  if (direction < 100) direction = "0" + direction;
+  return direction;
 }
 
 async function setMetarData(xmlDoc) {
@@ -273,24 +212,16 @@ async function setMetarData(xmlDoc) {
   let counterClockwises = latestRecord ? latestRecord.getElementsByTagName("iwxxm:extremeCounterClockwiseWindDirection") : null;
   let clockwises = latestRecord ? latestRecord.getElementsByTagName("iwxxm:extremeClockwiseWindDirection") : null;
 
-  // counterClockwises = counterClockwises && counterClockwises.length > 0 ? counterClockwises : [0];
-  // clockwises = clockwises && clockwises.length > 0 ? clockwises : [0];
-
   var metars = xmlDoc.getElementsByTagName('avi:input');
   let metar = metars.length > 0 && metars[metars.length - 1].childNodes.length > 0
-  ? metars[metars.length - 1].childNodes[0].nodeValue
-  : "EFHK METAR NIL=";
+      ? metars[metars.length - 1].childNodes[0].nodeValue : "EFHK METAR NIL=";
 
   let dataProblem = metar === "EFHK METAR NIL=";
 
-  document.getElementById("metar").innerHTML = metar;
-
-  // set METREP trend
-  var trend = metar.match(/(\sQ\d{4}\s)(.*?)(?==)/);
-
-  if (trend && trend[2]) {
-    document.getElementById("metTrend").textContent = trend[2];
-  }
+  document.getElementById("metar").innerHTML = metar; // show METAR
+  
+  var trend = metar.match(/(\sQ\d{4}\s)(.*?)(?==)/); // set METREP trend (after QNH)
+  if (trend && trend[2]) document.getElementById("metTrend").textContent = trend[2];
 
   // VARIABLE BETWEEN
   if (counterClockwises.length > 0 && dataProblem == false) {
@@ -300,7 +231,6 @@ async function setMetarData(xmlDoc) {
 
     counterClockwise = Math.round(counterClockwise);
     clockwise = Math.round(clockwise);
-    // changes made here:
     windDirection = Math.floor(windDirection / 10) * 10;
 
     if (clockwise < counterClockwise) {
@@ -335,88 +265,48 @@ async function setMetarData(xmlDoc) {
     if (counterClockwise == 00) counterClockwise = 360;
     if (counterClockwise < 100) counterClockwise = "0" + counterClockwise;
     if (clockwise < 100) clockwise = "0" + clockwise;
+    
+    runways.forEach(updateDirection);
 
-    if (JSON.parse(sessionStorage.getItem("depBox04L")) || JSON.parse(sessionStorage.getItem("arrBox04L"))) {
-      document.getElementById("04L_maxDir").style.fill = "black";
-    } else {
-      document.getElementById("04L_maxDir").style.fill = "#B9B8BA";
-    }
-    if (JSON.parse(sessionStorage.getItem("depBox04R")) || JSON.parse(sessionStorage.getItem("arrBox04R"))) {
-      document.getElementById("04R_maxDir").style.fill = "black";
-    } else {
-      document.getElementById("04R_maxDir").style.fill = "#B9B8BA";
-    }
-    if (JSON.parse(sessionStorage.getItem("depBox15")) || JSON.parse(sessionStorage.getItem("arrBox15"))) {
-      document.getElementById("15_maxDir").style.fill = "black";
-    } else {
-      document.getElementById("15_maxDir").style.fill = "#B9B8BA";
-    }
-    if (JSON.parse(sessionStorage.getItem("depBox33")) || JSON.parse(sessionStorage.getItem("arrBox33"))) {
-      document.getElementById("33_maxDir").style.fill = "black";
-    } else {
-      document.getElementById("33_maxDir").style.fill = "#B9B8BA";
-    }
-    if (JSON.parse(sessionStorage.getItem("depBox22L")) || JSON.parse(sessionStorage.getItem("arrBox22L"))) {
-      document.getElementById("22L_maxDir").style.fill = "black";
-    } else {
-      document.getElementById("22L_maxDir").style.fill = "#B9B8BA";
-    }
-    if (JSON.parse(sessionStorage.getItem("depBox22R")) || JSON.parse(sessionStorage.getItem("arrBox22R"))) {
-      document.getElementById("22R_maxDir").style.fill = "black";
-    } else {
-      document.getElementById("22R_maxDir").style.fill = "#B9B8BA";
+    function updateDirection(runway) {
+      const depBox = `depBox${runway}`;
+      const arrBox = `arrBox${runway}`;
+      const elementId = `${runway}_maxDir`;
+      const hasData = JSON.parse(sessionStorage.getItem(depBox)) || JSON.parse(sessionStorage.getItem(arrBox));
+      document.getElementById(elementId).style.fill = hasData ? "black" : "#B9B8BA";
     }
 
-    document.getElementById("22R_maxDir").innerHTML = counterClockwise + "-" + clockwise;
-    document.getElementById("22L_maxDir").innerHTML = counterClockwise + "-" + clockwise;
-    document.getElementById("15_maxDir").innerHTML = counterClockwise + "-" + clockwise;
-    document.getElementById("33_maxDir").innerHTML = counterClockwise + "-" + clockwise;
-    document.getElementById("04R_maxDir").innerHTML = counterClockwise + "-" + clockwise;
-    document.getElementById("04L_maxDir").innerHTML = counterClockwise + "-" + clockwise;
+    // SET VARIABLE MINIMUM AND MAXIMUM DIRECTION
+    runways.forEach(runway => {
+      document.getElementById(`${runway}_maxDir`).innerHTML = `${counterClockwise}-${clockwise}`;
+    });
   }
-  // no METAR VRB between:
+
+  // NO VRB BETWEEN WIND IN METAR
   else {
-    document.getElementById("04L_maxDir").style.fill = "#B9B8BA";
-    document.getElementById("04R_maxDir").style.fill = "#B9B8BA";
-    document.getElementById("15_maxDir").style.fill = "#B9B8BA";
-    document.getElementById("33_maxDir").style.fill = "#B9B8BA";
-    document.getElementById("22L_maxDir").style.fill = "#B9B8BA";
-    document.getElementById("22R_maxDir").style.fill = "#B9B8BA";
+    runways.forEach(runway => {
+      document.getElementById(`${runway}_maxDir`).style.fill = "#B9B8BA";
+    });
   }
 
   // IF METAR CONTAINS VRB
   if (metar.includes("VRB")) {
-    document.getElementById("22R_windDir").innerHTML = "VRB";
-    document.getElementById("22L_windDir").innerHTML = "VRB";
-    document.getElementById("15_windDir").innerHTML = "VRB";
-    document.getElementById("33_windDir").innerHTML = "VRB";
-    document.getElementById("04R_windDir").innerHTML = "VRB";
-    document.getElementById("04L_windDir").innerHTML = "VRB";
+    runways.forEach(runway => {
+      document.getElementById(`${runway}_windDir`).innerHTML = "VRB";
+    });
 
-    document.getElementById("22R_maxDir").style.display = "none";
-    document.getElementById("22L_maxDir").style.display = "none";
-    document.getElementById("15_maxDir").style.display = "none";
-    document.getElementById("33_maxDir").style.display = "none";
-    document.getElementById("04L_maxDir").style.display = "none";
-    document.getElementById("04R_maxDir").style.display = "none";
+    runways.forEach(runway => {
+      document.getElementById(`${runway}_maxDir`).style.display = "none";
+    });
   }
 
   var viss = xmlDoc.getElementsByTagName("iwxxm:prevailingVisibility");
-  var vis = viss.length > 0 && viss[viss.length - 1].childNodes.length > 0
-  ? viss[viss.length - 1].childNodes[0].nodeValue
-  : "10000";
-
+  var vis = viss.length > 0 && viss[viss.length - 1].childNodes.length > 0 ? viss[viss.length - 1].childNodes[0].nodeValue : "10000";
 
   // IMC VMC INDICATOR
-  if (metar.match(" VV001") || metar.match(" VV002")) {
-    metCond = "LVP";
-  }
-  else if (vis < 5000 && vis > 10 || metar.match(/\W*(BKN00)/g) || metar.match(/\W*(OVC00)/g) || metar.match(" VV")){
-    metCond = "IMC";
-  }
-  else {
-    metCond = "VMC";
-  }
+  if (metar.match(" VV001") || metar.match(" VV002")) metCond = "LVP";
+  else if (vis < 5000 && vis > 10 || metar.match(/\W*(BKN00)/g) || metar.match(/\W*(OVC00)/g) || metar.match(" VV")) metCond = "IMC";
+  else metCond = "VMC";
 
   // Check if METAR contains RVR:
   var pattern_04L = metar.match(/R04L\/[A-Za-z]?(\d+)/);
@@ -443,9 +333,7 @@ async function setMetarData(xmlDoc) {
     document.getElementById("rvr_04L_3").textContent = randomRVR_04L[2];
     document.getElementById("metRvr").textContent = "04L TDZ " + randomRVR_04L[0] + "M MID " + randomRVR_04L[1] + "M END " + randomRVR_04L[2] + "M";
 
-    if (randomRVR_04L[0] < 600 || randomRVR_04L[1] < 600 || randomRVR_04L[2] < 600) {
-      metCond = "LVP";
-    }
+    if (randomRVR_04L[0] < 600 || randomRVR_04L[1] < 600 || randomRVR_04L[2] < 600) metCond = "LVP";
   } 
 
   // RVR 04R
@@ -457,9 +345,7 @@ async function setMetarData(xmlDoc) {
     document.getElementById("rvr_04R_3").textContent = randomRVR_04R[2];
     document.getElementById("metRvr2").textContent = "04R TDZ " + randomRVR_04R[0] + "M MID " + randomRVR_04R[1] + "M END " + randomRVR_04R[2] + "M";
 
-    if (randomRVR_04R[0] < 600 || randomRVR_04R[1] < 600 || randomRVR_04R[2] < 600) {
-      metCond = "LVP";
-    }
+    if (randomRVR_04R[0] < 600 || randomRVR_04R[1] < 600 || randomRVR_04R[2] < 600) metCond = "LVP";
   } 
 
   // RVR 15
@@ -471,9 +357,7 @@ async function setMetarData(xmlDoc) {
     document.getElementById("rvr_15_3").textContent = randomRVR_15[2];
     document.getElementById("metRvr3").textContent = "15 TDZ " + randomRVR_15[0] + "M MID " + randomRVR_15[1] + "M END " + randomRVR_15[2] + "M";
 
-    if (randomRVR_15[0] < 600 || randomRVR_15[1] < 600 || randomRVR_15[2] < 600 ) {
-      metCond = "LVP";
-    }
+    if (randomRVR_15[0] < 600 || randomRVR_15[1] < 600 || randomRVR_15[2] < 600 ) metCond = "LVP";
   } 
 
   // RVR 33
@@ -485,9 +369,7 @@ async function setMetarData(xmlDoc) {
     document.getElementById("rvr_15_3").textContent = randomRVR_33[2];
     document.getElementById("metRvr3").textContent = "15 TDZ " + randomRVR_33[2] + "M MID " + randomRVR_33[1] + "M END " + randomRVR_33[0] + "M";
 
-    if (randomRVR_33[0] < 600 || randomRVR_33[1] < 600 || randomRVR_33[2] < 600) {
-      metCond = "LVP";
-    }
+    if (randomRVR_33[0] < 600 || randomRVR_33[1] < 600 || randomRVR_33[2] < 600) metCond = "LVP";
   } 
 
   // RVR 22L
@@ -499,9 +381,7 @@ async function setMetarData(xmlDoc) {
     document.getElementById("rvr_04R_3").textContent = randomRVR_22L[2];
     document.getElementById("metRvr2").textContent = "04R TDZ " + randomRVR_22L[2] + "M MID " + randomRVR_22L[1] + "M END " + randomRVR_22L[0] + "M";
 
-    if (randomRVR_22L[0] < 600 || randomRVR_22L[1] < 600 || randomRVR_22L[2] < 600) {
-      metCond = "LVP";
-    }
+    if (randomRVR_22L[0] < 600 || randomRVR_22L[1] < 600 || randomRVR_22L[2] < 600) metCond = "LVP";
   } 
 
   // RVR 22R
@@ -513,24 +393,16 @@ async function setMetarData(xmlDoc) {
     document.getElementById("rvr_04L_3").textContent = randomRVR_22R[2];
     document.getElementById("metRvr").textContent = "04L TDZ " + randomRVR_22R[2] + "M MID " + randomRVR_22R[1] + "M END " + randomRVR_22R[0] + "M";
 
-    if (randomRVR_22R[0] < 600 || randomRVR_22R[1] < 600 || randomRVR_22R[2] < 600) {
-      metCond = "LVP";
-    }
+    if (randomRVR_22R[0] < 600 || randomRVR_22R[1] < 600 || randomRVR_22R[2] < 600) metCond = "LVP";
   } 
 
-  if (metar.match(/[A-Za-z]+VV\d{2}[1-2]/)) {
-    metCond = "LVP";
-  }
+  // METCOND LVP if METAR contains VV
+  if (metar.match(/[A-Za-z]+VV\d{2}[1-2]/)) metCond = "LVP";
 
-  if (rvr_04L == null && rvr_22R == null) {
-    document.getElementById('RVR_values_04L').style.display = "none";
-  }
-  if (rvr_04R == null && rvr_22L == null) {
-    document.getElementById('RVR_values_04R').style.display = "none";
-  }
-  if (rvr_15 == null && rvr_33 == null) {
-    document.getElementById('RVR_values_15').style.display = "none";
-  }
+  if (rvr_04L == null && rvr_22R == null) document.getElementById('RVR_values_04L').style.display = "none";
+  if (rvr_04R == null && rvr_22L == null) document.getElementById('RVR_values_04R').style.display = "none";
+  if (rvr_15 == null && rvr_33 == null) document.getElementById('RVR_values_15').style.display = "none";
+
   if (rvr_15 == null && rvr_33 == null && rvr_04L == null && rvr_22R == null && rvr_04R == null && rvr_22L == null) {
     document.getElementById("metRvr").textContent = "";
     document.getElementById("metRvr2").textContent = "";
@@ -569,71 +441,55 @@ async function setMetarData(xmlDoc) {
     // if ATIS DEP or ATIS ARR are not found, checking for ATIS combined
     if (!efhkAtisFound) {
       for (let item of data.atis) {
-          if (item.callsign === "EFHK_ATIS") {
-              efhkAtisFound = true;
-              atisType = 2;
+        if (item.callsign === "EFHK_ATIS") {
+          efhkAtisFound = true;
+          atisType = 2;
 
-              let atisWithLines = item.text_atis ? item.text_atis.join(' ').replace(/\.\./g, '.').split('.') : ["EFHK ATIS NIL"];
+          let atisWithLines = item.text_atis ? item.text_atis.join(' ').replace(/\.\./g, '.').split('.') : ["EFHK ATIS NIL"];
 
-              // console.log(atisWithLines);
+          // console.log(atisWithLines);
 
-              await makeAtisText(atisWithLines.join('<br/>'));
-              await fetchInformation();
-              break;
-          }
+          await makeAtisText(atisWithLines.join('<br/>'));
+          await fetchInformation();
+          break;
+        }
       }
-  }
+    }
       
     // EFHK ATIS not found:
     if (!efhkAtisFound) {
-        atisType = 0;
-        document.getElementById('atisId1').textContent = "--";
-        document.getElementById('atisId2').textContent = "--";
-        document.getElementById("atisInfoFieldDep").innerHTML = "EFHK DEP ATIS NIL";
-        document.getElementById("atisInfoFieldArr").innerHTML = "EFHK ARR ATIS NIL";
+      atisType = 0;
+      document.getElementById('atisId1').textContent = "--";
+      document.getElementById('atisId2').textContent = "--";
+      document.getElementById("atisInfoFieldDep").innerHTML = "EFHK DEP ATIS NIL";
+      document.getElementById("atisInfoFieldArr").innerHTML = "EFHK ARR ATIS NIL";
 
-        // TESTING:
+      // TESTING:
+      // let text = "THIS IS HELSINKI-VANTAA ARRIVAL AND DEPARTURE INFORMATION GOLF AT TIME 1950 EXPECT ILS APPROACH ARRIVAL RUNWAY 15 CLEAR AND DRY DEPARTURE RUNWAY 22L CLEAR AND DRY TRANSITION LEVEL 60 WIND 180 DEGREES 3 KNOTS CAVOK TEMPERATURE 13 DEW POINT 8 QNH 1018 NOSIG ADVISE ON INITIAL CONTACT YOU HAVE INFORMATION GOLF";
+      // text = text.replace(/\.\./g, '.')
+      // let atisWithLines = text ? text.replace(/\./g, '<br/>') : ["EFHK ATIS NIL"];
+      // console.log(atisWithLines);
+      // makeAtisText(atisWithLines);
 
-        // let text = "THIS IS HELSINKI-VANTAA ARRIVAL AND DEPARTURE INFORMATION GOLF AT TIME 1950 EXPECT ILS APPROACH ARRIVAL RUNWAY 15 CLEAR AND DRY DEPARTURE RUNWAY 22L CLEAR AND DRY TRANSITION LEVEL 60 WIND 180 DEGREES 3 KNOTS CAVOK TEMPERATURE 13 DEW POINT 8 QNH 1018 NOSIG ADVISE ON INITIAL CONTACT YOU HAVE INFORMATION GOLF";
-        // text = text.replace(/\.\./g, '.')
-        // let atisWithLines = text ? text.replace(/\./g, '<br/>') : ["EFHK ATIS NIL"];
-        // console.log(atisWithLines);
-        // makeAtisText(atisWithLines);
-
-        await fetchInformation();
-        await loadConfig();
+      await fetchInformation();
+      await loadConfig();
     }
 
     if (windProblems) {
       noWindData();
-    }})
+    }
+
+  }) // end of fetch .then
     
   } catch (error) {
     console.log('Error in closedATIS function:', error);
   }
 }
 
-function getCurrentLetter() {
-  const now = new Date();
-  const hours = now.getUTCHours();
-  const minutes = now.getUTCMinutes();
-  const totalMinutes = hours * 60 + minutes;
-
-  if (totalMinutes >= 21) {
-      const minutesSinceStart = totalMinutes - 21;
-      const letterIndex = Math.floor(minutesSinceStart / 30);
-      
-      const charCode = 65 + (letterIndex % 26);
-      return String.fromCharCode(charCode);
-  }
-  return 'Z';
-}
-
 async function makeAtisText(atisText) {
   try {
     if (atisText.includes("THIS IS HELSINKI-VANTAA")) {
       // using replacementRules from atisReplacementRules.js file
-
       // check if new VATATIS format (else UniATIS)
       if (atisText.includes("<br/>")) {
         for (const [pattern, replacement] of Object.entries(replacementRules)) {
@@ -648,7 +504,7 @@ async function makeAtisText(atisText) {
       }
 
     } else {
-      // format clouds to show correctly (no vATIS support)
+      // format clouds to show correctly with vATIS
       atisText = atisText.replace(/(?:\s*|<br\/>)*(FEW|BKN|SCT|OVC) (\d{3})/g, function(match, cloudCover, altitude) {
         let newAltitude = parseInt(altitude, 10) * 100;
         return `<br/>${cloudCover} ${newAltitude} FT`;
@@ -658,7 +514,7 @@ async function makeAtisText(atisText) {
         let temp2 = m2 === "M" ? "-" + p2 : p2;
         return "T " + parseInt(temp1, 10) + " DP " + parseInt(temp2, 10);
       });
-      // format vertical visibility (no vATIS suppport)
+      // format vertical visibility to vATIS
       atisText = atisText.replace(/VV 0*(\d{1,3})/g, function(match, num) {
         let value = parseInt(num, 10) * 100;
         return "OBSC VER VIS " + value + "FT";
@@ -668,10 +524,7 @@ async function makeAtisText(atisText) {
     let pattern = /INFO\s([A-Z])/;
     let match = atisText.match(pattern);
 
-    if (match && match[1]) {
-      // ATIS ID
-      atisCode = match[1];
-    }
+    if (match && match[1]) atisCode = match[1]; // ATIS ID
 
     // set ATIS DEP and ATIS ARR identifiers and content
     if (atisText.includes("EFHK DEP INFO")) {
@@ -722,60 +575,8 @@ function rvrRandomizator(realRVR) {
 }
 
 function setCurrentWx(wawa) {
-  currentWx = document.getElementById("metCurrentWx");
-
-  if (wawa == 0) currentWx.textContent = "NSW";
-  else if (wawa == 4) currentWx.textContent = "HZ";
-  else if (wawa == 5) currentWx.textContent = "FG";
-  else if (wawa == 10) currentWx.textContent = "BR";
-  else if (wawa == 20) currentWx.textContent = "REFG";
-  else if (wawa == 21) currentWx.textContent = "RE VCSH";
-  else if (wawa == 22) currentWx.textContent = "RE SHRA";
-  else if (wawa == 23) currentWx.textContent = "RERA";
-  else if (wawa == 24) currentWx.textContent = "RESN";
-  else if (wawa == 25) currentWx.textContent = "RE FZRA";
-  else if (wawa == 30) currentWx.textContent = "FG";
-  else if (wawa == 31) currentWx.textContent = "BCFG";
-  else if (wawa == 32) currentWx.textContent = "MIFG";
-  else if (wawa == 33) currentWx.textContent = "FG";
-  else if (wawa == 34) currentWx.textContent = "HVY FG";
-  else if (wawa == 40) currentWx.textContent = "RA";
-  else if (wawa == 41) currentWx.textContent = "FBL RA";
-  else if (wawa == 42) currentWx.textContent = "HVY RA";
-  else if (wawa == 50) currentWx.textContent = "DZ";
-  else if (wawa == 51) currentWx.textContent = "FBL DZ";
-  else if (wawa == 52) currentWx.textContent = "DZ";
-  else if (wawa == 53) currentWx.textContent = "HVY DZ";
-  else if (wawa == 54) currentWx.textContent = "FBL FZDZ";
-  else if (wawa == 55) currentWx.textContent = "FZDZ";
-  else if (wawa == 56) currentWx.textContent = "HVY FZDZ";
-  else if (wawa == 60) currentWx.textContent = "FBL RA";
-  else if (wawa == 61) currentWx.textContent = "FBL RA";
-  else if (wawa == 62) currentWx.textContent = "MOD RA";
-  else if (wawa == 63) currentWx.textContent = "HVY RA";
-  else if (wawa == 64) currentWx.textContent = "FBL FZRA";
-  else if (wawa == 65) currentWx.textContent = "FZDZ";
-  else if (wawa == 66) currentWx.textContent = "HVY FZDZ";
-  else if (wawa == 67) currentWx.textContent = "FBL SNRA";
-  else if (wawa == 68) currentWx.textContent = "SNRA";
-  else if (wawa == 70) currentWx.textContent = "SN";
-  else if (wawa == 71) currentWx.textContent = "FBL SN";
-  else if (wawa == 72) currentWx.textContent = "SN";
-  else if (wawa == 73) currentWx.textContent = "HVY SN";
-  else if (wawa == 74) currentWx.textContent = "FBL GS";
-  else if (wawa == 75) currentWx.textContent = "GS";
-  else if (wawa == 76) currentWx.textContent = "HVY GS";
-  else if (wawa == 77) currentWx.textContent = "SG";
-  else if (wawa == 78) currentWx.textContent = "PL";
-  else if (wawa == 80) currentWx.textContent = "SHRA";
-  else if (wawa == 81) currentWx.textContent = "FBL SHRA";
-  else if (wawa == 82) currentWx.textContent = "SHRA";
-  else if (wawa == 83) currentWx.textContent = "HVY SHRA";
-  else if (wawa == 84) currentWx.textContent = "HVY SHRA";
-  else if (wawa == 85) currentWx.textContent = "FBL SHSN";
-  else if (wawa == 86) currentWx.textContent = "SHSN";
-  else if (wawa == 87) currentWx.textContent = "HVY SHSN";
-  else if (wawa == 89) currentWx.textContent = "SHGR";
+  // weatherConditions are listed in atisReplacementRules.js file
+  document.getElementById("metCurrentWx").textContent = weatherConditions[wawa] || "";
 }
 
 function updateGroupText(groupElement, excludeId) {
