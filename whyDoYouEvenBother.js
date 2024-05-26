@@ -191,14 +191,14 @@ async function(accessToken, refreshToken, profile, cb) {
     if (dbUser.rows.length === 0) {
       // If the user doesn't exist, insert them
       await db.query(
-        'INSERT INTO users (id, full_name, rating) VALUES ($1, $2, $3)',
-        [user.id, user.full_name, user.rating]
+        'INSERT INTO users (id, full_name, rating, last_login, app) VALUES ($1, $2, $3, CURRENT_TIMESTAMP, $4)',
+        [user.id, user.full_name, user.rating, 'wx']
       );
     } else {
-      // If the user exists, update their information
+      // If the user exists, update their information including last login time
       await db.query(
-        'UPDATE users SET full_name = $1, rating = $2 WHERE id = $3',
-        [user.full_name, user.rating, user.id]
+        'UPDATE users SET full_name = $1, rating = $2, last_login = CURRENT_TIMESTAMP, app = $3 WHERE id = $4',
+        [user.full_name, user.rating, 'wx', user.id]
       );
     }
 
