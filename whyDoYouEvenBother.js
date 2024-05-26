@@ -9,7 +9,6 @@ const OAuth2Strategy = require('passport-oauth2').Strategy;
 const session = require('express-session');
 const path = require('path');
 const db = require('./db');
-// const pgSession = require('connect-pg-simple')(session);
 
 app.get('/api/data', async (req, res) => {
   const baseUrl = "https://api.airtable.com/v0/appGAYI2wFvY7jZVG/Table%201";
@@ -159,11 +158,11 @@ app.use((req, res, next) => {
 // VATSIM AUTHENTICATION
 
 passport.use(new OAuth2Strategy({
-  authorizationURL: process.env.AUTH_URL_HEROKU,
-  tokenURL: process.env.TOKEN_URL_HEROKU,
-  clientID: process.env.CLIENT_ID_HEROKU,
-  clientSecret: process.env.CLIENT_SECRET_HEROKU,
-  callbackURL: process.env.REDIRECT_URL_HEROKU,
+  authorizationURL: process.env.AUTH_URL_HEROKU || process.env.AUTH_URL,
+  tokenURL: process.env.TOKEN_URL_HEROKU || process.env.TOKEN_URL,
+  clientID: process.env.CLIENT_ID_HEROKU || process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET_HEROKU || process.env.CLIENT_SECRET,
+  callbackURL: process.env.REDIRECT_URL_HEROKU || process.env.REDIRECT_URI,
 },
 async function(accessToken, refreshToken, profile, cb) {
   try {
