@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="0" />
+        <meta name="robots" content="noindex">
+        <title>Helsingin sää ❄️</title>
+        <link rel="icon" href="src/favicon.ico">
+        <link rel="stylesheet" href="src/master.css">
+        <script type="text/javascript" src="src/date.js"></script>
+        <script type="text/javascript" src="src/data.js"></script>
+        <script type="text/javascript" src="src/nav.js"></script>
+        <script type="text/javascript" src="src/config.js"></script>
+        <script type="text/javascript" src="src/autoconfig.js"></script>
+        <script type="text/javascript" src="src/fetchInfo.js"></script>
+        <script type="text/javascript" src="src/windcomponents.js"></script>
+        <script type="text/javascript" src="src/topMenu.js"></script>
+        <script type="text/javascript" src="src/rwycc.js"></script>
+        <script type="text/javascript" src="src/atisReplacementRules.js"></script>
+        <link rel="stylesheet" href="https://use.typekit.net/nju1yva.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    </head>
+    <body onload="getDate(); startDataFetching();">
+        <div class="customBackground">
+        <p class="loginInformation" id="user-id">1339541</p>
+        <svg version="1.1" id="topMenuSvg" preserveAspectRatio="xMinYMin meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 960.75 38" xml:space="preserve">
+            <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="480.375" y1="38" x2="480.375" y2="0">
+                <stop offset="0" style="stop-color:#007492"/>
+                <stop offset="1" style="stop-color:#009AC7"/>
+            </linearGradient>
+            <rect id="topMenuBackground" x="0" y="0" width="100vw" height="38" fill="url(#SVGID_1_)"/>
+            <image style="overflow:hidden;" width="302" height="140" xlink:href="src/vatsca.png"  transform="matrix(0.2286 0 0 0.2286 0 3)">
+            </image>
+            <rect style="cursor: pointer;" onclick="openDepATIS();" x="69.03" y="1.14" class="topMenu1" width="50.85" height="35.73"/>
+            <rect style="cursor: pointer;" onclick="openArrATIS();" x="122.24" y="1.14" class="topMenu2" width="50.85" height="35.73"/>
+            <rect onclick="qnhClick();" id="qnhBox" x="175.45" y="0.6" class="topMenu3" width="74.28" height="35.73" style="cursor: pointer;"/>
+            <rect x="257.87" y="0.6" class="topMenu3" width="146.28" height="35.73"/>
+            <rect x="416.57" y="0.6" class="topMenu3" width="146.28" height="35.73"/>
+            <rect x="575.27" y="0.6" class="topMenu4" width="149.69" height="35.73"/>
+            <rect x="258.31" y="18.46" class="topMenu4" style="stroke: #dadada" width="145.31" height="0.1"/>
+            <rect x="729.97" y="0.6" class="topMenu4" width="102.02" height="35.73"/>
+            <rect x="831.99" y="0.6" class="topMenu4" width="51.01" height="35.73"/>
+            <!--<rect style="cursor: pointer;" onclick="modeSelectorPressed();" x="899.36" y="1.94" class="topMenu5" width="49.54" height="34.12"/>-->
+            <text style="cursor: pointer;" onclick="openDepATIS();" transform="matrix(1 0 0 1 85.205 9.9785)" class="topMenu6 topMenu7">DEP</text>
+            <text style="cursor: pointer;" id="atisId1" onclick="openDepATIS();" transform="matrix(1 0 0 1 94 32.0903)" text-anchor="middle" class="topMenu6 topMenu8">--</text>
+            <text style="cursor: pointer;" id="atisId2" onclick="openArrATIS();" transform="matrix(1 0 0 1 147 32.0903)" text-anchor="middle" class="topMenu6 topMenu8">--</text>
+            <text style="cursor: pointer;" onclick="openArrATIS();" transform="matrix(1 0 0 1 138.6792 9.9789)" class="topMenu6 topMenu7">ARR</text>
+            <!--<text style="cursor: pointer;" onclick="modeSelectorPressed();" transform="matrix(1 0 0 1 900.8391 13.9417)" class="topMenu6 topMenu9">RWY CONFIG</text>
+            <text onclick="modeSelectorPressed();" id="rwyConfigValue" transform="matrix(1 0 0 1 924 28.4647)" text-anchor="middle" class="topMenu6 topMenu10 topMenuGreen">AUTO</text>-->
+            <text transform="matrix(1 0 0 1 262.3049 11.8475)" class="topMenu6 topMenu10">QFE</text>
+            <text id="qfeValue" transform="matrix(1 0 0 1 400 14.7992)" text-anchor="end" class="topMenu6 topMenu11">//</text>
+            <text id="dateValue" transform="matrix(1 0 0 1 652 26)" text-anchor="middle" class="topMenu12 topMenu6 topMenu16">//</text>
+            <text id="secondsValue" transform="matrix(1 0 0 1 854 24.5016)" text-anchor="middle" class="topMenu6 topMenu13">//</text>
+            <text id="timeValue" transform="matrix(1 0 0 1 780 30.3071)" text-anchor="middle" class="topMenu6 topMenu14">//</text>
+            <text id="trlValue" transform="matrix(1 0 0 1 400 33.2771)" text-anchor="end" class="topMenu6 topMenu11">//</text>
+            <text transform="matrix(1 0 0 1 262.9213 30.3073)" class="topMenu6 topMenu10">TRL</text>
+            <text onclick="qnhClick();" id="qnhValue" transform="matrix(1 0 0 1 211.5 30.3077)" style="cursor: pointer;" text-anchor="middle" class="topMenu6 topMenu15">//</text>
+            <text id="metCondValue" transform="matrix(1 0 0 1 490 30.3077)" text-anchor="middle" class="topMenu6 topMenu15">//</text>
+        </svg>
+        </div>
+        <div class="leftnav">
+            <?xml version="1.0" encoding="utf-8"?>
+            <svg id="leftNavSvg" version="1.1" preserveAspectRatio="xMinYMin meet"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                viewBox="0 0 70.38 563.95" style="enable-background:new 0 0 70.38 563.95;" xml:space="preserve">
+                <g id="background">
+                    <rect class="leftNav0" width="70.38" height="563.95"/>
+                </g>
+                <g id="buttonMain" style="cursor:pointer; pointer-events:none" onclick="openMainPage('buttonClick');">
+                    <linearGradient id="mainBackgroundGradient" gradientUnits="userSpaceOnUse" x1="27.5039" y1="53.3602" x2="27.5039" y2="1.8134">
+                        <stop  offset="0" style="stop-color:#C0D7F0"/>
+                        <stop  offset="0.9968" style="stop-color:#85A7CC"/>
+                    </linearGradient>
+                    <linearGradient id="mainBackgroundGradient2" gradientUnits="userSpaceOnUse" x1="27.5039" y1="53.3602" x2="27.5039" y2="1.8134">
+                        <stop  offset="0" style="stop-color:#C0D7F0"/>
+                        <stop  offset="0.9968" style="stop-color:#E5F2FF"/>
+                    </linearGradient>
+                    <path id="mainBackground" class="leftNav1" d="M3.71,53.36h47.58c1.69,0,3.05-1.37,3.05-3.05V4.87c0-1.69-1.37-3.05-3.05-3.05H3.71c-1.69,0-3.05,1.37-3.05,3.05v45.44
+                    C0.66,51.99,2.03,53.36,3.71,53.36z"/>
+                    <text transform="matrix(1 0 0 1 18 49.0747)" class="leftNav2 leftNav3">Main</text>
+                    <image style="overflow:visible;" width="160" height="106" xlink:href="src/main.png" transform="matrix(0.3121 0 0 0.3121 2.5355 6.4594)"></image>
+                    <polygon id="mainTriangle" class="leftNav4" points="56.1,19.19 56.1,35.98 65.25,27.39"/>
+                </g>
+                <g id="buttonRwy1" style=" cursor: pointer;" onclick="openRWYCC('04R');">
+                    <linearGradient id="rwy1BackgroundGradient" gradientUnits="userSpaceOnUse" x1="27.5038" y1="111.9552" x2="27.5038" y2="60.4084">
+                        <stop  offset="0" style="stop-color:#C0D7F0"/>
+                        <stop  offset="1" style="stop-color:#E5F2FF"/>
+                    </linearGradient> 
+                    <linearGradient id="rwy1BackgroundGradient2" gradientUnits="userSpaceOnUse" x1="27.5038" y1="111.9552" x2="27.5038" y2="60.4084">
+                        <stop  offset="0" style="stop-color:#C0D7F0"/>
+                        <stop  offset="1" style="stop-color:#85A7CC"/>
+                    </linearGradient> 
+                    <path id="rwy1Background" class="rwy04RButtonInactive" d="M3.71,111.96h47.58c1.69,0,3.05-1.37,3.05-3.05V63.46c0-1.69-1.37-3.05-3.05-3.05H3.71c-1.69,0-3.05,1.37-3.05,3.05v45.44
+                    C0.66,110.59,2.03,111.96,3.71,111.96z"/>
+                    <image style="overflow:visible;" width="134" height="55" xlink:href="src/rwymenu.png" transform="matrix(0.2724 0 0 0.2724 9.2501 71.1974)"></image>
+                    <text transform="matrix(1 0 0 1 11 107.6697)" class="leftNav2 leftNav3">04R-22L</text>
+                    <polygon id="rwy1Triangle" class="leftNav4" points="56.1,77.79 56.1,94.58 65.25,85.98" style="display:none;"/>
+                </g>
+                <g id="buttonRwy2" style=" cursor: pointer;" onclick="openRWYCC('15');">
+                    <linearGradient id="rwy2BackgroundGradient" gradientUnits="userSpaceOnUse" x1="27.5038" y1="170.5502" x2="27.5038" y2="119.0034">
+                        <stop  offset="0" style="stop-color:#C0D7F0"/>
+                        <stop  offset="1" style="stop-color:#E5F2FF"/>
+                    </linearGradient>
+                    <linearGradient id="rwy2BackgroundGradient2" gradientUnits="userSpaceOnUse" x1="27.5038" y1="170.5502" x2="27.5038" y2="119.0034">
+                        <stop  offset="0" style="stop-color:#C0D7F0"/>
+                        <stop  offset="1" style="stop-color:#85A7CC"/>
+                    </linearGradient>
+                    <path id="rwy2Background" class="rwy15ButtonInactive" d="M3.71,170.55h47.58c1.69,0,3.05-1.37,3.05-3.05v-45.44c0-1.69-1.37-3.05-3.05-3.05H3.71c-1.69,0-3.05,1.37-3.05,3.05v45.44
+                    C0.66,169.18,2.03,170.55,3.71,170.55z"/>
+                    <image style="overflow:visible;" width="134" height="55" xlink:href="src/rwymenu.png" transform="matrix(0.2724 0 0 0.2724 9.2501 129.7924)"></image>
+                    <text transform="matrix(1 0 0 1 16 166.2648)" class="leftNav2 leftNav3">15-33</text>
+                    <polygon id="rwy2Triangle" class="leftNav4" points="56.1,136.75 56.1,153.54 65.25,144.95" style="display:none;"/>
+                </g>
+                <g id="buttonRwy3" style=" cursor: pointer;" onclick="openRWYCC('04L');">
+                    <linearGradient id="rwy3BackgroundGradient" gradientUnits="userSpaceOnUse" x1="27.5038" y1="228.9693" x2="27.5038" y2="177.4225">
+                        <stop  offset="0" style="stop-color:#C0D7F0"/>
+                        <stop  offset="1" style="stop-color:#E5F2FF"/>
+                    </linearGradient>
+                    <linearGradient id="rwy3BackgroundGradient2" gradientUnits="userSpaceOnUse" x1="27.5038" y1="228.9693" x2="27.5038" y2="177.4225">
+                        <stop  offset="0" style="stop-color:#C0D7F0"/>
+                        <stop  offset="1" style="stop-color:#85A7CC"/>
+                    </linearGradient>
+                    <path id="rwy3Background" class="rwy04LButtonInactive" d="M3.71,228.97h47.58c1.69,0,3.05-1.37,3.05-3.05v-45.44c0-1.69-1.37-3.05-3.05-3.05H3.71c-1.69,0-3.05,1.37-3.05,3.05v45.44
+                    C0.66,227.6,2.03,228.97,3.71,228.97z"/>
+                    <image style="overflow:visible;" width="134" height="55" xlink:href="src/rwymenu.png" transform="matrix(0.2724 0 0 0.2724 9.2501 188.2115)"></image>
+                    <text transform="matrix(1 0 0 1 11 224.6838)" class="leftNav2 leftNav3">04L-22R</text>
+                    <polygon id="rwy3Triangle" class="leftNav4" points="56.1,194.8 56.1,211.59 65.25,203" style="display:none;"/>
+                </g>
+                <g id="buttonSnowtam" style="cursor: pointer;" onclick="openSnowtam();">
+                    <linearGradient id="snowtamBackgroundGradient" gradientUnits="userSpaceOnUse" x1="27.5038" y1="287.4837" x2="27.5038" y2="235.9369">
+                        <stop  offset="0" style="stop-color:#C0D7F0"/>
+                        <stop  offset="1" style="stop-color:#E5F2FF"/>
+                    </linearGradient>
+                    <linearGradient id="snowtamBackgroundGradient2" gradientUnits="userSpaceOnUse" x1="27.5038" y1="287.4837" x2="27.5038" y2="235.9369">
+                        <stop  offset="0" style="stop-color:#C0D7F0"/>
+                        <stop  offset="1" style="stop-color:#85A7CC"/>
+                    </linearGradient>
+                    <path id="snowtamBackground" class="leftNav8" d="M3.71,287.48h47.58c1.69,0,3.05-1.37,3.05-3.05v-45.44c0-1.69-1.37-3.05-3.05-3.05H3.71c-1.69,0-3.05,1.37-3.05,3.05v45.44
+                    C0.66,286.12,2.03,287.48,3.71,287.48z"/>
+                    <text transform="matrix(1 0 0 1 5.5 254.1041)"><tspan x="0" y="0" class="leftNav2 leftNav3">SNOWTAM </tspan><tspan x="0.94" y="10" class="leftNav2 leftNav3">TAXIWAYS </tspan><tspan x="7.85" y="20" class="leftNav2 leftNav3">APRON</tspan></text>
+                    <polygon id="snowtamTriangle" class="leftNav4" points="56.1,253.31 56.1,270.11 65.25,261.51" style="display:none;"/>
+                </g>
+                <g id="buttonMetReport" style="cursor: pointer;" onclick="metrep();">
+                    <linearGradient id="metReportBackgroundGradient" gradientUnits="userSpaceOnUse" x1="27.5038" y1="331.3684" x2="27.5038" y2="294.3064">
+                        <stop  offset="0" style="stop-color:#C0D7F0"/>
+                        <stop offset="1" style="stop-color:#E5F2FF"/>
+                    </linearGradient>
+                    <linearGradient id="metReportBackgroundGradient2" gradientUnits="userSpaceOnUse" x1="27.5038" y1="331.3684" x2="27.5038" y2="294.3064">
+                        <stop  offset="0" style="stop-color:#C0D7F0"/>
+                        <stop offset="1" style="stop-color:#85A7CC"/>
+                    </linearGradient>
+                    <path id="metReportBackground" class="leftNav9" d="M3.71,331.37h47.58c1.69,0,3.05-1.37,3.05-3.05v-30.96c0-1.69-1.37-3.05-3.05-3.05H3.71c-1.69,0-3.05,1.37-3.05,3.05v30.96
+                        C0.66,330,2.03,331.37,3.71,331.37z"/>
+                    <text id="metrepHeader" transform="matrix(1 0 0 1 4 344.9969)" class="leftNav2 leftNav10" style="font-size: 5.7pt;">MET REPORT</text>
+                    <image style="overflow:visible;" width="75" height="91" xlink:href="src/metrep.png" transform="matrix(0.2631 0 0 0.2631 17.6371 300.853)"></image>
+                    <polygon id="metReportTriangle" class="leftNav4" points="56.1,312.84 56.1,329.63 65.25,321.03" style="display:none;"/>
+                </g>
+                <g id="buttonSetup" style="cursor: pointer;" onclick="setup();">
+                    <linearGradient id="setupBackgroundGradient" gradientUnits="userSpaceOnUse" x1="27.5038" y1="405.9137" x2="27.5038" y2="354.3669">
+                        <stop  offset="0" style="stop-color:#C0D7F0"/>
+                        <stop  offset="1" style="stop-color:#E5F2FF"/>
+                    </linearGradient>
+                    <linearGradient id="setupBackgroundGradient2" gradientUnits="userSpaceOnUse" x1="27.5038" y1="405.9137" x2="27.5038" y2="354.3669">
+                        <stop  offset="0" style="stop-color:#C0D7F0"/>
+                        <stop  offset="1" style="stop-color:#85A7CC"/>
+                    </linearGradient>
+                    <path id="setupBackground" class="leftNav11" d="M3.71,405.91h47.58c1.69,0,3.05-1.37,3.05-3.05v-45.44c0-1.69-1.37-3.05-3.05-3.05H3.71c-1.69,0-3.05,1.37-3.05,3.05v45.44
+                    C0.66,404.55,2.03,405.91,3.71,405.91z"/>
+                    <text transform="matrix(1 0 0 1 16.2 402)" class="leftNav2 leftNav3">Setup</text>
+                    <image style="overflow:visible;" width="512" height="512" xlink:href="src/settings.png" transform="matrix(0.0722 0 0 0.0722 9.0096 356.6096)"></image>
+                    <polygon id="setupTriangle" class="leftNav4" points="56.1,371.74 56.1,388.54 65.25,379.94" style="display:none;"/>
+                </g>
+                <g id="buttonAwosview" style="cursor: pointer;" onclick="window.location.href='awosview/eftp.html'">
+                    <linearGradient id="awosViewBackgroundGradient" gradientUnits="userSpaceOnUse" x1="27.5" y1="101.4787" x2="27.5" y2="153.0186" gradientTransform="matrix(1 0 0 -1 0 566)">
+                        <stop  offset="0" style="stop-color:#C0D7F0"/>
+                        <stop  offset="1" style="stop-color:#E5F2FF"/>
+                    </linearGradient>
+                    <path id="awosViewBackground" class="leftNav12" d="M3.7,464.5h47.6c1.7,0,3-1.4,3-3V416c0-1.7-1.4-3-3-3H3.7c-1.7,0-3,1.4-3,3v45.4C0.7,463.2,2,464.5,3.7,464.5z"/>
+                    <polygon id="awosViewTriangle" class="leftNav4" points="56.1,430.4 56.1,447.2 65.2,438.6" style="display:none;"/>
+                    <text transform="matrix(1 0 0 1 4.4 461.3658)" class="leftNav2 leftNav3">AWOSVIEW</text>
+                    <image style="overflow:visible;" width="93" height="81" id="Ea4v71" xlink:href="awosview.png"  transform="matrix(0.3824 0 0 0.3824 9.7235 417.614)"></image>
+                </g>
+            </svg>
+            <!--
+            <select id="actions" onchange="performAction(this.value)">
+                <option value="efhk">EFHK</option>
+                <option value="efet">EFET - Enontekiö</option>
+                <option value="efha">EFHA - Halli</option>
+                <option value="efiv">EFIV - Ivalo</option>
+                <option value="efjo">EFJO - Joensuu</option>
+                <option value="efjy">EFJY - Jyväskylä</option>
+                <option value="efke">EFKE - Kemi</option>
+                <option value="efki">EFKI - Kajaani</option>
+                <option value="efkk">EFKK - Kokkola</option>
+                <option value="efks">EFKS - Kuusamo</option>
+                <option value="efkt">EFKT - Kittilä</option>
+                <option value="efku">EFKU - Kuopio</option>
+                <option value="eflp">EFLP - Lappeenranta</option>
+                <option value="efma">EFMA - Maarianhamina</option>
+                <option value="efmi">EFMI - Mikkeli</option>
+                <option value="efou">EFOU - Oulu</option>
+                <option value="efpo">EFPO - Pori</option>
+                <option value="efro">EFRO - Rovaniemi</option>
+                <option value="efsa">EFSA - Savonlinna</option>
+                <option value="efsi">EFSI - Seinäjoki</option>
+                <option value="eftp">EFTP - Tampere</option>
+                <option value="eftu">EFTU - Turku</option>
+                <option value="efut">EFUT - Utti</option>
+                <option value="efva">EFVA - Vaasa</option>
+            </select>
+            -->
+        </div>
+        <div class="container" id="container">
+            <svg style="user-select: none;" id="mainSvg" preserveAspectRatio="xMinYMin meet" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1106.47 787.76">
+                <!-- Runway background  -->
+                <rect id="rwy04L" x="221.5" y="128.52" transform="matrix(0.7637 0.6456 -0.6456 0.7637 277.0305 -85.853)" class="st0" width="68.58" height="413.93"/>
+                <rect id="rwy04R" x="534.53" y="128.52" transform="matrix(0.7637 0.6456 -0.6456 0.7637 351.0047 -287.9446)" class="st0" width="68.58" height="413.93"/>
+                <rect id="rwy15" x="630.2" y="127.48" transform="matrix(0.866 -0.5 0.5 0.866 -78.196 377.0538)" class="st0" width="68.58" height="413.93"/>
+                <use id="bringToFront04R22L" xlink:href="#rwy04R" style="display: none;"/>
+                <g id="windDisplays">
+                    <g id="windDisp22R">
+                        <rect x="184.12" y="5.03" class="st1" width="157.26" height="109.15"/>
+                        <path id="display22R" class="st2" d="M335.71,112.41h-145.9c-2.16,0-3.9-1.75-3.9-3.9V10.96c0-2.16,1.75-3.9,3.9-3.9h145.9c2.16,0,3.9,1.75,3.9,3.9v97.54C339.62,110.66,337.87,112.41,335.71,112.41z"/>
+                        <text id="22R_maxDir" transform="matrix(1 0 0 1 189.2582 32.16)" class="st3 st4 st5">//</text>
+                        <text id="22R_components" transform="matrix(1 0 0 1 190.6661 101.2776)" class="st3 st4 st5">//</text>
+                        <text id="22R_minSpd" transform="matrix(1 0 0 1 332 101.2777)" class="st3 st4 st5 st16">//</text>
+                        <text id="22R_maxSpd" transform="matrix(1 0 0 1 332 32.1601)" class="st3 st4 st5 st16">//</text>
+                        <text id="22R_windSpd" transform="matrix(1 0 0 1 332 69.2345)" class="st3 st4 st6 st16">//</text>
+                        <text id="22R_windDir" transform="matrix(1 0 0 1 190.666 69.2345)" class="st3 st4 st6">//</text>
+                        <text id="22R_number" transform="matrix(-0.7637 -0.6456 0.6456 -0.7637 404 204)" class="st7 st8 st9">22R</text>
+                    </g>
+                    <g id="windDisp15">
+                        <rect x="534.03" y="5.16" class="st1" width="157.26" height="109.15"/>
+                        <path id="display15" class="st2" d="M685.63,112.54h-145.9c-2.16,0-3.9-1.75-3.9-3.9V11.1c0-2.16,1.75-3.9,3.9-3.9h145.9c2.16,0,3.9,1.75,3.9,3.9v97.54C689.53,110.8,687.79,112.54,685.63,112.54z"/>
+                        <text id="15_maxDir" transform="matrix(1 0 0 1 539.1749 32.2923)" class="st3 st4 st5">//</text>
+                        <text id="15_components" transform="matrix(1 0 0 1 540.5828 101.41)" class="st3 st4 st5">//</text>
+                        <text id="15_minSpd" transform="matrix(1 0 0 1 682 101.41)" class="st3 st4 st5 st16">//</text>
+                        <text id="15_maxSpd" transform="matrix(1 0 0 1 682 32.2924)" class="st3 st4 st5 st16">//</text>
+                        <text id="15_windSpd" transform="matrix(1 0 0 1 682 69.3669)" class="st3 st4 st6 st16">//</text>
+                        <text id="15_windDir" transform="matrix(1 0 0 1 540.5827 69.3669)" class="st3 st4 st6">//</text>
+                        <text id="15_number" transform="matrix(-0.866 0.5 -0.5 -0.866 582 155)" class="st7 st8 st9">15</text>
+                    </g>
+                    <g id="windDisp22L">
+                        <rect x="865.62" y="114.31" class="st1" width="157.26" height="109.15"/>
+                        <path id="display22L" class="st2" d="M1017.22,221.69h-145.9c-2.16,0-3.9-1.75-3.9-3.9v-97.54c0-2.16,1.75-3.9,3.9-3.9h145.9c2.16,0,3.9,1.75,3.9,3.9v97.54C1021.12,219.94,1019.37,221.69,1017.22,221.69z"/>
+                        <text id="22L_maxDir" transform="matrix(1 0 0 1 870.7602 141.4394)" class="st3 st4 st5">//</text>
+                        <text id="22L_components" transform="matrix(1 0 0 1 872.1681 210.557)" class="st3 st4 st5">//</text>
+                        <text id="22L_minSpd" transform="matrix(1 0 0 1 1014 210.5571)" class="st3 st4 st5 st16">//</text>
+                        <text id="22L_maxSpd" transform="matrix(1 0 0 1 1014 141.4395)" class="st3 st4 st5 st16">//</text>
+                        <text id="22L_windSpd" transform="matrix(1 0 0 1 1014 178.5139)" class="st3 st4 st6 st16">//</text>
+                        <text id="22L_windDir" transform="matrix(1 0 0 1 872.168 178.5139)" class="st3 st4 st6">//</text>
+                        <text id="22L_number" transform="matrix(-0.7637 -0.6456 0.6456 -0.7637 717 202)" class="st7 st8 st9">22L</text>
+                    </g>
+                    <g id="windDisp33">
+                        <rect x="944.25" y="387.66" class="st1" width="157.26" height="109.15"/>
+                        <path id="display33" class="st2" d="M1095.85,495.04h-145.9c-2.16,0-3.9-1.75-3.9-3.9V393.6c0-2.16,1.75-3.9,3.9-3.9h145.9c2.16,0,3.9,1.75,3.9,3.9v97.54C1099.75,493.3,1098,495.04,1095.85,495.04z"/>
+                        <text id="33_maxDir" transform="matrix(1 0 0 1 949.3926 414.7924)" class="st3 st4 st5">//</text>
+                        <text id="33_components" transform="matrix(1 0 0 1 950.8004 483.91)" class="st3 st4 st5">//</text>
+                        <text id="33_minSpd" transform="matrix(1 0 0 1 1093 483.91)" class="st3 st4 st5 st16">//</text>
+                        <text id="33_maxSpd" transform="matrix(1 0 0 1 1093 414.7924)" class="st3 st4 st5 st16">//</text>
+                        <text id="33_windSpd" transform="matrix(1 0 0 1 1093 451.8669)" class="st3 st4 st6 st16">//</text>
+                        <text id="33_windDir" transform="matrix(1 0 0 1 950.8004 451.8669)" class="st3 st4 st6">//</text>
+                        <text id="33_number" transform="matrix(0.866 -0.5 0.5 0.866 747 515)" class="st7 st8 st9">33</text>
+                    </g>
+                    <g id="windDisp04R">
+                        <rect x="510.12" y="516.13" class="st1" width="157.26" height="109.15"/>
+                        <path id="display04R" class="st2" d="M661.71,623.51h-145.9c-2.16,0-3.9-1.75-3.9-3.9v-97.54c0-2.16,1.75-3.9,3.9-3.9h145.9c2.16,0,3.9,1.75,3.9,3.9v97.54C665.62,621.77,663.87,623.51,661.71,623.51z"/>
+                        <text id="04R_maxDir" transform="matrix(1 0 0 1 515.2562 543.2629)" class="st3 st4 st5">//</text>
+                        <text id="04R_components" transform="matrix(1 0 0 1 516.6641 612.3806)" class="st3 st4 st5">//</text>
+                        <text id="04R_minSpd" transform="matrix(1 0 0 1 660 612.3806)" class="st3 st4 st5 st16">//</text>
+                        <text id="04R_maxSpd" transform="matrix(1 0 0 1 660 543.263)" class="st3 st4 st5 st16">//</text>
+                        <text id="04R_windSpd" transform="matrix(1 0 0 1 660 580.3375)" class="st3 st4 st6 st16">//</text>
+                        <text id="04R_windDir" transform="matrix(1 0 0 1 516.6639 580.3375)" class="st3 st4 st6">//</text>
+                        <text id="04R_number" transform="matrix(0.7663 0.6425 -0.6425 0.7663 420 468.4684)" class="st7 st8 st9">04R</text>
+                    </g>
+                    <g id="windDisp04L">
+                        <rect x="184.12" y="516.13" class="st1" width="157.26" height="109.15"/>
+                        <path id="display04L" class="st2" d="M335.71,623.51h-145.9c-2.16,0-3.9-1.75-3.9-3.9v-97.54c0-2.16,1.75-3.9,3.9-3.9h145.9c2.16,0,3.9,1.75,3.9,3.9v97.54C339.62,621.77,337.87,623.51,335.71,623.51z"/>
+                        <text id="04L_maxDir" transform="matrix(1 0 0 1 189.2582 543.2629)" class="st3 st4 st5">//</text>
+                        <text id="04L_components" transform="matrix(1 0 0 1 190.6661 612.3806)" class="st3 st4 st5">//</text>
+                        <text id="04L_minSpd" transform="matrix(1 0 0 1 332 612.3806)" class="st3 st4 st5 st16">//</text>
+                        <text id="04L_maxSpd" transform="matrix(1 0 0 1 332 543.263)" class="st3 st4 st5 st16">//</text>
+                        <text id="04L_windSpd" transform="matrix(1 0 0 1 332 580.3375)" class="st3 st4 st6 st16">//</text>
+                        <text id="04L_windDir" transform="matrix(1 0 0 1 190.666 580.3375)" class="st3 st4 st6">//</text>
+                        <text id="04L_number" transform="matrix(0.7663 0.6425 -0.6425 0.7663 108 470.1752)" class="st7 st8 st9">04L</text>
+                    </g>
+                </g>
+                <g id="windArrows">
+                    <polygon id="arrow22R" class="st10" points="234.23,129.75 257.94,160.34 246.76,160.34 246.76,227.28 234.23,227.28 
+                        221.94,227.28 221.94,160.16 210.53,160.16"/>
+                    <polygon id="arrow15" style="display: none;" class="st10" points="471.35,63.65 495.06,94.24 483.88,94.24 483.88,161.18 471.35,161.18 459.06,161.18 
+                        459.06,94.06 447.65,94.06"/>
+                    <polygon id="arrow22L" class="st10" points="792.53,112.41 816.24,143 805.06,143 805.06,209.94 792.53,209.94 780.24,209.94 
+                        780.24,142.82 768.82,142.82"/>
+                    <polygon id="arrow33" class="st10" points="872.14,399.89 895.85,430.48 884.67,430.48 884.67,497.42 872.14,497.42 859.85,497.42 
+                        859.85,430.3 848.43,430.3"/>
+                    <polygon id="arrow04R" class="st10" points="433.24,539.62 456.94,570.21 445.76,570.21 445.76,637.15 433.24,637.15 
+                        420.94,637.15 420.94,570.04 409.53,570.04"/>
+                    <polygon id="arrow04L" class="st10" points="98.93,536.46 122.64,567.05 111.46,567.05 111.46,633.99 98.93,633.99 86.64,633.99 
+                        86.64,566.87 75.23,566.87"/>
+                </g>
+                <g id="infoWindow4" style="display: none;">
+                    <rect id="infoWindowBox4" x="4.59" y="654.35" class="st10" width="499.06" height="111.53"/>
+                    <text id="infoWindowText4" transform="matrix(1 0 0 1 219.3946 757.4055)" class="st11 st12 st13">
+                        <tspan id="infoWindow4_line2" x="4" y="-26" class="st12 st13"></tspan>
+                        <tspan id="infoWindow4_line1" x="0" y="0" class="st12 st13"></tspan>
+            
+                    </text>
+                </g>
+                <g id="fmiProblems" style="display: none;">
+                    <rect id="fmiProblemBox" x="4.59" y="654.35" class="st10" width="499.06" height="111.53"/>
+                    <text transform="matrix(1 0 0 1 14 680)" class="st11 st12 st13">
+                        WIND DATA U/S UFN DUE SOURCE PROBLEMS.
+                        <tspan class="st12 st13" x="0" dy="1.4em">USE METAR WIND</tspan>
+                    </text>
+                </g>
+                <g id="infoWindow3" style="display: none;">
+                    <rect id="infoWindowBox3" x="749.29" y="625.28" class="st10" width="343.52" height="111.53"/>
+                    <text id="infoWindowText3" transform="matrix(1 0 0 1 761.2416 649.9836)" class="st12 st13">
+                        <tspan id="infoWindow3_line1" class="st12 st13">...</tspan>
+                        <tspan id="infoWindow3_line2" class="st12 st13" x="0" dy="1.4em">...</tspan>
+                        <tspan id="infoWindow3_line3" class="st12 st13" x="0" dy="1.4em">...</tspan>
+                    </text>
+                </g>
+                <g id="infoWindow2" style="display: none;">
+                    <rect id="infoWindowBox2" x="749.3" y="7.9" class="st10" width="343.5" height="96.5"/>
+                    <text id="infoWindowText2" transform="matrix(1 0 0 1 761.2416 32.5886)">
+                        <tspan id="infoWindow2_line1" class="st12 st13">...</tspan>
+                        <tspan id="infoWindow2_line2" class="st12 st13" x="0" dy="1.4em">...</tspan>
+                        <tspan id="infoWindow2_line3" class="st12 st13" x="0" dy="1.4em">...</tspan>
+                    </text>
+                </g>
+                <g id="infoWindow1" style="display: none;">
+                    <rect id="infoWindowBox1" x="4.6" y="233" class="st10" width="202.2" height="96.5"/>
+                    <text id="infoWindowText1" transform="matrix(1 0 0 1 16.5416 257.748)" class="st12 st13">
+                        <tspan id="infoWindow1_line1" class="st12 st13">...</tspan>
+                        <tspan id="infoWindow1_line2" class="st12 st13" x="0" dy="1.4em">...</tspan>
+                        <tspan id="infoWindow1_line3" class="st12 st13" x="0" dy="1.4em">...</tspan>
+                    </text>
+                </g>
+                <g id="loadingIcon" style="display: block;">
+                    <text x="10" y="50">Loading data</text>
+                    <image href="src/ajax-loader.gif" x="120" y="35" alt="Loading" style="width: 20px;" />
+                </g>
+
+                <g id="RWYCC_windows" style="display: none;">
+                    <rect id="04L_RWYCC_3_box" x="355.1" y="286.2" class="rwyccBox3" width="64" height="26"/>
+                    <text id="04L_RWYCC_3" transform="matrix(1 0 0 1 366 307)" class="rwyccBox1 st4 rwyccBox2">//</text>
+                    <rect id="04L_RWYCC_2_box" x="293.1" y="357.7" class="rwyccBox3" width="64" height="26"/>
+                    <text id="04L_RWYCC_2" transform="matrix(1 0 0 1 304 378.3)" class="rwyccBox1 st4 rwyccBox2">//</text>
+                    <rect id="04L_RWYCC_1_box" x="229.3" y="433.4" class="rwyccBox3" width="64" height="26"/>
+                    <text id="04L_RWYCC_1" transform="matrix(1 0 0 1 240.2 454.0)" class="rwyccBox1 st4 rwyccBox2">//</text>
+
+                    <rect id="04R_RWYCC_3_box" x="580.5" y="376.1" class="rwyccBox3" width="64" height="26"/>
+                    <text id="04R_RWYCC_3" transform="matrix(1 0 0 1 591.3 396.7)" class="rwyccBox1 st4 rwyccBox2">//</text>
+                    <rect id="04R_RWYCC_2_box" x="545.3" y="417.7" class="rwyccBox3" width="64" height="26"/>
+                    <text id="04R_RWYCC_2" transform="matrix(1 0 0 1 556.2 438.3)" class="rwyccBox1 st4 rwyccBox2">//</text>
+                    <rect id="04R_RWYCC_1_box" x="508.9" y="460.5" class="rwyccBox3" width="64" height="26"/>
+                    <text id="04R_RWYCC_1" transform="matrix(1 0 0 1 519.8 481.1)" class="rwyccBox1 st4 rwyccBox2">//</text>
+
+                    <rect id="15_RWYCC_3_box" x="758.5" y="388.7" class="rwyccBox3" width="64" height="26"/>
+                    <text id="15_RWYCC_3" transform="matrix(1 0 0 1 769.4 409.3)" class="rwyccBox1 st4 rwyccBox2">//</text>
+                    <rect id="15_RWYCC_2_box" x="728.3" y="336.7" class="rwyccBox3" width="64" height="26"/>
+                    <text id="15_RWYCC_2" transform="matrix(1 0 0 1 739.1 357.4)" class="rwyccBox1 st4 rwyccBox2">//</text>
+                    <rect id="15_RWYCC_1_box" x="699" y="285.5" class="rwyccBox3" width="64" height="26"/>
+                    <text id="15_RWYCC_1" transform="matrix(1 0 0 1 709.9 306.1)" class="rwyccBox1 st4 rwyccBox2">//</text>
+                </g>
+                <g id="RCRIndicators" style="display:none">
+                    <!-- RWY 04L -->
+                    <image id="rcrIndicator1" href="" transform="matrix(1 0 0 1 396 291)" width="14"></image>
+                    <image id="rcrIndicator2" href="" transform="matrix(1 0 0 1 334 363)" width="14"></image>
+                    <image id="rcrIndicator3" href="" transform="matrix(1 0 0 1 270 438)" width="14"></image>
+                    <!-- RWY 04R -->
+                    <image id="rcrIndicator4" href="" transform="matrix(1 0 0 1 621.5 381)" width="14"></image>
+                    <image id="rcrIndicator5" href="" transform="matrix(1 0 0 1 586.5 423)" width="14"></image>
+                    <image id="rcrIndicator6" href="" transform="matrix(1 0 0 1 550 466)" width="14"></image>
+                    <!-- RWY 15 -->
+                    <image id="rcrIndicator7" href="" transform="matrix(1 0 0 1 800 394)" width="14"></image>
+                    <image id="rcrIndicator8" href="" transform="matrix(1 0 0 1 769.5 342)" width="14"></image>
+                    <image id="rcrIndicator9" href="" transform="matrix(1 0 0 1 740 291)" width="14"></image>
+                </g>
+
+                <g id="RVR_values_04L" style="display: none;">
+                    <text id="rvr_04L_1" transform="matrix(1 0 0 1 175.7031 409.7856)" x="17pt" text-anchor="middle" class="st8 st17">//</text>
+                    <text id="rvr_04L_2" transform="matrix(1 0 0 1 234.7299 342.573)" x="17pt" text-anchor="middle" class="st8 st17">//</text>
+                    <text id="rvr_04L_3" transform="matrix(1 0 0 1 290.2601 277.3279)" x="17pt" text-anchor="middle" class="st8 st17">//</text>
+                </g>
+                <g id="RVR_values_04R" style="display: none;">
+                    <text id="rvr_04R_1" transform="matrix(1 0 0 1 480.5155 420.3719)" x="17pt" text-anchor="middle" class="st8 st17">//</text>
+                    <text id="rvr_04R_2" transform="matrix(1 0 0 1 517.843 376.7004)" x="17pt" text-anchor="middle" class="st8 st17">//</text>
+                    <text id="rvr_04R_3" transform="matrix(1 0 0 1 557.4194 331.8281)" x="17pt" text-anchor="middle" class="st8 st17">//</text>
+                </g>
+                <g id="RVR_values_15" style="display: none;">
+                    <text id="rvr_15_3" transform="matrix(1 0 0 1 691.8097 424.4056)" x="17pt" text-anchor="middle" class="st8 st17">//</text>
+                    <text id="rvr_15_2" transform="matrix(1 0 0 1 666.2073 379.4292)" x="17pt" text-anchor="middle" class="st8 st17">//</text>
+                    <text id="rvr_15_1" transform="matrix(1 0 0 1 641.608 335.4032)" x="17pt" text-anchor="middle" class="st8 st17">//</text>
+                </g>
+
+                <g id="trianglesArrival">
+                    <polygon id="arr04L" class="st14" points="129.76,529.93 84.88,492.3 
+                        118.83,497.39"/>
+                    <polygon id="arr22R" class="st14" points="382.1,141.13 426.84,178.95 
+                        392.9,173.72"/>
+                    <polygon id="arr22L" class="st14" points="694.78,141.5 739.51,179.31 
+                        705.58,174.09"/>
+                    <polygon id="arr15" class="st14" points="524.72,150.49 575.45,121.2 
+                        559.04,151.36"/>
+                    <polygon id="arr33" class="st14" points="804.5,518.81 753.78,548.09 
+                        770.18,517.94"/>
+                    <polygon id="arr04R" class="st14" points="442.46,530.34 397.57,492.7 
+                        431.52,497.79"/>
+                </g>
+                <g id="trianglesDeparture">
+                    <polygon id="dep04R" class="st15" points="489.32,474.9 444.43,437.26 
+                        478.39,442.35"/>
+                    <polygon id="dep04L" class="st15" points="176.05,475.18 131.16,437.55 
+                        165.11,442.64"/>
+                    <polygon id="dep22R" class="st15" points="335.59,195.72 380.48,233.35 
+                        346.52,228.26"/>
+                    <polygon id="dep22L" class="st15" points="649.28,194.94 694.17,232.57 
+                        660.22,227.48"/>
+                    <polygon id="dep33" class="st15" points="767.7,455.07 716.98,484.36 
+                        733.38,454.2"/>
+                    <polygon id="dep15" class="st15" points="563.18,217.1 613.9,187.81 
+                        597.5,217.96"/>
+                </g>
+            </svg>
+            <div id="setupDiv" style="display: none; width: 100%; margin-left: 6px; font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;">
+                <h3 id="greeting"></h3>
+                <a class="logoutButton" href="/logout"><span style="font-size: 10pt;" class="material-symbols-outlined">logout</span> Logout</a>
+                
+                <div id="rwySelectionContainers" style="display: none;">
+                    <div id="setupContainer2">
+                        <h2>Local Runway Configuration</h2>
+                        <h3>04L<input class="checkbox" type="checkbox" id="checkboxDep04L" name="checkboxDep04L" onclick="dep04L();">DEP<input class="checkbox" type="checkbox" id="checkboxArr04L" name="checkboxArr04L" onclick="arr04L();">ARR</h3>
+                        <h3>04R<input class="checkbox" type="checkbox" id="checkboxDep04R" name="checkboxDep04R" onclick="dep04R()">DEP<input class="checkbox" type="checkbox" id="checkboxArr04R" name="checkboxArr04R" onclick="arr04R();">ARR</h3>
+                        <h3>15&nbsp;&nbsp;<input class="checkbox" type="checkbox" id="checkboxDep15" name="checkboxDep15" onclick="dep15();">DEP<input class="checkbox" type="checkbox" id="checkboxArr15" name="checkboxArr15" onclick="arr15();">ARR</h3>
+                        <h3>33&nbsp;&nbsp;<input class="checkbox" type="checkbox" id="checkboxDep33" name="checkboxDep33" onclick="dep33();">DEP<input class="checkbox" type="checkbox" id="checkboxArr33" name="checkboxArr33" onclick="arr33();">ARR</h3>
+                        <h3>22L<input class="checkbox" type="checkbox" id="checkboxDep22L" name="checkboxDep22L" onclick="dep22L();">DEP<input class="checkbox" type="checkbox" id="checkboxArr22L" name="checkboxArr22L" onclick="arr22L();">ARR</h3>
+                        <h3>22R<input class="checkbox" type="checkbox" id="checkboxDep22R" name="checkboxDep22R" onclick="dep22R();">DEP<input class="checkbox" type="checkbox" id="checkboxArr22R" name="checkboxArr22R" onclick="arr22R();">ARR</h3>
+                    </div>
+                </div>
+
+                <div id="setupContainer3" style="margin-top: 20px; max-width: 650px; margin-right: 10px;">
+                    <hr>
+                    <h2 style="font-weight: bold;">This app is for simulation purposes only!</h2>
+                    <ul>
+                        <li>This is an unofficial tool designed solely for use on the VATSIM network.</li>
+                        <li>This site is not affiliated, endorsed, or sponsored by any official AWOS service or entity.</li>
+                        <li>The information and design on this site are intended only for entertainment and simulation purposes and should not be relied upon for any real-world aviation activities.</li>
+                    </ul>
+                    <hr>
+                    <h2 style="font-weight: bold;">Registered ATS-units</h2>
+                    <table id="atsunitsTable" class="atsUnitsTable"></table>
+
+                </div>
+            </div>
+
+            <div id="metrepDiv" class="metRepDivContainer">
+                <div id="metrepButtonsContainer">
+                    <button id="metButton1" onclick="metNav1();" class="metButtons" style="margin-left: 10px; background-color: #D8E5F3;">MET EFHK</button>
+                    <button id="metButton2" onclick="metNav2();" class="metButtons">METARs</button>
+                    <button id="metButton3" onclick="metNav3();" class="metButtons">TAFs</button>
+                    <div id="loadingIconMETREP" style="display:inline-block;">
+                        <span style="font-size: 10pt; padding-left: 10pt;">Loading data </span>
+                        <img src="src/ajax-loader.gif" alt="Loading" style="width: 17px; vertical-align: middle;"/>
+                    </div>
+                </div>
+                <svg id="metrepSvg" preserveAspectRatio="xMinYMin meet" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    viewBox="0 0 1202 610" style="enable-background:new 0 0 1202 610;" xml:space="preserve">
+                    <g id="metField1">
+                        <path class="stt0" d="M790.4,40H20.6c-3.09,0-5.6-2.51-5.6-5.6V8.6C15,5.51,17.51,3,20.6,3H790.4c3.09,0,5.6,2.51,5.6,5.6V34.4
+                            C796,37.49,793.49,40,790.4,40z"/>
+                        <text transform="matrix(1 0 0 1 22.7329 26.4209)" class="stt1 stt2 stt3">HEADER</text>
+                        <rect x="104" y="6" class="stt4" width="689" height="31"/>
+                        <text id="metHeader" transform="matrix(1 0 0 1 106.7329 30.4209)" class="stt5 stt6">//</text>
+                    </g>
+                    <g id="metField2">
+                        <path class="stt0" d="M790.4,79H20.6c-3.09,0-5.6-2.51-5.6-5.6V47.6c0-3.09,2.51-5.6,5.6-5.6H790.4c3.09,0,5.6,2.51,5.6,5.6V73.4
+                            C796,76.49,793.49,79,790.4,79z"/>
+                        <text transform="matrix(1 0 0 1 22.7329 65.4209)" class="stt1 stt2 stt3">WIND</text>
+                        <rect x="104" y="45" class="stt4" width="689" height="31"/>
+                        <text id="metWind" transform="matrix(1 0 0 1 106.7329 69.4209)" class="stt5 stt6">//</text>
+                    </g>
+                    <g id="metField3">
+                        <path class="stt0" d="M790.4,118H20.6c-3.09,0-5.6-2.51-5.6-5.6V86.6c0-3.09,2.51-5.6,5.6-5.6H790.4c3.09,0,5.6,2.51,5.6,5.6v25.79
+                            C796,115.49,793.49,118,790.4,118z"/>
+                        <text transform="matrix(1 0 0 1 22.7329 104.4209)" class="stt1 stt2 stt3">VIS</text>
+                        <rect x="104" y="84" class="stt4" width="689" height="31"/>
+                        <text id="metVis" transform="matrix(1 0 0 1 106.7329 108.4209)" class="stt5 stt6">//</text>
+                    </g>
+                    <g id="metField4">
+                        <path class="stt0" d="M790.4,157H20.6c-3.09,0-5.6-2.51-5.6-5.6V125.6c0-3.09,2.51-5.6,5.6-5.6H790.4c3.09,0,5.6,2.51,5.6,5.6v25.79
+                            C796,154.49,793.49,157,790.4,157z"/>
+                        <text transform="matrix(1 0 0 1 22.7329 143.4209)" class="stt1 stt2 stt3">RVR</text>
+                        <rect x="104" y="123" class="stt4" width="689" height="31"/>
+                        <text id="metRvr" transform="matrix(1 0 0 1 106.7329 147.4209)" class="stt5 stt6">//</text>
+                    </g>
+                    <g id="metField5">
+                        <path class="stt0" d="M790.4,196H20.6c-3.09,0-5.6-2.51-5.6-5.6V164.6c0-3.09,2.51-5.6,5.6-5.6H790.4c3.09,0,5.6,2.51,5.6,5.6v25.79
+                            C796,193.49,793.49,196,790.4,196z"/>
+                        <text transform="matrix(1 0 0 1 22.7329 182.4209)" class="stt1 stt2 stt3">RVR2</text>
+                        <rect x="104" y="162" class="stt4" width="689" height="31"/>
+                        <text id="metRvr2" transform="matrix(1 0 0 1 106.7329 186.4209)" class="stt5 stt6">//</text>
+                    </g>
+                    <g id="metField6">
+                        <path class="stt0" d="M790.4,235H20.6c-3.09,0-5.6-2.51-5.6-5.6V203.6c0-3.09,2.51-5.6,5.6-5.6H790.4c3.09,0,5.6,2.51,5.6,5.6v25.79
+                            C796,232.49,793.49,235,790.4,235z"/>
+                        <text transform="matrix(1 0 0 1 22.7329 221.4209)" class="stt1 stt2 stt3">RVR3</text>
+                        <rect x="104" y="201" class="stt4" width="689" height="31"/>
+                        <text id="metRvr3" transform="matrix(1 0 0 1 106.7329 225.4209)" class="stt5 stt6">//</text>
+                    </g>
+                    <g id="metField7">
+                        <path class="stt0" d="M790.4,274H20.6c-3.09,0-5.6-2.51-5.6-5.6V242.6c0-3.09,2.51-5.6,5.6-5.6H790.4c3.09,0,5.6,2.51,5.6,5.6v25.79
+                            C796,271.49,793.49,274,790.4,274z"/>
+                        <text transform="matrix(1 0 0 1 22.7329 260.4209)" class="stt1 stt2 stt3">CLOUDS</text>
+                        <rect x="104" y="240" class="stt4" width="689" height="31"/>
+                        <text id="metClouds" transform="matrix(1 0 0 1 106.7329 264.4209)" class="stt5 stt6"></text>
+                    </g>
+                    <g id="metField8">
+                        <path class="stt0" d="M790.4,314H20.6c-3.09,0-5.6-2.51-5.6-5.6V282.6c0-3.09,2.51-5.6,5.6-5.6H790.4c3.09,0,5.6,2.51,5.6,5.6v25.79
+                            C796,311.49,793.49,314,790.4,314z"/>
+                        <text transform="matrix(1 0 0 1 22.7329 300.4209)" class="stt1 stt2 stt3">WX</text>
+                        <rect x="104" y="280" class="stt4" width="689" height="31"/>
+                        <text id="metWx" transform="matrix(1 0 0 1 106.7329 304.4209)" class="stt5 stt6"></text>
+                    </g>
+                    <g id="metField9">
+                        <path class="stt0" d="M349.4,354.03h-329c-3.09,0-5.6-2.51-5.6-5.6v-25.79c0-3.09,2.51-5.6,5.6-5.6h329c3.09,0,5.6,2.51,5.6,5.6
+                            v25.79C355,351.52,352.49,354.03,349.4,354.03z"/>
+                        <text transform="matrix(1 0 0 1 22.527 340.4503)" class="stt1 stt2 stt3">TA</text>
+                        <rect x="103.79" y="320.03" class="stt4" width="248.21" height="31"/>
+                        <text id="metTa" transform="matrix(1 0 0 1 106.527 344.4503)" class="stt5 stt6">//</text>
+                    </g>
+                    <g id="metField10">
+                        <path class="stt0" d="M790.03,354.03h-329c-3.09,0-5.6-2.51-5.6-5.6v-25.79c0-3.09,2.51-5.6,5.6-5.6h329c3.09,0,5.6,2.51,5.6,5.6
+                            v25.79C795.63,351.52,793.12,354.03,790.03,354.03z"/>
+                        <text transform="matrix(1 0 0 1 463.1594 340.4503)" class="stt1 stt2 stt3">TD</text>
+                        <rect x="544.43" y="320.03" class="stt4" width="248.21" height="31"/>
+                        <text id="metTd" transform="matrix(1 0 0 1 547.1594 344.4503)" class="stt5 stt6">//</text>
+                    </g>
+                    <g id="metField11">
+                        <path class="stt0" d="M349.73,394.03h-329c-3.09,0-5.6-2.51-5.6-5.6v-25.79c0-3.09,2.51-5.6,5.6-5.6h329c3.09,0,5.6,2.51,5.6,5.6
+                            v25.79C355.34,391.52,352.83,394.03,349.73,394.03z"/>
+                        <text transform="matrix(1 0 0 1 22.8652 380.4503)" class="stt1 stt2 stt3">QNH</text>
+                        <rect x="104.13" y="360.03" class="stt4" width="248.21" height="31"/>
+                        <text id="metQnh" transform="matrix(1 0 0 1 106.8653 384.4503)" class="stt5 stt6">//</text>
+                    </g>
+                    <g id="metField12">
+                        <path class="stt0" d="M790.09,394.21h-329c-3.09,0-5.6-2.51-5.6-5.6v-25.79c0-3.09,2.51-5.6,5.6-5.6h329c3.09,0,5.6,2.51,5.6,5.6
+                            v25.79C795.69,391.7,793.18,394.21,790.09,394.21z"/>
+                        <text transform="matrix(1 0 0 1 463.2182 380.6268)" class="stt1 stt2 stt3">QFE</text>
+                        <rect x="544.49" y="360.21" class="stt4" width="248.21" height="31"/>
+                        <text id="metQfe" transform="matrix(1 0 0 1 547.2183 384.6268)" class="stt5 stt6">//</text>
+                    </g>
+                    <g id="metField13">
+                        <path class="stt0" d="M790.4,434H20.6c-3.09,0-5.6-2.51-5.6-5.6V402.6c0-3.09,2.51-5.6,5.6-5.6H790.4c3.09,0,5.6,2.51,5.6,5.6v25.79
+                            C796,431.49,793.49,434,790.4,434z"/>
+                        <text transform="matrix(1 0 0 1 22.7329 420.4209)" class="stt1 stt2 stt3">TREND</text>
+                        <rect x="104" y="400" class="stt4" width="689" height="31"/>
+                        <text id="metTrend" transform="matrix(1 0 0 1 106.7329 424.4209)" class="stt5 stt6">--</text>
+                    </g>
+                    <g id="metField14">
+                        <path class="stt0" d="M1186.4,518H20.6c-3.09,0-5.6-2.51-5.6-5.6V442.6c0-3.09,2.51-5.6,5.6-5.6H1186.4c3.09,0,5.6,2.51,5.6,5.6
+                            v69.79C1192,515.49,1189.49,518,1186.4,518z"/>
+                        <text transform="matrix(1 0 0 1 22.7329 482.4209)" class="stt1 stt2 stt3">TAF</text>
+                        <rect x="104" y="440" class="stt4" width="1084" height="75"/>
+                        <text id="metTaf" transform="matrix(1 0 0 1 106.7329 456.4209)" class="stt5 stt3">
+                            <tspan id="metTaf1" class="sttt5 sttt6">TAF N/A</tspan>
+                            <tspan id="metTaf2" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                            <tspan id="metTaf3" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                        </text>
+                    </g>
+                    <g id="metField15">
+                        <path class="stt0" d="M1186.4,602H20.6c-3.09,0-5.6-2.51-5.6-5.6V526.6c0-3.09,2.51-5.6,5.6-5.6H1186.4c3.09,0,5.6,2.51,5.6,5.6
+                            v69.79C1192,599.49,1189.49,602,1186.4,602z"/>
+                        <text transform="matrix(1 0 0 1 22.7329 566.4209)" class="stt1 stt2 stt7">WARNINGS</text>
+                        <rect x="104" y="524" class="stt4" width="1084" height="75"/>
+                        <text transform="matrix(1 0 0 1 106.7329 540.4209)" class="stt5 stt3">
+                            <tspan id="metWarnings" class="stt5 stt3">//</tspan>
+                            <tspan id="metWarnings2" x="0" dy="1.4em" class="stt5 stt3"></tspan>
+                        </text>
+                    </g>
+                    <g id="currentField">
+                        <g id="irrelevantFields">
+                            <rect x="902.5" y="16.079" class="stt8" width="260" height="27"/>
+                            <rect x="902.5" y="52.92" class="stt8" width="260" height="27"/>
+                            <rect x="902.5" y="302.5" class="stt8" width="260" height="27"/>
+                            <rect x="904.5" y="111.5" class="stt8" width="123" height="27"/>
+                            <rect x="904.5" y="153.5" class="stt8" width="123" height="27"/>
+                            <rect x="904.5" y="195.5" class="stt8" width="123" height="27"/>
+                            <rect x="1039.5" y="111.5" class="stt8" width="123" height="27"/>
+                            <rect x="1039.5" y="153.5" class="stt8" width="123" height="27"/>
+                            <rect x="1039.5" y="195.5" class="stt8" width="123" height="27"/>
+                            <rect x="904.5" y="253.5" class="stt8" width="118" height="27"/>
+                            <rect x="1044.5" y="253.5" class="stt8" width="118" height="27"/>
+                            <rect x="904.5" y="391.5" class="stt8" width="118" height="27"/>
+                            <rect x="1044.5" y="391.5" class="stt8" width="118" height="27"/>
+                            <text transform="matrix(1 0 0 1 865.2759 35)" class="stt5 stt7">VIS</text> <!--53.4209  18.4209-->
+                            <text transform="matrix(1 0 0 1 865.2759 71.8)" class="stt5 stt7">WX</text>
+                            <text transform="matrix(1 0 0 1 844.1997 173.4209)" class="stt5 stt7">CLOUD</text>
+                            <text transform="matrix(1 0 0 1 857.4067 271.4209)" class="stt5 stt7">T/DP</text>
+                            <text transform="matrix(1 0 0 1 1002.8501 265.4209)" class="stt5 stt7">°C</text>
+                            <text transform="matrix(1 0 0 1 1142.8501 265.4209)" class="stt5 stt7">°C</text>
+                            <text transform="matrix(1 0 0 1 1135.6958 314.4209)" class="stt5 stt7">hPa</text>
+                            <text transform="matrix(1 0 0 1 1135.6958 403.4209)" class="stt5 stt7">hPa</text>
+                            <text transform="matrix(1 0 0 1 995.6958 403.4209)" class="stt5 stt7">hPa</text>
+                            <text transform="matrix(1 0 0 1 859.2935 320.4209)" class="stt5 stt7">QNH</text>
+                            <text transform="matrix(1 0 0 1 862.8032 392.4209)" class="stt5 stt7">QFE</text>
+                            <text transform="matrix(1 0 0 1 926.7915 372.4209)" class="stt5 stt3">RWY 04R</text>
+                            <text transform="matrix(1 0 0 1 1029.1001 271.4209)" class="stt5 stt3">/</text>
+                            <text transform="matrix(1 0 0 1 1066.7915 372.4209)" class="stt5 stt3">RWY 22L</text>
+                            <path class="stt9" d="M1171.07,96.5H821.93c-2.45,0-4.43-1.99-4.43-4.43V4.43c0-2.45,1.99-4.43,4.43-4.43h349.13
+                                c2.45,0,4.43,1.99,4.43,4.43v87.63C1175.5,94.51,1173.51,96.5,1171.07,96.5z"/>
+                            <path class="stt9" d="M1171.07,242.5H821.93c-2.45,0-4.43-1.99-4.43-4.43V100.93c0-2.45,1.99-4.43,4.43-4.43h349.13
+                                c2.45,0,4.43,1.99,4.43,4.43v137.13C1175.5,240.51,1173.51,242.5,1171.07,242.5z"/>
+                            <path class="stt9" d="M1171.07,291.5H821.93c-2.45,0-4.43-1.99-4.43-4.43v-40.13c0-2.45,1.99-4.43,4.43-4.43h349.13
+                                c2.45,0,4.43,1.99,4.43,4.43v40.13C1175.5,289.51,1173.51,291.5,1171.07,291.5z"/>
+                            <path class="stt9" d="M1171.07,340.5H821.93c-2.45,0-4.43-1.99-4.43-4.43v-40.13c0-2.45,1.99-4.43,4.43-4.43h349.13
+                                c2.45,0,4.43,1.99,4.43,4.43v40.13C1175.5,338.51,1173.51,340.5,1171.07,340.5z"/>
+                            <path class="stt9" d="M1171.07,434.5H821.93c-2.45,0-4.43-1.99-4.43-4.43v-85.13c0-2.45,1.99-4.43,4.43-4.43h349.13
+                                c2.45,0,4.43,1.99,4.43,4.43v85.13C1175.5,432.51,1173.51,434.5,1171.07,434.5z"/>
+                            <line class="stt9" x1="891.35" y1="0" x2="891.35" y2="434.5"/>
+                        </g>
+                        <g id="inputFields">
+                            <text id="metCurrentVis" transform="matrix(1 0 0 1 1034 37.4792)" text-anchor="middle" class="stt5 stt10">//</text>
+                            <text id="metCurrentWx" transform="matrix(1 0 0 1 1034 73.321)" text-anchor="middle" class="stt5 stt10">//</text>
+                            <text id="metCurrentQnh" transform="matrix(1 0 0 1 1034 323.9001)" text-anchor="middle" class="stt5 stt10" style="fill: #007492;">//</text>
+                            <text id="metCurrentQfe04R" transform="matrix(1 0 0 1 916.0676 412.9001)" class="stt5 stt10" style="fill: #007492;">//</text>
+                            <text id="metCurrentQfe22L" transform="matrix(1 0 0 1 1056.0676 412.9001)" class="stt5 stt10" style="fill: #007492;">//</text>
+                            <text id="metCurrentCloud_id1" transform="matrix(1 0 0 1 946.512 216.9001)" class="stt5 stt10"></text>
+                            <text id="metCurrentTemp" transform="matrix(1 0 0 1 927.7825 273.9001)" class="stt5 stt10">//</text>
+                            <text id="metCurrentDewpoint" transform="matrix(1 0 0 1 1073.1399 273.9001)" class="stt5 stt10">//</text>
+                            <text id="metCurrentCloud_id2" transform="matrix(1 0 0 1 946.512 174.9001)" class="stt5 stt10"></text>
+                            <text id="metCurrentCloud_id3" transform="matrix(1 0 0 1 946.512 132.9001)" class="stt5 stt10"></text>
+                            <text id="metCurrentCloud_alt3" transform="matrix(1 0 0 1 1082.4202 132.9001)" class="stt5 stt10"></text>
+                            <text id="metCurrentCloud_alt2" transform="matrix(1 0 0 1 1082.4202 174.9001)" class="stt5 stt10"></text>
+                            <text id="metCurrentCloud_alt1" transform="matrix(1 0 0 1 1082.4202 216.9001)" class="stt5 stt10"></text>
+                        </g>
+                    </g>
+                    
+                </svg>
+                <svg id="metarsSvg" preserveAspectRatio="xMinYMin meet" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    viewBox="0 0 1195.09 623.35" style="enable-background:new 0 0 1195.09 623.35; display: none;" xml:space="preserve">
+                    <g id="metEFTU">
+                        <path class="sttt0" d="M1178.31,103.18H17.36c-3.08,0-5.58-3-5.58-6.68V13.18c0-3.69,2.5-6.68,5.58-6.68h1160.95
+                            c3.08,0,5.58,3,5.58,6.68v83.31C1183.88,100.19,1181.39,103.18,1178.31,103.18z"/>
+                        <text transform="matrix(1 0 0 1 19.5121 60.2217)" class="sttt1 sttt2 sttt3">EFTU</text>
+                        <rect x="82.93" y="9.88" class="sttt4" width="1097.69" height="89.91"/>
+                        <text id="metarEFTU" transform="matrix(1 0 0 1 84.4429 40.9979)" class="sttt5 sttt6">
+                            <tspan id="metarEFTU1" class="sttt5 sttt6">//</tspan>
+                            <tspan id="metarEFTU2" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                        </text>
+                    </g>
+                    <g id="metEFTP">
+                        <path class="sttt0" d="M1178.31,205.21H17.36c-3.08,0-5.58-3-5.58-6.68v-83.32c0-3.69,2.5-6.68,5.58-6.68h1160.95
+                            c3.08,0,5.58,3,5.58,6.68v83.31C1183.88,202.22,1181.39,205.21,1178.31,205.21z"/>
+                        <text transform="matrix(1 0 0 1 19.5121 162.2504)" class="sttt1 sttt2 sttt3">EFTP</text>
+                        <rect x="82.93" y="111.91" class="sttt4" width="1097.69" height="89.91"/>
+                        <text id="metarEFTP" transform="matrix(1 0 0 1 84.4429 143.0267)" class="sttt5 sttt6">
+                            <tspan id="metarEFTP1" class="sttt5 sttt6">//</tspan>
+                            <tspan id="metarEFTP2" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                        </text>
+                    </g>
+                    <g id="metEETN">
+                        <path class="sttt0" d="M1178.31,307.07H17.36c-3.08,0-5.58-3-5.58-6.68v-83.32c0-3.69,2.5-6.68,5.58-6.68h1160.95
+                            c3.08,0,5.58,3,5.58,6.68v83.31C1183.88,304.07,1181.39,307.07,1178.31,307.07z"/>
+                        <text transform="matrix(1 0 0 1 19.5121 264.1086)" class="sttt1 sttt2 sttt3">EETN</text>
+                        <rect x="82.93" y="213.77" class="sttt4" width="1097.69" height="89.91"/>
+                        <text id="metarEETN" transform="matrix(1 0 0 1 84.4429 244.8848)" class="sttt5 sttt6">
+                            <tspan id="metarEETN1" class="sttt5 sttt6">//</tspan>
+                            <tspan id="metarEETN2" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                        </text>
+                    </g>
+                    <g id="metEFJY">
+                        <path class="sttt0" d="M1178.31,408.47H17.36c-3.08,0-5.58-3-5.58-6.68v-83.32c0-3.69,2.5-6.68,5.58-6.68h1160.95
+                            c3.08,0,5.58,3,5.58,6.68v83.31C1183.88,405.47,1181.39,408.47,1178.31,408.47z"/>
+                        <text transform="matrix(1 0 0 1 19.5121 365.5044)" class="sttt1 sttt2 sttt3">EFJY</text>
+                        <rect x="82.93" y="315.16" class="sttt4" width="1097.69" height="89.91"/>
+                        <text id="metarEFJY" transform="matrix(1 0 0 1 84.4429 346.2806)" class="sttt5 sttt6">
+                            <tspan id="metarEFJY1" class="sttt5 sttt6">//</tspan>
+                            <tspan id="metarEFJY2" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                        </text>
+                    </g>
+                    <g id="metESSA">
+                        <path class="sttt0" d="M1178.31,509.93H17.36c-3.08,0-5.58-3-5.58-6.68v-83.32c0-3.69,2.5-6.68,5.58-6.68h1160.95
+                            c3.08,0,5.58,3,5.58,6.68v83.31C1183.88,506.93,1181.39,509.93,1178.31,509.93z"/>
+                        <text transform="matrix(1 0 0 1 19.5121 466.97)" class="sttt1 sttt2 sttt3">ESSA</text>
+                        <rect x="82.93" y="416.63" class="sttt4" width="1097.69" height="89.91"/>
+                        <text id="metarESSA" transform="matrix(1 0 0 1 84.4429 447.7462)" class="sttt5 sttt6">
+                            <tspan id="metarESSA1" class="sttt5 sttt6">//</tspan>
+                            <tspan id="metarESSA2" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                        </text>
+                    </g>
+                    <g id="metULLI">
+                        <path class="sttt0" d="M1178.31,612.58H17.36c-3.08,0-5.58-3-5.58-6.68v-83.32c0-3.69,2.5-6.68,5.58-6.68h1160.95
+                            c3.08,0,5.58,3,5.58,6.68v83.31C1183.88,609.59,1181.39,612.58,1178.31,612.58z"/>
+                        <text transform="matrix(1 0 0 1 19.5121 569.6235)" class="sttt1 sttt2 sttt3">ULLI</text>
+                        <rect x="82.93" y="519.28" class="sttt4" width="1097.69" height="89.91"/>
+                        <text id="metarULLI" transform="matrix(1 0 0 1 84.4429 550.3997)" class="sttt5 sttt6">
+                            <tspan id="metarULLI1" class="sttt5 sttt6">//</tspan>
+                            <tspan id="metarULLI2" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                        </text>
+                    </g>
+                </svg>
+
+                <svg id="tafsSvg" preserveAspectRatio="xMinYMin meet" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    viewBox="0 0 1195.09 623.35" style="enable-background:new 0 0 1195.09 623.35; display: none;" xml:space="preserve">
+                    <style type="text/css">
+                        .fst0{fill:#009ac7;}
+                        .fst1{fill:#3F3F3F;}
+                        .fst2{font-family:'Verdana'; font-weight: bold;}
+                        .fst3{font-size:16px;}
+                        .fst4{fill:#FFFFFF;}
+                        .fst5{font-family:'Verdana';}
+                        .fst6{font-size:17px;}
+                    </style>
+                    <g id="tafsEFTU">
+                        <path class="fst0" d="M1178.31,103.18H17.36c-3.08,0-5.58-3-5.58-6.68V13.18c0-3.69,2.5-6.68,5.58-6.68h1160.95
+                            c3.08,0,5.58,3,5.58,6.68v83.31C1183.88,100.19,1181.39,103.18,1178.31,103.18z"/>
+                        <text transform="matrix(1 0 0 1 19.5121 60.2217)" class="fst1 fst2 fst3">EFTU</text>
+                        <rect x="82.93" y="9.88" class="fst4" width="1097.69" height="89.91"/>
+                        <text id="tafEFTU" transform="matrix(1 0 0 1 84.4429 26.1484)" class="fst5 fst6">
+                            <tspan id="metTaf1_eftu" class="sttt5 sttt6">//</tspan>
+                            <tspan id="metTaf2_eftu" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                            <tspan id="metTaf3_eftu" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                        </text>
+                    </g>
+                    <g id="tafsEFTP">
+                        <path class="fst0" d="M1178.31,205.21H17.36c-3.08,0-5.58-3-5.58-6.68v-83.32c0-3.69,2.5-6.68,5.58-6.68h1160.95
+                            c3.08,0,5.58,3,5.58,6.68v83.31C1183.88,202.22,1181.39,205.21,1178.31,205.21z"/>
+                        <text transform="matrix(1 0 0 1 19.5121 162.2504)" class="fst1 fst2 fst3">EFTP</text>
+                        <rect x="82.93" y="111.91" class="fst4" width="1097.69" height="89.91"/>
+                         <text id="tafEFTP" transform="matrix(1 0 0 1 84.4429 128.1771)" class="fst5 fst6">
+                            <tspan id="metTaf1_eftp" class="sttt5 sttt6">//</tspan>
+                            <tspan id="metTaf2_eftp" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                            <tspan id="metTaf3_eftp" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                         </text>
+                    </g>
+                    <g id="tafsEETN">
+                        <path class="fst0" d="M1178.31,307.07H17.36c-3.08,0-5.58-3-5.58-6.68v-83.32c0-3.69,2.5-6.68,5.58-6.68h1160.95
+                            c3.08,0,5.58,3,5.58,6.68v83.31C1183.88,304.07,1181.39,307.07,1178.31,307.07z"/>
+                        <text transform="matrix(1 0 0 1 19.5121 264.1086)" class="fst1 fst2 fst3">EETN</text>
+                        <rect x="82.93" y="213.77" class="fst4" width="1097.69" height="89.91"/>
+                        <text id="tafEETN" transform="matrix(1 0 0 1 84.4429 230.0353)" class="fst5 fst6">
+                            <tspan id="metTaf1_eetn" class="sttt5 sttt6">//</tspan>
+                            <tspan id="metTaf2_eetn" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                            <tspan id="metTaf3_eetn" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                        </text>
+                    </g>
+                    <g id="tafsEFJY">
+                        <path class="fst0" d="M1178.31,408.47H17.36c-3.08,0-5.58-3-5.58-6.68v-83.32c0-3.69,2.5-6.68,5.58-6.68h1160.95
+                            c3.08,0,5.58,3,5.58,6.68v83.31C1183.88,405.47,1181.39,408.47,1178.31,408.47z"/>
+                        <text transform="matrix(1 0 0 1 19.5121 365.5044)" class="fst1 fst2 fst3">EFJY</text>
+                        <rect x="82.93" y="315.16" class="fst4" width="1097.69" height="89.91"/>
+                         <text id="tafEFJY" transform="matrix(1 0 0 1 84.4429 331.4311)" class="fst5 fst6">
+                            <tspan id="metTaf1_efjy" class="sttt5 sttt6">//</tspan>
+                            <tspan id="metTaf2_efjy" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                            <tspan id="metTaf3_efjy" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                         </text>
+                    </g>
+                    <g id="tafsESSA">
+                        <path class="fst0" d="M1178.31,509.93H17.36c-3.08,0-5.58-3-5.58-6.68v-83.32c0-3.69,2.5-6.68,5.58-6.68h1160.95
+                            c3.08,0,5.58,3,5.58,6.68v83.31C1183.88,506.93,1181.39,509.93,1178.31,509.93z"/>
+                        <text transform="matrix(1 0 0 1 19.5121 466.97)" class="fst1 fst2 fst3">ESSA</text>
+                        <rect x="82.93" y="416.63" class="fst4" width="1097.69" height="89.91"/>
+                        <text id="tafESSA" transform="matrix(1 0 0 1 84.4429 432.8967)" class="fst5 fst6">
+                            <tspan id="metTaf1_essa" class="sttt5 sttt6">//</tspan>
+                            <tspan id="metTaf2_essa" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                            <tspan id="metTaf3_essa" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                        </text>
+                    </g>
+                    <g id="tafsULLI">
+                        <path class="fst0" d="M1178.31,612.58H17.36c-3.08,0-5.58-3-5.58-6.68v-83.32c0-3.69,2.5-6.68,5.58-6.68h1160.95
+                            c3.08,0,5.58,3,5.58,6.68v83.31C1183.88,609.59,1181.39,612.58,1178.31,612.58z"/>
+                        <text transform="matrix(1 0 0 1 19.5121 569.6235)" class="fst1 fst2 fst3">ULLI</text>
+                        <rect x="82.93" y="519.28" class="fst4" width="1097.69" height="89.91"/>
+                        <text id="tafULLI" transform="matrix(1 0 0 1 84.4429 535.5502)" class="fst5 fst6">
+                            <tspan id="metTaf1_ulli" class="sttt5 sttt6">//</tspan>
+                            <tspan id="metTaf2_ulli" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                            <tspan id="metTaf3_ulli" class="sttt5 sttt6" x="0" dy="1.4em"></tspan>
+                        </text>
+                    </g>
+                </svg>
+            </div>
+            <div id="snowtamDiv" style="display: none; margin-left: 12px; margin-bottom: 10%;">
+                <div id="metrepButtonsContainer">
+                    <button id="snowtamButton1" onclick="snowtamNav1();" class="metButtons" style="background-color: #D8E5F3;">SNOWTAM</button>
+                    <button id="snowtamButton2" onclick="snowtamNav2();" class="metButtons">TAXIWAYS</button>
+                    <button id="snowtamButton3" onclick="snowtamNav3();" class="metButtons">APRONS</button>
+                </div>
+                <div id="snowtam">
+                    <div id="snowtamContainer1" class="snowtamContainer">
+                        <h2 style="padding: 5pt; font-size: 2vw; margin-top: 0; margin-bottom: 0; padding-bottom: 0;">EFHK REPORT ID</h2>
+                        <h3 id="snowtamId" style="margin-top: 4px;">//</h3>
+                    </div>
+                    <div id="snowtamContainer2" class="snowtamContainer">
+                        <h2 style="padding: 5pt; font-size: 2vw; margin-top: 0; margin-bottom: 0;">SNOWTAM #LOCAL</h2>
+                        <h3 id="snowtamTitle" style="margin-top: 4px; margin-bottom: 0;">GG EFHKSUMM<br><span id="snowtamTime1">//</span> EFHKZTZX<br>SWEF0000 EFHK <span id="snowtamTime2">//</span></h3>
+                        <p style="padding-left: 5pt; padding-bottom: 10px; margin-top: 0;" id="snowtamLine1">SNOWTAM NIL</p>
+                    </div>
+                    <div id="snowtamContainer3" class="snowtamContainer">
+                        <h2 style="padding: 5pt; font-size: 2vw; margin-top: 0; margin-bottom: 0;">AIRPORT COMMENTS</h2>
+                        <h3 id="commentSnowtam" style="margin-top: 4px;">COMMENT SNOWTAM:<br></h3>
+                    </div>
+                </div>
+                <div id="taxiways" style="display: none; margin-right: 12px;">
+                    <div id="taxiwaysContainer1" class="snowtamContainer" style="margin-right: 0;">
+                        <h2 style="padding: 5pt; font-size: 2vw; margin-top: 0; margin-bottom: 0;">TAXIWAYS</h2>
+                    </div>
+                    <table>
+                        <tr>
+                            <th class="snowtamTwyLeft">
+                                <b class="snowtamTwyTitle">TWY Y OUTDATED</b> <br>
+                            </th>
+                            <th class="snowtamTwyRight">
+                            </th>
+                            <th class="snowtamTwyLeft">
+                                <b class="snowtamTwyTitle">TWY Z OUTDATED</b> <br>
+                            </th>
+                            <th class="snowtamTwyRight">
+                            </th>
+                            <th class="snowtamTwyLeft">
+                                <b class="snowtamTwyTitle">TWY S OUTDATED</b> <br>
+                            </th>
+                            <th class="snowtamTwyRight">
+                            </th>
+                        </tr>
+                        <tr>
+                            <th class="snowtamTwyLeft">
+                                <b class="snowtamTwyTitle">TWY D OUTDATED</b> <br>
+                            </th>
+                            <th class="snowtamTwyRight">
+                            </th>
+                            <th class="snowtamTwyLeft">
+                                <b class="snowtamTwyTitle">TWY G OUTDATED</b> <br>
+                            </th>
+                            <th class="snowtamTwyRight">
+                            </th>
+                            <th class="snowtamTwyLeft">
+                                <b class="snowtamTwyTitle">TWY W OUTDATED</b> <br>
+                            </th>
+                            <th class="snowtamTwyRight">
+                            </th>
+                        </tr>
+                    </table>
+                </div>
+                <div id="aprons" style="display: none; margin-right: 12px;">
+                    <div id="apronsContainer1" class="snowtamContainer" style="margin-right: 0;">
+                        <h2 style="padding: 5pt; font-size: 2vw; margin-top: 0; margin-bottom: 0;">APRONS</h2>
+                    </div>
+                    <table>
+                        <tr>
+                            <th class="snowtamTwyLeft">
+                                <b class="snowtamTwyTitle">APN 1N/1W OUTDATED</b> <br>
+                            </th>
+                            <th class="snowtamTwyRight">
+                                
+                            </th>
+                            <th class="snowtamTwyLeft">
+                                <b class="snowtamTwyTitle">APN 1E OUTDATED</b> <br>
+                            </th>
+                            <th class="snowtamTwyRight">
+                                
+                            </th>
+                            <th class="snowtamTwyLeft">
+                                <b class="snowtamTwyTitle">APN 1S OUTDATED</b> <br>
+                            </th>
+                            <th class="snowtamTwyRight">
+                                
+                            </th>
+                        </tr>
+                        <tr>
+                            <th class="snowtamTwyLeft">
+                                <b class="snowtamTwyTitle">APN 2 OUTDATED</b> <br>
+                            </th>
+                            <th class="snowtamTwyRight">
+                                
+                            </th>
+                            <th class="snowtamTwyLeft">
+                                <b class="snowtamTwyTitle">APN 3 OUTDATED</b> <br>
+                            </th>
+                            <th class="snowtamTwyRight">
+                                
+                            </th>
+                            <th class="snowtamTwyLeft">
+                                <b class="snowtamTwyTitle">APN 4 OUTDATED</b> <br>
+                            </th>
+                            <th class="snowtamTwyRight">
+                                
+                            </th>
+                        </tr>
+                        <tr>
+                            <th class="snowtamTwyLeft">
+                                <b class="snowtamTwyTitle">APN 6 OUTDATED</b> <br>
+                            </th>
+                            <th class="snowtamTwyRight">
+                            </th>
+                            <th class="snowtamTwyLeft">
+                                <b class="snowtamTwyTitle">APN 8 OUTDATED</b> <br>
+                            </th>
+                            <th class="snowtamTwyRight">
+                            </th>
+                            <th class="snowtamTwyLeft">
+                                <b class="snowtamTwyTitle">APN 9 OUTDATED</b> <br>
+                            </th>
+                            <th class="snowtamTwyRight">
+                            </th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div id="rwyccDiv">
+                <svg id="rwyccSvg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    viewBox="0 0 1120 768" style="enable-background:new 0 0 1120 768;" xml:space="preserve" preserveAspectRatio="xMinYMin meet">
+                    <pattern  y="768" width="72" height="72" patternUnits="userSpaceOnUse" id="_x31_0_lpi_20_x25_" viewBox="72.2 -72 72 72" style="overflow:visible;">
+                        <g>
+                            <rect x="72.2" y="-72" class="rwycc0" width="72" height="72"/>
+                            <g>
+                                <line class="rwycc1" x1="144" y1="-3.6" x2="216.5" y2="-3.6"/>
+                                <line class="rwycc1" x1="144" y1="-18" x2="216.5" y2="-18"/>
+                                <line class="rwycc1" x1="144" y1="-32.4" x2="216.5" y2="-32.4"/>
+                                <line class="rwycc1" x1="144" y1="-46.8" x2="216.5" y2="-46.8"/>
+                                <line class="rwycc1" x1="144" y1="-61.2" x2="216.5" y2="-61.2"/>
+                                <line class="rwycc1" x1="144" y1="-10.8" x2="216.5" y2="-10.8"/>
+                                <line class="rwycc1" x1="144" y1="-25.2" x2="216.5" y2="-25.2"/>
+                                <line class="rwycc1" x1="144" y1="-39.6" x2="216.5" y2="-39.6"/>
+                                <line class="rwycc1" x1="144" y1="-54" x2="216.5" y2="-54"/>
+                                <line class="rwycc1" x1="144" y1="-68.4" x2="216.5" y2="-68.4"/>
+                            </g>
+                            <g>
+                                <line class="rwycc1" x1="72" y1="-3.6" x2="144.5" y2="-3.6"/>
+                                <line class="rwycc1" x1="72" y1="-18" x2="144.5" y2="-18"/>
+                                <line class="rwycc1" x1="72" y1="-32.4" x2="144.5" y2="-32.4"/>
+                                <line class="rwycc1" x1="72" y1="-46.8" x2="144.5" y2="-46.8"/>
+                                <line class="rwycc1" x1="72" y1="-61.2" x2="144.5" y2="-61.2"/>
+                                <line class="rwycc1" x1="72" y1="-10.8" x2="144.5" y2="-10.8"/>
+                                <line class="rwycc1" x1="72" y1="-25.2" x2="144.5" y2="-25.2"/>
+                                <line class="rwycc1" x1="72" y1="-39.6" x2="144.5" y2="-39.6"/>
+                                <line class="rwycc1" x1="72" y1="-54" x2="144.5" y2="-54"/>
+                                <line class="rwycc1" x1="72" y1="-68.4" x2="144.5" y2="-68.4"/>
+                            </g>
+                            <g>
+                                <line class="rwycc1" x1="0" y1="-3.6" x2="72.5" y2="-3.6"/>
+                                <line class="rwycc1" x1="0" y1="-18" x2="72.5" y2="-18"/>
+                                <line class="rwycc1" x1="0" y1="-32.4" x2="72.5" y2="-32.4"/>
+                                <line class="rwycc1" x1="0" y1="-46.8" x2="72.5" y2="-46.8"/>
+                                <line class="rwycc1" x1="0" y1="-61.2" x2="72.5" y2="-61.2"/>
+                                <line class="rwycc1" x1="0" y1="-10.8" x2="72.5" y2="-10.8"/>
+                                <line class="rwycc1" x1="0" y1="-25.2" x2="72.5" y2="-25.2"/>
+                                <line class="rwycc1" x1="0" y1="-39.6" x2="72.5" y2="-39.6"/>
+                                <line class="rwycc1" x1="0" y1="-54" x2="72.5" y2="-54"/>
+                                <line class="rwycc1" x1="0" y1="-68.4" x2="72.5" y2="-68.4"/>
+                            </g>
+                        </g>
+                    </pattern>
+                    <g id="RWYPart1">
+                        <g id="staticElements">
+                            <rect x="59.1" y="11.1" width="348.5" height="148.6"/>
+                            <line class="rwycc3" x1="233.7" y1="11.1" x2="233.7" y2="19.1"/>
+                            <line class="rwycc4" x1="233.7" y1="33.9" x2="233.7" y2="144.4"/>
+                            <line class="rwycc3" x1="233.7" y1="151.8" x2="233.7" y2="159.8"/>
+                            <pattern id="pattern1" style="display: none;" xlink:href="#_x31_0_lpi_20_x25_" patternTransform="matrix(0.7071 -0.7071 0.7071 0.7071 3983.1824 -7743.5845)"></pattern>
+                            <rect id="togglePattern1" x="84.5" y="11.1" style="fill:url(#pattern1);" width="297.4" height="148.6"/>
+                            <rect id="snowBackground1" style="display: none;" x="84.5" y="11.1" class="rwycc6" width="63.7" height="148.6"/>
+		                    <rect id="snowBackground2" style="display: none;" x="318.2" y="11.1" class="rwycc6" width="63.7" height="148.6"/>
+                            <rect x="13.7" y="185" class="rwycc6" width="37.1" height="40.8"/>
+                            <rect x="413.6" y="185" class="rwycc6" width="39.1" height="40.8"/>
+                            <text id="part" transform="matrix(1 0 0 1 24.8268 213.1482)" class="rwycc7 rwycc8 rwycc9">C</text>
+                            <rect x="13.7" y="11.1" class="rwycc10" width="439.1" height="148.6"/>
+                            <polyline class="rwycc10" points="13.7,159.8 13.7,225.8 452.8,225.8 452.8,159.8"/>
+                            <line class="rwycc10" x1="13.7" y1="185" x2="452.8" y2="185"/>
+                            <line class="rwycc10" x1="50.8" y1="185" x2="50.8" y2="225.8"/>
+                            <line class="rwycc10" x1="159.5" y1="185" x2="159.5" y2="225.8"/>
+                            <line class="rwycc10" x1="268.7" y1="185" x2="268.7" y2="225.8"/>
+                            <line class="rwycc10" x1="377.2" y1="185" x2="377.2" y2="225.8"/>
+                            <line class="rwycc10" x1="413.6" y1="185" x2="413.6" y2="225.8"/>
+                            <circle class="rwycc11" cx="72.2" cy="22.7" r="5.1"/>
+                            <circle class="rwycc11" cx="72.2" cy="43.6" r="5.1"/>
+                            <circle class="rwycc11" cx="72.2" cy="64.5" r="5.1"/>
+                            <circle class="rwycc11" cx="72.2" cy="85.5" r="5.1"/>
+                            <circle class="rwycc11" cx="72.2" cy="106.4" r="5.1"/>
+                            <circle class="rwycc11" cx="72.2" cy="127.3" r="5.1"/>
+                            <circle class="rwycc11" cx="72.2" cy="148.2" r="5.1"/>
+                            <circle class="rwycc11" cx="395.1" cy="22.7" r="5.1"/>
+                            <circle class="rwycc11" cx="395.1" cy="43.6" r="5.1"/>
+                            <circle class="rwycc11" cx="395.1" cy="64.5" r="5.1"/>
+                            <circle class="rwycc11" cx="395.1" cy="85.5" r="5.1"/>
+                            <circle class="rwycc11" cx="395.1" cy="106.4" r="5.1"/>
+                            <circle class="rwycc11" cx="395.1" cy="127.3" r="5.1"/>
+                            <circle class="rwycc11" cx="395.1" cy="148.2" r="5.1"/>
+                            <rect x="92" y="107.7" class="rwycc12" width="43.2" height="43.2"/>
+                            <rect x="331.7" y="107.7" class="rwycc12" width="43.2" height="43.2"/>
+                            <rect x="198.7" y="71.7" class="rwycc12" width="70" height="28"/>
+                        </g>
+                        <g id="inputFields">
+                            <path id="contaminantWet1" style="display: none;" d="M350.5,111.5c0,0,1.2,12.7-4,20.2c-5.2,7.5-0.6,16.2,5.1,15.3c5.7-0.8,13.7-8.8,9.6-21.4S350.5,111.5,350.5,111.5z"/>
+                            <image id="contaminantDry1" style="display: none;" xlink:href="src/sunIcon.png" x="336.7" y="113" width="34" height="34"/>
+                            <image id="contaminantSnow1" style="display: none;" xlink:href="src/snowIcon.png" x="336.7" y="113" width="34" height="34"/>
+                            <image style="display: none;" width="406" height="169" id="contaminantFrost1" xlink:href="src/frost.png"  transform="matrix(9.300095e-02 0 0 9.300095e-02 334.4208 124.5414)"></image>
+
+                            <text id="coverage_1" transform="matrix(1 0 0 1 233 94.3508)" text-anchor="middle" class="rwycc8 rwycc9">///</text>
+                            <text id="rwyccValue_1" transform="matrix(1 0 0 1 385.0748 219.4207)" class="rwycc8 rwycc13">//</text>
+                            <text id="coveragePercent1" transform="matrix(1 0 0 1 114 127.28)" text-anchor="middle"><tspan x="0" y="0" class="rwycc8 rwycc14">///</tspan><tspan x="0" y="15" class="rwycc8 rwycc14"></tspan></text>
+                            <text id="lfc_1" transform="matrix(1 0 0 1 77.3143 213.0525)" class="rwycc8 rwycc15">LFC</text>
+                            <text id="ldg_1" transform="matrix(1 0 0 1 180.8851 213.0525)" class="rwycc8 rwycc15">LDG </text>
+                            <text id="rcam_1" transform="matrix(1 0 0 1 284.2377 213.2442)" class="rwycc8 rwycc15">RCAM </text>
+                            <text id="contaminantText1" transform="matrix(1 0 0 1 232 177.9196)" text-anchor="middle" class="rwycc8 rwycc16">///</text>
+                        </g>
+                    </g>
+                    <g id="RWYPart2">
+                        <rect x="59.5" y="234.2" width="348.5" height="148.6"/>
+                        <line class="rwycc3" x1="234.2" y1="234.2" x2="234.2" y2="242.2"/>
+                        <line class="rwycc4" x1="234.2" y1="256.9" x2="234.2" y2="367.5"/>
+                        <line class="rwycc3" x1="234.2" y1="374.8" x2="234.2" y2="382.8"/>
+                        <pattern id="pattern2" style="display: none;" xlink:href="#_x31_0_lpi_20_x25_" patternTransform="matrix(0.7071 -0.7071 0.7071 0.7071 4034.5581 -7673.2603)"></pattern>
+                        <rect id="togglePattern2" x="85" y="234.2" style="fill:url(#pattern2);" width="297.4" height="148.6"/>
+                        <rect id="snowBackground3" style="display: none;" x="84.5" y="234.5" class="rwycc6" width="63.7" height="148.6"/>
+	                    <rect id="snowBackground4" style="display: none;" x="319.6" y="234.5" class="rwycc6" width="63.7" height="148.6"/>
+                        <rect x="14.6" y="408.1" class="rwycc6" width="37.1" height="40.8"/>
+                        <rect x="414.1" y="408.1" class="rwycc6" width="39.1" height="40.8"/>
+                        <text transform="matrix(1 0 0 1 25.2908 436.2073)" class="rwycc7 rwycc8 rwycc9">B</text>
+                        <rect x="14.2" y="234.2" class="rwycc10" width="439.1" height="148.6"/>
+                        <polyline class="rwycc10" points="14.2,382.8 14.2,448.8 453.2,448.8 453.2,382.8"/>
+                        <line class="rwycc10" x1="14.2" y1="408.1" x2="453.2" y2="408.1"/>
+                        <line class="rwycc10" x1="51.3" y1="408.1" x2="51.3" y2="448.8"/>
+                        <line class="rwycc10" x1="160" y1="408.1" x2="160" y2="448.8"/>
+                        <line class="rwycc10" x1="269.2" y1="408.1" x2="269.2" y2="448.8"/>
+                        <line class="rwycc10" x1="377.6" y1="408.1" x2="377.6" y2="448.8"/>
+                        <line class="rwycc10" x1="414.1" y1="408.1" x2="414.1" y2="448.8"/>
+                        <circle class="rwycc11" cx="72.7" cy="245.8" r="5.1"/>
+                        <circle class="rwycc11" cx="72.7" cy="266.7" r="5.1"/>
+                        <circle class="rwycc11" cx="72.7" cy="287.6" r="5.1"/>
+                        <circle class="rwycc11" cx="72.7" cy="308.5" r="5.1"/>
+                        <circle class="rwycc11" cx="72.7" cy="329.4" r="5.1"/>
+                        <circle class="rwycc11" cx="72.7" cy="350.3" r="5.1"/>
+                        <circle class="rwycc11" cx="72.7" cy="371.3" r="5.1"/>
+                        <circle class="rwycc11" cx="395.5" cy="245.8" r="5.1"/>
+                        <circle class="rwycc11" cx="395.5" cy="266.7" r="5.1"/>
+                        <circle class="rwycc11" cx="395.5" cy="287.6" r="5.1"/>
+                        <circle class="rwycc11" cx="395.5" cy="308.5" r="5.1"/>
+                        <circle class="rwycc11" cx="395.5" cy="329.4" r="5.1"/>
+                        <circle class="rwycc11" cx="395.5" cy="350.3" r="5.1"/>
+                        <circle class="rwycc11" cx="395.5" cy="371.3" r="5.1"/>
+                        <rect x="92.4" y="330.8" class="rwycc12" width="43.2" height="43.2"/>
+                        <rect x="332.2" y="330.8" class="rwycc12" width="43.2" height="43.2"/>
+                        <rect x="199.2" y="294.8" class="rwycc12" width="70" height="28"/>
+
+                        <path id="contaminantWet2" style="display: none;" d="M351,334.6c0,0,1.2,12.7-4,20.2c-5.2,7.5-0.6,16.2,5.1,15.3s13.7-8.8,9.6-21.4C357.5,336.2,351,334.6,351,334.6z"/>
+                        <image id="contaminantDry2" style="display: none;" xlink:href="src/sunIcon.png" x="336.8" y="336" width="34" height="34"/>
+                        <image id="contaminantSnow2" style="display: none;" xlink:href="src/snowIcon.png" x="336.8" y="336" width="34" height="34"/>
+                        <image style="display: none;" width="406" height="169" id="contaminantFrost2" xlink:href="src/frost.png"  transform="matrix(9.300095e-02 0 0 9.300095e-02 334.8985 347.5414)"></image>
+
+                        <text id="coverage_2" transform="matrix(1 0 0 1 233 317.4099)" text-anchor="middle" class="rwycc8 rwycc9">///</text>
+                        <text id="rwyccValue_2" transform="matrix(1 0 0 1 385.5388 442.4799)" class="rwycc8 rwycc13">//</text>
+                        <text id="coveragePercent2" transform="matrix(1 0 0 1 114 350.3391)" text-anchor="middle"><tspan x="0" y="0" class="rwycc8 rwycc14">///</tspan><tspan x="0" y="15" class="rwycc8 rwycc14"></tspan></text>
+                        <text id="lfc_2" transform="matrix(1 0 0 1 77.7783 436.1116)" class="rwycc8 rwycc15">LFC</text>
+                        <text id="ldg_2" transform="matrix(1 0 0 1 181.3491 436.1116)" class="rwycc8 rwycc15">LDG </text>
+                        <text id="rcam_2" transform="matrix(1 0 0 1 284.7017 436.3033)" class="rwycc8 rwycc15">RCAM </text>
+                        <text id="contaminantText2" transform="matrix(1 0 0 1 232 400.9787)" text-anchor="middle" class="rwycc8 rwycc16">///</text>
+                    </g>
+                    <g id="RWYPart3">
+                        <rect x="60" y="454.8" width="348.5" height="148.6"/>
+                        <line class="rwycc3" x1="234.6" y1="454.8" x2="234.6" y2="462.8"/>
+                        <line class="rwycc4" x1="234.6" y1="477.5" x2="234.6" y2="588.1"/>
+                        <line class="rwycc3" x1="234.6" y1="595.4" x2="234.6" y2="603.4"/>
+                        <pattern id="pattern3" style="display: none;" xlink:href="#_x31_0_lpi_20_x25_" patternTransform="matrix(0.7071 -0.7071 0.7071 0.7071 3984.1104 -7707.2153)"></pattern>
+                        <rect id="togglePattern3" x="85.4" y="454.8" style="fill:url(#pattern3);" width="297.4" height="148.6"/>
+                        <rect id="snowBackground6" style="display: none;" x="84.7" y="454.8" class="rwycc6" width="63.7" height="148.6"/>
+	                    <rect id="snowBackground5" style="display: none;" x="319.8" y="454.8" class="rwycc6" width="63.7" height="148.6"/>
+                        <rect x="414.6" y="628.7" class="rwycc6" width="39.1" height="40.8"/>
+                        <rect x="14.6" y="628.7" class="rwycc6" width="37.1" height="40.8"/>
+                        <text transform="matrix(1 0 0 1 25.7548 656.8107)" class="rwycc7 rwycc8 rwycc9">A</text>
+                        <rect x="14.6" y="454.8" class="rwycc10" width="439.1" height="148.6"/>
+                        <polyline class="rwycc10" points="14.6,603.4 14.6,669.4 453.7,669.4 453.7,603.4"/>
+                        <line class="rwycc10" x1="14.6" y1="628.7" x2="453.7" y2="628.7"/>
+                        <line class="rwycc10" x1="51.8" y1="628.7" x2="51.8" y2="669.4"/>
+                        <line class="rwycc10" x1="160.5" y1="628.7" x2="160.5" y2="669.4"/>
+                        <line class="rwycc10" x1="269.6" y1="628.7" x2="269.6" y2="669.4"/>
+                        <line class="rwycc10" x1="378.1" y1="628.7" x2="378.1" y2="669.4"/>
+                        <line class="rwycc10" x1="414.6" y1="628.7" x2="414.6" y2="669.4"/>
+                        <circle class="rwycc11" cx="73.2" cy="466.4" r="5.1"/>
+                        <circle class="rwycc11" cx="73.2" cy="487.3" r="5.1"/>
+                        <circle class="rwycc11" cx="73.2" cy="508.2" r="5.1"/>
+                        <circle class="rwycc11" cx="73.2" cy="529.1" r="5.1"/>
+                        <circle class="rwycc11" cx="73.2" cy="550" r="5.1"/>
+                        <circle class="rwycc11" cx="73.2" cy="570.9" r="5.1"/>
+                        <circle class="rwycc11" cx="73.2" cy="591.9" r="5.1"/>
+                        <circle class="rwycc11" cx="396" cy="466.4" r="5.1"/>
+                        <circle class="rwycc11" cx="396" cy="487.3" r="5.1"/>
+                        <circle class="rwycc11" cx="396" cy="508.2" r="5.1"/>
+                        <circle class="rwycc11" cx="396" cy="529.1" r="5.1"/>
+                        <circle class="rwycc11" cx="396" cy="550" r="5.1"/>
+                        <circle class="rwycc11" cx="396" cy="570.9" r="5.1"/>
+                        <circle class="rwycc11" cx="396" cy="591.9" r="5.1"/>
+                        <rect x="92.9" y="551.4" class="rwycc12" width="43.2" height="43.2"/>
+                        <rect x="332.6" y="551.4" class="rwycc12" width="43.2" height="43.2"/>
+                        <rect x="199.6" y="515.4" class="rwycc12" width="70" height="28"/>
+
+                        <path id="contaminantWet3" style="display: none;" d="M351.5,555.2c0,0,1.2,12.7-4,20.2c-5.2,7.5-0.6,16.2,5.1,15.3c5.7-0.8,13.7-8.8,9.6-21.4S351.5,555.2,351.5,555.2z"/>
+                        <image id="contaminantDry3" style="display: none;" xlink:href="src/sunIcon.png" x="337" y="557" width="34" height="34"/>
+                        <image id="contaminantSnow3" style="display: none;" xlink:href="src/snowIcon.png" x="337" y="557" width="34" height="34"/>
+                        <image style="display: none;" width="406" height="169" id="contaminantFrost3" xlink:href="src/frost.png"  transform="matrix(9.300095e-02 0 0 9.300095e-02 335.3208 568.1414)"></image>
+
+                        <text id="coverage_3" transform="matrix(1 0 0 1 233 538.0132)" text-anchor="middle" class="rwycc8 rwycc9">///</text>
+                        <text id="rwyccValue_3" transform="matrix(1 0 0 1 386.0028 663.0831)" class="rwycc8 rwycc13">//</text>
+                        <text id="coveragePercent3" transform="matrix(1 0 0 1 114 570.9424)" text-anchor="middle"><tspan x="0" y="0" class="rwycc8 rwycc14">///</tspan><tspan x="0" y="15" class="rwycc8 rwycc14">mmNR</tspan></text>
+                        <text id="lfc_3" transform="matrix(1 0 0 1 78.2423 656.7149)" class="rwycc8 rwycc15">LFC</text>
+                        <text id="ldg_3" transform="matrix(1 0 0 1 181.8131 656.7149)" class="rwycc8 rwycc15">LDG </text>
+                        <text id="rcam_3" transform="matrix(1 0 0 1 285.1657 656.9066)" class="rwycc8 rwycc15">RCAM </text>
+                        <text id="contaminantText3" transform="matrix(1 0 0 1 232 621.582)" text-anchor="middle" class="rwycc8 rwycc16">///</text>
+                    </g>
+                    <g id="AssesmentPart">
+                        <g id="static">
+                            <text id="text" transform="matrix(1 0 0 1 831.0249 39.96)" class="rwycc8 rwycc19">TAKEOFF SIGNIF.CONT</text>
+                            <text transform="matrix(1 0 0 1 525.4333 85.21)" class="rwycc8 rwycc20">VALID</text>
+                            <text transform="matrix(1 0 0 1 698.4628 178.394)" class="rwycc8 rwycc20">NIL</text>
+                            <text transform="matrix(1 0 0 1 871.9885 178.394)" class="rwycc8 rwycc20">NIL</text>
+                            <text transform="matrix(1 0 0 1 990.4108 178.394)" class="rwycc8 rwycc20">NIL</text>
+                            <text transform="matrix(1 0 0 1 698.4628 292.041)" class="rwycc8 rwycc20">NIL</text>
+                            <text transform="matrix(1 0 0 1 871.9885 292.041)" class="rwycc8 rwycc20">NIL</text>
+                            <text transform="matrix(1 0 0 1 990.4108 292.041)" class="rwycc8 rwycc20">NIL</text>
+                            <text transform="matrix(1 0 0 1 698.4628 404.4181)" class="rwycc8 rwycc20">NIL</text>
+                            <text transform="matrix(1 0 0 1 871.9885 404.4181)" class="rwycc8 rwycc20">NIL</text>
+                            <text transform="matrix(1 0 0 1 990.4108 404.4181)" class="rwycc8 rwycc20">NIL</text>
+                            <text transform="matrix(1 0 0 1 533.3274 144.3939)"><tspan x="0" y="0" class="rwycc8 rwycc20">REP. RWYCC:</tspan><tspan x="3.1" y="17" class="rwycc8 rwycc20">RCAM CONT:</tspan><tspan x="23.8" y="34" class="rwycc8 rwycc20">CONT #2:</tspan><tspan x="23.8" y="51" class="rwycc8 rwycc20">CONT #1:</tspan></text>
+                            <text transform="matrix(1 0 0 1 533.3274 258.0409)"><tspan x="0" y="0" class="rwycc8 rwycc20">REP. RWYCC:</tspan><tspan x="3.1" y="17" class="rwycc8 rwycc20">RCAM CONT:</tspan><tspan x="23.8" y="34" class="rwycc8 rwycc20">CONT #2:</tspan><tspan x="23.8" y="51" class="rwycc8 rwycc20">CONT #1:</tspan></text>
+                            <text transform="matrix(1 0 0 1 533.3274 370.2751)"><tspan x="0" y="0" class="rwycc8 rwycc20">REP. RWYCC:</tspan><tspan x="3.1" y="17" class="rwycc8 rwycc20">RCAM CONT:</tspan><tspan x="23.8" y="34" class="rwycc8 rwycc20">CONT #2:</tspan><tspan x="23.8" y="51" class="rwycc8 rwycc20">CONT #1:</tspan></text>
+                            <text transform="matrix(1 0 0 1 526.5918 483.8418)"><tspan x="0" y="0" class="rwycc8 rwycc20">REDUCED WIDTH (M):</tspan><tspan x="0" y="15.5" class="rwycc8 rwycc20">REDUCED LENGTH LDA - A/C (M):</tspan><tspan x="0" y="31" class="rwycc8 rwycc20">SNOWBANK DISTANCES L/R (M):</tspan><tspan x="0" y="46.5" class="rwycc8 rwycc20">SNOWBANK HEIGHTS L/R (CM):</tspan><tspan x="0" y="62" class="rwycc8 rwycc20">DRIFTING SNOW:</tspan><tspan x="0" y="77.5" class="rwycc8 rwycc20">LOOSE SAND:</tspan><tspan x="0" y="93" class="rwycc8 rwycc20">CHEMICALLY TREATED:</tspan><tspan x="0" y="108.5" class="rwycc8 rwycc20">ADJ. SNOWBANKS:</tspan><tspan x="0" y="124" class="rwycc8 rwycc20">OBSCURED LIGHTS:</tspan><tspan x="0" y="139.5" class="rwycc8 rwycc20">COMMENT SNOWTAM:</tspan><tspan x="0" y="155" class="rwycc8 rwycc20">COMMENT ATIS:</tspan><tspan id="rcrCommentTorni" x="0" y="170.5" class="rwycc8 rwycc20">COMMENT 'TORNI':</tspan></text>
+                            <text transform="matrix(1 0 0 1 525.4333 69.889)" class="rwycc8 rwycc20">REPORTED</text>
+                            <text transform="matrix(1 0 0 1 525.4333 55.2024)" class="rwycc8 rwycc20">ASSESSED</text>
+                            <text transform="matrix(1 0 0 1 519.0059 127.2797)" class="rwycc8 rwycc19">THIRD C</text>
+                            <text transform="matrix(1 0 0 1 519.0059 239.1128)" class="rwycc8 rwycc19">THIRD B</text>
+                            <text transform="matrix(1 0 0 1 519.0059 352.6887)" class="rwycc8 rwycc19">THIRD A</text>
+                            <rect x="512.8" y="11.1" class="rwycc21" width="292.1" height="82.9"/>
+                            <rect x="818.7" y="11.1" class="rwycc21" width="292.1" height="82.9"/>
+                            <rect x="512.8" y="101.7" class="rwycc21" width="598" height="104.9"/>
+                            <rect x="512.8" y="214.2" class="rwycc21" width="598" height="104.9"/>
+                            <rect x="512.8" y="326.8" class="rwycc21" width="598" height="104.9"/>
+                            <rect x="512.8" y="439.4" class="rwycc21" width="598" height="222.3"/>
+
+                            <!-- Downgraded report -->
+                            <g id="downgradedReport" style="display: none;">
+                                <text id="downgradedText3" transform="matrix(1 0 0 1 698.0779 144.3939)" class="rwycc24 rwycc8 rwycc20">DOWNGRADED</text>
+                                <text id="downgradedText2" transform="matrix(1 0 0 1 698.0779 258.1726)" class="rwycc24 rwycc8 rwycc20">DOWNGRADED</text>
+                                <text id="downgradedText1" transform="matrix(1 0 0 1 698.0779 370.407)" class="rwycc24 rwycc8 rwycc20">DOWNGRADED</text>
+                                <polygon id="downgraded3" class="rwycc24" points="433.1,217.9 417.9,193.5 448.3,193.5"/>
+                                <polygon id="downgraded2" class="rwycc24" points="433.1,440.7 417.9,416.3 448.3,416.3"/>
+                                <polygon id="downgraded1" class="rwycc24" points="433.1,661.3 417.9,636.9 448.3,636.9"/>
+                            </g>
+
+                        </g>
+                        <text id="bottomRows" transform="matrix(1 0 0 1 946.7553 483.8418)">
+                            <tspan id="reducedRunwayWidth" text-anchor="end" x="0" y="0" class="rwycc8 rwycc20">NIL</tspan>
+                            <tspan text-anchor="end" x="0" y="15.5" class="rwycc8 rwycc20">NIL - NIL / NIL</tspan>
+                            <tspan id="snowbanksDistanceText" text-anchor="end" x="0" y="31" class="rwycc8 rwycc20">NIL / NIL</tspan>
+                            <tspan id="snowbanksHeightText" text-anchor="end" x="0" y="46.5" class="rwycc8 rwycc20">NIL / NIL</tspan>
+                            <tspan id="driftingSnow" text-anchor="end" x="0" y="62" class="rwycc8 rwycc20"></tspan>
+                            <tspan text-anchor="end" x="0" y="77.5" class="rwycc8 rwycc20">NO</tspan>
+                            <tspan id="chemicallyTreated" text-anchor="end" x="0" y="93" class="rwycc8 rwycc20"></tspan>
+                            <tspan text-anchor="end" x="0" y="108.5" class="rwycc8 rwycc20">NO</tspan>
+                            <tspan text-anchor="end" x="-5" y="124" class="rwycc8 rwycc20">NO</tspan>
+                        </text>                            
+                        <text id="rwycc1" transform="matrix(1 0 0 1 870.993 144.3939)" class="rwycc8 rwycc20">RWYCC # ///</text>
+                        <text id="contaminantTypeSimple2" transform="matrix(1 0 0 1 698.0779 161.3939)" class="rwycc8 rwycc20">///</text>
+                        <text id="contaminantType2" transform="matrix(1 0 0 1 698.0779 195.3939)" class="rwycc8 rwycc20">///</text>
+                        <text id="depth2" transform="matrix(1 0 0 1 871.6036 161.3939)" class="rwycc8 rwycc20">///</text>
+                        <text id="depth2_1" transform="matrix(1 0 0 1 871.6036 195.3939)" class="rwycc8 rwycc20">///</text>
+                        <text id="coverage2" transform="matrix(1 0 0 1 990.0258 161.3939)" class="rwycc8 rwycc20">///</text>
+                        <text id="coverage2_1" transform="matrix(1 0 0 1 990.0258 195.3939)" class="rwycc8 rwycc20">///</text>
+                        <text id="contaminantTypeSimple3" transform="matrix(1 0 0 1 698.0779 275.0409)" class="rwycc8 rwycc20">///</text>
+                        <text id="contaminantType3" transform="matrix(1 0 0 1 698.0779 309.0409)" class="rwycc8 rwycc20">///</text>
+                        <text id="depth3" transform="matrix(1 0 0 1 871.6036 275.0409)" class="rwycc8 rwycc20">///</text>
+                        <text id="depth3_1" transform="matrix(1 0 0 1 871.6036 309.0409)" class="rwycc8 rwycc20">///</text>
+                        <text id="coverage3" transform="matrix(1 0 0 1 990.0258 275.0409)" class="rwycc8 rwycc20">///</text>
+                        <text id="coverage3_1" transform="matrix(1 0 0 1 990.0258 309.0409)" class="rwycc8 rwycc20">///</text>
+                        <text id="contaminantTypeSimple1" transform="matrix(1 0 0 1 698.0779 387.418)" class="rwycc8 rwycc20">///</text>
+                        <text id="contaminantType1" transform="matrix(1 0 0 1 698.0779 421.418)" class="rwycc8 rwycc20">///</text>
+                        <text id="depth1" transform="matrix(1 0 0 1 871.6036 387.418)" class="rwycc8 rwycc20">///</text>
+                        <text id="depth1_1" transform="matrix(1 0 0 1 871.6036 421.418)" class="rwycc8 rwycc20">///</text>
+                        <text id="coverage1" transform="matrix(1 0 0 1 990.0258 387.418)" class="rwycc8 rwycc20">///</text>
+                        <text id="coverage1_1" transform="matrix(1 0 0 1 990.0258 421.418)" class="rwycc8 rwycc20">///</text>
+                        <text id="rwycc2" transform="matrix(1 0 0 1 870.993 258.0407)" class="rwycc8 rwycc20">RWYCC # ///</text>
+                        <text id="rwycc3" transform="matrix(1 0 0 1 870.993 370.4071)" class="rwycc8 rwycc20">RWYCC # ///</text>
+                        <text id="assesmentTime" transform="matrix(1 0 0 1 617.3337 55.2024)" class="rwycc8 rwycc20">NIL</text>
+                        <text id="reportedTime" transform="matrix(1 0 0 1 617.3337 70.0211)" class="rwycc8 rwycc20">NIL</text>
+                        <text transform="matrix(1 0 0 1 617.3337 85.21)" class="rwycc8 rwycc20">NIL</text>
+                        <text id="to_signif_cont" transform="matrix(1 0 0 1 831.5309 57.7966)" class="rwycc8 rwycc14">/// RWYCC ///</text>
+                        <text id="rwyNumber2" transform="matrix(1 0 0 1 519.0059 465.6039)" class="rwycc8 rwycc19">RUNWAY ///</text>
+                        <text id="rwyNumber" transform="matrix(1 0 0 1 519.0059 36.6357)" class="rwycc8 rwycc19">EFHK ///</text>
+                    </g>
+                    <g id="RunwayWidthPart">
+                        <rect x="56.5" y="718.1" width="354.5" height="40"/>
+                        <text id="rwyNumber3" transform="matrix(1 0 0 1 234 707.8934)" text-anchor="middle" class="rwycc8 rwycc22">///</text>
+                        <text id="rwyWidth" transform="matrix(1 0 0 1 232 743.7399)" text-anchor="middle" class="rwycc6 rwycc8 rwycc15">///</text>
+
+                        <path id="snowBanksBackground2" style="display: none;" class="rwycc6" d="M139.4,680.5H65.5c-5,0-9,4-9,9v28.5h91.9v-28.5C148.4,684.6,144.4,680.5,139.4,680.5z"/>
+                        <path id="snowBanksBackground1" style="display: none;" class="rwycc6" d="M402,680.5h-73.8c-5,0-9,4-9,9v28.5H411v-28.5C411,684.6,407,680.5,402,680.5z"/>                        
+                        <text id="snbanks_left1" transform="matrix(1 0 0 1 129.093 743.7399)" class="rwycc6 rwycc8 rwycc15"></text>
+                        <text id="snbanks_right1" transform="matrix(1 0 0 1 298.9664 743.7399)" class="rwycc6 rwycc8 rwycc15"></text>
+                        <text id="snbanksHeight1" style="display: none;" text-anchor="middle" transform="matrix(1 0 0 1 106 697.252)" class="rwycc23">
+                            <tspan id="snbanksHeightText1" x="0" y="0" class="rwycc8 rwycc16"></tspan>
+                            <tspan x="-6.2" y="14" class="rwycc8 rwycc16">cm</tspan>
+                        </text>
+                        <text id="snbanksHeight2" style="display: none;" text-anchor="middle" transform="matrix(1 0 0 1 368 697.252)" class="rwycc23">
+                            <tspan id="snbanksHeightText2" x="0" y="0" class="rwycc8 rwycc16"></tspan>
+                            <tspan x="-6.2" y="14" class="rwycc8 rwycc16">cm</tspan>
+                        </text>
+                    </g>
+                    <g id="runwayClosedSymbols" style="display: none;">
+                        <polygon id="closed1" class="rwycc6" points="277.3,53.3 266.6,42.6 234,75.2 201.4,42.6 190.7,53.3 223.3,85.9 190.7,118.5 
+                            201.4,129.2 234,96.6 266.6,129.2 277.3,118.5 244.7,85.9 "/>
+                        <polygon id="closed2" class="rwycc6" points="277.3,276.4 266.6,265.8 234,298.4 201.4,265.8 190.7,276.4 223.3,309 190.7,341.6 
+                            201.4,352.3 234,319.7 266.6,352.3 277.3,341.6 244.7,309 "/>
+                        <polygon id="closed3" class="rwycc6" points="277.3,496.8 266.6,486.1 234,518.7 201.4,486.1 190.7,496.8 223.3,529.4 190.7,562 
+                            201.4,572.7 234,540.1 266.6,572.7 277.3,562 244.7,529.4 "/>
+                    </g>
+                    <g id="loadingIconRWYCC" style="display: block;">
+                        <text x="520" y="720">Loading data</text>
+                        <image href="src/ajax-loader.gif" x="636" y="705" alt="Loading" style="width: 20px;" />
+                    </g>
+                </svg>
+            </div>
+
+            <div id="atisDiv" style="display: none;">
+                <div id="atisDeporArr" class="atisWindow"></div>
+                <div id="atisInfoFieldDep" class="atisText" style="display: none;">EFHK DEP ATIS NIL</div>
+                <div id="atisInfoFieldArr" class="atisText" style="display: none;">EFHK ARR ATIS NIL</div>
+            </div>
+        </div>
+    </body>
+    <footer id="footer">
+        <div id="metar" class="metar">
+            //
+        </div>
+    </footer>
+</html>

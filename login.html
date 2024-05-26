@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to VATSIM OAuth2 Example</title>
+</head>
+<style>
+    body {
+        user-select: none;
+        overflow: hidden;
+        background-color: #203040;
+        background-image: url('loginBackground.png');
+        background-size: 100%, auto;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+    @media (min-width: 901px) {
+        body {
+            background-size: 900px auto;
+        }
+    }
+    .backgroundFilter {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        opacity: 85%;
+    }
+    h2, p, img {
+        z-index: 1;
+        text-align: center;
+    }
+    h2 {
+        font-weight: 400;
+    }
+    .button { 
+        color: white;
+        z-index: 1;
+        background-color: #41826e;
+        padding: 8px;
+        text-decoration: none;
+        width: 352px;
+        max-width: 80%;
+        text-align: center;
+        margin-top: 10px;
+    }
+    .message {
+        color: #341A22;
+        z-index: 1;
+        background-color: #e6d9dd;
+        padding: 10px;
+        width: 352px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .success {
+        color: #1A342C;
+        z-index: 1;
+        background-color: #D9E6E2;
+        padding: 10px;
+        width: 352px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+  </style>
+<body>
+    <div class="backgroundFilter"></div>
+    <div id="message"></div>
+    <img src="/title.png" alt="logo" style="width: 80%; max-width: 366px;">
+    <h2>AWOS Display for Finnish airports</h2>
+    <a class="button" href="/auth/vatsim">Login with VATSIM</a>
+</body>
+<script>
+    // Display information message
+    function getQueryParams() {
+        const params = {};
+        const queryString = window.location.search.substring(1);
+        const pairs = queryString.split('&');
+        for (const pair of pairs) {
+            const [key, value] = pair.split('=');
+            params[key] = decodeURIComponent(value);
+        }
+        return params;
+    }
+
+    const params = getQueryParams();
+    const messageDiv = document.getElementById('message');
+
+    if (params.error === 'access_denied') {
+        messageDiv.innerHTML = 'Access denied due to ATC rating<br>Apply <a href="https://wiki.vatsim-scandinavia.org/books/getting-started/page/request-atc-training">here</a> 😉';
+        messageDiv.className = 'message';
+    }
+
+    if (params.message === 'logged_out') {
+        messageDiv.innerHTML = 'You have been successfully logged out';
+        messageDiv.className = 'success';
+    }
+</script>
+</html>
