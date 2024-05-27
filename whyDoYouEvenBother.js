@@ -250,7 +250,12 @@ app.use(express.static('assets'));
 
 // This is used to show authenticated user's data on frontend:
 app.get('/user-data', isAuthenticated, (req, res) => {
-    res.json(req.user); // Send the authenticated user's data as JSON
+  if (req.user) {
+      const { id, full_name, rating } = req.user;
+      res.json({ id, full_name, rating }); // Send only the required user's data as JSON
+  } else {
+      res.status(401).json({ message: 'User not authenticated' });
+  }
 });
 
 // Middleware to check if the user is authenticated
