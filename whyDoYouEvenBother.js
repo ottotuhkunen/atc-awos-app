@@ -1,14 +1,162 @@
-require('dotenv').config()
+require('dotenv').config();
 const express = require('express');
-const basicAuth = require('express-basic-auth')
-const app = express();
+const session = require('express-session');
+const pgSession = require('connect-pg-simple')(session);
 const axios = require('axios');
-// const fetch = require('node-fetch');
 const passport = require('passport');
 const OAuth2Strategy = require('passport-oauth2').Strategy;
-const session = require('express-session');
 const path = require('path');
 const db = require('./db');
+const app = express();
+
+const port = process.env.PORT || 3000;
+
+// VATSIM AUTHENTICATION
+
+passport.use(new OAuth2Strategy({
+  authorizationURL: process.env.AUTH_URL_HEROKU || process.env.AUTH_URL,
+  tokenURL: process.env.TOKEN_URL_HEROKU || process.env.TOKEN_URL,
+  clientID: process.env.CLIENT_ID_HEROKU || process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET_HEROKU || process.env.CLIENT_SECRET,
+  callbackURL: process.env.REDIRECT_URL_HEROKU || process.env.REDIRECT_URI,
+},
+async function(accessToken, refreshToken, profile, cb) {
+  try {
+    const response = await axios.get(process.env.RESPONSE_URL_HEROKU || process.env.RESPONSE_URL, {
+      headers: {
+        'Authorization': `Bearer ${accessToken}`
+      }
+    });
+
+    const userData = response.data.data;
+
+    const user = {
+      id: userData.cid.toString(),
+      full_name: userData.personal.name_full,
+      rating: userData.vatsim.rating.short
+    };
+
+    // Check if the rating is not "OBS" or "SUS"
+    if (user.rating === 'OBS' || user.rating === 'SUS') {
+      return cb(null, false, { message: 'Unauthorized rating' });
+    }
+
+    // Check if the user already exists in the database
+    let dbUser = await db.query('SELECT * FROM users WHERE id = $1', [user.id]);
+    
+    if (dbUser.rows.length === 0) {
+      // If the user doesn't exist, insert them
+      await db.query(
+        'INSERT INTO users (id, full_name, rating, last_login, app) VALUES ($1, $2, $3, CURRENT_TIMESTAMP, $4)',
+        [user.id, user.full_name, user.rating, 'wx']
+      );
+    } else {
+      // If the user exists, update their information including last login time
+      await db.query(
+        'UPDATE users SET full_name = $1, rating = $2, last_login = CURRENT_TIMESTAMP, app = $3 WHERE id = $4',
+        [user.full_name, user.rating, 'wx', user.id]
+      );
+    }
+
+    return cb(null, user);
+  } catch (error) {
+    return cb(error);
+  }
+}));
+
+passport.serializeUser((user, done) => done(null, user.id));
+passport.deserializeUser(async (id, done) => {
+  try {
+    const dbUser = await db.query('SELECT * FROM users WHERE id = $1', [id]);
+    done(null, dbUser.rows[0]);
+  } catch (error) {
+    done(error);
+  }
+});
+
+// Express middleware
+
+app.use(session({
+  store: new pgSession({
+    pool: db.pool, // Use the pool from your db.js
+    tableName: 'session' // Table to store sessions in
+  }),
+  secret: process.env.SESSION_SECRET || 'default_secret', // Ensure to use a strong secret
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: false } // Set to true if using HTTPS
+}));
+
+app.use(session({
+  store: new pgSession({
+    pool: db.pool, // Use the pool from your db.js
+    tableName: 'session' // Table to store sessions in
+  }),
+  secret: process.env.SESSION_SECRET || 'default_secret', // Ensure to use a strong secret
+  resave: false,
+  saveUninitialized: false,
+  cookie: { 
+    secure: process.env.NODE_ENV === 'production', // Use true if using HTTPS
+    maxAge: 24 * 60 * 60 * 1000 // 24 hours (adjust as needed)
+  }
+}));
+
+
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Route to serve login page
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, 'login.html'));
+});
+
+// Route for OAuth2 authentication
+app.get('/auth/vatsim', passport.authenticate('oauth2', {
+  scope: ['full_name', 'vatsim_details']
+}));
+
+// OAuth2 callback route
+app.get('/callback',
+  passport.authenticate('oauth2', { failureRedirect: '/login?error=access_denied' }),
+  function(req, res) {
+    res.redirect('/index.html');
+  }
+);
+
+app.use(express.static('assets'));
+
+// This is used to show authenticated user's data on frontend:
+app.get('/user-data', isAuthenticated, (req, res) => {
+  if (req.user) {
+      const { id, full_name, rating } = req.user;
+      res.json({ id, full_name, rating }); // Send only the required user's data as JSON
+  } else {
+      res.status(401).json({ message: 'User not authenticated' });
+  }
+});
+
+// Middleware to check if the user is authenticated
+function isAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  } else {
+    res.redirect('/login');
+  }
+}
+
+// Serve static files (only accessible if authenticated)
+app.use(isAuthenticated, express.static(path.join(__dirname, 'public')));
+
+// Route to handle logout
+app.get('/logout', (req, res, next) => {
+  req.logout(err => {
+    if (err) { return next(err); }
+    res.redirect('/login?message=logged_out');
+  });
+});
+
+// END OF AUTHENTICATION
 
 app.get('/api/data', async (req, res) => {
   const baseUrl = "https://api.airtable.com/v0/appGAYI2wFvY7jZVG/Table%201";
@@ -28,8 +176,6 @@ app.get('/api/data', async (req, res) => {
       res.status(500).json({ message: "Error fetching data" });
   }
 });
-
-const port = process.env.PORT || 3000;
 
 // fetch data from airtable:
 app.get('/dataEFHK', async (req, res) => {
@@ -154,131 +300,6 @@ app.use((req, res, next) => {
 });
 
 */
-
-// VATSIM AUTHENTICATION
-
-passport.use(new OAuth2Strategy({
-  authorizationURL: process.env.AUTH_URL_HEROKU || process.env.AUTH_URL,
-  tokenURL: process.env.TOKEN_URL_HEROKU || process.env.TOKEN_URL,
-  clientID: process.env.CLIENT_ID_HEROKU || process.env.CLIENT_ID,
-  clientSecret: process.env.CLIENT_SECRET_HEROKU || process.env.CLIENT_SECRET,
-  callbackURL: process.env.REDIRECT_URL_HEROKU || process.env.REDIRECT_URI,
-},
-async function(accessToken, refreshToken, profile, cb) {
-  try {
-    const response = await axios.get('https://auth.vatsim.net/api/user', { // https://auth-dev.vatsim.net/api/user (DEV)
-      headers: {
-        'Authorization': `Bearer ${accessToken}`
-      }
-    });
-
-    const userData = response.data.data;
-
-    const user = {
-      id: userData.cid.toString(),
-      full_name: userData.personal.name_full,
-      rating: userData.vatsim.rating.short
-    };
-
-    // Check if the rating is not "OBS" or "SUS"
-    if (user.rating === 'OBS' || user.rating === 'SUS') {
-      return cb(null, false, { message: 'Unauthorized rating' });
-    }
-
-    // Check if the user already exists in the database
-    let dbUser = await db.query('SELECT * FROM users WHERE id = $1', [user.id]);
-    
-    if (dbUser.rows.length === 0) {
-      // If the user doesn't exist, insert them
-      await db.query(
-        'INSERT INTO users (id, full_name, rating, last_login, app) VALUES ($1, $2, $3, CURRENT_TIMESTAMP, $4)',
-        [user.id, user.full_name, user.rating, 'wx']
-      );
-    } else {
-      // If the user exists, update their information including last login time
-      await db.query(
-        'UPDATE users SET full_name = $1, rating = $2, last_login = CURRENT_TIMESTAMP, app = $3 WHERE id = $4',
-        [user.full_name, user.rating, 'wx', user.id]
-      );
-    }
-
-    return cb(null, user);
-  } catch (error) {
-    return cb(error);
-  }
-}));
-
-passport.serializeUser((user, done) => done(null, user.id));
-passport.deserializeUser(async (id, done) => {
-  try {
-    const dbUser = await db.query('SELECT * FROM users WHERE id = $1', [id]);
-    done(null, dbUser.rows[0]);
-  } catch (error) {
-    done(error);
-  }
-});
-
-// Express middleware
-app.use(session({ 
-  secret: 'secret',
-  resave: false,
-  saveUninitialized: true,
-}));
-
-app.use(passport.initialize());
-app.use(passport.session());
-
-// Route to serve login page
-app.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, 'login.html'));
-});
-
-// Route for OAuth2 authentication
-app.get('/auth/vatsim', passport.authenticate('oauth2', {
-  scope: ['full_name', 'vatsim_details']
-}));
-
-// OAuth2 callback route
-app.get('/callback',
-  passport.authenticate('oauth2', { failureRedirect: '/login?error=access_denied' }),
-  function(req, res) {
-    res.redirect('/index.html');
-  }
-);
-
-app.use(express.static('assets'));
-
-// This is used to show authenticated user's data on frontend:
-app.get('/user-data', isAuthenticated, (req, res) => {
-  if (req.user) {
-      const { id, full_name, rating } = req.user;
-      res.json({ id, full_name, rating }); // Send only the required user's data as JSON
-  } else {
-      res.status(401).json({ message: 'User not authenticated' });
-  }
-});
-
-// Middleware to check if the user is authenticated
-function isAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  } else {
-    res.redirect('/login');
-  }
-}
-
-// Serve static files (only accessible if authenticated)
-app.use(isAuthenticated, express.static(path.join(__dirname, 'public')));
-
-// Route to handle logout
-app.get('/logout', (req, res, next) => {
-  req.logout(err => {
-    if (err) { return next(err); }
-    res.redirect('/login?message=logged_out');
-  });
-});
-
-// END OF AUTHENTICATION
 
 app.listen(port, function () {
     console.log('App is listening on port ' + port + '!');
