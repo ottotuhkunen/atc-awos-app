@@ -1,1 +1,1 @@
-web: node whyDoYouEvenBother.js
+web: node server.js
