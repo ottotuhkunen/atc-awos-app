@@ -11,7 +11,7 @@ passport.use(new OAuth2Strategy({
   callbackURL: process.env.REDIRECT_URL_HEROKU || process.env.REDIRECT_URI,
 }, async function(accessToken, refreshToken, profile, cb) {
   try {
-    const response = await axios.get(process.env.RESPONSE_URL_HEROKU || process.env.RESPONSE_URL, {
+    const response = await axios.get('https://auth.vatsim.net/api/user', {
       headers: {
         'Authorization': `Bearer ${accessToken}`
       }
