@@ -79,29 +79,17 @@ passport.deserializeUser(async (id, done) => {
 });
 
 // Express middleware
-
 app.use(session({
   store: new pgSession({
-    pool: db.pool, // Use the pool from your db.js
-    tableName: 'session' // Table to store sessions in
+    pool: db.pool,
+    tableName: 'session'
   }),
-  secret: process.env.SESSION_SECRET || 'default_secret', // Ensure to use a strong secret
-  resave: false,
-  saveUninitialized: false,
-  cookie: { secure: false } // Set to true if using HTTPS
-}));
-
-app.use(session({
-  store: new pgSession({
-    pool: db.pool, // Use the pool from your db.js
-    tableName: 'session' // Table to store sessions in
-  }),
-  secret: process.env.SESSION_SECRET || 'default_secret', // Ensure to use a strong secret
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
   cookie: { 
-    secure: process.env.NODE_ENV === 'production', // Use true if using HTTPS
-    maxAge: 24 * 60 * 60 * 1000 // 24 hours (adjust as needed)
+    secure: process.env.NODE_ENV === 'production',
+    maxAge: 24 * 60 * 60 * 1000
   }
 }));
 
