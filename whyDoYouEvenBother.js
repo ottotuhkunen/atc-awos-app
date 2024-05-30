@@ -11,6 +11,10 @@ const app = express();
 
 const port = process.env.PORT || 3000;
 
+app.use(express.static('assets'));
+app.use('/src', express.static(path.join(__dirname, 'public', 'src')));
+app.use('/awosview/images', express.static(path.join(__dirname, 'public', 'awosview', 'images')));
+
 // VATSIM AUTHENTICATION
 
 passport.use(new OAuth2Strategy({
@@ -101,8 +105,6 @@ app.use(session({
   }
 }));
 
-
-
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -123,8 +125,6 @@ app.get('/callback',
     res.redirect('/index.html');
   }
 );
-
-app.use(express.static('assets'));
 
 // This is used to show authenticated user's data on frontend:
 app.get('/user-data', isAuthenticated, (req, res) => {
