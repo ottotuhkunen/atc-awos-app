@@ -11,10 +11,6 @@ const app = express();
 
 const port = process.env.PORT || 3000;
 
-app.use(express.static('assets'));
-app.use('/src', express.static(path.join(__dirname, 'public', 'src')));
-app.use('/awosview/images', express.static(path.join(__dirname, 'public', 'awosview', 'images')));
-
 // VATSIM AUTHENTICATION
 
 passport.use(new OAuth2Strategy({
@@ -79,17 +75,18 @@ passport.deserializeUser(async (id, done) => {
 });
 
 // Express middleware
+
 app.use(session({
   store: new pgSession({
     pool: db.pool,
     tableName: 'session'
   }),
-  secret: process.env.SESSION_SECRET,
+  secret: process.env.SESSION_SECRET || 'default_secret',
   resave: false,
   saveUninitialized: false,
   cookie: { 
     secure: process.env.NODE_ENV === 'production',
-    maxAge: 24 * 60 * 60 * 1000
+    maxAge: 24 * 60 * 60 * 1000 
   }
 }));
 
@@ -114,11 +111,15 @@ app.get('/callback',
   }
 );
 
+app.use(express.static('assets'));
+app.use('/src', express.static(path.join(__dirname, 'public', 'src')));
+app.use('/awosview/images', express.static(path.join(__dirname, 'public', 'awosview', 'images')));
+
 // This is used to show authenticated user's data on frontend:
 app.get('/user-data', isAuthenticated, (req, res) => {
   if (req.user) {
       const { id, full_name, rating } = req.user;
-      res.json({ id, full_name, rating });
+      res.json({ id, full_name, rating }); // Send only the required user's data as JSON
   } else {
       res.status(401).json({ message: 'User not authenticated' });
   }
