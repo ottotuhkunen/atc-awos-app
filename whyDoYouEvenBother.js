@@ -112,8 +112,6 @@ app.get('/callback',
 );
 
 app.use(express.static('assets'));
-app.use('/src', express.static(path.join(__dirname, 'public', 'src')));
-app.use('/awosview/images', express.static(path.join(__dirname, 'public', 'awosview', 'images')));
 
 // This is used to show authenticated user's data on frontend:
 app.get('/user-data', isAuthenticated, (req, res) => {
