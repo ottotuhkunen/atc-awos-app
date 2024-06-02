@@ -961,7 +961,6 @@ function setMetRep(xml) {
         document.getElementById("metHeader").textContent = header[1];
     }
 
-
     var viss = xmlDoc.getElementsByTagName('iwxxm:prevailingVisibility');
     var vis = viss[viss.length-1].childNodes[0].nodeValue;
 

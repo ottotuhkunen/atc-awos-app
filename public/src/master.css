@@ -35,9 +35,7 @@ body {
 }
 
 .loginInformation::before {
-    content: "User ID \A";
-    white-space: pre;
-    font-weight: 100;
+    content: "ID ";
 }
 
 ::-webkit-scrollbar-thumb {

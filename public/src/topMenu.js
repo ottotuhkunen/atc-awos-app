@@ -7,11 +7,11 @@ function populateTopMenu(qnh, qfe, metCond) {
     document.getElementById('trlValue').textContent = calculateTrl(qnh);
     document.getElementById('metCondValue').textContent = metCond;
 
-    if (localStorage.getItem('efhkQnh') === null) localStorage.efhkQnh = JSON.stringify(1);
+    if (localStorage.getItem('efhkQnh') === null) localStorage.efhkQnh = null;
   
     var qnhChanger = JSON.parse(localStorage.efhkQnh);
 
-    if (qnh != qnhChanger){
+    if (qnh != qnhChanger && qnhChanger != null){
         stopToggle();
         localStorage.efhkQnh = JSON.stringify(qnh);
         startToggle();
@@ -23,7 +23,7 @@ function toggleStyles() {
 }
 
 function startToggle() {
-    intervalId = setInterval(toggleStyles, 500);
+    intervalId = setInterval(toggleStyles, 600);
 }
 
 function stopToggle() {
