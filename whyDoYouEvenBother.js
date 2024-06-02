@@ -118,7 +118,7 @@ app.get('/callback',
 app.get('/user-data', isAuthenticated, (req, res) => {
   if (req.user) {
       const { id, full_name, rating } = req.user;
-      res.json({ id, full_name, rating }); // Send only the required user's data as JSON
+      res.json({ id, full_name, rating });
   } else {
       res.status(401).json({ message: 'User not authenticated' });
   }
