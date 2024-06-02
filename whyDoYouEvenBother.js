@@ -9,7 +9,13 @@ const path = require('path');
 const db = require('./db');
 const app = express();
 
+app.set('trust proxy', 1); // Trust the first proxy (Heroku)
+
 const port = process.env.PORT || 3000;
+
+app.use(express.static('assets'));
+app.use('/src', express.static(path.join(__dirname, 'public', 'src')));
+app.use('/awosview/images', express.static(path.join(__dirname, 'public', 'awosview', 'images')));
 
 // VATSIM AUTHENTICATION
 
@@ -75,7 +81,6 @@ passport.deserializeUser(async (id, done) => {
 });
 
 // Express middleware
-
 app.use(session({
   store: new pgSession({
     pool: db.pool,
@@ -85,8 +90,8 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: { 
-    secure: process.env.NODE_ENV === 'productionTest',
-    maxAge: 24 * 60 * 60 * 1000 
+    secure: process.env.NODE_ENV === 'production',
+    maxAge: 24 * 60 * 60 * 1000 // 24h
   }
 }));
 
@@ -110,10 +115,6 @@ app.get('/callback',
     res.redirect('/index.html');
   }
 );
-
-app.use(express.static('assets'));
-app.use('/src', express.static(path.join(__dirname, 'public', 'src')));
-app.use('/awosview/images', express.static(path.join(__dirname, 'public', 'awosview', 'images')));
 
 // This is used to show authenticated user's data on frontend:
 app.get('/user-data', isAuthenticated, (req, res) => {
