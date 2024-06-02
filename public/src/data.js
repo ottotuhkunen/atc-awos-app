@@ -420,7 +420,7 @@ async function setMetarData(xmlDoc) {
   let qfeValue = Math.floor(qnh - 6.5);
   populateTopMenu(Math.floor(qnh), qfeValue, metCond);
 
-  fetch('https://data.vatsim.net/v3/vatsim-data.json')
+  fetch('/api/atis')
   .then(async response => {
     const data = await response.json();
     let efhkAtisFound = false;

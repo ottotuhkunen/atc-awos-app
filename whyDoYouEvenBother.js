@@ -91,7 +91,7 @@ app.use(session({
   saveUninitialized: false,
   cookie: { 
     secure: process.env.NODE_ENV === 'production',
-    maxAge: 24 * 60 * 60 * 1000 // 24h
+    maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
   }
 }));
 
@@ -186,6 +186,54 @@ app.get('/dataEFHK', async (req, res) => {
       res.status(500).json({ error: "Failed to fetch data from Airtable." });
   }
 });
+
+
+// fetch ATIS data from VATSIM
+let cachedAtisData = null;
+let cacheTimestamp = null;
+
+// Function to fetch VATSIM data
+async function fetchVatsimData() {
+  try {
+    const response = await fetch('https://data.vatsim.net/v3/vatsim-data.json');
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching VATSIM data:', error);
+    return null;
+  }
+}
+
+async function getAtisData() {
+  const CACHE_DURATION = 120000; // 120 seconds
+  const now = Date.now();
+
+  if (cachedAtisData && cacheTimestamp && (now - cacheTimestamp < CACHE_DURATION)) {
+    return cachedAtisData;
+  }
+
+  const vatsimData = await fetchVatsimData();
+  if (vatsimData && vatsimData.atis) {
+    cachedAtisData = vatsimData.atis.filter(item => 
+      ["EFHK_ATIS", "EFHK_D_ATIS", "EFHK_A_ATIS"].includes(item.callsign)
+    );
+    cacheTimestamp = now;
+    return cachedAtisData;
+  } else {
+    return null;
+  }
+}
+
+app.get('/api/atis', async (req, res) => {
+  const atisData = await getAtisData();
+  if (atisData) {
+    res.json({ atis: atisData });
+  } else {
+    res.status(500).json({ error: 'Unable to fetch ATIS data' });
+  }
+});
+
+// END OF ATIS DATA
 
 // fetch SNWOTAM:
 app.get('/snowtam', async (req, res) => {
