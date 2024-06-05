@@ -459,11 +459,11 @@ async function setMetarData(xmlDoc) {
       document.getElementById("atisInfoFieldArr").innerHTML = "EFHK ARR ATIS NIL";
 
       // TESTING:
-      let text = "THIS IS HELSINKI-VANTAA ARRIVAL AND DEPARTURE INFORMATION GOLF AT TIME 1950 EXPECT ILS APPROACH ARRIVAL RUNWAY 22L CLEAR AND DRY DEPARTURE RUNWAY 22L CLEAR AND DRY TRANSITION LEVEL 60 WIND 180 DEGREES 3 KNOTS CAVOK TEMPERATURE 13 DEW POINT 8 QNH 1018 NOSIG ADVISE ON INITIAL CONTACT YOU HAVE INFORMATION GOLF";
-      text = text.replace(/\.\./g, '.')
-      let atisWithLines = text ? text.replace(/\./g, '<br/>') : ["EFHK ATIS NIL"];
+      // let text = "THIS IS HELSINKI-VANTAA ARRIVAL AND DEPARTURE INFORMATION GOLF AT TIME 1950 EXPECT ILS APPROACH ARRIVAL RUNWAY 22L CLEAR AND DRY DEPARTURE RUNWAY 22L CLEAR AND DRY TRANSITION LEVEL 60 WIND 180 DEGREES 3 KNOTS CAVOK TEMPERATURE 13 DEW POINT 8 QNH 1018 NOSIG ADVISE ON INITIAL CONTACT YOU HAVE INFORMATION GOLF";
+      // text = text.replace(/\.\./g, '.')
+      // let atisWithLines = text ? text.replace(/\./g, '<br/>') : ["EFHK ATIS NIL"];
       // console.log(atisWithLines);
-      makeAtisText(atisWithLines);
+      // makeAtisText(atisWithLines);
       // END OF TESTING
 
       await fetchInformation();
