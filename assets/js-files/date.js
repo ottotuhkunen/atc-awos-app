@@ -27,7 +27,7 @@ function getDate(){
 
 document.addEventListener('DOMContentLoaded', function() {
     const themeToggle = document.getElementById('modeSelector');
-    let currentTheme = localStorage.getItem('theme') || 'light';
+    let currentTheme = localStorage.getItem('EFHKtheme') || 'light';
 
     updateTheme(currentTheme);
 
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
             currentTheme = 'light';
         }
         updateTheme(currentTheme);
-        localStorage.setItem('theme', currentTheme);
+        localStorage.setItem('EFHKtheme', currentTheme);
         // window.location.reload();
     });
 
