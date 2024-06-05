@@ -33,6 +33,7 @@ async function loadConfig() {
     // TESTING
     // atisText = "THIS IS HELSINKI-VANTAA ARRIVAL AND DEPARTURE INFORMATION GOLF AT TIME 1950 EXPECT ILS APPROACH ARRIVAL RUNWAY 15 CLEAR AND DRY DEPARTURE RUNWAY 22L CLEAR AND DRY TRANSITION LEVEL 60 WIND 180 DEGREES 3 KNOTS CAVOK TEMPERATURE 13 DEW POINT 8 QNH 1018 NOSIG ADVISE ON INITIAL CONTACT YOU HAVE INFORMATION GOLF";
     
+    atisText = atisText.replace(",", " ");
     atisText = atisText.replace("DEPARTURE RUNWAY", "DEP RWY");
     atisText = atisText.replace("DEPARTURE RUNWAYS", "DEP RWYS");
     atisText = atisText.replace("ARRIVAL RUNWAY", "ARR RWY");
@@ -75,7 +76,7 @@ async function loadConfig() {
         dep33 = true;
         break;
     }
-  
+
     // load active arrival runways
     switch (true) {
       case atisText.includes("ARR RWY 22L AND 22R"):
