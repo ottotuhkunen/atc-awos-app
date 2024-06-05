@@ -9,27 +9,28 @@
         <meta name="robots" content="noindex">
         <title>Helsingin sää ❄️</title>
         <link rel="icon" href="src/favicon.ico">
-        <link rel="stylesheet" href="src/master.css">
-        <script type="text/javascript" src="src/date.js"></script>
-        <script type="text/javascript" src="src/data.js"></script>
-        <script type="text/javascript" src="src/nav.js"></script>
-        <script type="text/javascript" src="src/config.js"></script>
-        <script type="text/javascript" src="src/autoconfig.js"></script>
-        <script type="text/javascript" src="src/fetchInfo.js"></script>
-        <script type="text/javascript" src="src/windcomponents.js"></script>
-        <script type="text/javascript" src="src/topMenu.js"></script>
-        <script type="text/javascript" src="src/rwycc.js"></script>
-        <script type="text/javascript" src="src/atisReplacementRules.js"></script>
+        <link rel="stylesheet" href="src/master-light.css" id="master-style">
+        <link rel="stylesheet" href="src/runway-light.css" id="runway-style">
+        <script type="text/javascript" src="js-files/date.js"></script>
+        <script type="text/javascript" src="js-files/data.js"></script>
+        <script type="text/javascript" src="js-files/nav.js"></script>
+        <script type="text/javascript" src="js-files/config.js"></script>
+        <script type="text/javascript" src="js-files/autoconfig.js"></script>
+        <script type="text/javascript" src="js-files/fetchInfo.js"></script>
+        <script type="text/javascript" src="js-files/windcomponents.js"></script>
+        <script type="text/javascript" src="js-files/topMenu.js"></script>
+        <script type="text/javascript" src="js-files/rwycc.js"></script>
+        <script type="text/javascript" src="js-files/atisReplacementRules.js"></script>
         <link rel="stylesheet" href="https://use.typekit.net/nju1yva.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     </head>
-    <body onload="getDate(); startDataFetching();">
+    <body onload="getDate();">
         <div class="customBackground">
         <p class="loginInformation" id="user-id"></p>
         <svg version="1.1" id="topMenuSvg" preserveAspectRatio="xMinYMin meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 960.75 38" xml:space="preserve">
             <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="480.375" y1="38" x2="480.375" y2="0">
-                <stop offset="0" style="stop-color:#007492"/>
-                <stop offset="1" style="stop-color:#009AC7"/>
+                <stop offset="0" class="navGradient1"/>
+                <stop offset="1" class="navGradient2"/>
             </linearGradient>
             <rect id="topMenuBackground" x="0" y="0" width="100vw" height="38" fill="url(#SVGID_1_)"/>
             <image style="overflow:hidden;" width="302" height="140" xlink:href="src/vatsca.png"  transform="matrix(0.2286 0 0 0.2286 0 3)">
@@ -43,13 +44,16 @@
             <rect x="258.31" y="18.46" class="topMenu4" style="stroke: #dadada" width="145.31" height="0.1"/>
             <rect x="729.97" y="0.6" class="topMenu4" width="102.02" height="35.73"/>
             <rect x="831.99" y="0.6" class="topMenu4" width="51.01" height="35.73"/>
-            <!--<rect style="cursor: pointer;" onclick="modeSelectorPressed();" x="899.36" y="1.94" class="topMenu5" width="49.54" height="34.12"/>-->
+
             <text style="cursor: pointer;" onclick="openDepATIS();" transform="matrix(1 0 0 1 85.205 9.9785)" class="topMenu6 topMenu7">DEP</text>
             <text style="cursor: pointer;" id="atisId1" onclick="openDepATIS();" transform="matrix(1 0 0 1 94 32.0903)" text-anchor="middle" class="topMenu6 topMenu8">--</text>
             <text style="cursor: pointer;" id="atisId2" onclick="openArrATIS();" transform="matrix(1 0 0 1 147 32.0903)" text-anchor="middle" class="topMenu6 topMenu8">--</text>
             <text style="cursor: pointer;" onclick="openArrATIS();" transform="matrix(1 0 0 1 138.6792 9.9789)" class="topMenu6 topMenu7">ARR</text>
-            <!--<text style="cursor: pointer;" onclick="modeSelectorPressed();" transform="matrix(1 0 0 1 900.8391 13.9417)" class="topMenu6 topMenu9">RWY CONFIG</text>
-            <text onclick="modeSelectorPressed();" id="rwyConfigValue" transform="matrix(1 0 0 1 924 28.4647)" text-anchor="middle" class="topMenu6 topMenu10 topMenuGreen">AUTO</text>-->
+
+            <rect id="modeSelector" style="cursor: pointer;" x="900" y="1" class="topMenu5" width="40" height="35" rx="4" ry="4"/>
+            <image x="910" y="4" width="20" href="src/daynight.png" preserveAspectRatio="xMidYMid slice" style="cursor: pointer; pointer-events: none;"/>
+            <text style="cursor: pointer; pointer-events: none;" transform="matrix(1 0 0 1 902.4 32)" class="topMenuMode">Day/night</text>
+
             <text transform="matrix(1 0 0 1 262.3049 11.8475)" class="topMenu6 topMenu10">QFE</text>
             <text id="qfeValue" transform="matrix(1 0 0 1 400 14.7992)" text-anchor="end" class="topMenu6 topMenu11">//</text>
             <text id="dateValue" transform="matrix(1 0 0 1 652 26)" text-anchor="middle" class="topMenu12 topMenu6 topMenu16">//</text>
@@ -70,12 +74,12 @@
                 </g>
                 <g id="buttonMain" style="cursor:pointer; pointer-events:none" onclick="openMainPage('buttonClick');">
                     <linearGradient id="mainBackgroundGradient" gradientUnits="userSpaceOnUse" x1="27.5039" y1="53.3602" x2="27.5039" y2="1.8134">
-                        <stop  offset="0" style="stop-color:#C0D7F0"/>
-                        <stop  offset="0.9968" style="stop-color:#85A7CC"/>
+                        <stop  offset="0" class="buttonGradientActive1"/>
+                        <stop  offset="0.9968" class="buttonGradientActive2"/>
                     </linearGradient>
                     <linearGradient id="mainBackgroundGradient2" gradientUnits="userSpaceOnUse" x1="27.5039" y1="53.3602" x2="27.5039" y2="1.8134">
-                        <stop  offset="0" style="stop-color:#C0D7F0"/>
-                        <stop  offset="0.9968" style="stop-color:#E5F2FF"/>
+                        <stop  offset="0" class="buttonGradientInactive1"/>
+                        <stop  offset="0.9968" class="buttonGradientInactive2"/>
                     </linearGradient>
                     <path id="mainBackground" class="leftNav1" d="M3.71,53.36h47.58c1.69,0,3.05-1.37,3.05-3.05V4.87c0-1.69-1.37-3.05-3.05-3.05H3.71c-1.69,0-3.05,1.37-3.05,3.05v45.44
                     C0.66,51.99,2.03,53.36,3.71,53.36z"/>
@@ -85,12 +89,12 @@
                 </g>
                 <g id="buttonRwy1" style=" cursor: pointer;" onclick="openRWYCC('04R');">
                     <linearGradient id="rwy1BackgroundGradient" gradientUnits="userSpaceOnUse" x1="27.5038" y1="111.9552" x2="27.5038" y2="60.4084">
-                        <stop  offset="0" style="stop-color:#C0D7F0"/>
-                        <stop  offset="1" style="stop-color:#E5F2FF"/>
+                        <stop  offset="0" class="buttonGradientInactive1"/>
+                        <stop  offset="1" class="buttonGradientInactive2"/>
                     </linearGradient> 
                     <linearGradient id="rwy1BackgroundGradient2" gradientUnits="userSpaceOnUse" x1="27.5038" y1="111.9552" x2="27.5038" y2="60.4084">
-                        <stop  offset="0" style="stop-color:#C0D7F0"/>
-                        <stop  offset="1" style="stop-color:#85A7CC"/>
+                        <stop  offset="0" class="buttonGradientActive1"/>
+                        <stop  offset="1" class="buttonGradientActive2"/>
                     </linearGradient> 
                     <path id="rwy1Background" class="rwy04RButtonInactive" d="M3.71,111.96h47.58c1.69,0,3.05-1.37,3.05-3.05V63.46c0-1.69-1.37-3.05-3.05-3.05H3.71c-1.69,0-3.05,1.37-3.05,3.05v45.44
                     C0.66,110.59,2.03,111.96,3.71,111.96z"/>
@@ -100,12 +104,12 @@
                 </g>
                 <g id="buttonRwy2" style=" cursor: pointer;" onclick="openRWYCC('15');">
                     <linearGradient id="rwy2BackgroundGradient" gradientUnits="userSpaceOnUse" x1="27.5038" y1="170.5502" x2="27.5038" y2="119.0034">
-                        <stop  offset="0" style="stop-color:#C0D7F0"/>
-                        <stop  offset="1" style="stop-color:#E5F2FF"/>
+                        <stop  offset="0" class="buttonGradientInactive1"/>
+                        <stop  offset="1" class="buttonGradientInactive2"/>
                     </linearGradient>
                     <linearGradient id="rwy2BackgroundGradient2" gradientUnits="userSpaceOnUse" x1="27.5038" y1="170.5502" x2="27.5038" y2="119.0034">
-                        <stop  offset="0" style="stop-color:#C0D7F0"/>
-                        <stop  offset="1" style="stop-color:#85A7CC"/>
+                        <stop  offset="0" class="buttonGradientActive1"/>
+                        <stop  offset="1" class="buttonGradientActive2"/>
                     </linearGradient>
                     <path id="rwy2Background" class="rwy15ButtonInactive" d="M3.71,170.55h47.58c1.69,0,3.05-1.37,3.05-3.05v-45.44c0-1.69-1.37-3.05-3.05-3.05H3.71c-1.69,0-3.05,1.37-3.05,3.05v45.44
                     C0.66,169.18,2.03,170.55,3.71,170.55z"/>
@@ -115,12 +119,12 @@
                 </g>
                 <g id="buttonRwy3" style=" cursor: pointer;" onclick="openRWYCC('04L');">
                     <linearGradient id="rwy3BackgroundGradient" gradientUnits="userSpaceOnUse" x1="27.5038" y1="228.9693" x2="27.5038" y2="177.4225">
-                        <stop  offset="0" style="stop-color:#C0D7F0"/>
-                        <stop  offset="1" style="stop-color:#E5F2FF"/>
+                        <stop  offset="0" class="buttonGradientInactive1"/>
+                        <stop  offset="1" class="buttonGradientInactive2"/>
                     </linearGradient>
                     <linearGradient id="rwy3BackgroundGradient2" gradientUnits="userSpaceOnUse" x1="27.5038" y1="228.9693" x2="27.5038" y2="177.4225">
-                        <stop  offset="0" style="stop-color:#C0D7F0"/>
-                        <stop  offset="1" style="stop-color:#85A7CC"/>
+                        <stop  offset="0" class="buttonGradientActive1"/>
+                        <stop  offset="1" class="buttonGradientActive2"/>
                     </linearGradient>
                     <path id="rwy3Background" class="rwy04LButtonInactive" d="M3.71,228.97h47.58c1.69,0,3.05-1.37,3.05-3.05v-45.44c0-1.69-1.37-3.05-3.05-3.05H3.71c-1.69,0-3.05,1.37-3.05,3.05v45.44
                     C0.66,227.6,2.03,228.97,3.71,228.97z"/>
@@ -130,12 +134,12 @@
                 </g>
                 <g id="buttonSnowtam" style="cursor: pointer;" onclick="openSnowtam();">
                     <linearGradient id="snowtamBackgroundGradient" gradientUnits="userSpaceOnUse" x1="27.5038" y1="287.4837" x2="27.5038" y2="235.9369">
-                        <stop  offset="0" style="stop-color:#C0D7F0"/>
-                        <stop  offset="1" style="stop-color:#E5F2FF"/>
+                        <stop  offset="0" class="buttonGradientInactive1"/>
+                        <stop  offset="1" class="buttonGradientInactive2"/>
                     </linearGradient>
                     <linearGradient id="snowtamBackgroundGradient2" gradientUnits="userSpaceOnUse" x1="27.5038" y1="287.4837" x2="27.5038" y2="235.9369">
-                        <stop  offset="0" style="stop-color:#C0D7F0"/>
-                        <stop  offset="1" style="stop-color:#85A7CC"/>
+                        <stop  offset="0" class="buttonGradientActive1"/>
+                        <stop  offset="1" class="buttonGradientActive2"/>
                     </linearGradient>
                     <path id="snowtamBackground" class="leftNav8" d="M3.71,287.48h47.58c1.69,0,3.05-1.37,3.05-3.05v-45.44c0-1.69-1.37-3.05-3.05-3.05H3.71c-1.69,0-3.05,1.37-3.05,3.05v45.44
                     C0.66,286.12,2.03,287.48,3.71,287.48z"/>
@@ -144,12 +148,12 @@
                 </g>
                 <g id="buttonMetReport" style="cursor: pointer;" onclick="metrep();">
                     <linearGradient id="metReportBackgroundGradient" gradientUnits="userSpaceOnUse" x1="27.5038" y1="331.3684" x2="27.5038" y2="294.3064">
-                        <stop  offset="0" style="stop-color:#C0D7F0"/>
-                        <stop offset="1" style="stop-color:#E5F2FF"/>
+                        <stop  offset="0" class="buttonGradientInactive1"/>
+                        <stop offset="1" class="buttonGradientInactive2"/>
                     </linearGradient>
                     <linearGradient id="metReportBackgroundGradient2" gradientUnits="userSpaceOnUse" x1="27.5038" y1="331.3684" x2="27.5038" y2="294.3064">
-                        <stop  offset="0" style="stop-color:#C0D7F0"/>
-                        <stop offset="1" style="stop-color:#85A7CC"/>
+                        <stop  offset="0" class="buttonGradientActive1"/>
+                        <stop offset="1" class="buttonGradientActive2"/>
                     </linearGradient>
                     <path id="metReportBackground" class="leftNav9" d="M3.71,331.37h47.58c1.69,0,3.05-1.37,3.05-3.05v-30.96c0-1.69-1.37-3.05-3.05-3.05H3.71c-1.69,0-3.05,1.37-3.05,3.05v30.96
                         C0.66,330,2.03,331.37,3.71,331.37z"/>
@@ -159,12 +163,12 @@
                 </g>
                 <g id="buttonSetup" style="cursor: pointer;" onclick="setup();">
                     <linearGradient id="setupBackgroundGradient" gradientUnits="userSpaceOnUse" x1="27.5038" y1="405.9137" x2="27.5038" y2="354.3669">
-                        <stop  offset="0" style="stop-color:#C0D7F0"/>
-                        <stop  offset="1" style="stop-color:#E5F2FF"/>
+                        <stop  offset="0" class="buttonGradientInactive1"/>
+                        <stop  offset="1" class="buttonGradientInactive2"/>
                     </linearGradient>
                     <linearGradient id="setupBackgroundGradient2" gradientUnits="userSpaceOnUse" x1="27.5038" y1="405.9137" x2="27.5038" y2="354.3669">
-                        <stop  offset="0" style="stop-color:#C0D7F0"/>
-                        <stop  offset="1" style="stop-color:#85A7CC"/>
+                        <stop  offset="0" class="buttonGradientActive1"/>
+                        <stop  offset="1" class="buttonGradientActive2"/>
                     </linearGradient>
                     <path id="setupBackground" class="leftNav11" d="M3.71,405.91h47.58c1.69,0,3.05-1.37,3.05-3.05v-45.44c0-1.69-1.37-3.05-3.05-3.05H3.71c-1.69,0-3.05,1.37-3.05,3.05v45.44
                     C0.66,404.55,2.03,405.91,3.71,405.91z"/>
@@ -174,8 +178,8 @@
                 </g>
                 <g id="buttonAwosview" style="cursor: pointer;" onclick="window.location.href='awosview/eftp.html'">
                     <linearGradient id="awosViewBackgroundGradient" gradientUnits="userSpaceOnUse" x1="27.5" y1="101.4787" x2="27.5" y2="153.0186" gradientTransform="matrix(1 0 0 -1 0 566)">
-                        <stop  offset="0" style="stop-color:#C0D7F0"/>
-                        <stop  offset="1" style="stop-color:#E5F2FF"/>
+                        <stop  offset="0" class="buttonGradientInactive1"/>
+                        <stop  offset="1" class="buttonGradientInactive2"/>
                     </linearGradient>
                     <path id="awosViewBackground" class="leftNav12" d="M3.7,464.5h47.6c1.7,0,3-1.4,3-3V416c0-1.7-1.4-3-3-3H3.7c-1.7,0-3,1.4-3,3v45.4C0.7,463.2,2,464.5,3.7,464.5z"/>
                     <polygon id="awosViewTriangle" class="leftNav4" points="56.1,430.4 56.1,447.2 65.2,438.6" style="display:none;"/>
@@ -183,41 +187,13 @@
                     <image style="overflow:visible;" width="93" height="81" id="Ea4v71" xlink:href="src/awosview.png"  transform="matrix(0.3824 0 0 0.3824 9.7235 417.614)"></image>
                 </g>
             </svg>
-            <!--
-            <select id="actions" onchange="performAction(this.value)">
-                <option value="efhk">EFHK</option>
-                <option value="efet">EFET - Enontekiö</option>
-                <option value="efha">EFHA - Halli</option>
-                <option value="efiv">EFIV - Ivalo</option>
-                <option value="efjo">EFJO - Joensuu</option>
-                <option value="efjy">EFJY - Jyväskylä</option>
-                <option value="efke">EFKE - Kemi</option>
-                <option value="efki">EFKI - Kajaani</option>
-                <option value="efkk">EFKK - Kokkola</option>
-                <option value="efks">EFKS - Kuusamo</option>
-                <option value="efkt">EFKT - Kittilä</option>
-                <option value="efku">EFKU - Kuopio</option>
-                <option value="eflp">EFLP - Lappeenranta</option>
-                <option value="efma">EFMA - Maarianhamina</option>
-                <option value="efmi">EFMI - Mikkeli</option>
-                <option value="efou">EFOU - Oulu</option>
-                <option value="efpo">EFPO - Pori</option>
-                <option value="efro">EFRO - Rovaniemi</option>
-                <option value="efsa">EFSA - Savonlinna</option>
-                <option value="efsi">EFSI - Seinäjoki</option>
-                <option value="eftp">EFTP - Tampere</option>
-                <option value="eftu">EFTU - Turku</option>
-                <option value="efut">EFUT - Utti</option>
-                <option value="efva">EFVA - Vaasa</option>
-            </select>
-            -->
         </div>
         <div class="container" id="container">
             <svg style="user-select: none;" id="mainSvg" preserveAspectRatio="xMinYMin meet" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1106.47 787.76">
                 <!-- Runway background  -->
-                <rect id="rwy04L" x="221.5" y="128.52" transform="matrix(0.7637 0.6456 -0.6456 0.7637 277.0305 -85.853)" class="st0" width="68.58" height="413.93"/>
-                <rect id="rwy04R" x="534.53" y="128.52" transform="matrix(0.7637 0.6456 -0.6456 0.7637 351.0047 -287.9446)" class="st0" width="68.58" height="413.93"/>
-                <rect id="rwy15" x="630.2" y="127.48" transform="matrix(0.866 -0.5 0.5 0.866 -78.196 377.0538)" class="st0" width="68.58" height="413.93"/>
+                <rect id="rwy04L" x="221.5" y="128.52" transform="matrix(0.7637 0.6456 -0.6456 0.7637 277.0305 -85.853)" class="rwy_inactive" width="68.58" height="413.93"/>
+                <rect id="rwy04R" x="534.53" y="128.52" transform="matrix(0.7637 0.6456 -0.6456 0.7637 351.0047 -287.9446)" class="rwy_inactive" width="68.58" height="413.93"/>
+                <rect id="rwy15" x="630.2" y="127.48" transform="matrix(0.866 -0.5 0.5 0.866 -78.196 377.0538)" class="rwy_inactive" width="68.58" height="413.93"/>
                 <use id="bringToFront04R22L" xlink:href="#rwy04R" style="display: none;"/>
                 <g id="windDisplays">
                     <g id="windDisp22R">
@@ -229,7 +205,7 @@
                         <text id="22R_maxSpd" transform="matrix(1 0 0 1 332 32.1601)" class="st3 st4 st5 st16">//</text>
                         <text id="22R_windSpd" transform="matrix(1 0 0 1 332 69.2345)" class="st3 st4 st6 st16">//</text>
                         <text id="22R_windDir" transform="matrix(1 0 0 1 190.666 69.2345)" class="st3 st4 st6">//</text>
-                        <text id="22R_number" transform="matrix(-0.7637 -0.6456 0.6456 -0.7637 404 204)" class="st7 st8 st9">22R</text>
+                        <text id="22R_number" transform="matrix(-0.7637 -0.6456 0.6456 -0.7637 404 204)" class="rwy_numbers st8 st9">22R</text>
                     </g>
                     <g id="windDisp15">
                         <rect x="534.03" y="5.16" class="st1" width="157.26" height="109.15"/>
@@ -240,7 +216,7 @@
                         <text id="15_maxSpd" transform="matrix(1 0 0 1 682 32.2924)" class="st3 st4 st5 st16">//</text>
                         <text id="15_windSpd" transform="matrix(1 0 0 1 682 69.3669)" class="st3 st4 st6 st16">//</text>
                         <text id="15_windDir" transform="matrix(1 0 0 1 540.5827 69.3669)" class="st3 st4 st6">//</text>
-                        <text id="15_number" transform="matrix(-0.866 0.5 -0.5 -0.866 582 155)" class="st7 st8 st9">15</text>
+                        <text id="15_number" transform="matrix(-0.866 0.5 -0.5 -0.866 582 155)" class="rwy_numbers st8 st9">15</text>
                     </g>
                     <g id="windDisp22L">
                         <rect x="865.62" y="114.31" class="st1" width="157.26" height="109.15"/>
@@ -251,7 +227,7 @@
                         <text id="22L_maxSpd" transform="matrix(1 0 0 1 1014 141.4395)" class="st3 st4 st5 st16">//</text>
                         <text id="22L_windSpd" transform="matrix(1 0 0 1 1014 178.5139)" class="st3 st4 st6 st16">//</text>
                         <text id="22L_windDir" transform="matrix(1 0 0 1 872.168 178.5139)" class="st3 st4 st6">//</text>
-                        <text id="22L_number" transform="matrix(-0.7637 -0.6456 0.6456 -0.7637 717 202)" class="st7 st8 st9">22L</text>
+                        <text id="22L_number" transform="matrix(-0.7637 -0.6456 0.6456 -0.7637 717 202)" class="rwy_numbers st8 st9">22L</text>
                     </g>
                     <g id="windDisp33">
                         <rect x="944.25" y="387.66" class="st1" width="157.26" height="109.15"/>
@@ -262,7 +238,7 @@
                         <text id="33_maxSpd" transform="matrix(1 0 0 1 1093 414.7924)" class="st3 st4 st5 st16">//</text>
                         <text id="33_windSpd" transform="matrix(1 0 0 1 1093 451.8669)" class="st3 st4 st6 st16">//</text>
                         <text id="33_windDir" transform="matrix(1 0 0 1 950.8004 451.8669)" class="st3 st4 st6">//</text>
-                        <text id="33_number" transform="matrix(0.866 -0.5 0.5 0.866 747 515)" class="st7 st8 st9">33</text>
+                        <text id="33_number" transform="matrix(0.866 -0.5 0.5 0.866 747 515)" class="rwy_numbers st8 st9">33</text>
                     </g>
                     <g id="windDisp04R">
                         <rect x="510.12" y="516.13" class="st1" width="157.26" height="109.15"/>
@@ -273,7 +249,7 @@
                         <text id="04R_maxSpd" transform="matrix(1 0 0 1 660 543.263)" class="st3 st4 st5 st16">//</text>
                         <text id="04R_windSpd" transform="matrix(1 0 0 1 660 580.3375)" class="st3 st4 st6 st16">//</text>
                         <text id="04R_windDir" transform="matrix(1 0 0 1 516.6639 580.3375)" class="st3 st4 st6">//</text>
-                        <text id="04R_number" transform="matrix(0.7663 0.6425 -0.6425 0.7663 420 468.4684)" class="st7 st8 st9">04R</text>
+                        <text id="04R_number" transform="matrix(0.7663 0.6425 -0.6425 0.7663 420 468.4684)" class="rwy_numbers st8 st9">04R</text>
                     </g>
                     <g id="windDisp04L">
                         <rect x="184.12" y="516.13" class="st1" width="157.26" height="109.15"/>
@@ -284,7 +260,7 @@
                         <text id="04L_maxSpd" transform="matrix(1 0 0 1 332 543.263)" class="st3 st4 st5 st16">//</text>
                         <text id="04L_windSpd" transform="matrix(1 0 0 1 332 580.3375)" class="st3 st4 st6 st16">//</text>
                         <text id="04L_windDir" transform="matrix(1 0 0 1 190.666 580.3375)" class="st3 st4 st6">//</text>
-                        <text id="04L_number" transform="matrix(0.7663 0.6425 -0.6425 0.7663 108 470.1752)" class="st7 st8 st9">04L</text>
+                        <text id="04L_number" transform="matrix(0.7663 0.6425 -0.6425 0.7663 108 470.1752)" class="rwy_numbers st8 st9">04L</text>
                     </g>
                 </g>
                 <g id="windArrows">
@@ -303,22 +279,22 @@
                 </g>
                 <g id="infoWindow4" style="display: none;">
                     <rect id="infoWindowBox4" x="4.59" y="654.35" class="st10" width="499.06" height="111.53"/>
-                    <text id="infoWindowText4" transform="matrix(1 0 0 1 219.3946 757.4055)" class="st11 st12 st13">
-                        <tspan id="infoWindow4_line2" x="4" y="-26" class="st12 st13"></tspan>
-                        <tspan id="infoWindow4_line1" x="0" y="0" class="st12 st13"></tspan>
+                    <text id="infoWindowText4" transform="matrix(1 0 0 1 219.3946 757.4055)" class="st12 st13 warningColor">
+                        <tspan id="infoWindow4_line2" x="4" y="-26" class="st12 st13 warningColor"></tspan>
+                        <tspan id="infoWindow4_line1" x="0" y="0" class="st12 st13 warningColor"></tspan>
             
                     </text>
                 </g>
                 <g id="fmiProblems" style="display: none;">
                     <rect id="fmiProblemBox" x="4.59" y="654.35" class="st10" width="499.06" height="111.53"/>
-                    <text transform="matrix(1 0 0 1 14 680)" class="st11 st12 st13">
+                    <text transform="matrix(1 0 0 1 14 680)" class="st12 st13 warningColor">
                         WIND DATA U/S UFN DUE SOURCE PROBLEMS.
                         <tspan class="st12 st13" x="0" dy="1.4em">USE METAR WIND</tspan>
                     </text>
                 </g>
                 <g id="infoWindow3" style="display: none;">
                     <rect id="infoWindowBox3" x="749.29" y="625.28" class="st10" width="343.52" height="111.53"/>
-                    <text id="infoWindowText3" transform="matrix(1 0 0 1 761.2416 649.9836)" class="st12 st13">
+                    <text id="infoWindowText3" transform="matrix(1 0 0 1 761.2416 649.9836)">
                         <tspan id="infoWindow3_line1" class="st12 st13">...</tspan>
                         <tspan id="infoWindow3_line2" class="st12 st13" x="0" dy="1.4em">...</tspan>
                         <tspan id="infoWindow3_line3" class="st12 st13" x="0" dy="1.4em">...</tspan>
@@ -334,14 +310,14 @@
                 </g>
                 <g id="infoWindow1" style="display: none;">
                     <rect id="infoWindowBox1" x="4.6" y="233" class="st10" width="202.2" height="96.5"/>
-                    <text id="infoWindowText1" transform="matrix(1 0 0 1 16.5416 257.748)" class="st12 st13">
+                    <text id="infoWindowText1" transform="matrix(1 0 0 1 16.5416 257.748)">
                         <tspan id="infoWindow1_line1" class="st12 st13">...</tspan>
                         <tspan id="infoWindow1_line2" class="st12 st13" x="0" dy="1.4em">...</tspan>
                         <tspan id="infoWindow1_line3" class="st12 st13" x="0" dy="1.4em">...</tspan>
                     </text>
                 </g>
                 <g id="loadingIcon" style="display: block;">
-                    <text x="10" y="50">Loading data</text>
+                    <text class="loadingText" x="10" y="50">Loading data</text>
                     <image href="src/ajax-loader.gif" x="120" y="35" alt="Loading" style="width: 20px;" />
                 </g>
 
@@ -427,22 +403,10 @@
                         597.5,217.96"/>
                 </g>
             </svg>
-            <div id="setupDiv" style="display: none; width: 100%; margin-left: 6px; font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;">
+            <div id="setupDiv" class="setupDiv">
                 <h3 id="greeting"></h3>
                 <a class="logoutButton" href="/logout"><span style="font-size: 10pt;" class="material-symbols-outlined">logout</span> Logout</a>
-                
-                <div id="rwySelectionContainers" style="display: none;">
-                    <div id="setupContainer2">
-                        <h2>Local Runway Configuration</h2>
-                        <h3>04L<input class="checkbox" type="checkbox" id="checkboxDep04L" name="checkboxDep04L" onclick="dep04L();">DEP<input class="checkbox" type="checkbox" id="checkboxArr04L" name="checkboxArr04L" onclick="arr04L();">ARR</h3>
-                        <h3>04R<input class="checkbox" type="checkbox" id="checkboxDep04R" name="checkboxDep04R" onclick="dep04R()">DEP<input class="checkbox" type="checkbox" id="checkboxArr04R" name="checkboxArr04R" onclick="arr04R();">ARR</h3>
-                        <h3>15&nbsp;&nbsp;<input class="checkbox" type="checkbox" id="checkboxDep15" name="checkboxDep15" onclick="dep15();">DEP<input class="checkbox" type="checkbox" id="checkboxArr15" name="checkboxArr15" onclick="arr15();">ARR</h3>
-                        <h3>33&nbsp;&nbsp;<input class="checkbox" type="checkbox" id="checkboxDep33" name="checkboxDep33" onclick="dep33();">DEP<input class="checkbox" type="checkbox" id="checkboxArr33" name="checkboxArr33" onclick="arr33();">ARR</h3>
-                        <h3>22L<input class="checkbox" type="checkbox" id="checkboxDep22L" name="checkboxDep22L" onclick="dep22L();">DEP<input class="checkbox" type="checkbox" id="checkboxArr22L" name="checkboxArr22L" onclick="arr22L();">ARR</h3>
-                        <h3>22R<input class="checkbox" type="checkbox" id="checkboxDep22R" name="checkboxDep22R" onclick="dep22R();">DEP<input class="checkbox" type="checkbox" id="checkboxArr22R" name="checkboxArr22R" onclick="arr22R();">ARR</h3>
-                    </div>
-                </div>
-
+                <h3><b>New:</b> Dark mode - Note! This option is disabled in real life and thus it does not represent real system colors.</h3>
                 <div id="setupContainer3" style="margin-top: 20px; max-width: 650px; margin-right: 10px;">
                     <hr>
                     <h2 style="font-weight: bold;">This app is for simulation purposes only!</h2>
@@ -464,7 +428,7 @@
                     <button id="metButton2" onclick="metNav2();" class="metButtons">METARs</button>
                     <button id="metButton3" onclick="metNav3();" class="metButtons">TAFs</button>
                     <div id="loadingIconMETREP" style="display:inline-block;">
-                        <span style="font-size: 10pt; padding-left: 10pt;">Loading data </span>
+                        <span class="loadingTextHTML">Loading data </span>
                         <img src="src/ajax-loader.gif" alt="Loading" style="width: 17px; vertical-align: middle;"/>
                     </div>
                 </div>
@@ -707,15 +671,6 @@
 
                 <svg id="tafsSvg" preserveAspectRatio="xMinYMin meet" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                     viewBox="0 0 1195.09 623.35" style="enable-background:new 0 0 1195.09 623.35; display: none;" xml:space="preserve">
-                    <style type="text/css">
-                        .fst0{fill:#009ac7;}
-                        .fst1{fill:#3F3F3F;}
-                        .fst2{font-family:'Verdana'; font-weight: bold;}
-                        .fst3{font-size:16px;}
-                        .fst4{fill:#FFFFFF;}
-                        .fst5{font-family:'Verdana';}
-                        .fst6{font-size:17px;}
-                    </style>
                     <g id="tafsEFTU">
                         <path class="fst0" d="M1178.31,103.18H17.36c-3.08,0-5.58-3-5.58-6.68V13.18c0-3.69,2.5-6.68,5.58-6.68h1160.95
                             c3.08,0,5.58,3,5.58,6.68v83.31C1183.88,100.19,1181.39,103.18,1178.31,103.18z"/>
@@ -786,7 +741,7 @@
             </div>
             <div id="snowtamDiv" style="display: none; margin-left: 12px; margin-bottom: 10%;">
                 <div id="metrepButtonsContainer">
-                    <button id="snowtamButton1" onclick="snowtamNav1();" class="metButtons" style="background-color: #D8E5F3;">SNOWTAM</button>
+                    <button id="snowtamButton1" onclick="snowtamNav1();" class="metButtons">SNOWTAM</button>
                     <button id="snowtamButton2" onclick="snowtamNav2();" class="metButtons">TAXIWAYS</button>
                     <button id="snowtamButton3" onclick="snowtamNav3();" class="metButtons">APRONS</button>
                 </div>
@@ -958,16 +913,16 @@
                     </pattern>
                     <g id="RWYPart1">
                         <g id="staticElements">
-                            <rect x="59.1" y="11.1" width="348.5" height="148.6"/>
+                            <rect x="59.1" y="11.1" width="348.5" height="148.6" class="rwycc_rwy_background"/>
                             <line class="rwycc3" x1="233.7" y1="11.1" x2="233.7" y2="19.1"/>
                             <line class="rwycc4" x1="233.7" y1="33.9" x2="233.7" y2="144.4"/>
                             <line class="rwycc3" x1="233.7" y1="151.8" x2="233.7" y2="159.8"/>
                             <pattern id="pattern1" style="display: none;" xlink:href="#_x31_0_lpi_20_x25_" patternTransform="matrix(0.7071 -0.7071 0.7071 0.7071 3983.1824 -7743.5845)"></pattern>
                             <rect id="togglePattern1" x="84.5" y="11.1" style="fill:url(#pattern1);" width="297.4" height="148.6"/>
-                            <rect id="snowBackground1" style="display: none;" x="84.5" y="11.1" class="rwycc6" width="63.7" height="148.6"/>
-		                    <rect id="snowBackground2" style="display: none;" x="318.2" y="11.1" class="rwycc6" width="63.7" height="148.6"/>
-                            <rect x="13.7" y="185" class="rwycc6" width="37.1" height="40.8"/>
-                            <rect x="413.6" y="185" class="rwycc6" width="39.1" height="40.8"/>
+                            <rect id="snowBackground1" style="display: none;" x="84.5" y="11.1" class="rwyccFieldId" width="63.7" height="148.6"/>
+		                    <rect id="snowBackground2" style="display: none;" x="318.2" y="11.1" class="rwyccFieldId" width="63.7" height="148.6"/>
+                            <rect x="13.7" y="185" class="rwyccFieldId" width="37.1" height="40.8"/>
+                            <rect x="413.6" y="185" class="rwyccFieldId" width="39.1" height="40.8"/>
                             <text id="part" transform="matrix(1 0 0 1 24.8268 213.1482)" class="rwycc7 rwycc8 rwycc9">C</text>
                             <rect x="13.7" y="11.1" class="rwycc10" width="439.1" height="148.6"/>
                             <polyline class="rwycc10" points="13.7,159.8 13.7,225.8 452.8,225.8 452.8,159.8"/>
@@ -1011,16 +966,16 @@
                         </g>
                     </g>
                     <g id="RWYPart2">
-                        <rect x="59.5" y="234.2" width="348.5" height="148.6"/>
+                        <rect x="59.5" y="234.2" width="348.5" height="148.6" class="rwycc_rwy_background"/>
                         <line class="rwycc3" x1="234.2" y1="234.2" x2="234.2" y2="242.2"/>
                         <line class="rwycc4" x1="234.2" y1="256.9" x2="234.2" y2="367.5"/>
                         <line class="rwycc3" x1="234.2" y1="374.8" x2="234.2" y2="382.8"/>
                         <pattern id="pattern2" style="display: none;" xlink:href="#_x31_0_lpi_20_x25_" patternTransform="matrix(0.7071 -0.7071 0.7071 0.7071 4034.5581 -7673.2603)"></pattern>
                         <rect id="togglePattern2" x="85" y="234.2" style="fill:url(#pattern2);" width="297.4" height="148.6"/>
-                        <rect id="snowBackground3" style="display: none;" x="84.5" y="234.5" class="rwycc6" width="63.7" height="148.6"/>
-	                    <rect id="snowBackground4" style="display: none;" x="319.6" y="234.5" class="rwycc6" width="63.7" height="148.6"/>
-                        <rect x="14.6" y="408.1" class="rwycc6" width="37.1" height="40.8"/>
-                        <rect x="414.1" y="408.1" class="rwycc6" width="39.1" height="40.8"/>
+                        <rect id="snowBackground3" style="display: none;" x="84.5" y="234.5" class="rwyccFieldId" width="63.7" height="148.6"/>
+	                    <rect id="snowBackground4" style="display: none;" x="319.6" y="234.5" class="rwyccFieldId" width="63.7" height="148.6"/>
+                        <rect x="14.6" y="408.1" class="rwyccFieldId" width="37.1" height="40.8"/>
+                        <rect x="414.1" y="408.1" class="rwyccFieldId" width="39.1" height="40.8"/>
                         <text transform="matrix(1 0 0 1 25.2908 436.2073)" class="rwycc7 rwycc8 rwycc9">B</text>
                         <rect x="14.2" y="234.2" class="rwycc10" width="439.1" height="148.6"/>
                         <polyline class="rwycc10" points="14.2,382.8 14.2,448.8 453.2,448.8 453.2,382.8"/>
@@ -1062,16 +1017,16 @@
                         <text id="contaminantText2" transform="matrix(1 0 0 1 232 400.9787)" text-anchor="middle" class="rwycc8 rwycc16">///</text>
                     </g>
                     <g id="RWYPart3">
-                        <rect x="60" y="454.8" width="348.5" height="148.6"/>
+                        <rect x="60" y="454.8" width="348.5" height="148.6" class="rwycc_rwy_background"/>
                         <line class="rwycc3" x1="234.6" y1="454.8" x2="234.6" y2="462.8"/>
                         <line class="rwycc4" x1="234.6" y1="477.5" x2="234.6" y2="588.1"/>
                         <line class="rwycc3" x1="234.6" y1="595.4" x2="234.6" y2="603.4"/>
                         <pattern id="pattern3" style="display: none;" xlink:href="#_x31_0_lpi_20_x25_" patternTransform="matrix(0.7071 -0.7071 0.7071 0.7071 3984.1104 -7707.2153)"></pattern>
                         <rect id="togglePattern3" x="85.4" y="454.8" style="fill:url(#pattern3);" width="297.4" height="148.6"/>
-                        <rect id="snowBackground6" style="display: none;" x="84.7" y="454.8" class="rwycc6" width="63.7" height="148.6"/>
-	                    <rect id="snowBackground5" style="display: none;" x="319.8" y="454.8" class="rwycc6" width="63.7" height="148.6"/>
-                        <rect x="414.6" y="628.7" class="rwycc6" width="39.1" height="40.8"/>
-                        <rect x="14.6" y="628.7" class="rwycc6" width="37.1" height="40.8"/>
+                        <rect id="snowBackground6" style="display: none;" x="84.7" y="454.8" class="rwyccFieldId" width="63.7" height="148.6"/>
+	                    <rect id="snowBackground5" style="display: none;" x="319.8" y="454.8" class="rwyccFieldId" width="63.7" height="148.6"/>
+                        <rect x="414.6" y="628.7" class="rwyccFieldId" width="39.1" height="40.8"/>
+                        <rect x="14.6" y="628.7" class="rwyccFieldId" width="37.1" height="40.8"/>
                         <text transform="matrix(1 0 0 1 25.7548 656.8107)" class="rwycc7 rwycc8 rwycc9">A</text>
                         <rect x="14.6" y="454.8" class="rwycc10" width="439.1" height="148.6"/>
                         <polyline class="rwycc10" points="14.6,603.4 14.6,669.4 453.7,669.4 453.7,603.4"/>
@@ -1114,6 +1069,12 @@
                     </g>
                     <g id="AssesmentPart">
                         <g id="static">
+                            <rect x="512.8" y="11.1" class="rwycc21" width="292.1" height="82.9"/>
+                            <rect x="818.7" y="11.1" class="rwycc21" width="292.1" height="82.9"/>
+                            <rect x="512.8" y="101.7" class="rwycc21" width="598" height="104.9"/>
+                            <rect x="512.8" y="214.2" class="rwycc21" width="598" height="104.9"/>
+                            <rect x="512.8" y="326.8" class="rwycc21" width="598" height="104.9"/>
+                            <rect x="512.8" y="439.4" class="rwycc21" width="598" height="222.3"/>
                             <text id="text" transform="matrix(1 0 0 1 831.0249 39.96)" class="rwycc8 rwycc19">TAKEOFF SIGNIF.CONT</text>
                             <text transform="matrix(1 0 0 1 525.4333 85.21)" class="rwycc8 rwycc20">VALID</text>
                             <text transform="matrix(1 0 0 1 698.4628 178.394)" class="rwycc8 rwycc20">NIL</text>
@@ -1134,12 +1095,6 @@
                             <text transform="matrix(1 0 0 1 519.0059 127.2797)" class="rwycc8 rwycc19">THIRD C</text>
                             <text transform="matrix(1 0 0 1 519.0059 239.1128)" class="rwycc8 rwycc19">THIRD B</text>
                             <text transform="matrix(1 0 0 1 519.0059 352.6887)" class="rwycc8 rwycc19">THIRD A</text>
-                            <rect x="512.8" y="11.1" class="rwycc21" width="292.1" height="82.9"/>
-                            <rect x="818.7" y="11.1" class="rwycc21" width="292.1" height="82.9"/>
-                            <rect x="512.8" y="101.7" class="rwycc21" width="598" height="104.9"/>
-                            <rect x="512.8" y="214.2" class="rwycc21" width="598" height="104.9"/>
-                            <rect x="512.8" y="326.8" class="rwycc21" width="598" height="104.9"/>
-                            <rect x="512.8" y="439.4" class="rwycc21" width="598" height="222.3"/>
 
                             <!-- Downgraded report -->
                             <g id="downgradedReport" style="display: none;">
@@ -1188,18 +1143,18 @@
                         <text id="reportedTime" transform="matrix(1 0 0 1 617.3337 70.0211)" class="rwycc8 rwycc20">NIL</text>
                         <text transform="matrix(1 0 0 1 617.3337 85.21)" class="rwycc8 rwycc20">NIL</text>
                         <text id="to_signif_cont" transform="matrix(1 0 0 1 831.5309 57.7966)" class="rwycc8 rwycc14">/// RWYCC ///</text>
-                        <text id="rwyNumber2" transform="matrix(1 0 0 1 519.0059 465.6039)" class="rwycc8 rwycc19">RUNWAY ///</text>
+                        <text id="rwyNumber2" transform="matrix(1 0 0 1 519.0059 465.6039)" class="rwycc8">RUNWAY ///</text>
                         <text id="rwyNumber" transform="matrix(1 0 0 1 519.0059 36.6357)" class="rwycc8 rwycc19">EFHK ///</text>
                     </g>
                     <g id="RunwayWidthPart">
                         <rect x="56.5" y="718.1" width="354.5" height="40"/>
                         <text id="rwyNumber3" transform="matrix(1 0 0 1 234 707.8934)" text-anchor="middle" class="rwycc8 rwycc22">///</text>
-                        <text id="rwyWidth" transform="matrix(1 0 0 1 232 743.7399)" text-anchor="middle" class="rwycc6 rwycc8 rwycc15">///</text>
+                        <text id="rwyWidth" transform="matrix(1 0 0 1 232 743.7399)" text-anchor="middle" class="rwyccFieldId rwycc8 rwycc15">///</text>
 
-                        <path id="snowBanksBackground2" style="display: none;" class="rwycc6" d="M139.4,680.5H65.5c-5,0-9,4-9,9v28.5h91.9v-28.5C148.4,684.6,144.4,680.5,139.4,680.5z"/>
-                        <path id="snowBanksBackground1" style="display: none;" class="rwycc6" d="M402,680.5h-73.8c-5,0-9,4-9,9v28.5H411v-28.5C411,684.6,407,680.5,402,680.5z"/>                        
-                        <text id="snbanks_left1" transform="matrix(1 0 0 1 129.093 743.7399)" class="rwycc6 rwycc8 rwycc15"></text>
-                        <text id="snbanks_right1" transform="matrix(1 0 0 1 298.9664 743.7399)" class="rwycc6 rwycc8 rwycc15"></text>
+                        <path id="snowBanksBackground2" style="display: none;" class="rwyccFieldId" d="M139.4,680.5H65.5c-5,0-9,4-9,9v28.5h91.9v-28.5C148.4,684.6,144.4,680.5,139.4,680.5z"/>
+                        <path id="snowBanksBackground1" style="display: none;" class="rwyccFieldId" d="M402,680.5h-73.8c-5,0-9,4-9,9v28.5H411v-28.5C411,684.6,407,680.5,402,680.5z"/>                        
+                        <text id="snbanks_left1" transform="matrix(1 0 0 1 129.093 743.7399)" class="rwyccFieldId rwycc8 rwycc15"></text>
+                        <text id="snbanks_right1" transform="matrix(1 0 0 1 298.9664 743.7399)" class="rwyccFieldId rwycc8 rwycc15"></text>
                         <text id="snbanksHeight1" style="display: none;" text-anchor="middle" transform="matrix(1 0 0 1 106 697.252)" class="rwycc23">
                             <tspan id="snbanksHeightText1" x="0" y="0" class="rwycc8 rwycc16"></tspan>
                             <tspan x="-6.2" y="14" class="rwycc8 rwycc16">cm</tspan>
@@ -1210,6 +1165,9 @@
                         </text>
                     </g>
                     <g id="runwayClosedSymbols" style="display: none;">
+                        <rect x="60" y="454.8" width="348.5" height="148.6" class="rwycc_rwy_background"/>
+                        <rect x="59.1" y="11.1" width="348.5" height="148.6" class="rwycc_rwy_background"/>
+                        <rect x="59.5" y="234.2" width="348.5" height="148.6" class="rwycc_rwy_background"/>
                         <polygon id="closed1" class="rwycc6" points="277.3,53.3 266.6,42.6 234,75.2 201.4,42.6 190.7,53.3 223.3,85.9 190.7,118.5 
                             201.4,129.2 234,96.6 266.6,129.2 277.3,118.5 244.7,85.9 "/>
                         <polygon id="closed2" class="rwycc6" points="277.3,276.4 266.6,265.8 234,298.4 201.4,265.8 190.7,276.4 223.3,309 190.7,341.6 
@@ -1218,7 +1176,7 @@
                             201.4,572.7 234,540.1 266.6,572.7 277.3,562 244.7,529.4 "/>
                     </g>
                     <g id="loadingIconRWYCC" style="display: block;">
-                        <text x="520" y="720">Loading data</text>
+                        <text x="520" y="720" class="loadingText">Loading data</text>
                         <image href="src/ajax-loader.gif" x="636" y="705" alt="Loading" style="width: 20px;" />
                     </g>
                 </svg>

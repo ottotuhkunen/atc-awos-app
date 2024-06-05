@@ -322,9 +322,12 @@ async function loadFromSnowtam() {
         }
         
         const isRunwayClosed = matchClosedRunway.includes(runwayName);
+        var runwayElement = document.getElementById("rwyNumber2");
         
-        document.getElementById("rwyNumber2").textContent = "RUNWAY " + runwayName + (isRunwayClosed ? " NOT IN USE" : "");
-        document.getElementById("rwyNumber2").style.fill = isRunwayClosed ? "red" : "black";
+        runwayElement.textContent = "RUNWAY " + runwayName + (isRunwayClosed ? " NOT IN USE" : "");
+        runwayElement.classList.toggle("rwyccClosed", isRunwayClosed);
+        runwayElement.classList.toggle("rwycc8", !isRunwayClosed);
+
         // WINTER ONLY: for (let i = 1; i <= 6; i++) document.getElementById("snowBackground" + i).style.display = isRunwayClosed ? "none" : "block";
         for (let j = 1; j <= 3; j++) document.getElementById("togglePattern" + j).style.display = isRunwayClosed ? "none" : "block";
         document.getElementById("runwayClosedSymbols").style.display = isRunwayClosed ? "block" : "none";

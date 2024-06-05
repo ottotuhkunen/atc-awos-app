@@ -7,14 +7,16 @@ function populateTopMenu(qnh, qfe, metCond) {
     document.getElementById('trlValue').textContent = calculateTrl(qnh);
     document.getElementById('metCondValue').textContent = metCond;
 
-    if (localStorage.getItem('efhkQnh') === null) localStorage.efhkQnh = null;
+    if (sessionStorage.getItem('efhkQnh') === null) sessionStorage.efhkQnh = null;
   
-    var qnhChanger = JSON.parse(localStorage.efhkQnh);
+    var qnhChanger = JSON.parse(sessionStorage.efhkQnh);
 
     if (qnh != qnhChanger && qnhChanger != null){
         stopToggle();
-        localStorage.efhkQnh = JSON.stringify(qnh);
+        sessionStorage.efhkQnh = JSON.stringify(qnh);
         startToggle();
+    } else {
+        sessionStorage.efhkQnh = JSON.stringify(qnh);
     }
 }
 
@@ -34,8 +36,12 @@ function stopToggle() {
 
 function qnhClick() {
     stopToggle();
-    document.getElementById('qnhBox').style.fill = "white";
-    document.getElementById('qnhValue').style.fill = "black";
+    var qnhBox = document.getElementById('qnhBox');
+    var qnhValue = document.getElementById('qnhValue');
+    qnhBox.style.fill = "";
+    qnhValue.style.fill = "";
+    qnhBox.classList.add('topMenu3');
+    qnhValue.classList.add('topMenu6');
 }
 
 function calculateTrl(qnh) {

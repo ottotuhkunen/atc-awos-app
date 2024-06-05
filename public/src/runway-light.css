@@ -1,0 +1,28 @@
+.activeBackground {
+    fill:#717171;
+}
+
+.activeWindDisplay {
+    fill:white;
+}
+
+.activeNumbers {
+    fill:black;
+}
+
+.activeText {
+    fill:black;
+    font-weight: bold;
+}
+
+.highlightInfo {
+    fill:black;
+}
+
+.activeArrow {
+    fill:black;
+}
+
+.oppositeOfActiveNumbers {
+    fill:#363636;
+}

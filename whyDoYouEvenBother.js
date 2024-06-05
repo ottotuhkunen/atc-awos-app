@@ -148,33 +148,14 @@ app.get('/logout', (req, res, next) => {
 
 // END OF AUTHENTICATION
 
-app.get('/api/data', async (req, res) => {
-  const baseUrl = "https://api.airtable.com/v0/appGAYI2wFvY7jZVG/Table%201";
-  const requestOptions = {
-    method: 'GET',
-    headers: {
-        'Authorization': `Bearer ${process.env.AIRTABLE_API_KEY}`
-    },
-};
-
-  try {
-      const response = await fetch(baseUrl, requestOptions);
-      const data = await response.json();
-      res.json(data);
-  } catch (error) {
-      console.log(error);
-      res.status(500).json({ message: "Error fetching data" });
-  }
-});
-
 // fetch data from airtable:
 app.get('/dataEFHK', async (req, res) => {
-  const baseUrl = "https://api.airtable.com/v0/appGAYI2wFvY7jZVG/Table%201";
+  const baseUrl = process.env.AIRTABLE_URL;
   
   const requestOptions = {
       method: 'GET',
       headers: {
-          'Authorization': 'Bearer patdi7Qmwc4DabdNb.2bd05fae548b7ec31be6a80e2500e78c499b0cf2b5a1b5c893211538d962eb0d'
+        'Authorization': `Bearer ${process.env.AIRTABLE_API_KEY}`
       },
   };
 
@@ -186,7 +167,6 @@ app.get('/dataEFHK', async (req, res) => {
       res.status(500).json({ error: "Failed to fetch data from Airtable." });
   }
 });
-
 
 // fetch ATIS data from VATSIM
 let cachedAtisData = null;

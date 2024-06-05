@@ -1,14 +1,14 @@
-function startDataFetching() {
-  loadFMI();
-  setInterval(loadFMI, 90000);
-
-  fetch('/user-data')
-    .then(response => response.json())
-    .then(data => {
-      document.getElementById('user-id').innerText = data.id;
-    })
-    .catch(error => console.error('Error fetching user data:', error));
-}
+document.addEventListener("DOMContentLoaded", function() {
+    loadFMI();
+    setInterval(loadFMI, 90000);
+  
+    fetch('/user-data')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('user-id').innerText = data.id;
+      })
+      .catch(error => console.error('Error fetching user data:', error));
+});
 
 async function loadFMI() {
   const loadingIcon = document.getElementById("loadingIcon");
@@ -60,6 +60,8 @@ let windProblems = false;
 let metar = "//";
 let atisType = 0;
 const runways = ["22R", "22L", "15", "33", "04R", "04L"];
+let variableBetween = false;
+let gustFound = false;
 
 async function setData(xmlDoc) {
   try {
@@ -134,12 +136,12 @@ async function setData(xmlDoc) {
       });
     }
 
-    getMaxSpeed(roundedGust, roundedWindSpeed, "display22R", "22R_maxSpd", "22R_minSpd", "22R");
-    getMaxSpeed(roundedGust, roundedWindSpeed, "display22L", "22L_maxSpd", "22L_minSpd", "22L");
-    getMaxSpeed(roundedGust, roundedWindSpeed, "display15", "15_maxSpd", "15_minSpd", "15");
-    getMaxSpeed(roundedGust, roundedWindSpeed, "display33", "33_maxSpd", "33_minSpd", "33");
-    getMaxSpeed(roundedGust, roundedWindSpeed, "display04L", "04L_maxSpd", "04L_minSpd", "04L");
-    getMaxSpeed(roundedGust, roundedWindSpeed, "display04R", "04R_maxSpd", "04R_minSpd", "04R");
+    getMaxSpeed(roundedGust, roundedWindSpeed, "display22R", "22R_maxSpd","22R");
+    getMaxSpeed(roundedGust, roundedWindSpeed, "display22L", "22L_maxSpd", "22L");
+    getMaxSpeed(roundedGust, roundedWindSpeed, "display15", "15_maxSpd", "15");
+    getMaxSpeed(roundedGust, roundedWindSpeed, "display33", "33_maxSpd", "33");
+    getMaxSpeed(roundedGust, roundedWindSpeed, "display04L", "04L_maxSpd", "04L");
+    getMaxSpeed(roundedGust, roundedWindSpeed, "display04R", "04R_maxSpd", "04R");
 
     // SET MINIMUM WIND SPEED
     runways.forEach(runway => {
@@ -161,19 +163,14 @@ function getMinSpeed(roundedWindSpeed) {
   return minimumSpeed;
 }
 
-function getMaxSpeed(roundedGust, roundedWindSpeed, display, font1, font2, runway) {
+function getMaxSpeed(roundedGust, roundedWindSpeed, display, font1, runway) {
   var maxGust = roundedGust + 3;
   var maxSpeed = Math.floor(Math.random() * (maxGust - roundedGust) + roundedGust);
-  var activeDep = JSON.parse(sessionStorage.getItem("depBox" + runway));
-  var activeArr = JSON.parse(sessionStorage.getItem("arrBox" + runway));
   var gustLimit = roundedWindSpeed + 10;
 
-  let color;
-  if (maxSpeed >= gustLimit && (activeDep || activeArr)) color = "black";
-  else color = "#B9B8BA";
+  if (maxSpeed >= gustLimit) gustFound = true;
+  else gustFound = false;
 
-  document.getElementById(font1).style.fill = color;
-  document.getElementById(font2).style.fill = color;
   document.getElementById(font1).innerHTML = maxSpeed;
 }
 
@@ -273,15 +270,7 @@ async function setMetarData(xmlDoc) {
     if (counterClockwise < 100) counterClockwise = "0" + counterClockwise;
     if (clockwise < 100) clockwise = "0" + clockwise;
     
-    runways.forEach(updateDirection);
-
-    function updateDirection(runway) {
-      const depBox = `depBox${runway}`;
-      const arrBox = `arrBox${runway}`;
-      const elementId = `${runway}_maxDir`;
-      const hasData = JSON.parse(sessionStorage.getItem(depBox)) || JSON.parse(sessionStorage.getItem(arrBox));
-      document.getElementById(elementId).style.fill = hasData ? "black" : "#B9B8BA";
-    }
+    variableBetween = true;
 
     // SET VARIABLE MINIMUM AND MAXIMUM DIRECTION
     runways.forEach(runway => {
@@ -291,9 +280,7 @@ async function setMetarData(xmlDoc) {
 
   // NO VRB BETWEEN WIND IN METAR
   else {
-    runways.forEach(runway => {
-      document.getElementById(`${runway}_maxDir`).style.fill = "#B9B8BA";
-    });
+      variableBetween = false;
   }
 
   // IF METAR CONTAINS VRB
@@ -472,11 +459,12 @@ async function setMetarData(xmlDoc) {
       document.getElementById("atisInfoFieldArr").innerHTML = "EFHK ARR ATIS NIL";
 
       // TESTING:
-      // let text = "THIS IS HELSINKI-VANTAA ARRIVAL AND DEPARTURE INFORMATION GOLF AT TIME 1950 EXPECT ILS APPROACH ARRIVAL RUNWAY 15 CLEAR AND DRY DEPARTURE RUNWAY 22L CLEAR AND DRY TRANSITION LEVEL 60 WIND 180 DEGREES 3 KNOTS CAVOK TEMPERATURE 13 DEW POINT 8 QNH 1018 NOSIG ADVISE ON INITIAL CONTACT YOU HAVE INFORMATION GOLF";
-      // text = text.replace(/\.\./g, '.')
-      // let atisWithLines = text ? text.replace(/\./g, '<br/>') : ["EFHK ATIS NIL"];
+      let text = "THIS IS HELSINKI-VANTAA ARRIVAL AND DEPARTURE INFORMATION GOLF AT TIME 1950 EXPECT ILS APPROACH ARRIVAL RUNWAY 22L CLEAR AND DRY DEPARTURE RUNWAY 22L CLEAR AND DRY TRANSITION LEVEL 60 WIND 180 DEGREES 3 KNOTS CAVOK TEMPERATURE 13 DEW POINT 8 QNH 1018 NOSIG ADVISE ON INITIAL CONTACT YOU HAVE INFORMATION GOLF";
+      text = text.replace(/\.\./g, '.')
+      let atisWithLines = text ? text.replace(/\./g, '<br/>') : ["EFHK ATIS NIL"];
       // console.log(atisWithLines);
-      // makeAtisText(atisWithLines);
+      makeAtisText(atisWithLines);
+      // END OF TESTING
 
       await fetchInformation();
       await loadConfig();

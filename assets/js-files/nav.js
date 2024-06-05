@@ -1,5 +1,6 @@
 function openMainPage(checkType) {
-    saveConfig();
+    // old version: saveConfig();
+
     // left nav triangles
     document.getElementById("mainTriangle").style.display = "block";
     document.getElementById("rwy1Triangle").style.display = "none";
@@ -224,7 +225,7 @@ function setup() {
     // load greeting
     const currentHour = new Date().getHours();
     let greeting;
-    if (currentHour < 12) greeting = "Good morning, ";
+    if (currentHour < 12) greeting = "Good morning ☕️, ";
     else if (currentHour < 18) greeting = "Good afternoon, ";
     else greeting = "Good evening, ";
 
