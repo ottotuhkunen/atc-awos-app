@@ -1,11 +1,19 @@
+// runway selection (Setup view)
+fetch('src/runwaySelection.svg')
+.then(response => response.text())
+.then(data => {
+    document.getElementById('runwaySelection-container').innerHTML = data;
+    // make changes here
+});
+
 async function loadConfig() {
 
     let dep04l = false, arr04l = false, 
-      dep04r = false, arr04r = false, 
-      dep15 = false, arr15 = false, 
-      dep33 = false, arr33 = false,
-      dep22l = false, arr22l = false, 
-      dep22r = false, arr22r = false;
+        dep04r = false, arr04r = false, 
+        dep15 = false, arr15 = false, 
+        dep33 = false, arr33 = false,
+        dep22l = false, arr22l = false, 
+        dep22r = false, arr22r = false;
       
     let atisText = "";
 
@@ -16,7 +24,7 @@ async function loadConfig() {
 
         for (let item of data.atis) {
             if (item.callsign === "EFHK_D_ATIS") {
-                atisText += item.text_atis ? item.text_atis : "EFHK DEP ATIS NIL";
+                atisText = item.text_atis ? item.text_atis : "EFHK DEP ATIS NIL";
             }
             if (item.callsign === "EFHK_A_ATIS") {
                 atisText += item.text_atis ? item.text_atis : "EFHK ARR ATIS NIL";
@@ -31,7 +39,7 @@ async function loadConfig() {
     }
 
     // TESTING
-    // atisText = "THIS IS HELSINKI-VANTAA ARRIVAL AND DEPARTURE INFORMATION GOLF AT TIME 1950 EXPECT ILS APPROACH ARRIVAL RUNWAY 15 CLEAR AND DRY DEPARTURE RUNWAY 22L CLEAR AND DRY TRANSITION LEVEL 60 WIND 180 DEGREES 3 KNOTS CAVOK TEMPERATURE 13 DEW POINT 8 QNH 1018 NOSIG ADVISE ON INITIAL CONTACT YOU HAVE INFORMATION GOLF";
+    atisText = "THIS IS HELSINKI-VANTAA ARRIVAL AND DEPARTURE INFORMATION GOLF AT TIME 1950 EXPECT ILS APPROACH ARRIVAL RUNWAY 22L CLEAR AND DRY DEPARTURE RUNWAY 15 CLEAR AND DRY TRANSITION LEVEL 60 WIND 180 DEGREES 3 KNOTS CAVOK TEMPERATURE 13 DEW POINT 8 QNH 1018 NOSIG ADVISE ON INITIAL CONTACT YOU HAVE INFORMATION GOLF";
     
     atisText = atisText.replace(",", " ");
     atisText = atisText.replace("DEPARTURE RUNWAY", "DEP RWY");
@@ -155,6 +163,88 @@ async function loadConfig() {
     setDataStyles("33_maxDir", "33_maxSpd", "33_minSpd", status33);
     setDataStyles("22L_maxDir", "22L_maxSpd", "22L_minSpd", status22l);
     setDataStyles("22R_maxDir", "22R_maxSpd", "22R_minSpd", status22r);
+
+    // set runway selection page
+    let indicator04l = document.getElementById("04l_status");
+    let indicator04r = document.getElementById("04r_status");
+    let indicator15 = document.getElementById("15_status");
+    let indicator33 = document.getElementById("33_status");
+    let indicator22l = document.getElementById("22l_status");
+    let indicator22r = document.getElementById("22r_status");
+
+    setRwySelectionPage(indicator04l, dep04l, arr04l);
+    setRwySelectionPage(indicator04r, dep04r, arr04r);
+    setRwySelectionPage(indicator15, dep15, arr15);
+    setRwySelectionPage(indicator33, dep33, arr33);
+    setRwySelectionPage(indicator22l, dep22l, arr22l);
+    setRwySelectionPage(indicator22r, dep22r, arr22r);
+}
+
+function setRwyLights(visibility) {
+    let lights1 = document.getElementById("light1");
+    let lights2 = document.getElementById("light2");
+    let lights3 = document.getElementById("light3");
+
+    var months = [
+      { month: "JAN", sunrise: 7, sunset: 13, twilightStart: 15},
+      { month: "FEB", sunrise: 6, sunset: 14, twilightStart: 16},
+      { month: "MAR", sunrise: 5, sunset: 15, twilightStart: 17},
+      { month: "APR", sunrise: 4, sunset: 17, twilightStart: 18},
+      { month: "MAY", sunrise: 2, sunset: 18, twilightStart: 20},
+      { month: "JUN", sunrise: 1, sunset: 19, twilightStart: 21},
+      { month: "JUL", sunrise: 1, sunset: 20, twilightStart: 21},
+      { month: "AUG", sunrise: 2, sunset: 19, twilightStart: 19},
+      { month: "SEP", sunrise: 3, sunset: 17, twilightStart: 18},
+      { month: "OCT", sunrise: 4, sunset: 16, twilightStart: 17},
+      { month: "NOV", sunrise: 6, sunset: 14, twilightStart: 16},
+      { month: "DEC", sunrise: 7, sunset: 13, twilightStart: 15}
+    ];
+
+    var now = new Date();
+    var currentMonthIndex = now.getMonth();
+    var currentHour = now.getHours();
+    
+    var currentMonth = months[currentMonthIndex];
+    var sunriseHour = currentMonth.sunrise;
+    var sunsetHour = currentMonth.sunset;
+    var twilightHour = currentMonth.twilightStart;
+    var lightPercentage;
+
+    if (currentHour >= sunriseHour && currentHour < sunsetHour) {
+        // daytime
+        lightPercentage = (visibility <= 5000) ? 100 : 0;
+    } else if (currentHour >= sunsetHour && currentHour < twilightHour) {
+        // sunset
+        lightPercentage = (visibility <= 1500) ? 100 : (visibility <= 5000) ? 30 : (visibility <= 8000) ? 10 : 3;
+    } else {
+        // night
+        lightPercentage = (visibility <= 1500) ? 30 : (visibility <= 5000) ? 10 : (visibility <= 8000) ? 3 : 1;
+    }
+
+    // Set light values
+    lights1.textContent = lightPercentage.toFixed(2) + "%";
+    lights2.textContent = lightPercentage.toFixed(2) + "%";
+    lights3.textContent = lightPercentage.toFixed(2) + "%";
+}
+
+function setRwySelectionPage(indicatorText, depStatus, arrStatus) {
+
+    if (depStatus && arrStatus) {
+        indicatorText.textContent = "LANDING/TAKE OFF";
+        indicatorText.style.fontWeight = "bold";
+    } 
+    else if (depStatus) {
+        indicatorText.textContent = "TAKE OFF";
+        indicatorText.style.fontWeight = "bold";
+    } 
+    else if (arrStatus) {
+        indicatorText.textContent = "LANDING";
+        indicatorText.style.fontWeight = "bold";
+    } 
+    else {
+        indicatorText.textContent = "NOT IN USE"
+        indicatorText.style.fontWeight = "normal";
+    } 
 }
 
 function setDataStyles(vrbId, maxSpdId, minSpdId, runwayStatus) {
@@ -166,9 +256,10 @@ function setDataStyles(vrbId, maxSpdId, minSpdId, runwayStatus) {
     maxField.classList.remove("highlightInfo");
     minField.classList.remove("highlightInfo");
 
-    if (runwayStatus && variableBetween) {
-        vrbField.classList.add("highlightInfo");
-    }
+    // variable between
+    if (runwayStatus && variableBetween) vrbField.classList.add("highlightInfo");
+
+    // maximum and minimum wind speed
     if (runwayStatus && gustFound) {
         maxField.classList.add("highlightInfo");
         minField.classList.add("highlightInfo");
@@ -183,12 +274,8 @@ function runwayIndicators(depId, arrId, depStatus, arrStatus) {
     depIndicator.style.display = "none";
     arrIndicator.style.display = "none";
 
-    if (depStatus) {
-        depIndicator.style.display = "block";
-    }
-    if (arrStatus) {
-        arrIndicator.style.display = "block";
-    }
+    if (depStatus) depIndicator.style.display = "block";
+    if (arrStatus) arrIndicator.style.display = "block";
 }
 
 function setWindDisplay(displayId, windSpdId, windDirId, arrowId, runwayStatus) {
@@ -238,10 +325,8 @@ function setRunwaySurface(runwayId, runwayStatus, oppositeStatus) {
     var runwayBackground = document.getElementById(runwayId);
     runwayBackground.classList.remove("activeBackground");
 
-    if (runwayStatus || oppositeStatus) {
-        // runway is active
-        runwayBackground.classList.add("activeBackground");
-    }
+    // if runway is active
+    if (runwayStatus || oppositeStatus) runwayBackground.classList.add("activeBackground");
 
     // 04R bring-to-front if 15 is not in use
     if (runwayId == "rwy15" && runwayStatus == false) {

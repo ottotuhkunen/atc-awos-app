@@ -26,3 +26,13 @@
 .oppositeOfActiveNumbers {
     fill:#363636;
 }
+
+.runwaySel1{fill:#B5B5B5;}
+.runwaySel2{fill:#FFFFFF;}
+.runwaySel3{fill:none;stroke:#808080;stroke-miterlimit:10;}
+.runwaySel6{font-family:'Verdana';}
+.runwaySel7{font-size:12px;}
+.runwaySel8{font-size:8px;}
+.runwaySel9{font-family:'Verdana-Bold';}
+.rwySelGradient1{stop-color:#87B0DB;}
+.rwySelGradient2{stop-color:#BFD2EB;}

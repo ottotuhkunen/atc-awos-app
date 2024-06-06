@@ -749,6 +749,28 @@ function metNav3() {
     .catch(error => console.log('error', error));
 }
 
+function setupButton1() {
+    document.getElementById("runwaySelection-container").style.display = "block";
+    document.getElementById("setupContainer3").style.display = "none";
+
+    document.getElementById("setupButton1").style.backgroundColor = "#D8E5F3";
+    document.getElementById("setupButton2").style.backgroundColor = "#E6E6E6";
+
+    document.getElementById("setupButton1").style.pointerEvents = "none";
+    document.getElementById("setupButton2").style.pointerEvents = "all";
+}
+
+function setupButton2() {
+    document.getElementById("runwaySelection-container").style.display = "none";
+    document.getElementById("setupContainer3").style.display = "block";
+
+    document.getElementById("setupButton1").style.backgroundColor = "#E6E6E6";
+    document.getElementById("setupButton2").style.backgroundColor = "#D8E5F3";
+
+    document.getElementById("setupButton1").style.pointerEvents = "all";
+    document.getElementById("setupButton2").style.pointerEvents = "none";
+}
+
 function openDepATIS(){
     openAtisWindow(1);
 }

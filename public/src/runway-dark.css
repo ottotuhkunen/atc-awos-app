@@ -20,9 +20,20 @@
 }
 
 .activeArrow {
-    fill:#dad7d4;
+    fill:black;
+    stroke:white;
 }
 
 .oppositeOfActiveNumbers {
     fill:#242424;
 }
+
+.runwaySel1{fill:#444444;}
+.runwaySel2{fill:#FFFFFF;}
+.runwaySel3{fill:none;stroke:#808080;stroke-miterlimit:10;}
+.runwaySel6{font-family:'Verdana'; fill:#d3d3d3;}
+.runwaySel7{font-size:12px; fill:#55b0dd;}
+.runwaySel8{font-size:8px;}
+.runwaySel9{font-family:'Verdana-Bold'; fill:#d3d3d3;}
+.rwySelGradient1{stop-color:#194255;}
+.rwySelGradient2{stop-color:#2f6e8f;}

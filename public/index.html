@@ -404,21 +404,20 @@
                 </g>
             </svg>
             <div id="setupDiv" class="setupDiv">
-                <h3 id="greeting"></h3>
+                <h3 id="greeting" style="display: inline-block;">...</h3>
                 <a class="logoutButton" href="/logout"><span style="font-size: 10pt;" class="material-symbols-outlined">logout</span> Logout</a>
-                <h3><b>New:</b> Dark mode - Note! This option is disabled in real life and thus it does not represent real system colors.</h3>
-                <div id="setupContainer3" style="margin-top: 20px; max-width: 650px; margin-right: 10px;">
-                    <hr>
-                    <h2 style="font-weight: bold;">This app is for simulation purposes only!</h2>
-                    <ul>
-                        <li>This is an unofficial tool designed solely for use on the VATSIM network.</li>
-                        <li>This site is not affiliated, endorsed, or sponsored by any official AWOS service or entity.</li>
-                        <li>The information and design on this site are intended only for entertainment and simulation purposes and should not be relied upon for any real-world aviation activities.</li>
-                    </ul>
-                    <hr>
-                    <h2 style="font-weight: bold;">Registered ATS-units</h2>
-                    <table id="atsunitsTable" class="atsUnitsTable"></table>
 
+                <div id="setupButtonsContainer">
+                    <button id="setupButton1" onclick="setupButton1();" class="metButtons" style="margin-left: 6px; background-color: #D8E5F3;">Runways</button>
+                    <button id="setupButton2" onclick="setupButton2();" class="metButtons">ATS-units</button>
+                </div>
+
+                <div style="overflow: hidden;">
+                    <div id="runwaySelection-container" style="width: 100%; max-width:800px; min-width: 520px;"></div> <!-- code in config.js -->
+                    <div id="setupContainer3" style="margin-right: 16pt; display: none;">
+                        <h2 style="font-weight: bold;">Registered ATS-units</h2>
+                        <table id="atsunitsTable" class="atsUnitsTable"></table>
+                    </div>
                 </div>
             </div>
 

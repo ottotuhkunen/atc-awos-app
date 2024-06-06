@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 28.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg id="runwaySelection" version="1.1" preserveAspectRatio="xMinYMin meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 588 301" style="enable-background:new 0 0 588 301;" xml:space="preserve">
+<g id="background">
+	<linearGradient id="runwaySel-gradien0" gradientUnits="userSpaceOnUse" x1="293" y1="26" x2="293" y2="3">
+		<stop  offset="0" class="rwySelGradient1"/>
+		<stop  offset="1" class="rwySelGradient2"/>
+	</linearGradient>
+	<rect x="4" y="3" style="fill:url(#runwaySel-gradien0);" width="578" height="23"/>
+	<rect x="310" y="31" class="runwaySel1" width="267" height="16"/>
+	<rect x="311" y="32" class="runwaySel2" width="16" height="2"/>
+	<rect x="311" y="36" class="runwaySel2" width="16" height="2"/>
+	<rect x="311" y="40" class="runwaySel2" width="16" height="2"/>
+	<rect x="311" y="44" class="runwaySel2" width="16" height="2"/>
+	<rect x="560" y="32" class="runwaySel2" width="16" height="2"/>
+	<rect x="560" y="36" class="runwaySel2" width="16" height="2"/>
+	<rect x="560" y="40" class="runwaySel2" width="16" height="2"/>
+	<rect x="560" y="44" class="runwaySel2" width="16" height="2"/>
+	<line class="runwaySel3" x1="10" y1="71" x2="577" y2="71"/>
+	
+	<linearGradient id="runwaySel-gradien1" gradientUnits="userSpaceOnUse" x1="293" y1="127" x2="293" y2="104">
+		<stop  offset="0" class="rwySelGradient1"/>
+		<stop  offset="1" class="rwySelGradient2"/>
+	</linearGradient>
+	<rect x="4" y="104" style="fill:url(#runwaySel-gradien1);" width="578" height="23"/>
+	<rect x="310" y="132" class="runwaySel1" width="267" height="16"/>
+	<rect x="311" y="133" class="runwaySel2" width="16" height="2"/>
+	<rect x="311" y="137" class="runwaySel2" width="16" height="2"/>
+	<rect x="311" y="141" class="runwaySel2" width="16" height="2"/>
+	<rect x="311" y="145" class="runwaySel2" width="16" height="2"/>
+	<rect x="560" y="133" class="runwaySel2" width="16" height="2"/>
+	<rect x="560" y="137" class="runwaySel2" width="16" height="2"/>
+	<rect x="560" y="141" class="runwaySel2" width="16" height="2"/>
+	<rect x="560" y="145" class="runwaySel2" width="16" height="2"/>
+	<line class="runwaySel3" x1="10" y1="172" x2="577" y2="172"/>
+	
+	<linearGradient id="runwaySel-gradient2" gradientUnits="userSpaceOnUse" x1="293" y1="228" x2="293" y2="205">
+		<stop  offset="0" class="rwySelGradient1"/>
+		<stop  offset="1" class="rwySelGradient2"/>
+	</linearGradient>
+	<rect x="4" y="205" style="fill:url(#runwaySel-gradient2);" width="578" height="23"/>
+	<rect x="310" y="233" class="runwaySel1" width="267" height="16"/>
+	<rect x="311" y="234" class="runwaySel2" width="16" height="2"/>
+	<rect x="311" y="238" class="runwaySel2" width="16" height="2"/>
+	<rect x="311" y="242" class="runwaySel2" width="16" height="2"/>
+	<rect x="311" y="246" class="runwaySel2" width="16" height="2"/>
+	<rect x="560" y="234" class="runwaySel2" width="16" height="2"/>
+	<rect x="560" y="238" class="runwaySel2" width="16" height="2"/>
+	<rect x="560" y="242" class="runwaySel2" width="16" height="2"/>
+	<rect x="560" y="246" class="runwaySel2" width="16" height="2"/>
+	<line class="runwaySel3" x1="10" y1="273" x2="577" y2="273"/>
+	
+		<image style="overflow:visible;" width="148" height="60" id="slider1" xlink:href="src/slider.png"  transform="matrix(0.1824 0 0 0.1824 176 34)">
+	</image>
+	
+		<image style="overflow:visible;" width="148" height="60" id="slider2" xlink:href="src/slider.png"  transform="matrix(0.1824 0 0 0.1824 176 79)">
+	</image>
+	
+		<image style="overflow:visible;" width="148" height="60" id="slider3" xlink:href="src/slider.png"  transform="matrix(0.1824 0 0 0.1824 176 135)">
+	</image>
+	
+		<image style="overflow:visible;" width="148" height="60" id="slider4" xlink:href="src/slider.png"  transform="matrix(0.1824 0 0 0.1824 176 180)">
+	</image>
+	
+		<image style="overflow:visible;" width="148" height="60" id="slider5" xlink:href="src/slider.png"  transform="matrix(0.1824 0 0 0.1824 176 236)">
+	</image>
+	
+		<image style="overflow:visible;" width="148" height="60" id="slider6" xlink:href="src/slider.png"  transform="matrix(0.1824 0 0 0.1824 176 281)">
+	</image>
+</g>
+<g id="staticText">
+	<text transform="matrix(1 0 0 1 9.2886 18.958)" class="runwaySel6 runwaySel7">04L/22R</text>
+	<text transform="matrix(1 0 0 1 9.1797 41.3726)" class="runwaySel6 runwaySel8">RUNWAY IN USE:</text>
+	<text transform="matrix(1 0 0 1 9.1797 86.3726)" class="runwaySel6 runwaySel8">LIGHT INTENSITY:</text>
+	<text transform="matrix(1 0 0 1 108.1602 41.4722)" class="runwaySel9 runwaySel8">AUTOMATIC</text>
+	<text id="_x30_4L-rwyTitle" transform="matrix(1 0 0 1 332.1602 42.4722)" class="runwaySel2 runwaySel9 runwaySel8">04L</text>
+	<text id="_x32_2R-rwyTitle" transform="matrix(1 0 0 1 539.1602 42.4722)" class="runwaySel2 runwaySel9 runwaySel8">22R</text>
+	<text transform="matrix(1 0 0 1 108.1602 86.4722)" class="runwaySel9 runwaySel8">AUTOMATIC</text>
+	<text transform="matrix(1 0 0 1 215.1602 41.4722)" class="runwaySel6 runwaySel8">MANUAL</text>
+	<text transform="matrix(1 0 0 1 215.1602 86.4722)" class="runwaySel6 runwaySel8">MANUAL</text>
+	<text transform="matrix(1 0 0 1 9.2886 119.958)" class="runwaySel6 runwaySel7">15/33</text>
+	<text transform="matrix(1 0 0 1 9.1797 142.3726)" class="runwaySel6 runwaySel8">RUNWAY IN USE:</text>
+	<text transform="matrix(1 0 0 1 9.1797 187.3726)" class="runwaySel6 runwaySel8">LIGHT INTENSITY:</text>
+	<text transform="matrix(1 0 0 1 108.1602 142.4722)" class="runwaySel9 runwaySel8">AUTOMATIC</text>
+	<text id="_x31_5-rwyTitle" transform="matrix(1 0 0 1 332.1602 143.4722)" class="runwaySel2 runwaySel9 runwaySel8">15</text>
+	<text id="_x33_3-rwyTitle" transform="matrix(1 0 0 1 539.1602 143.4722)" class="runwaySel2 runwaySel9 runwaySel8">33</text>
+	<text transform="matrix(1 0 0 1 108.1602 187.4722)" class="runwaySel9 runwaySel8">AUTOMATIC</text>
+	<text transform="matrix(1 0 0 1 215.1602 142.4722)" class="runwaySel6 runwaySel8">MANUAL</text>
+	<text transform="matrix(1 0 0 1 215.1602 187.4722)" class="runwaySel6 runwaySel8">MANUAL</text>
+	<text transform="matrix(1 0 0 1 9.2886 220.958)" class="runwaySel6 runwaySel7">04R/22L</text>
+	<text transform="matrix(1 0 0 1 9.1797 243.3726)" class="runwaySel6 runwaySel8">RUNWAY IN USE:</text>
+	<text transform="matrix(1 0 0 1 9.1797 288.3726)" class="runwaySel6 runwaySel8">LIGHT INTENSITY:</text>
+	<text transform="matrix(1 0 0 1 108.1602 243.4722)" class="runwaySel9 runwaySel8">AUTOMATIC</text>
+	<text id="_x30_4R-rwyTitle" transform="matrix(1 0 0 1 332.1602 244.4722)" class="runwaySel2 runwaySel9 runwaySel8">04R</text>
+	<text id="_x32_2L-rwyTitle" transform="matrix(1 0 0 1 539.1602 244.4722)" class="runwaySel2 runwaySel9 runwaySel8">22L</text>
+	<text transform="matrix(1 0 0 1 108.1602 288.4722)" class="runwaySel9 runwaySel8">AUTOMATIC</text>
+	<text transform="matrix(1 0 0 1 215.1602 243.4722)" class="runwaySel6 runwaySel8">MANUAL</text>
+	<text transform="matrix(1 0 0 1 215.1602 288.4722)" class="runwaySel6 runwaySel8">MANUAL</text>
+</g>
+<g id="textLayer">
+	<text id="22l_status" transform="matrix(1 0 0 1 576 264.2397)" class="runwaySel6 runwaySel8" text-anchor="end">NOT IN USE</text>
+	<text id="04r_status" transform="matrix(1 0 0 1 310.2803 264.2397)" class="runwaySel6 runwaySel8">NOT IN USE</text>
+	<text id="33_status" transform="matrix(1 0 0 1 576 163.2397)" class="runwaySel6 runwaySel8" text-anchor="end">NOT IN USE</text>
+	<text id="15_status" transform="matrix(1 0 0 1 310.2803 163.2397)" class="runwaySel6 runwaySel8">NOT IN USE</text>
+	<text id="22r_status" transform="matrix(1 0 0 1 576 62.2397)" class="runwaySel6 runwaySel8" text-anchor="end">NOT IN USE</text>
+	<text id="04l_status" transform="matrix(1 0 0 1 310.2803 62.2397)" class="runwaySel6 runwaySel8">NOT IN USE</text>
+	<text id="light3" transform="matrix(1 0 0 1 311.2803 288.2397)" class="runwaySel6 runwaySel8">10.00%</text>
+	<text id="light2" transform="matrix(1 0 0 1 311.2803 187.2397)" class="runwaySel6 runwaySel8">10.00%</text>
+	<text id="light1" transform="matrix(1 0 0 1 311.2803 86.2397)" class="runwaySel6 runwaySel8">10.00%</text>
+</g>
+</svg>

@@ -297,6 +297,8 @@ async function setMetarData(xmlDoc) {
   var viss = xmlDoc.getElementsByTagName("iwxxm:prevailingVisibility");
   var vis = viss.length > 0 && viss[viss.length - 1].childNodes.length > 0 ? viss[viss.length - 1].childNodes[0].nodeValue : "10000";
 
+  setRwyLights(vis);
+
   // IMC VMC INDICATOR
   if (metar.match(" VV001") || metar.match(" VV002")) metCond = "LVP";
   else if (vis < 5000 && vis > 10 || metar.match(/\W*(BKN00)/g) || metar.match(/\W*(OVC00)/g) || metar.match(" VV")) metCond = "IMC";
