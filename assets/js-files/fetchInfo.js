@@ -265,11 +265,11 @@ async function loadATSunits() {
         // creating table header
         const headerRow = table.insertRow();
         const th1 = document.createElement('th');
-        th1.textContent = 'Role';
+        th1.textContent = 'ROLE';
         const th2 = document.createElement('th');
-        th2.textContent = 'Frequency';
+        th2.textContent = 'FREQUENCY';
         const th3 = document.createElement('th');
-        th3.textContent = 'ATCO';
+        th3.textContent = 'ATCO NAME/ID';
         headerRow.appendChild(th1);
         headerRow.appendChild(th2);
         headerRow.appendChild(th3);

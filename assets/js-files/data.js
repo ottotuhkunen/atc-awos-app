@@ -279,9 +279,7 @@ async function setMetarData(xmlDoc) {
   }
 
   // NO VRB BETWEEN WIND IN METAR
-  else {
-      variableBetween = false;
-  }
+  else variableBetween = false;
 
   // IF METAR CONTAINS VRB
   if (metar.includes("VRB")) {
