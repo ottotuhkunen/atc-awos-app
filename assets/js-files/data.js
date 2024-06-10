@@ -46,7 +46,8 @@ async function loadMetar() {
       }
   } catch (error) {
       console.log('error in loadMetar function:', error);
-      document.getElementById("metar").innerHTML = "COULD NOT GET DATABASE CONNECTION TO FMI=";
+      document.getElementById("metar").innerHTML = "NO FMI DATABASE CONNECTION=";
+      document.getElementById("missingMetar").style.display = "block";
   }
 }
 
@@ -223,6 +224,32 @@ async function setMetarData(xmlDoc) {
   let dataProblem = metar === "EFHK METAR NIL=";
 
   document.getElementById("metar").innerHTML = metar; // show METAR
+
+  // check if METAR is valid
+  let metarTimes = xmlDoc.getElementsByTagName('avi:processingTime');
+  // Find the latest processingTime
+  let latestProcessingTime = null;
+  for (let i = 0; i < metarTimes.length; i++) {
+    let currentProcessingTime = new Date(metarTimes[i].textContent);
+    if (!latestProcessingTime || currentProcessingTime > latestProcessingTime) {
+      latestProcessingTime = currentProcessingTime;
+    }
+  }
+
+  if (latestProcessingTime) {
+    let currentTime = new Date();
+
+    // Check if the latest processingTime is more than 35 minutes ago
+    let timeDifference = (currentTime - latestProcessingTime) / (1000 * 60);
+    // console.log(latestProcessingTime + " difference: " + timeDifference);
+    
+    if (timeDifference > 35) document.getElementById("missingMetar").style.display = "block";
+    else document.getElementById("missingMetar").style.display = "none";
+    
+  } else {
+    console.log("No processing time found in the data.");
+  }
+
   
   var trend = metar.match(/(\sQ\d{4}\s)(.*?)(?==)/); // set METREP trend (after QNH)
   if (trend && trend[2]) document.getElementById("metTrend").textContent = trend[2];
