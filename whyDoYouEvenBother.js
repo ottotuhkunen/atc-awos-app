@@ -168,6 +168,19 @@ app.get('/dataEFHK', async (req, res) => {
   }
 });
 
+// get tactical messages
+/*
+app.get('/messages', async (req, res) => {
+  try {
+    const result = await db.query('SELECT * FROM messages');
+    res.json(result.rows);
+  } catch (error) {
+    console.error('Error fetching data from PostgreSQL:', error);
+    res.status(500).json({ error: "Failed to fetch data from PostgreSQL." });
+  }
+});
+*/
+
 // fetch ATIS data from VATSIM
 let cachedAtisData = null;
 let cacheTimestamp = null;

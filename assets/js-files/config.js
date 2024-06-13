@@ -49,7 +49,7 @@ async function loadConfig() {
 
     // load active departure runways
     switch (true) {
-      case atisText.includes("DEP RWY 22L AND 22R"):
+      case atisText.includes("DEP RWYS 22L AND 22R"):
         dep22l = true;
         dep22r = true;
         break;

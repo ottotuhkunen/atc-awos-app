@@ -235,6 +235,30 @@ function setup() {
         document.getElementById('greeting').innerText = greeting + data.full_name + "!";
     })
     .catch(error => console.error('Error fetching user data:', error));
+
+    // load messages
+    /*
+    fetch('/messages')
+    .then(response => response.json())
+    .then(data => {
+        if (data.length > 0) {
+            const messageData = data[0];
+
+            // Replace ";" with newline "\n"
+            const message1 = messageData.message1.replace(/;/g, '\n');
+            const message2 = messageData.message2.replace(/;/g, '\n');
+            const message3 = messageData.message3.replace(/;/g, '\n');
+
+            // Display messages in the corresponding textareas
+            document.getElementById('infoWindowSetup1').value = message1;
+            document.getElementById('infoWindowSetup2').value = message2;
+            document.getElementById('infoWindowSetup3').value = message3;
+        }
+    })
+    .catch(error => {
+        console.error('Error fetching messages:', error);
+    });
+    */
 }
 
 function openSnowtam() {
@@ -752,23 +776,43 @@ function metNav3() {
 function setupButton1() {
     document.getElementById("runwaySelection-container").style.display = "block";
     document.getElementById("setupContainer3").style.display = "none";
+    document.getElementById("setupContainerMessages").style.display = "none";
 
     document.getElementById("setupButton1").style.backgroundColor = "#D8E5F3";
     document.getElementById("setupButton2").style.backgroundColor = "#E6E6E6";
+    document.getElementById("setupButton3").style.backgroundColor = "#E6E6E6";
 
     document.getElementById("setupButton1").style.pointerEvents = "none";
     document.getElementById("setupButton2").style.pointerEvents = "all";
+    document.getElementById("setupButton3").style.pointerEvents = "all";
 }
 
 function setupButton2() {
     document.getElementById("runwaySelection-container").style.display = "none";
     document.getElementById("setupContainer3").style.display = "block";
+    document.getElementById("setupContainerMessages").style.display = "none";
 
     document.getElementById("setupButton1").style.backgroundColor = "#E6E6E6";
     document.getElementById("setupButton2").style.backgroundColor = "#D8E5F3";
+    document.getElementById("setupButton3").style.backgroundColor = "#E6E6E6";
 
     document.getElementById("setupButton1").style.pointerEvents = "all";
     document.getElementById("setupButton2").style.pointerEvents = "none";
+    document.getElementById("setupButton3").style.pointerEvents = "all";
+}
+
+function setupButton3() {
+    document.getElementById("runwaySelection-container").style.display = "none";
+    document.getElementById("setupContainer3").style.display = "none";
+    document.getElementById("setupContainerMessages").style.display = "block";
+
+    document.getElementById("setupButton1").style.backgroundColor = "#E6E6E6";
+    document.getElementById("setupButton2").style.backgroundColor = "#E6E6E6";
+    document.getElementById("setupButton3").style.backgroundColor = "#D8E5F3";
+
+    document.getElementById("setupButton1").style.pointerEvents = "all";
+    document.getElementById("setupButton2").style.pointerEvents = "all";
+    document.getElementById("setupButton3").style.pointerEvents = "none";
 }
 
 function openDepATIS(){

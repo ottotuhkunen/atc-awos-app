@@ -401,14 +401,15 @@
             </svg>
             <div id="setupDiv" class="setupDiv">
                 <h3 id="greeting">...</h3>
-                <a class="logoutButton" href="/logout"><span style="font-size: 10pt; margin-bottom: 16px;" class="material-symbols-outlined">logout</span> Logout</a>
+                <a class="logoutButton" href="/logout"><span style="font-size: 14pt; margin-bottom: 16px; line-height: 16pt; vertical-align: top;" class="material-symbols-outlined">logout</span> Logout</a>
 
                 <div id="setupButtonsContainer">
                     <button id="setupButton1" onclick="setupButton1();" class="metButtons" style="margin-left: 6px; background-color: #D8E5F3;">Runways</button>
                     <button id="setupButton2" onclick="setupButton2();" class="metButtons">ATS-units</button>
+                    <!-- <button id="setupButton3" onclick="setupButton3();" class="metButtons">Messages</button> -->
                 </div>
 
-                <div id="runwaySelection-container" style="position:absolute; width: 100%; top: 110px; bottom: 0; margin-top: 4px;"></div> <!-- code in config.js -->
+                <div id="runwaySelection-container" style="position:absolute; width: 100%; top: 110px; bottom: 0; margin-top: 8px;"></div> <!-- code in config.js -->
 
                 <div id="setupContainer3" style="margin-right: 16pt; display: none;">
                     <svg id="atc-title" version="1.1" preserveAspectRatio="xMinYMin meet" x="0px" y="0px"
@@ -422,6 +423,46 @@
                     </svg>
                     <table id="atsunitsTable" class="atsUnitsTable"></table> <!-- code in fetchInfo.js -->
                 </div>
+
+                <div id="setupContainerMessages" style="display: none; overflow: auto;">
+                    <svg id="messages-title" version="1.1" preserveAspectRatio="xMinYMin meet" x="0px" y="0px"
+                        viewBox="0 0 588 30" style="enable-background:new 0 0 588 30; width: 100%; max-width:800px;" xml:space="preserve">
+                        <linearGradient id="message-gradient" gradientUnits="userSpaceOnUse" x1="293" y1="26" x2="293" y2="3">
+                            <stop  offset="0" class="rwySelGradient1"/>
+                            <stop  offset="1" class="rwySelGradient2"/>
+                        </linearGradient>
+                        <rect x="4" y="3" style="fill:url(#message-gradient);" width="578" height="23"/>
+                        <text transform="matrix(1 0 0 1 9.2886 18.958)" class="runwaySel6 runwaySel7">Tactical information messages</text>
+                    </svg>
+                    <p style="margin-left: 8px;">
+                        • only tactical messages for all ATS-units (not for normal coordination)<br>
+                        • messages from real life will override messages published here<br>
+                        • only TWR-E, RAD-E, FMP and EFIN have access<br>
+                        • you may need to wait a couple minutes after login with EuroScope<br>
+                    </p><br>
+                    <div id="messageContainer" style="display: flex; justify-content: flex-start; flex-wrap: wrap;">
+                        <div id="messageContainer1">
+                            <h3>Message window 1 (left)</h3>
+                            <textarea type="text" id="infoWindowSetup1" rows="3" name="informationWindow1"></textarea>
+                        </div>
+                        <div id="messageContainer2">
+                            <h3>Message window 2 (top-right)</h3>
+                            <textarea type="text" id="infoWindowSetup2" rows="3" name="informationWindow2"></textarea>
+                        </div>
+                        <div id="messageContainer3">
+                            <h3>Message window 3 (bottom-right)</h3>
+                            <textarea type="text" id="infoWindowSetup3" rows="3" name="informationWindow3"></textarea>
+                        </div>
+                    </div>
+                    <br>
+                    <a class="saveMessageButton" href=""><span style="font-size: 16pt; margin-bottom: 16px; line-height: 16pt; vertical-align: top;" class="material-symbols-outlined">save</span> Save</a>
+                    <a class="clearMessageButton" href=""><span style="font-size: 16pt; margin-bottom: 16px; line-height: 16pt; vertical-align: top;" class="material-symbols-outlined">backspace</span> Clear</a>
+                    <a class="refreshMessageButton" href=""><span style="font-size: 16pt; margin-bottom: 16px; line-height: 16pt; vertical-align: top;" class="material-symbols-outlined">sync</span> Refresh</a>
+                </div>
+
+
+
+                
             </div>
 
             <div id="metrepDiv" class="metRepDivContainer">

@@ -23,6 +23,7 @@ async function loadFMI() {
       const parser = new DOMParser();
       const data = parser.parseFromString(responseText, "application/xml");
       await setData(data);
+      await loadConfig();
       await fetchRwyStatus();
       console.log("FMI data loaded at", new Date().toLocaleTimeString());
     }
@@ -42,6 +43,7 @@ async function loadMetar() {
           const parser = new DOMParser();
           const data = parser.parseFromString(responseText, "application/xml");
           await setMetarData(data);
+          await fetchInformation();
           console.log("METAR data loaded at", new Date().toLocaleTimeString());
       }
   } catch (error) {
@@ -243,13 +245,10 @@ async function setMetarData(xmlDoc) {
     let timeDifference = (currentTime - latestProcessingTime) / (1000 * 60);
     // console.log(latestProcessingTime + " difference: " + timeDifference);
     
-    if (timeDifference > 35) document.getElementById("missingMetar").style.display = "block";
+    if (timeDifference > 36) document.getElementById("missingMetar").style.display = "block";
     else document.getElementById("missingMetar").style.display = "none";
-    
-  } else {
-    console.log("No processing time found in the data.");
-  }
 
+  }
   
   var trend = metar.match(/(\sQ\d{4}\s)(.*?)(?==)/); // set METREP trend (after QNH)
   if (trend && trend[2]) document.getElementById("metTrend").textContent = trend[2];
@@ -446,7 +445,6 @@ async function setMetarData(xmlDoc) {
         atisType = 1;
         let atisWithLines = item.text_atis ? item.text_atis.join(' ').replace(/\.\./g, '.').split('.') : ["EFHK DEP ATIS NIL"];
         await makeAtisText(atisWithLines.join('<br/>'));
-        await fetchInformation();
       }
 
       // checking for ATIS ARR
@@ -455,7 +453,6 @@ async function setMetarData(xmlDoc) {
         atisType = 1;
         let atisWithLines = item.text_atis ? item.text_atis.join(' ').replace(/\.\./g, '.').split('.') : ["EFHK ARR ATIS NIL"];
         await makeAtisText(atisWithLines.join('<br/>'));
-        await fetchInformation();
       }
     }
 
@@ -471,7 +468,6 @@ async function setMetarData(xmlDoc) {
           // console.log(atisWithLines);
 
           await makeAtisText(atisWithLines.join('<br/>'));
-          await fetchInformation();
           break;
         }
       }
@@ -492,9 +488,6 @@ async function setMetarData(xmlDoc) {
       // console.log(atisWithLines);
       // makeAtisText(atisWithLines);
       // END OF TESTING
-
-      await fetchInformation();
-      await loadConfig();
     }
 
     if (windProblems) {
@@ -563,8 +556,6 @@ async function makeAtisText(atisText) {
       document.getElementById('atisId2').textContent = atisCode;
       document.getElementById("atisInfoFieldArr").innerHTML = atisText;
     }
-
-    loadConfig(); // load runway configuration
 
   } catch (error) {
     console.log('Error in makeAtisText function:', error);
