@@ -14,29 +14,32 @@ async function loadConfig() {
         dep33 = false, arr33 = false,
         dep22l = false, arr22l = false, 
         dep22r = false, arr22r = false;
-      
-    let atisText = "";
+       
+    let atisText = ""; // Initialize as an empty string
 
     try {
-        // get current ATIS
-        const response = await fetch('/api/atis');
-        const data = await response.json();
-
-        for (let item of data.atis) {
-            if (item.callsign === "EFHK_D_ATIS") {
-                atisText = item.text_atis ? item.text_atis : "EFHK DEP ATIS NIL";
-            }
-            if (item.callsign === "EFHK_A_ATIS") {
-                atisText += item.text_atis ? item.text_atis : "EFHK ARR ATIS NIL";
-            }
-            if (item.callsign === "EFHK_ATIS") {
-                atisText += item.text_atis ? item.text_atis : "EFHK ATIS NIL";
-            }
-        }
-
-    } catch (error) {
-        console.error('Error fetching ATIS:', error);
-    }
+      // get current ATIS
+      const response = await fetch('/api/atis');
+      const data = await response.json();
+  
+      for (let item of data.atis) {
+          if (item.callsign === "EFHK_D_ATIS") {
+              atisText += item.text_atis ? item.text_atis : "EFHK DEP ATIS NIL";
+              atisText += " "; // Add space to separate sections
+          }
+          if (item.callsign === "EFHK_A_ATIS") {
+              atisText += item.text_atis ? item.text_atis : "EFHK ARR ATIS NIL";
+              atisText += " "; // Add space to separate sections
+          }
+          if (item.callsign === "EFHK_ATIS") {
+              atisText += item.text_atis ? item.text_atis : "EFHK ATIS NIL";
+              atisText += " "; // Add space to separate sections
+          }
+      }
+  
+  } catch (error) {
+      console.error('Error fetching ATIS:', error);
+  }
 
     // TESTING
     // atisText = "THIS IS HELSINKI-VANTAA ARRIVAL AND DEPARTURE INFORMATION GOLF AT TIME 1950 EXPECT ILS APPROACH ARRIVAL RUNWAY 22L CLEAR AND DRY DEPARTURE RUNWAY 15 CLEAR AND DRY TRANSITION LEVEL 60 WIND 180 DEGREES 3 KNOTS CAVOK TEMPERATURE 13 DEW POINT 8 QNH 1018 NOSIG ADVISE ON INITIAL CONTACT YOU HAVE INFORMATION GOLF";
@@ -46,6 +49,7 @@ async function loadConfig() {
     atisText = atisText.replace("DEPARTURE RUNWAYS", "DEP RWYS");
     atisText = atisText.replace("ARRIVAL RUNWAY", "ARR RWY");
     atisText = atisText.replace("ARRIVAL RUNWAYS", "ARR RWYS");
+
 
     // load active departure runways
     switch (true) {
