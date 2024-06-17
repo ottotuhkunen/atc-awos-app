@@ -34,6 +34,6 @@
 .runwaySel6{font-family:'Verdana'; fill:#d3d3d3;}
 .runwaySel7{font-size:12px; fill:#55b0dd;}
 .runwaySel8{font-size:8px;}
-.runwaySel9{font-family:'Verdana-Bold'; fill:#d3d3d3;}
+.runwaySel9{font-family:'Verdana';font-weight: bold;fill:#d3d3d3;}
 .rwySelGradient1{stop-color:#194255;}
 .rwySelGradient2{stop-color:#2f6e8f;}
