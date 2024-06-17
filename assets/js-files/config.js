@@ -14,6 +14,8 @@ async function loadConfig() {
         dep33 = false, arr33 = false,
         dep22l = false, arr22l = false, 
         dep22r = false, arr22r = false;
+    
+    let atisFrequency = null;
        
     let atisText = ""; // Initialize as an empty string
 
@@ -26,19 +28,32 @@ async function loadConfig() {
           if (item.callsign === "EFHK_D_ATIS") {
               atisText += item.text_atis ? item.text_atis : "EFHK DEP ATIS NIL";
               atisText += " "; // Add space to separate sections
+              if (item.frequency === "135.925") atisFrequency = item.frequency;
+              else atisFrequency = null;
           }
           if (item.callsign === "EFHK_A_ATIS") {
               atisText += item.text_atis ? item.text_atis : "EFHK ARR ATIS NIL";
               atisText += " "; // Add space to separate sections
+              if (item.frequency != "135.075") atisFrequency = item.frequency;
+              else atisFrequency = null;
           }
           if (item.callsign === "EFHK_ATIS") {
               atisText += item.text_atis ? item.text_atis : "EFHK ATIS NIL";
               atisText += " "; // Add space to separate sections
+              if (item.frequency != "135.075") atisFrequency = item.frequency;
+              else atisFrequency = null;
           }
       }
   
   } catch (error) {
       console.error('Error fetching ATIS:', error);
+  }
+
+  if (atisFrequency != null) {
+      document.getElementById('atisFrequencyError').style.display = "block";
+      document.getElementById('atisFrequencyText').textContent = "ATIS FREQ " + atisFrequency + " MHz";
+  } else {
+      document.getElementById('atisFrequencyError').style.display = "none";
   }
 
     // TESTING
