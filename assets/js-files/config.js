@@ -28,19 +28,19 @@ async function loadConfig() {
           if (item.callsign === "EFHK_D_ATIS") {
               atisText += item.text_atis ? item.text_atis : "EFHK DEP ATIS NIL";
               atisText += " "; // Add space to separate sections
-              if (item.frequency === "135.925") atisFrequency = item.frequency;
+              if (item.frequency === "135.925") atisFrequency = "DEP ATIS FREQ " + item.frequency;
               else atisFrequency = null;
           }
           if (item.callsign === "EFHK_A_ATIS") {
               atisText += item.text_atis ? item.text_atis : "EFHK ARR ATIS NIL";
               atisText += " "; // Add space to separate sections
-              if (item.frequency != "135.075") atisFrequency = item.frequency;
+              if (item.frequency != "135.075") atisFrequency = "ARR ATIS FREQ " + item.frequency;
               else atisFrequency = null;
           }
           if (item.callsign === "EFHK_ATIS") {
               atisText += item.text_atis ? item.text_atis : "EFHK ATIS NIL";
               atisText += " "; // Add space to separate sections
-              if (item.frequency != "135.075") atisFrequency = item.frequency;
+              if (item.frequency != "135.075") atisFrequency = "ATIS FREQ " + item.frequency;
               else atisFrequency = null;
           }
       }
@@ -51,7 +51,7 @@ async function loadConfig() {
 
   if (atisFrequency != null) {
       document.getElementById('atisFrequencyError').style.display = "block";
-      document.getElementById('atisFrequencyText').textContent = "ATIS FREQ " + atisFrequency + " MHz";
+      document.getElementById('atisFrequencyText').textContent = atisFrequency + " MHz";
   } else {
       document.getElementById('atisFrequencyError').style.display = "none";
   }
