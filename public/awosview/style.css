@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'Bitstream Vera Sans Mono';
+    src: url('VeraMono.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 #topContainer {
     align-items: center;
     text-align: center;
@@ -240,7 +247,7 @@ td {
 .st32{stroke-width:0.5;stroke-miterlimit:10;}
 
 #awosMainSvg {
-    max-width: 900px;
+    max-width: 1000px;
     width: 90%;
     height: 100%;
 }

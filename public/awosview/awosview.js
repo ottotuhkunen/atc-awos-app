@@ -1322,14 +1322,14 @@ function rotateAirport(icaoCode) {
         document.getElementById('rvrRightGroup').style.transform = "translate(-56px, -150px)";
     }
     else if (icaoCode == "EFKT") {
-        document.getElementById('windmeter21').style.transform = "translate(-480px, 380px)";
+        document.getElementById('windmeter21').style.transform = "translate(-535px, 340px)";
         document.getElementById('windmeter03').style.transform = "translate(0, 0)";
         document.getElementById('ceilometer1').style.transform = "translate(440px, -430px)";
         document.getElementById('ceilometer2').style.transform = "translate(0, 0)";
         document.getElementById('weatherBoxGroup').style.transform = "translate(180px, -250px)";
-        document.getElementById('rvrMidGroup').style.transform = "translate(-10px, 0)";
-        document.getElementById('rvrLeftGroup').style.transform = "translate(85px, -110px)";
-        document.getElementById('rvrRightGroup').style.transform = "translate(-115px, 90px)";
+        document.getElementById('rvrMidGroup').style.transform = "translate(-28px, -20px)";
+        document.getElementById('rvrLeftGroup').style.transform = "translate(70px, -130px)";
+        document.getElementById('rvrRightGroup').style.transform = "translate(-130px, 80px)";
     }
     else if (icaoCode == "EFKK") {
         document.getElementById('windmeter03').style.transform = "translate(30px, 340px)";
