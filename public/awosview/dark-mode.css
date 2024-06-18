@@ -49,7 +49,7 @@ body {
 .st4{fill:#111C2D;stroke:#253B6E;}
 .st5{fill:#3264bd;}
 .st6{fill:#0C141D;stroke:#253B6E;}
-.st7{fill:#CBD2DC;}
+.st7{fill:#CBD2DC; color: white;}
 .st11{fill:#FFFFFF;}
 .st14{fill:#464646;}
 .st16{fill:#FFFF54;}
@@ -132,4 +132,34 @@ footer {
 
 .tickLabel {
     color: #c0d0e0;
+}
+
+.siteBackground {
+    background-color: #203050;
+    padding: 2px;
+    text-shadow: 0px 0px 2px black;
+    display: inline-block;
+    opacity: 0.75;
+    border-radius: 3px;
+    white-space: nowrap;
+}
+
+.siteButtons {
+    padding: 6px;
+    white-space: nowrap;
+    font-size: 10pt;
+    font-weight: normal;
+    cursor: pointer;
+    border-radius: 3px;
+    text-align: center;
+    box-shadow: 1px 1px 1px 0px #000;
+    background: rgb(60,80,120);
+    color: #fff;
+}
+
+.siteButtonInactive {
+    cursor: default !important;
+    background: rgb(20,40,60) !important;
+    color: #fff !important;
+    border-color: #405060;
 }

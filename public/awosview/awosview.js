@@ -1277,21 +1277,21 @@ function rotateAirport(icaoCode) {
         document.getElementById('rvrRightGroup').style.transform = "translate(0, -8px)";
     }
     else if (icaoCode == "EFIV") {
-        document.getElementById('windmeter21').style.transform = "translate(-300px, -20px)";
-        document.getElementById('windmeterMid').style.transform = "translate(-210px, 190px)";
-        document.getElementById('windmeter03').style.transform = "translate(-20px, 400px)";
+        document.getElementById('windmeter21').style.transform = "translate(118px, 100px)";
+        document.getElementById('windmeterMid').style.transform = "translate(-210px, 120px)";
+        document.getElementById('windmeter03').style.transform = "translate(-20px, 380px)";
         document.getElementById('ceilometer1').style.transform = "translate(300px, 40px)";
-        document.getElementById('ceilometer2').style.transform = "translate(80px, -440px)";
+        document.getElementById('ceilometer2').style.transform = "translate(-200px, -440px)";
         document.getElementById('weatherBoxGroup').style.transform = "translate(220px, -60px)";
-        document.getElementById('rvrMidGroup').style.transform = "translate(-10px, 0px)";
-        document.getElementById('rvrLeftGroup').style.transform = "translate(60px, 100px)";
+        document.getElementById('rvrMidGroup').style.transform = "translate(0px, -10px)";
+        document.getElementById('rvrLeftGroup').style.transform = "translate(40px, 80px)";
         document.getElementById('rvrRightGroup').style.transform = "translate(-40px, -90px)";
     }
     else if (icaoCode == "EFJO") {
         document.getElementById('windmeter21').style.transform = "translate(100px, 100px)";
-        document.getElementById('windmeter03').style.transform = "translate(10px, -20px)";
+        document.getElementById('windmeter03').style.transform = "translate(10px, -10px)";
         document.getElementById('ceilometer1').style.transform = "translate(0, -80px)";
-        document.getElementById('ceilometer2').style.transform = "translate(0, 0)";
+        document.getElementById('ceilometer2').style.transform = "translate(80px, 0)";
         document.getElementById('weatherBoxGroup').style.transform = "translate(-50px, -340px)";
         document.getElementById('rvrLeftGroup').style.transform = "translate(0, -40px)";
         document.getElementById('rvrRightGroup').style.transform = "translate(0, 50px)";
@@ -1424,8 +1424,8 @@ function rotateAirport(icaoCode) {
     }
     else if (icaoCode == "EFTP") {
         document.getElementById('windmeter03').style.transform = "translate(-20px, 120px)";
-        document.getElementById('windmeter21').style.transform = "translate(-270px, -20px)";
-        document.getElementById('ceilometer1').style.transform = "translate(250px, 40px)";
+        document.getElementById('windmeter21').style.transform = "translate(-250px, -8px)";
+        document.getElementById('ceilometer1').style.transform = "translate(250px, 30px)";
         document.getElementById('ceilometer2').style.transform = "translate(90px, -440px)";
         document.getElementById('weatherBoxGroup').style.transform = "translate(200px, -50px)";
         document.getElementById('rvrLeftGroup').style.transform = "translate(30px, 65px)";
@@ -1440,7 +1440,7 @@ function rotateAirport(icaoCode) {
     else if (icaoCode == "EFUT") {
         document.getElementById('windmeter03').style.transform = "translate(0, 30px)";
         document.getElementById('windmeter21').style.transform = "translate(0, -10px)";
-        document.getElementById('ceilometer1').style.transform = "translate(-20px, 36px)";
+        document.getElementById('ceilometer1').style.transform = "translate(-20px, 30px)";
         document.getElementById('ceilometer2').style.transform = "translate(20px, -50px)";
         document.getElementById('rvrLeftGroup').style.transform = "translate(26px, 30px)";
         document.getElementById('rvrRightGroup').style.transform = "translate(0, -18px)";

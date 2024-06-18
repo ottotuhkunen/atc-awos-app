@@ -58,12 +58,12 @@ body {
 .st4{fill:#ebeff7;stroke:#4687cb;}
 .st5{fill:#3e63b7;}
 .st6{fill:white;stroke:#4687cb;}
-.st7{fill:gray;}
+.st7{fill:gray; color: white;}
 .st11{fill:black;}
 .st14{fill:#d9d9d9;}
 .st16{fill:#FFFF54;}
 .st17{fill:#bebfbf;}
-.st18{fill:#565656;}
+.st18{fill:black;opacity: 50%;}
 .st20{fill:#f5f5f5; stroke:gray; stroke-width: 0.5px;}
 .st23{fill:none;stroke:gray;}
 .st24{fill:#90C0F0;}
@@ -133,4 +133,35 @@ footer {
 
 .legendLabel {
     color: #545454 !important;
+}
+
+.siteBackground {
+    background-color: gray;
+    padding: 2px;
+    text-shadow: 0px 0px 2px black;
+    display: inline-block;
+    opacity: 0.75;
+    border-radius: 3px;
+    white-space: nowrap;
+}
+
+.siteButtons {
+    padding: 6px;
+    white-space: nowrap;
+    font-size: 10pt;
+    font-weight: normal;
+    cursor: pointer;
+    border-radius: 3px;
+    text-align: center;
+    border-top: solid thin #eee;
+    border-left: solid thin #eee;
+    box-shadow: 1px 1px 1px 0px #000;
+    background: linear-gradient(to bottom, rgba(93,178,234,1) 0%,rgba(26,130,204,1) 100%);
+    color: white;
+}
+
+.siteButtonInactive {
+    cursor: default !important;
+    background: linear-gradient(to bottom, rgba(163,200,224,1) 0%, rgba(86,160,204,1) 100%) !important;
+    color: lightgray !important;
 }
