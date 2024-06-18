@@ -1,13 +1,13 @@
 .activeBackground {
-    fill:#444444;
+    fill:#444444 !important; /* override closed colors */
+}
+
+.closedBackground {
+    fill:#d81715; /* override closed colors */
 }
 
 .activeWindDisplay {
     fill:rgb(0, 0, 0);
-}
-
-.activeNumbers {
-    fill:#dad7d4;
 }
 
 .activeText {
@@ -24,8 +24,16 @@
     stroke:white;
 }
 
+.activeNumbers {
+    fill:#dad7d4 !important; /* override closed colors */
+}
+
 .oppositeOfActiveNumbers {
-    fill:#242424;
+    fill:#242424 !important; /* override closed colors */
+}
+
+.closedNumbers {
+    fill:#dad7d4;
 }
 
 .runwaySel1{fill:#444444;}
