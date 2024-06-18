@@ -218,11 +218,16 @@ async function getAtisData() {
 }
 
 app.get('/api/atis', async (req, res) => {
-  const atisData = await getAtisData();
-  if (atisData) {
-    res.json({ atis: atisData });
-  } else {
-    res.status(500).json({ error: 'Unable to fetch ATIS data' });
+  try {
+    const atisData = await getAtisData();
+    if (atisData) {
+      res.json({ atis: atisData });
+    } else {
+      res.status(500).json({ error: 'Unable to fetch ATIS data' });
+    }
+  } catch (error) {
+    console.error('Error in /api/atis:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
