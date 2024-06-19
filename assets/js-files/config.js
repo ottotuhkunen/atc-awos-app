@@ -28,7 +28,7 @@ async function loadConfig() {
           if (item.callsign === "EFHK_D_ATIS") {
               atisText += item.text_atis ? item.text_atis : "EFHK DEP ATIS NIL";
               atisText += " "; // Add space to separate sections
-              if (item.frequency === "135.925") atisFrequency = "DEP ATIS FREQ " + item.frequency;
+              if (item.frequency != "135.925") atisFrequency = "DEP ATIS FREQ " + item.frequency;
               else atisFrequency = null;
           }
           if (item.callsign === "EFHK_A_ATIS") {
