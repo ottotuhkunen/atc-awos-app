@@ -326,7 +326,7 @@ svg { width: 100%; }
     margin-right: 18px;
     background-color: black;
     overflow: auto;
-    font-size: 10pt;
+    font-size: 10pt !important;
     color: #d3d3d3;
     height: 80%;
 }
@@ -337,7 +337,7 @@ svg { width: 100%; }
 }
 @media (min-width: 1200px) {
     .atisText {
-        font-size: 12pt;
+        font-size: 12pt !important;
     }
     .atisWindow {
         font-size: 16pt; 
