@@ -147,28 +147,6 @@ app.get('/logout', (req, res, next) => {
 
 // END OF AUTHENTICATION
 
-// fetch weather from FMI Helsinki-Vantaa airport
-app.get('/api/weather', async (req, res) => {
-  const fmisid = 100968;
-  const { startTime, endTime } = getTimes();
-
-  const url = `https://opendata.fmi.fi/wfs?service=WFS&version=2.0.0&request=getFeature&storedquery_id=fmi::observations::weather::simple&fmisid=${fmisid}&starttime=${startTime}&endtime=${endTime}&timestep=2`;
-
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const responseText = await response.text();
-    res.set('Content-Type', 'application/xml');
-    res.send(responseText);
-  } catch (error) {
-    console.error('Fetch API error -', error);
-    res.status(500).json({ error: 'Failed to fetch weather data' });
-  }
-});
-
 // fetch data from airtable:
 app.get('/dataEFHK', async (req, res) => {
   const baseUrl = process.env.AIRTABLE_URL;
@@ -336,24 +314,6 @@ app.get('/api/metar/:location', async (req, res) => {
   const data = await response.json();
   res.json(data);
 });
-
-// get the current time in ISO format (for data fetching)
-function getTimes() {
-  const now = new Date();
-  const startTime = new Date(now);
-  startTime.setMinutes(now.getMinutes() - 15); // startTime 15 mins ago
-  startTime.setSeconds(0, 0);
-
-  // Get the current time rounded to the nearest even minute, minus 1 minute
-  const roundedMinutes = now.getMinutes() - (now.getMinutes() % 2) - 1;
-  now.setMinutes(roundedMinutes);
-  now.setSeconds(0, 0);
-
-  return {
-    startTime: startTime.toISOString(),
-    endTime: now.toISOString()
-  };
-}
 
 app.listen(port, function () {
     console.log('App is listening on port ' + port + '!');

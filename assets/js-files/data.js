@@ -14,7 +14,7 @@ async function loadFMI() {
   const loadingIcon = document.getElementById("loadingIcon");
   try {
     loadingIcon.style.display = "block";
-    const response = await fetch("/api/weather");
+    const response = await fetch("https://opendata.fmi.fi/wfs?service=WFS&version=2.0.0&request=getFeature&storedquery_id=fmi::observations::weather::simple&fmisid=100968");
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -75,7 +75,6 @@ async function setData(xmlDoc) {
       table[i] = new Array(2);
       table[i][0] = xmlDoc.getElementsByTagName("BsWfs:ParameterName")[i].childNodes[0].nodeValue;
       table[i][1] = xmlDoc.getElementsByTagName("BsWfs:ParameterValue")[i].childNodes[0].nodeValue;
-      // Testing (latest observation): table[i][2] = xmlDoc.getElementsByTagName("BsWfs:Time")[i].childNodes[0].nodeValue;
     }
 
     table = table.slice(-70, -1);
@@ -84,10 +83,7 @@ async function setData(xmlDoc) {
     var windGust = 0;
 
     for (var i = 0; i < table.length; i++) {
-        if (table[i][0] === "p_sea") {
-          qnh = table[i][1]; // set QNH
-          // Testing: console.log(table[i][2]);
-        } 
+        if (table[i][0] === "p_sea") qnh = table[i][1]; // set QNH
         if (table[i][0] === "ws_10min") { // set wind speed
           windSpeed = table[i][1];
           if (isNaN(windSpeed)) { // wind speed not found
