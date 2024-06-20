@@ -5,6 +5,7 @@ const pgSession = require('connect-pg-simple')(session);
 const axios = require('axios');
 const passport = require('passport');
 const OAuth2Strategy = require('passport-oauth2').Strategy;
+const { parseStringPromise, Builder } = require('xml2js');
 const path = require('path');
 const db = require('./db');
 const app = express();
@@ -147,6 +148,65 @@ app.get('/logout', (req, res, next) => {
 
 // END OF AUTHENTICATION
 
+// fetch weather from FMI Helsinki-Vantaa airport
+async function filterNaNValues(xml) {
+  const json = await parseStringPromise(xml); // Convert XML to JSON
+
+  // Filter out members with NaN values in BsWfs:ParameterValue
+  if (json['wfs:FeatureCollection'] && json['wfs:FeatureCollection']['wfs:member']) {
+    json['wfs:FeatureCollection']['wfs:member'] = json['wfs:FeatureCollection']['wfs:member'].filter(member => {
+      const parameterValue = member['BsWfs:BsWfsElement'][0]['BsWfs:ParameterValue'][0];
+      return parameterValue !== 'NaN';
+    });
+  }
+
+  // Convert the JSON back to XML
+  const builder = new Builder();
+  return builder.buildObject(json);
+}
+
+// Route to fetch weather data from FMI
+app.get('/api/weather', async (req, res) => {
+  const fmisid = 100968; // replace with your actual fmisid
+  const { startTime, endTime } = getTimes(); // Get start and end times
+
+  const url = `https://opendata.fmi.fi/wfs?service=WFS&version=2.0.0&request=getFeature&storedquery_id=fmi::observations::weather::simple&fmisid=${fmisid}&starttime=${startTime}&endtime=${endTime}&timestep=2`;
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const responseText = await response.text();
+    const filteredResponseText = await filterNaNValues(responseText);
+
+    res.set('Content-Type', 'application/xml');
+    res.send(filteredResponseText);
+  } catch (error) {
+    console.error('Fetch API error -', error);
+    res.status(500).json({ error: 'Failed to fetch weather data' });
+  }
+});
+
+// get the current time in ISO format (for data fetching)
+function getTimes() {
+    const now = new Date();
+    const startTime = new Date(now);
+    startTime.setMinutes(now.getMinutes() - 15); // startTime 15 mins ago
+    startTime.setSeconds(0, 0);
+
+    // Get the current time rounded to the nearest even minute, minus 1 minute
+    const roundedMinutes = now.getMinutes() - (now.getMinutes() % 2) - 1;
+    now.setMinutes(roundedMinutes);
+    now.setSeconds(0, 0);
+
+    return {
+        startTime: startTime.toISOString(),
+        endTime: now.toISOString()
+    };
+}
+
 // fetch data from airtable:
 app.get('/dataEFHK', async (req, res) => {
   const baseUrl = process.env.AIRTABLE_URL;
@@ -197,7 +257,7 @@ async function fetchVatsimData() {
 }
 
 async function getAtisData() {
-  const CACHE_DURATION = 120000; // 120 seconds
+  const CACHE_DURATION = 90000; // 90 seconds
   const now = Date.now();
 
   if (cachedAtisData && cacheTimestamp && (now - cacheTimestamp < CACHE_DURATION)) {

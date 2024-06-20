@@ -14,7 +14,7 @@ async function loadFMI() {
   const loadingIcon = document.getElementById("loadingIcon");
   try {
     loadingIcon.style.display = "block";
-    const response = await fetch("https://opendata.fmi.fi/wfs?service=WFS&version=2.0.0&request=getFeature&storedquery_id=fmi::observations::weather::simple&fmisid=100968");
+    const response = await fetch("/api/weather");
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
