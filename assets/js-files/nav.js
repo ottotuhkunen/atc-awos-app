@@ -1171,7 +1171,7 @@ function loadActualMet(xml) {
     })
     .catch(error => console.log('error', error));
 
-    fetch("/api/decocedmetar/EFHK")
+    fetch("/api/decodedmetar/EFHK")
     .then(response => response.json())
     .then(result => {
 

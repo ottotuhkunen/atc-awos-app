@@ -153,7 +153,8 @@ app.get('/api/weather', async (req, res) => {
   const { startTime, endTime } = getTimes();
 
   const url = `https://opendata.fmi.fi/wfs?service=WFS&version=2.0.0&request=getFeature&storedquery_id=fmi::observations::weather::simple&fmisid=${fmisid}&starttime=${startTime}&endtime=${endTime}&timestep=2`;
-
+  console.log(url);
+  
   try {
     const response = await fetch(url);
     if (!response.ok) {
@@ -340,6 +341,27 @@ app.get('/api/metar/:location', async (req, res) => {
   } catch (error) {
     console.error('Error fetching METAR:', error);
     res.status(500).json({ error: 'Failed to fetch METAR data' });
+  }
+});
+
+async function fetchFmiData() {
+  const url = 'http://awosview.fmi.fi/awos/obs/interface.php?interface=avipluginproxy&icao=EFHK&format=json&messagetype=AIRMET,AWSMETAR,SPECIAL,ARS,METAR,TAF,METREP,LOWWIND,WRNG,WXREP,SIGMET&param=icao,messagetype,message&fmi-apikey=076d311e-5045-40b3-af0b-9d385f5ad5c7&preventcache=1722982071060';
+  
+  try {
+    const response = await axios.get(url);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching FMI data:', error);
+    throw error;
+  }
+}
+
+app.get('/api/fmidata', async (req, res) => {
+  try {
+    const data = await fetchFmiData();
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch FMI data' });
   }
 });
 
