@@ -225,7 +225,15 @@ async function setMetarData(xmlDoc) {
 
   let dataProblem = metar === "EFHK METAR NIL=";
 
-  document.getElementById("metar").innerHTML = metar; // show METAR
+  let metarOrSpeci;
+
+  // set actual metar
+  fetch('/api/fmidata')
+    .then(response => response.json())
+    .then(data => {
+      setCurrentMetarOrSpeci(data);
+    })
+    .catch(error => console.error('Error fetching data:', error));
 
   // check if METAR is valid
   let metarTimes = xmlDoc.getElementsByTagName('avi:processingTime');
@@ -630,4 +638,24 @@ function rwy15Closed() {
   });
 
   document.getElementById("arrow15").style.display = "none";
+}
+
+function setCurrentMetarOrSpeci(data) {
+  const speciData = data.find(item => item.messagetype === 'SPECI');
+  const metarData = data.find(item => item.messagetype === 'METAR');
+  
+  // If SPECI exists, compare times
+  if (speciData) {
+    const speciTime = speciData.message.match(/\d{4}(?=Z)/)[0];
+    document.getElementById("metar").innerHTML = speciData.message;
+    document.getElementById("metrepHeader").innerHTML = "SPECIAL " + speciTime.slice(-2);
+  }
+  else if (metarData) {
+    // If no SPECI exists, just set the METAR
+    document.getElementById("metar").innerHTML = metarData.message;
+    document.getElementById("metrepHeader").innerHTML = "MET REPORT";
+  } else {
+    document.getElementById("metar").innerHTML = "//";
+    document.getElementById("metrepHeader").innerHTML = "MET REPORT";
+  }
 }
