@@ -1013,6 +1013,14 @@ function loadMetRep() {
     };
     xhttp.open("GET", "https://opendata.fmi.fi/wfs?service=WFS&version=2.0.0&request=getFeature&storedquery_id=fmi::avi::observations::iwxxm&icaocode=EFHK", true); 
     xhttp.send();
+
+    // set low-wind data
+    fetch('/api/fmidata')
+    .then(response => response.json())
+    .then(data => {
+        processLowWindData(data);
+    })
+    .catch(error => console.error('Error fetching data:', error));
 }
 
 function setMetRep(xml) {
@@ -1047,7 +1055,6 @@ function setMetRep(xml) {
     var qnhs = xmlDoc.getElementsByTagName('iwxxm:qnh');
     var qnh = qnhs[qnhs.length-1].childNodes[0].nodeValue;
     document.getElementById("metQnh").textContent = Math.round(qnh);
-
 }
 
 function loadCurrentMet() {
@@ -1234,6 +1241,29 @@ function loadActualMet(xml) {
         document.getElementById("loadingIconMETREP").style.display = "none";
     })
     .catch(error => console.log('error', error));
+}
+
+// LOW WIND
+function processLowWindData(data) {
+    const lowWindData = data.find(item => item.messagetype === 'LOWWIND');
+    if (lowWindData) {
+        // Extract the message
+        const message = lowWindData.message;
+        const splitPoint = "500FT";
+        const endPoint = "FL100";
+        
+        // Extract the title
+        const titlePart = message.split(splitPoint)[0].trim(); // "LOW WIND EFHK 101130Z"
+        
+        // Extract the values part
+        const valuesPart = message.split(endPoint)[1].trim().replace('=', ''); // wind values e.g. 250/13
+
+        // Update the HTML elements
+        document.getElementById("lowwind_title").textContent = titlePart;
+        document.getElementById("lowwind_values").textContent = valuesPart;
+    } else {
+        console.log("LOWWIND data not found");
+    }
 }
 
 function performAction(value) {
