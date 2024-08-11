@@ -1028,7 +1028,6 @@ function setMetRep(xml) {
 
     var metars = xmlDoc.getElementsByTagName('avi:input');
     var metar = metars[metars.length-1].childNodes[0].nodeValue;
-    document.getElementById("metar").innerHTML = metar;
 
     var header = metar.match(/(EFHK\s\d{6}Z)\s/);
 

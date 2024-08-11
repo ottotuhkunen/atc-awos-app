@@ -48,7 +48,6 @@ async function loadMetar() {
       }
   } catch (error) {
       console.log('error in loadMetar function:', error);
-      document.getElementById("metar").innerHTML = "NO FMI DATABASE CONNECTION=";
       document.getElementById("missingMetar").style.display = "block";
   }
 }
@@ -643,18 +642,19 @@ function rwy15Closed() {
 function setCurrentMetarOrSpeci(data) {
   const speciData = data.find(item => item.messagetype === 'SPECI');
   const metarData = data.find(item => item.messagetype === 'METAR');
-  
-  // If SPECI exists, compare times
+
+  // Check if SPECI exists
   if (speciData) {
     const speciTime = speciData.message.match(/\d{4}(?=Z)/)[0];
-    document.getElementById("metar").innerHTML = speciData.message;
+    document.getElementById("metar").innerHTML = speciData.message.replace(/=/g, '');
     document.getElementById("metrepHeader").innerHTML = "SPECIAL " + speciTime.slice(-2);
   }
   else if (metarData) {
-    // If no SPECI exists, just set the METAR
-    document.getElementById("metar").innerHTML = metarData.message;
+    // If no SPECI, show METAR
+    document.getElementById("metar").innerHTML = metarData.message.replace(/=/g, '');
     document.getElementById("metrepHeader").innerHTML = "MET REPORT";
-  } else {
+  } 
+  else {
     document.getElementById("metar").innerHTML = "//";
     document.getElementById("metrepHeader").innerHTML = "MET REPORT";
   }
