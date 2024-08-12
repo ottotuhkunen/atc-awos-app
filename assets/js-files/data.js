@@ -228,11 +228,11 @@ async function setMetarData(xmlDoc) {
 
   // set actual metar
   fetch('/api/fmidata')
-    .then(response => response.json())
-    .then(data => {
-      setCurrentMetarOrSpeci(data);
-    })
-    .catch(error => console.error('Error fetching data:', error));
+  .then(response => response.json())
+  .then(data => {
+    setCurrentMetarOrSpeci(data);
+  })
+  .catch(error => console.error('Error fetching data:', error));
 
   // check if METAR is valid
   let metarTimes = xmlDoc.getElementsByTagName('avi:processingTime');
@@ -256,9 +256,6 @@ async function setMetarData(xmlDoc) {
     else document.getElementById("missingMetar").style.display = "none";
 
   }
-  
-  var trend = metar.match(/(\sQ\d{4}\s)(.*?)(?==)/); // set METREP trend (after QNH)
-  if (trend && trend[2]) document.getElementById("metTrend").textContent = trend[2];
 
   // VARIABLE BETWEEN
   if (counterClockwises.length > 0 && dataProblem == false) {
@@ -642,12 +639,11 @@ function rwy15Closed() {
 function setCurrentMetarOrSpeci(data) {
   const speciData = data.find(item => item.messagetype === 'SPECI');
   const metarData = data.find(item => item.messagetype === 'METAR');
+  const specialData = data.find(item => item.messagetype === 'SPECIAL');
 
   // Check if SPECI exists
   if (speciData) {
-    const speciTime = speciData.message.match(/\d{4}(?=Z)/)[0];
     document.getElementById("metar").innerHTML = speciData.message.replace(/=/g, '');
-    document.getElementById("metrepHeader").innerHTML = "SPECIAL " + speciTime.slice(-2);
   }
   else if (metarData) {
     // If no SPECI, show METAR
@@ -657,5 +653,10 @@ function setCurrentMetarOrSpeci(data) {
   else {
     document.getElementById("metar").innerHTML = "//";
     document.getElementById("metrepHeader").innerHTML = "MET REPORT";
+  }
+
+  if (specialData) {
+    const specialTime = specialData.message.match(/\d{4}(?=Z)/)[0];
+    document.getElementById("metrepHeader").innerHTML = "SPECIAL " + specialTime.slice(-2);
   }
 }

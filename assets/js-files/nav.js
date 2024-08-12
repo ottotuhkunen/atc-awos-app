@@ -1,6 +1,4 @@
 function openMainPage(checkType) {
-    // old version: saveConfig();
-
     // left nav triangles
     document.getElementById("mainTriangle").style.display = "block";
     document.getElementById("rwy1Triangle").style.display = "none";
@@ -235,30 +233,6 @@ function setup() {
         document.getElementById('greeting').innerText = greeting + data.full_name + "!";
     })
     .catch(error => console.error('Error fetching user data:', error));
-
-    // load messages
-    /*
-    fetch('/messages')
-    .then(response => response.json())
-    .then(data => {
-        if (data.length > 0) {
-            const messageData = data[0];
-
-            // Replace ";" with newline "\n"
-            const message1 = messageData.message1.replace(/;/g, '\n');
-            const message2 = messageData.message2.replace(/;/g, '\n');
-            const message3 = messageData.message3.replace(/;/g, '\n');
-
-            // Display messages in the corresponding textareas
-            document.getElementById('infoWindowSetup1').value = message1;
-            document.getElementById('infoWindowSetup2').value = message2;
-            document.getElementById('infoWindowSetup3').value = message3;
-        }
-    })
-    .catch(error => {
-        console.error('Error fetching messages:', error);
-    });
-    */
 }
 
 function openSnowtam() {
@@ -365,137 +339,30 @@ function metNav2() {
     document.getElementById("metButton2").style.pointerEvents = "none";
     document.getElementById("metButton3").style.pointerEvents = "all";
 
-    var myHeaders = new Headers();
-    myHeaders.append("X-API-Key", "bcad5819aedc44a7aa9b4705be");
-
-    var requestOptions = {
-        method: 'GET',
-        headers: myHeaders,
-        redirect: 'follow'
-    };
-
     // load METARs
-    fetch("/api/metar/EFTU")
-    .then(response => response.json())
-    .then(result => {
-        if (result.data[0] && result.data[0].length > 90) {
-            const originalString = result.data[0];
-            let splitIndex = 90;
-            while (splitIndex > 0 && originalString[splitIndex] !== ' ') {
-              splitIndex--;
+    const airports = [
+        { code: "EFTU", prefix: "metarEFTU", splitLength: 90 },
+        { code: "EFTP", prefix: "metarEFTP" },
+        { code: "EETN", prefix: "metarEETN" },
+        { code: "EFJY", prefix: "metarEFJY" },
+        { code: "ESSA", prefix: "metarESSA" },
+        { code: "ULLI", prefix: "metarULLI" },
+    ];
+    
+    airports.forEach(airport => {
+        fetch(`/api/metar/${airport.code}`)
+        .then(response => response.json())
+        .then(result => {
+            const splitLength = airport.splitLength || 100; // Default split length is 100
+            processMETARData(result.data[0], airport.prefix, splitLength);
+    
+            // Hide the loading icon after the last fetch
+            if (airport.code === "ULLI") {
+                document.getElementById("loadingIconMETREP").style.display = "none";
             }
-            const firstPart = originalString.slice(0, splitIndex).trim();
-            const secondPart = originalString.slice(splitIndex).trim();
-            document.getElementById("metarEFTU1").textContent = firstPart;
-            document.getElementById("metarEFTU2").textContent = secondPart + "=";
-        } 
-        else {
-            document.getElementById("metarEFTU1").textContent = result.data[0] + "=";
-        }
-    })
-    .catch(error => console.log('error', error));
-
-    fetch("/api/metar/EFTP")
-    .then(response => response.json())
-    .then(result => {
-        if (result.data[0] && result.data[0].length > 100) {
-            const originalString = result.data[0];
-            let splitIndex = 100;
-            while (splitIndex > 0 && originalString[splitIndex] !== ' ') {
-              splitIndex--;
-            }
-            const firstPart = originalString.slice(0, splitIndex).trim();
-            const secondPart = originalString.slice(splitIndex).trim();
-            document.getElementById("metarEFTP1").textContent = firstPart;
-            document.getElementById("metarEFTP2").textContent = secondPart + "=";
-        } 
-        else {
-            document.getElementById("metarEFTP1").textContent = result.data[0] + "=";
-        }
-    })
-    .catch(error => console.log('error', error));
-
-    fetch("/api/metar/EETN")
-    .then(response => response.json())
-    .then(result => {
-        if (result.data[0] && result.data[0].length > 100) {
-            const originalString = result.data[0];
-            let splitIndex = 100;
-            while (splitIndex > 0 && originalString[splitIndex] !== ' ') {
-              splitIndex--;
-            }
-            const firstPart = originalString.slice(0, splitIndex).trim();
-            const secondPart = originalString.slice(splitIndex).trim();
-            document.getElementById("metarEETN1").textContent = firstPart;
-            document.getElementById("metarEETN2").textContent = secondPart + "=";
-        } 
-        else {
-            document.getElementById("metarEETN1").textContent = result.data[0] + "=";
-        }
-    })
-    .catch(error => console.log('error', error));
-
-    fetch("/api/metar/EFJY")
-    .then(response => response.json())
-    .then(result => {
-        if (result.data[0] && result.data[0].length > 100) {
-            const originalString = result.data[0];
-            let splitIndex = 100;
-            while (splitIndex > 0 && originalString[splitIndex] !== ' ') {
-              splitIndex--;
-            }
-            const firstPart = originalString.slice(0, splitIndex).trim();
-            const secondPart = originalString.slice(splitIndex).trim();
-            document.getElementById("metarEFJY1").textContent = firstPart;
-            document.getElementById("metarEFJY2").textContent = secondPart + "=";
-        } 
-        else {
-            document.getElementById("metarEFJY1").textContent = result.data[0] + "=";
-        }
-    })
-    .catch(error => console.log('error', error));
-
-    fetch("/api/metar/ESSA")
-    .then(response => response.json())
-    .then(result => {
-        if (result.data[0] && result.data[0].length > 100) {
-            const originalString = result.data[0];
-            let splitIndex = 100;
-            while (splitIndex > 0 && originalString[splitIndex] !== ' ') {
-              splitIndex--;
-            }
-            const firstPart = originalString.slice(0, splitIndex).trim();
-            const secondPart = originalString.slice(splitIndex).trim();
-            document.getElementById("metarESSA1").textContent = firstPart;
-            document.getElementById("metarESSA2").textContent = secondPart + "=";
-        } 
-        else {
-            document.getElementById("metarESSA1").textContent = result.data[0] + "=";
-        }
-    })
-    .catch(error => console.log('error', error));
-
-    fetch("/api/metar/ULLI")
-    .then(response => response.json())
-    .then(result => {
-        if (result.data[0] && result.data[0].length > 100) {
-            const originalString = result.data[0];
-            let splitIndex = 100;
-            while (splitIndex > 0 && originalString[splitIndex] !== ' ') {
-              splitIndex--;
-            }
-            const firstPart = originalString.slice(0, splitIndex).trim();
-            const secondPart = originalString.slice(splitIndex).trim();
-            document.getElementById("metarULLI1").textContent = firstPart;
-            document.getElementById("metarULLI2").textContent = secondPart + "=";
-        } 
-        else {
-            document.getElementById("metarULLI1").textContent = result.data[0] + "=";
-        }
-
-        document.getElementById("loadingIconMETREP").style.display = "none";
-    })
-    .catch(error => console.log('error', error));
+        })
+        .catch(error => console.log('error', error));
+    });
 }
 
 function metNav3() {
@@ -510,267 +377,78 @@ function metNav3() {
     document.getElementById("metButton2").style.pointerEvents = "all";
     document.getElementById("metButton3").style.pointerEvents = "none";
 
-    var myHeaders = new Headers();
-    myHeaders.append("X-API-Key", "bcad5819aedc44a7aa9b4705be");
+    // Fetching TAFs for each airport
+    const airports = ["EFTU", "EFTP", "EETN", "EFJY", "ESSA", "ULLI"];
 
-    var requestOptions = {
-        method: 'GET',
-        headers: myHeaders,
-        redirect: 'follow'
-    };
-
-    // fetching TAFs:
-    fetch("/api/taf/EFTU")
-    .then(response => response.json())
-    .then(result => {
-        if (result.data[0] && result.data[0].length > 100) {
-            if (result.data[0] && result.data[0].length > 200) {
-                const originalString = result.data[0];
-                let splitIndex2 = 100;
-                let splitIndex3 = 200;
-
-                while (splitIndex2 > 0 && originalString[splitIndex2] !== ' ') {
-                    splitIndex2--;
-                }
-                while (splitIndex3 > splitIndex2 && originalString[splitIndex3] !== ' ') {
-                    splitIndex3--;
-                }
-
-                const firstPart = originalString.slice(0, splitIndex2).trim();
-                const secondPart = originalString.slice(splitIndex2, splitIndex3).trim();
-                const thirdPart = originalString.slice(splitIndex3).trim();
-
-                document.getElementById("metTaf1_eftu").textContent = firstPart;
-                document.getElementById("metTaf2_eftu").textContent = secondPart;
-                document.getElementById("metTaf3_eftu").textContent = thirdPart + "=";
-            } else {
-                const originalString = result.data[0];
-                let splitIndex = 100;
-                while (splitIndex > 0 && originalString[splitIndex] !== ' ') {
-                    splitIndex--;
-                }
-                const firstPart = originalString.slice(0, splitIndex).trim();
-                const secondPart = originalString.slice(splitIndex).trim();
-                document.getElementById("metTaf1_eftu").textContent = firstPart;
-                document.getElementById("metTaf2_eftu").textContent = secondPart + "=";
+    airports.forEach(airport => {
+        fetch(`/api/taf/${airport}`)
+        .then(response => response.json())
+        .then(result => {
+            processTAFData(result.data[0], `metTaf${airport.toLowerCase()}`);
+            if (airport === "ULLI") {
+                document.getElementById("loadingIconMETREP").style.display = "none";
             }
-        } 
-        else {
-            document.getElementById("metTaf1_eftu").textContent = result.data[0] + "=";
+        })
+        .catch(error => console.log('error', error));
+    });
+}
+
+function processMETARData(metarData, elementPrefix, splitLength = 100) {
+    // Helper function to safely set text content
+    function setElementTextContent(id, content) {
+        const element = document.getElementById(id);
+        if (element) {
+            element.textContent = content;
+        } else {
+            console.log(`Element with ID ${id} not found`);
         }
-        
-    })
-    .catch(error => console.log('error', error));
+    }
 
-    fetch("/api/taf/EFTP")
-    .then(response => response.json())
-    .then(result => {
-        if (result.data[0] && result.data[0].length > 100) {
-            if (result.data[0] && result.data[0].length > 200) {
-                const originalString = result.data[0];
-                let splitIndex2 = 100;
-                let splitIndex3 = 200;
+    if (metarData && metarData.length > splitLength) {
+        const originalString = metarData;
+        let splitIndex = splitLength;
 
-                while (splitIndex2 > 0 && originalString[splitIndex2] !== ' ') {
-                    splitIndex2--;
-                }
-                while (splitIndex3 > splitIndex2 && originalString[splitIndex3] !== ' ') {
-                    splitIndex3--;
-                }
+        while (splitIndex > 0 && originalString[splitIndex] !== ' ') splitIndex--;
 
-                const firstPart = originalString.slice(0, splitIndex2).trim();
-                const secondPart = originalString.slice(splitIndex2, splitIndex3).trim();
-                const thirdPart = originalString.slice(splitIndex3).trim();
+        const firstPart = originalString.slice(0, splitIndex).trim();
+        const secondPart = originalString.slice(splitIndex).trim();
+        setElementTextContent(`${elementPrefix}1`, firstPart);
+        setElementTextContent(`${elementPrefix}2`, secondPart + "=");
+    } else {
+        setElementTextContent(`${elementPrefix}1`, metarData + "=");
+    }
+}
 
-                document.getElementById("metTaf1_eftp").textContent = firstPart;
-                document.getElementById("metTaf2_eftp").textContent = secondPart;
-                document.getElementById("metTaf3_eftp").textContent = thirdPart + "=";
-            } else {
-                const originalString = result.data[0];
-                let splitIndex = 100;
-                while (splitIndex > 0 && originalString[splitIndex] !== ' ') {
-                    splitIndex--;
-                }
-                const firstPart = originalString.slice(0, splitIndex).trim();
-                const secondPart = originalString.slice(splitIndex).trim();
-                document.getElementById("metTaf1_eftp").textContent = firstPart;
-                document.getElementById("metTaf2_eftp").textContent = secondPart + "=";
-            }
-        } 
-        else {
-            document.getElementById("metTaf1_eftp").textContent = result.data[0] + "=";
+function processTAFData(tafData, elementPrefix) {
+    // Helper function to safely set text content
+    function setElementTextContent(id, content) {
+        const element = document.getElementById(id);
+        if (element) {
+            element.textContent = content;
+        } else {
+            console.log(`Element with ID ${id} not found`);
         }
-        
-    })
-    .catch(error => console.log('error', error));
+    }
 
-    fetch("/api/taf/EETN")
-    .then(response => response.json())
-    .then(result => {
-        if (result.data[0] && result.data[0].length > 100) {
-            if (result.data[0] && result.data[0].length > 200) {
-                const originalString = result.data[0];
-                let splitIndex2 = 100;
-                let splitIndex3 = 200;
+    if (tafData && tafData.length > 100) {
+        let splitIndex2 = 100;
+        let splitIndex3 = tafData.length > 200 ? 200 : tafData.length;
 
-                while (splitIndex2 > 0 && originalString[splitIndex2] !== ' ') {
-                    splitIndex2--;
-                }
-                while (splitIndex3 > splitIndex2 && originalString[splitIndex3] !== ' ') {
-                    splitIndex3--;
-                }
+        while (splitIndex2 > 0 && tafData[splitIndex2] !== ' ') splitIndex2--;
+        while (splitIndex3 > splitIndex2 && tafData[splitIndex3] !== ' ') splitIndex3--;
 
-                const firstPart = originalString.slice(0, splitIndex2).trim();
-                const secondPart = originalString.slice(splitIndex2, splitIndex3).trim();
-                const thirdPart = originalString.slice(splitIndex3).trim();
+        const firstPart = tafData.slice(0, splitIndex2).trim();
+        const secondPart = tafData.slice(splitIndex2, splitIndex3).trim();
+        const thirdPart = tafData.slice(splitIndex3).trim();
 
-                document.getElementById("metTaf1_eetn").textContent = firstPart;
-                document.getElementById("metTaf2_eetn").textContent = secondPart;
-                document.getElementById("metTaf3_eetn").textContent = thirdPart + "=";
-            } else {
-                const originalString = result.data[0];
-                let splitIndex = 100;
-                while (splitIndex > 0 && originalString[splitIndex] !== ' ') {
-                    splitIndex--;
-                }
-                const firstPart = originalString.slice(0, splitIndex).trim();
-                const secondPart = originalString.slice(splitIndex).trim();
-                document.getElementById("metTaf1_eetn").textContent = firstPart;
-                document.getElementById("metTaf2_eetn").textContent = secondPart + "=";
-            }
-        } 
-        else {
-            document.getElementById("metTaf1_eetn").textContent = result.data[0] + "=";
+        setElementTextContent(`${elementPrefix}1`, firstPart);
+        setElementTextContent(`${elementPrefix}2`, secondPart + (thirdPart ? '' : '='));
+        if (thirdPart) {
+            setElementTextContent(`${elementPrefix}3`, thirdPart + "=");
         }
-        
-    })
-    .catch(error => console.log('error', error));
-
-    fetch("/api/taf/EFJY")
-    .then(response => response.json())
-    .then(result => {
-        if (result.data[0] && result.data[0].length > 100) {
-            if (result.data[0] && result.data[0].length > 200) {
-                const originalString = result.data[0];
-                let splitIndex2 = 100;
-                let splitIndex3 = 200;
-
-                while (splitIndex2 > 0 && originalString[splitIndex2] !== ' ') {
-                    splitIndex2--;
-                }
-                while (splitIndex3 > splitIndex2 && originalString[splitIndex3] !== ' ') {
-                    splitIndex3--;
-                }
-
-                const firstPart = originalString.slice(0, splitIndex2).trim();
-                const secondPart = originalString.slice(splitIndex2, splitIndex3).trim();
-                const thirdPart = originalString.slice(splitIndex3).trim();
-
-                document.getElementById("metTaf1_efjy").textContent = firstPart;
-                document.getElementById("metTaf2_efjy").textContent = secondPart;
-                document.getElementById("metTaf3_efjy").textContent = thirdPart + "=";
-            } else {
-                const originalString = result.data[0];
-                let splitIndex = 100;
-                while (splitIndex > 0 && originalString[splitIndex] !== ' ') {
-                    splitIndex--;
-                }
-                const firstPart = originalString.slice(0, splitIndex).trim();
-                const secondPart = originalString.slice(splitIndex).trim();
-                document.getElementById("metTaf1_efjy").textContent = firstPart;
-                document.getElementById("metTaf2_efjy").textContent = secondPart + "=";
-            }
-        } 
-        else {
-            document.getElementById("metTaf1_efjy").textContent = result.data[0] + "=";
-        }
-        
-    })
-    .catch(error => console.log('error', error));
-
-    fetch("/api/taf/ESSA")
-    .then(response => response.json())
-    .then(result => {
-        if (result.data[0] && result.data[0].length > 100) {
-            if (result.data[0] && result.data[0].length > 200) {
-                const originalString = result.data[0];
-                let splitIndex2 = 100;
-                let splitIndex3 = 200;
-
-                while (splitIndex2 > 0 && originalString[splitIndex2] !== ' ') {
-                    splitIndex2--;
-                }
-                while (splitIndex3 > splitIndex2 && originalString[splitIndex3] !== ' ') {
-                    splitIndex3--;
-                }
-
-                const firstPart = originalString.slice(0, splitIndex2).trim();
-                const secondPart = originalString.slice(splitIndex2, splitIndex3).trim();
-                const thirdPart = originalString.slice(splitIndex3).trim();
-
-                document.getElementById("metTaf1_essa").textContent = firstPart;
-                document.getElementById("metTaf2_essa").textContent = secondPart;
-                document.getElementById("metTaf3_essa").textContent = thirdPart + "=";
-            } else {
-                const originalString = result.data[0];
-                let splitIndex = 100;
-                while (splitIndex > 0 && originalString[splitIndex] !== ' ') {
-                    splitIndex--;
-                }
-                const firstPart = originalString.slice(0, splitIndex).trim();
-                const secondPart = originalString.slice(splitIndex).trim();
-                document.getElementById("metTaf1_essa").textContent = firstPart;
-                document.getElementById("metTaf2_essa").textContent = secondPart + "=";
-            }
-        } 
-        else {
-            document.getElementById("metTaf1_essa").textContent = result.data[0] + "=";
-        }
-        
-    })
-    .catch(error => console.log('error', error));
-
-    fetch("/api/taf/ULLI")
-    .then(response => response.json())
-    .then(result => {
-        if (result.data[0] && result.data[0].length > 100) {
-            if (result.data[0] && result.data[0].length > 200) {
-                const originalString = result.data[0];
-                let splitIndex2 = 100;
-                let splitIndex3 = 200;
-
-                while (splitIndex2 > 0 && originalString[splitIndex2] !== ' ') {
-                    splitIndex2--;
-                }
-                while (splitIndex3 > splitIndex2 && originalString[splitIndex3] !== ' ') {
-                    splitIndex3--;
-                }
-
-                const firstPart = originalString.slice(0, splitIndex2).trim();
-                const secondPart = originalString.slice(splitIndex2, splitIndex3).trim();
-                const thirdPart = originalString.slice(splitIndex3).trim();
-
-                document.getElementById("metTaf1_ulli").textContent = firstPart;
-                document.getElementById("metTaf2_ulli").textContent = secondPart;
-                document.getElementById("metTaf3_ulli").textContent = thirdPart + "=";
-            } else {
-                const originalString = result.data[0];
-                let splitIndex = 100;
-                while (splitIndex > 0 && originalString[splitIndex] !== ' ') {
-                    splitIndex--;
-                }
-                const firstPart = originalString.slice(0, splitIndex).trim();
-                const secondPart = originalString.slice(splitIndex).trim();
-                document.getElementById("metTaf1_ulli").textContent = firstPart;
-                document.getElementById("metTaf2_ulli").textContent = secondPart + "=";
-            }
-        } 
-        else {
-            document.getElementById("metTaf1_ulli").textContent = result.data[0] + "=";
-        }
-        document.getElementById("loadingIconMETREP").style.display = "none";
-    })
-    .catch(error => console.log('error', error));
+    } else {
+        setElementTextContent(`${elementPrefix}1`, tafData + "=");
+    }
 }
 
 function setupButton1() {
@@ -938,8 +616,6 @@ function returnDate() {
     return fullDate;
 }
 
-
-
 var baseUrl = "https://api.airtable.com/v0/appGAYI2wFvY7jZVG/Table%201";
 
 var requestOptions = {
@@ -1018,7 +694,7 @@ function loadMetRep() {
     fetch('/api/fmidata')
     .then(response => response.json())
     .then(data => {
-        processLowWindData(data);
+        processFMIData(data);
     })
     .catch(error => console.error('Error fetching data:', error));
 }
@@ -1028,12 +704,6 @@ function setMetRep(xml) {
 
     var metars = xmlDoc.getElementsByTagName('avi:input');
     var metar = metars[metars.length-1].childNodes[0].nodeValue;
-
-    var header = metar.match(/(EFHK\s\d{6}Z)\s/);
-
-    if (header && header[1]) {
-        document.getElementById("metHeader").textContent = header[1];
-    }
 
     var viss = xmlDoc.getElementsByTagName('iwxxm:prevailingVisibility');
     var vis = viss[viss.length-1].childNodes[0].nodeValue;
@@ -1116,17 +786,6 @@ function loadActualMet(xml) {
     document.getElementById("metCurrentQfe04R").textContent = (currentQnh - 5.9).toFixed(1);
     document.getElementById("metCurrentQfe22L").textContent = (currentQnh - 6.5).toFixed(1);
 
-
-    // Fetching TAF and METAR data:
-    var myHeaders = new Headers();
-    myHeaders.append("X-API-Key", "bcad5819aedc44a7aa9b4705be");
-
-    var requestOptions = {
-        method: 'GET',
-        headers: myHeaders,
-        redirect: 'follow'
-    };
-
     fetch("/api/taf/EFHK")
     .then(response => {
         // Check if response is in JSON format
@@ -1181,22 +840,6 @@ function loadActualMet(xml) {
     .then(response => response.json())
     .then(result => {
 
-        const metarWindDir = result.data[0].wind && result.data[0].wind.degrees || 0;
-        const metarWindSpd = result.data[0].wind && result.data[0].wind.speed_kts || 0;
-
-        if (metarWindSpd == 0) {
-            document.getElementById("metWind").textContent = "RWY 04L TDZ CALM END CALM";
-        }
-        else if (metarWindDir == 0) {
-            document.getElementById("metWind").textContent = "RWY 04L TDZ VRB " + metarWindSpd + "KT END VRB " + metarWindSpd + "KT";
-        }
-        else {
-            if (result.data[0].wind.degrees < 100) {
-                result.data[0].wind.degrees = "0" + result.data[0].wind.degrees;
-            }
-            document.getElementById("metWind").textContent = `RWY 04L TDZ ${result.data[0].wind.degrees}/${result.data[0].wind.speed_kts}KT END ${result.data[0].wind.degrees}/${result.data[0].wind.speed_kts}KT`;
-        }
-
         let allConditionsText = '';
 
         if (result.data[0].conditions) {
@@ -1213,18 +856,15 @@ function loadActualMet(xml) {
             // Get elements
             const feetElement = document.getElementById(`metCurrentCloud_alt${index + 1}`);
             const codeElement = document.getElementById(`metCurrentCloud_id${index + 1}`);
-            const allCloudsElement = document.getElementById('metClouds');
             cloudAltPreset = String(Math.floor(cloud.base_feet_agl / 100)).padStart(3, '0'); 
 
             // Update fields
             if (allCloudsText.includes("CAVOK")) {
-                if (allCloudsElement) allCloudsElement.textContent = "";
                 if (feetElement) feetElement.textContent = "";
                 if (codeElement) codeElement.textContent = "";
                 document.getElementById("metWx").textContent = "CAVOK";
             } 
             else if (allCloudsText.includes("CLR")) {
-                if (allCloudsElement) allCloudsElement.textContent = "";
                 if (feetElement) feetElement.textContent = "";
                 if (codeElement) codeElement.textContent = "";
                 document.getElementById("metWx").textContent = "";
@@ -1232,7 +872,6 @@ function loadActualMet(xml) {
             else {
                 if (feetElement) feetElement.textContent = cloudAltPreset;
                 if (codeElement) codeElement.textContent = cloud.code;
-                if (allCloudsElement) allCloudsElement.textContent = allCloudsText;
                 document.getElementById("metWx").textContent = allConditionsText;
             }
         });
@@ -1242,114 +881,94 @@ function loadActualMet(xml) {
     .catch(error => console.log('error', error));
 }
 
-// LOW WIND
-function processLowWindData(data) {
+// LOW WIND, METREP, SPECIAL
+function processFMIData(data) {
     const lowWindData = data.find(item => item.messagetype === 'LOWWIND');
+    const specialData = data.find(item => item.messagetype === 'SPECIAL');
+    const metrepData = data.find(item => item.messagetype === 'METREP');
+
     if (lowWindData) {
-        // Extract the message
         const message = lowWindData.message;
         const splitPoint = "500FT";
         const endPoint = "FL100";
-        
-        // Extract the title
-        const titlePart = message.split(splitPoint)[0].trim(); // "LOW WIND EFHK 101130Z"
-        
-        // Extract the values part
-        const valuesPart = message.split(endPoint)[1].trim().replace('=', ''); // wind values e.g. 250/13
+        const titlePart = message.split(splitPoint)[0].trim();
+        const valuesPart = message.split(endPoint)[1].trim().replace('=', '');
 
-        // Update the HTML elements
+        // Update HTML elements
         document.getElementById("lowwind_title").textContent = titlePart;
         document.getElementById("lowwind_values").textContent = valuesPart;
     } else {
         console.log("LOWWIND data not found");
     }
-}
 
-function performAction(value) {
-    switch (value) {
-      case "efhk":
-        alert('EFHK is already opened');
-        break;
-      case "efro":
-        window.location.href = "awosview/efro.html";
-        break;
-      default:
-        break;
+    // set SPECIAL or METREP data
+    if (specialData) {
+        setMetHeader(specialData.message);
+        setMetWind(specialData.message);
+        setMetCloud(specialData.message);
+        setMetTrend(specialData.message);
+
+    } else if (metrepData) {
+        setMetHeader(metrepData.message);
+        setMetWind(metrepData.message);
+        setMetCloud(metrepData.message);
+        setMetTrend(metrepData.message); 
+    } else {
+        console.log("METREP/SPECIAL not found");
     }
 }
 
-function performAction(value) {
-    switch (value.toLowerCase()) {
-        case "efet":
-            window.location.href = "awosview/efet.html";
-            break;
-        case "efha":
-            window.location.href = "awosview/efha.html";
-            break;
-        case "efiv":
-            window.location.href = "awosview/efiv.html";
-            break;
-        case "efjo":
-            window.location.href = "awosview/efjo.html";
-            break;
-        case "efjy":
-            window.location.href = "awosview/efjy.html";
-            break;
-        case "efki":
-            window.location.href = "awosview/efki.html";
-            break;
-        case "efke":
-            window.location.href = "awosview/efke.html";
-            break;
-        case "efkt":
-            window.location.href = "awosview/efkt.html";
-            break;
-        case "efkk":
-            window.location.href = "awosview/efkk.html";
-            break;
-        case "efku":
-            window.location.href = "awosview/efku.html";
-            break;
-        case "efks":
-            window.location.href = "awosview/efks.html";
-            break;
-        case "eflp":
-            window.location.href = "awosview/eflp.html";
-            break;
-        case "efma":
-            window.location.href = "awosview/efma.html";
-            break;
-        case "efmi":
-            window.location.href = "awosview/efmi.html";
-            break;
-        case "efou":
-            window.location.href = "awosview/efou.html";
-            break;
-        case "efpo":
-            window.location.href = "awosview/efpo.html";
-            break;
-        case "efro":
-            window.location.href = "awosview/efro.html";
-            break;
-        case "efsa":
-            window.location.href = "awosview/efsa.html";
-            break;
-        case "efsi":
-            window.location.href = "awosview/efsi.html";
-            break;
-        case "eftp":
-            window.location.href = "awosview/eftp.html";
-            break;
-        case "eftu":
-            window.location.href = "awosview/eftu.html";
-            break;
-        case "efut":
-            window.location.href = "awosview/efut.html";
-            break;
-        case "efva":
-            window.location.href = "awosview/efva.html";
-            break;
-        default:
-            break;
+function setMetHeader(message) {
+    const timeEndIndex = message.indexOf("Z") + 1;
+
+    if (timeEndIndex > 0) {
+        const header = message.substring(0, timeEndIndex).trim();
+        document.getElementById("metHeader").textContent = header;
+    } else {
+        console.log("Timestamp not found in METREP/SPECIAL");
+    }
+}
+
+function setMetWind(message) {
+    const windData = message.substring(message.indexOf("RWY 04L"), message.indexOf("RWY 04R")).trim();
+    if (windData) document.getElementById("metWind").textContent = windData;
+    else console.log("Could not find WIND in METREP/SPECIAL message");
+    // todo: dynamic font size?
+}
+
+function setMetCloud(message) {
+    let windData = null;
+
+    const trendIndex = message.indexOf("TREND");
+    let cldIndex = message.indexOf("CLD");
+
+    if (cldIndex !== -1 && (trendIndex === -1 || cldIndex < trendIndex)) {
+        // If 'CLD' is found and it's before 'TREND' (or TREND doesn't exist), find the end of the cloud data
+        const endIndex = message.indexOf(" T", cldIndex);
+        if (endIndex !== -1) {
+            windData = message.substring(cldIndex + 3, endIndex).trim();
+        }
+    } else if (message.includes("CAVOK")) {
+        windData = "";
+    } else {
+        windData = "NCD";
+    }
+
+    // Set the HTML content
+    const metCloudsElement = document.getElementById('metClouds');
+    if (metCloudsElement) {
+        metCloudsElement.textContent = windData ? windData : "No cloud data available";
+    } else {
+        console.log("Element with ID 'metClouds' not found");
+    }
+}
+
+function setMetTrend(message) {
+    const trendIndex = message.indexOf("TREND ");
+    if (trendIndex !== -1) {
+        const trendData = message.substring(trendIndex + 6, message.indexOf("=", trendIndex)).trim();
+        document.getElementById("metTrend").textContent = trendData || 'NOSIG';
+    } else {
+        document.getElementById("metTrend").textContent = 'NOSIG';
     }
 }
