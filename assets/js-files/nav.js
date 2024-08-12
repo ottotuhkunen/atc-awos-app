@@ -931,9 +931,34 @@ function setMetHeader(message) {
 
 function setMetWind(message) {
     const windData = message.substring(message.indexOf("RWY 04L"), message.indexOf("RWY 04R")).trim();
-    if (windData) document.getElementById("metWind").textContent = windData;
-    else console.log("Could not find WIND in METREP/SPECIAL message");
-    // todo: dynamic font size?
+    const metWind = document.getElementById("metWind");
+
+    if (windData) {
+        metWind.textContent = windData;
+
+        const containerWidth = 390;
+        let fontSize = 24;
+        metWind.style.fontSize = fontSize + 'px';
+
+        // Function to adjust font size based on width
+        function adjustFontSize() {
+            metWind.style.whiteSpace = 'nowrap';
+            let textWidth = metWind.scrollWidth;
+
+            while (textWidth > containerWidth) {
+                fontSize -= 0.5;
+                metWind.style.fontSize = fontSize + 'px';
+                textWidth = metWind.scrollWidth
+
+                if (fontSize <= 10) break; // Minimum font size
+            }
+        }
+
+        // Perform adjustment
+        adjustFontSize();
+    } else {
+        console.log("Could not find WIND in METREP/SPECIAL message");
+    }
 }
 
 function setMetCloud(message) {
