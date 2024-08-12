@@ -930,25 +930,26 @@ function setMetHeader(message) {
 }
 
 function setMetWind(message) {
-    const windData = message.substring(message.indexOf("RWY 04L"), message.indexOf("RWY 04R")).trim();
+    let windData = message.substring(message.indexOf("RWY 04L"), message.indexOf("RWY 04R")).trim();
     const metWind = document.getElementById("metWind");
 
     if (windData) {
+        windData = "RWY 04L TDZ 280/7KT VRB BTN 240/ AND  010/ END 290/5KT VRB BTN 250/ AND 350/"
         metWind.textContent = windData;
 
-        const containerWidth = 390;
+        const maxLength = 48;
         let fontSize = 24;
         metWind.style.fontSize = fontSize + 'px';
 
         // Function to adjust font size based on width
         function adjustFontSize() {
             metWind.style.whiteSpace = 'nowrap';
-            let textWidth = metWind.scrollWidth;
+            let textLength = windData.length
 
-            while (textWidth > containerWidth) {
-                fontSize -= 0.5;
+            while (textLength > maxLength) {
+                fontSize -= 1;
+                textLength -= 2.5;
                 metWind.style.fontSize = fontSize + 'px';
-                textWidth = metWind.scrollWidth
 
                 if (fontSize <= 10) break; // Minimum font size
             }
@@ -996,4 +997,30 @@ function setMetTrend(message) {
     } else {
         document.getElementById("metTrend").textContent = 'NOSIG';
     }
+
+    const maxLength = 44;
+    let fontSize = 24;
+    const metTrend = document.getElementById("metTrend");
+
+
+    // Function to adjust font size based on width
+    function adjustFontSize() {
+        metTrend.style.whiteSpace = 'nowrap';
+        let textLength = metTrend.textContent.length
+
+        console.log(textLength);
+
+        while (textLength > maxLength) {
+            fontSize -= 1;
+            textLength -= 2.5;
+            metTrend.style.fontSize = fontSize + 'px';
+
+            console.log(textLength + " " + fontSize);
+
+            if (fontSize <= 10) break; // Minimum font size
+        }
+    }
+
+    // Perform adjustment
+    adjustFontSize();
 }
