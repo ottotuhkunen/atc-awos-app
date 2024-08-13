@@ -217,8 +217,9 @@ function setup() {
     document.getElementById("setupDiv").style.display = "block";
     document.getElementById("rwyccDiv").style.visibility = "hidden";
 
-    // load ATS-units
+    // load ATS-units and tactical messages
     loadATSunits();
+    loadMessagesSetup();
 
     // load greeting
     const currentHour = new Date().getHours();
@@ -362,7 +363,7 @@ function metNav2() {
             }
         })
         .catch(error => console.log('error', error));
-    });
+    }); 
 }
 
 function metNav3() {
@@ -458,11 +459,11 @@ function setupButton1() {
 
     document.getElementById("setupButton1").style.backgroundColor = "#D8E5F3";
     document.getElementById("setupButton2").style.backgroundColor = "#E6E6E6";
-    // document.getElementById("setupButton3").style.backgroundColor = "#E6E6E6";
+    document.getElementById("setupButton3").style.backgroundColor = "#E6E6E6";
 
     document.getElementById("setupButton1").style.pointerEvents = "none";
     document.getElementById("setupButton2").style.pointerEvents = "all";
-   // document.getElementById("setupButton3").style.pointerEvents = "all";
+   document.getElementById("setupButton3").style.pointerEvents = "all";
 }
 
 function setupButton2() {
@@ -472,25 +473,25 @@ function setupButton2() {
 
     document.getElementById("setupButton1").style.backgroundColor = "#E6E6E6";
     document.getElementById("setupButton2").style.backgroundColor = "#D8E5F3";
-    // document.getElementById("setupButton3").style.backgroundColor = "#E6E6E6";
+    document.getElementById("setupButton3").style.backgroundColor = "#E6E6E6";
 
     document.getElementById("setupButton1").style.pointerEvents = "all";
     document.getElementById("setupButton2").style.pointerEvents = "none";
-    // document.getElementById("setupButton3").style.pointerEvents = "all";
+    document.getElementById("setupButton3").style.pointerEvents = "all";
 }
 
-function setupButton3() {
+async function setupButton3() {
     document.getElementById("runwaySelection-container").style.display = "none";
     document.getElementById("setupContainer3").style.display = "none";
     document.getElementById("setupContainerMessages").style.display = "block";
 
     document.getElementById("setupButton1").style.backgroundColor = "#E6E6E6";
     document.getElementById("setupButton2").style.backgroundColor = "#E6E6E6";
-    // document.getElementById("setupButton3").style.backgroundColor = "#D8E5F3";
+    document.getElementById("setupButton3").style.backgroundColor = "#D8E5F3";
 
     document.getElementById("setupButton1").style.pointerEvents = "all";
     document.getElementById("setupButton2").style.pointerEvents = "all";
-    // document.getElementById("setupButton3").style.pointerEvents = "none";
+    document.getElementById("setupButton3").style.pointerEvents = "none";
 }
 
 function openDepATIS(){
@@ -963,7 +964,7 @@ function setMetWind(message) {
 }
 
 function setMetCloud(message) {
-    let windData = null;
+    let cloudData = null;
 
     const trendIndex = message.indexOf("TREND");
     let cldIndex = message.indexOf("CLD");
@@ -972,18 +973,18 @@ function setMetCloud(message) {
         // If 'CLD' is found and it's before 'TREND' (or TREND doesn't exist), find the end of the cloud data
         const endIndex = message.indexOf(" T", cldIndex);
         if (endIndex !== -1) {
-            windData = message.substring(cldIndex + 3, endIndex).trim();
+            cloudData = message.substring(cldIndex + 3, endIndex).trim();
         }
     } else if (message.includes("CAVOK")) {
-        windData = "";
+        cloudData = "";
     } else {
-        windData = "NCD";
+        cloudData = "NCD";
     }
 
     // Set the HTML content
     const metCloudsElement = document.getElementById('metClouds');
     if (metCloudsElement) {
-        metCloudsElement.textContent = windData ? windData : "No cloud data available";
+        metCloudsElement.textContent = cloudData ? cloudData : "";
     } else {
         console.log("Element with ID 'metClouds' not found");
     }
@@ -1006,9 +1007,7 @@ function setMetTrend(message) {
     // Function to adjust font size based on width
     function adjustFontSize() {
         metTrend.style.whiteSpace = 'nowrap';
-        let textLength = metTrend.textContent.length
-
-        console.log(textLength);
+        let textLength = metTrend.textContent.length;
 
         while (textLength > maxLength) {
             fontSize -= 1;

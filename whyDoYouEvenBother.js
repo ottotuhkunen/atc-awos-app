@@ -9,6 +9,8 @@ const { parseStringPromise, Builder } = require('xml2js');
 const path = require('path');
 const db = require('./db');
 const app = express();
+const cors = require('cors');
+app.use(cors());
 
 app.set('trust proxy', 1); // Trust the first proxy (Heroku)
 const port = process.env.PORT || 3000;
@@ -16,6 +18,8 @@ const port = process.env.PORT || 3000;
 app.use(express.static('assets'));
 app.use('/src', express.static(path.join(__dirname, 'public', 'src')));
 app.use('/awosview/images', express.static(path.join(__dirname, 'public', 'awosview', 'images')));
+
+app.use(express.json()); 
 
 passport.use(new OAuth2Strategy({
   authorizationURL: process.env.AUTH_URL_HEROKU || process.env.AUTH_URL,
@@ -108,12 +112,13 @@ app.get('/callback',
   }
 );
 
-app.get('/user-data', isAuthenticated, (req, res) => {
+app.get('/user-data', isAuthenticated, async (req, res) => {
   if (req.user) {
-      const { id, full_name, rating } = req.user;
-      res.json({ id, full_name, rating });
+    const { id, full_name, rating } = req.user;
+    const editState = await determineEditState(id);
+    res.json({ id, full_name, rating, editState });
   } else {
-      res.status(401).json({ message: 'User not authenticated' });
+    res.status(401).json({ message: 'User not authenticated' });
   }
 });
 
@@ -209,11 +214,21 @@ app.get('/dataEFHK', async (req, res) => {
 
 let cachedAtisData = null;
 let cacheTimestamp = null;
+let cachedVatsimData = null;
+let vatsimCacheTimestamp = null;
+const CACHE_DURATION = 90000;
 
 async function fetchVatsimData() {
   try {
+    const now = Date.now();
+    if (cachedVatsimData && vatsimCacheTimestamp && (now - vatsimCacheTimestamp < CACHE_DURATION)) {
+      return cachedVatsimData;
+    }
+
     const response = await fetch('https://data.vatsim.net/v3/vatsim-data.json');
     const data = await response.json();
+    cachedVatsimData = data;
+    vatsimCacheTimestamp = now;
     return data;
   } catch (error) {
     console.error('Error fetching VATSIM data:', error);
@@ -221,8 +236,28 @@ async function fetchVatsimData() {
   }
 }
 
+async function determineEditState(userId) {
+  if (userId === '1339541' || userId === '10000003') {
+    return 2; // Special user with full edit permissions
+  }
+  if (userId === '10000002') {
+    return 1;
+  }
+
+  const vatsimData = await fetchVatsimData();
+  if (!vatsimData || !vatsimData.controllers) {
+    return 0; // Default to not allowed if there's an issue fetching VATSIM data
+  }
+
+  const controller = vatsimData.controllers.find(c => c.cid === parseInt(userId));
+  if (controller && /EFHK/.test(controller.callsign) && /(TWR|APP)/.test(controller.callsign)) {
+    return 1; // Allowed to edit
+  }
+
+  return 0; // Not allowed to edit
+}
+
 async function getAtisData() {
-  const CACHE_DURATION = 90000;
   const now = Date.now();
 
   if (cachedAtisData && cacheTimestamp && (now - cacheTimestamp < CACHE_DURATION)) {
@@ -366,6 +401,88 @@ app.get('/api/fmidata', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch FMI data' });
   }
 });
+
+app.get('/messages', async (req, res) => {
+  try {
+    const result = await db.pool.query('SELECT * FROM messages ORDER BY id ASC');
+    res.json(result.rows); // Send the messages as JSON
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+app.post('/save-messages', async (req, res) => {
+  console.log('Received save-messages request');
+  console.log('Request body:', req.body);
+
+  if (!req.body || !req.body.messages) {
+    console.error('No messages received');
+    return res.status(400).send('Bad Request: No messages found');
+  }
+
+  const { messages } = req.body;
+  const userId = req.user.id;
+
+  try {
+    for (let message of messages) {
+      console.log(`Processing message ID ${message.id} with content "${message.message}"`);
+
+      // Define SQL query to update message and set cid to userId
+      const query = `
+        UPDATE messages
+        SET message = $1, cid = $2
+        WHERE id = $3;
+      `;
+
+      // Execute the query
+      const result = await db.pool.query(query, [message.message, userId, message.id]);
+      console.log('Updated rows:', result.rowCount);
+    }
+    
+    res.sendStatus(200);
+  } catch (err) {
+    console.error('Error saving messages:', err);
+    res.status(500).send('Server Error');
+  }
+});
+
+async function updateMessagesForInactiveUsers() {
+  try {
+    // Fetch all messages from the database
+    const result = await db.pool.query('SELECT * FROM messages');
+    const messages = result.rows;
+    const exemptUserIds = new Set(['1339541', '10000003']); // Exempt user IDs
+
+    // Process each message
+    for (const message of messages) {
+      const cid = message.cid.toString(); // Ensure cid is a string
+      const id = message.id;
+
+      // Check if the user is exempt
+      if (exemptUserIds.has(cid)) {
+        console.log(`User ID ${cid} is exempt. No action taken.`);
+        continue; // Skip the message if user is exempt
+      }
+
+      // Determine edit state for non-exempt users
+      const editState = await determineEditState(cid);
+
+      if (editState === 0) {
+        console.log(`Resetting message content for user ID ${cid}`);
+        // Reset message content for users who are not allowed to edit
+        await db.pool.query('UPDATE messages SET message = $1 WHERE id = $2', ['', id]);
+      } else {
+        console.log(`User ID ${cid} is allowed to edit.`);
+      }
+    }
+  } catch (error) {
+    console.error('Error updating messages for inactive users:', error);
+  }
+}
+
+updateMessagesForInactiveUsers();
+setInterval(updateMessagesForInactiveUsers, 4 * 60 * 1000);
 
 app.listen(port, function () {
     console.log('App is listening on port ' + port + '!');

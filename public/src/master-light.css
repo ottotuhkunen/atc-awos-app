@@ -635,22 +635,15 @@ th {
     margin-left: 8px;
 }
 
-.clearMessageButton {
-    text-decoration: none;
-    padding: 4px 40px;
-    background-color: #b63f3f;
-    text-align: center;
-    color: white;
-    margin-left: 8px;
-}
-
-.refreshMessageButton {
-    text-decoration: none;
-    padding: 4px 40px;
-    background-color: #1a475f;
-    text-align: center;
-    color: white;
-    margin-left: 8px;
+textarea {
+    line-height: 1.2em; /* Adjust line-height based on font size */
+    max-height: calc(1.2em * 3); /* Maximum height for 3 rows */
+    overflow-y: hidden; /* Hide vertical scrollbar */
+    resize: none; /* Prevent resizing */
+    font-family: 'Verdana';
+    font-size: 18px;
+    margin: 8px;
+    overflow-wrap: break-word;
 }
 
 #infoWindowSetup1 {

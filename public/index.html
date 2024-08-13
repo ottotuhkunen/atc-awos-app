@@ -413,7 +413,7 @@
                 <div id="setupButtonsContainer">
                     <button id="setupButton1" onclick="setupButton1();" class="metButtons" style="margin-left: 6px; background-color: #D8E5F3;">Runways</button>
                     <button id="setupButton2" onclick="setupButton2();" class="metButtons">ATS-units</button>
-                    <!-- <button id="setupButton3" onclick="setupButton3();" class="metButtons">Messages</button> -->
+                    <button id="setupButton3" onclick="setupButton3();" class="metButtons">Messages</button>
                 </div>
 
                 <div id="runwaySelection-container" style="position:absolute; width: 100%; top: 110px; bottom: 0; margin-top: 8px;"></div> <!-- code in config.js -->
@@ -439,15 +439,16 @@
                             <stop  offset="1" class="rwySelGradient2"/>
                         </linearGradient>
                         <rect x="4" y="3" style="fill:url(#message-gradient);" width="578" height="23"/>
-                        <text transform="matrix(1 0 0 1 9.2886 18.958)" class="runwaySel6 runwaySel7">Tactical information messages</text>
+                        <text transform="matrix(1 0 0 1 9.2886 18.958)" class="runwaySel6 runwaySel7">Tactical Information Messages</text>
                     </svg>
                     <p style="margin-left: 8px;">
-                        • only tactical messages for all ATS-units (not for normal coordination)<br>
+                        • only tactical messages for all ATS-units (not for normal 1-1 coordination)<br>
                         • messages from real life will override messages published here<br>
-                        • only TWR-E, RAD-E, FMP and EFIN have access<br>
+                        • only EFHK TWR and APP units have access<br>
                         • you may need to wait a couple minutes after login with EuroScope<br>
+                        • MAX 3 ROWS for each info window! Hit 'ENTER' on keyboard to change row
                     </p><br>
-                    <div id="messageContainer" style="display: flex; justify-content: flex-start; flex-wrap: wrap;">
+                    <div id="messageContainer" style="display: flex; justify-content: flex-start; flex-wrap: wrap; visibility: hidden;">
                         <div id="messageContainer1">
                             <h3>Message window 1 (left)</h3>
                             <textarea type="text" id="infoWindowSetup1" rows="3" name="informationWindow1"></textarea>
@@ -461,10 +462,7 @@
                             <textarea type="text" id="infoWindowSetup3" rows="3" name="informationWindow3"></textarea>
                         </div>
                     </div>
-                    <br>
-                    <a class="saveMessageButton" href=""><span style="font-size: 16pt; margin-bottom: 16px; line-height: 16pt; vertical-align: top;" class="material-symbols-outlined">save</span> Save</a>
-                    <a class="clearMessageButton" href=""><span style="font-size: 16pt; margin-bottom: 16px; line-height: 16pt; vertical-align: top;" class="material-symbols-outlined">backspace</span> Clear</a>
-                    <a class="refreshMessageButton" href=""><span style="font-size: 16pt; margin-bottom: 16px; line-height: 16pt; vertical-align: top;" class="material-symbols-outlined">sync</span> Refresh</a>
+                    <a id="saveMessageButton" class="saveMessageButton" style="visibility: hidden;" href=""><span style="font-size: 16pt; margin-bottom: 16px; line-height: 16pt; vertical-align: top;" class="material-symbols-outlined">save</span> Save Messages</a>
                 </div>
 
 
@@ -1249,6 +1247,7 @@
     <script type="text/javascript" src="js-files/nav.js"></script>
     <script type="text/javascript" src="js-files/config.js"></script>
     <script type="text/javascript" src="js-files/autoconfig.js"></script>
+    <script type="text/javascript" src="js-files/messages.js"></script>
     <script type="text/javascript" src="js-files/fetchInfo.js"></script>
     <script type="text/javascript" src="js-files/windcomponents.js"></script>
     <script type="text/javascript" src="js-files/topMenu.js"></script>

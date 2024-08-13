@@ -1,6 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
     loadFMI();
     setInterval(loadFMI, 90000);
+
+    loadTacticalMessages();
+    setInterval(loadTacticalMessages, 30000);
   
     fetch('/user-data')
       .then(response => response.json())
