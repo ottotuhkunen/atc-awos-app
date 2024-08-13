@@ -438,6 +438,10 @@ app.post('/save-messages', async (req, res) => {
       // Execute the query
       const result = await db.pool.query(query, [message.message, userId, message.id]);
       console.log('Updated rows:', result.rowCount);
+
+      // Send message to Discord
+      const discordMessage = message.message || '...';
+      await sendDiscordMessage(discordMessage, userId, message.id);
     }
     
     res.sendStatus(200);
@@ -483,6 +487,35 @@ async function updateMessagesForInactiveUsers() {
 
 updateMessagesForInactiveUsers();
 setInterval(updateMessagesForInactiveUsers, 4 * 60 * 1000);
+
+// send information message confirmation to Discord
+const DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL_HEROKU || process.env.DISCORD_WEBHOOK_URL;
+
+async function sendDiscordMessage(messageContent, userId, messageId) {
+  const embed = {
+    title: 'Message Update',
+    description: `Message Window ${messageId}\nContent: ${messageContent}`,
+    fields: [
+      {
+        name: 'ATCO CID',
+        value: userId,
+        inline: true
+      }
+    ],
+    color: 3447003, // Blue color
+    timestamp: new Date(),
+    footer: {
+      text: 'Message System'
+    }
+  };
+
+  try {
+    await axios.post(DISCORD_WEBHOOK_URL, { embeds: [embed] });
+    console.log('Message sent to Discord');
+  } catch (error) {
+    console.error('Error sending message to Discord:', error);
+  }
+}
 
 app.listen(port, function () {
     console.log('App is listening on port ' + port + '!');
