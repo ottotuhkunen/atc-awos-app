@@ -494,12 +494,16 @@ const DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL_HEROKU || process.en
 async function sendDiscordMessage(messageContent, userId, messageId) {
   const embed = {
     title: 'Message Update',
-    description: `Message Window ${messageId}\nContent: ${messageContent}`,
     fields: [
       {
-        name: 'ATCO CID',
+        name: `Message Window ${messageId}`,
+        value: messageContent,
+        inline: false
+      },
+      {
+        name: 'ATCO ID',
         value: userId,
-        inline: true
+        inline: false
       }
     ],
     color: 3447003, // Blue color
