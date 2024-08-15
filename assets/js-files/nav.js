@@ -217,8 +217,7 @@ function setup() {
     document.getElementById("setupDiv").style.display = "block";
     document.getElementById("rwyccDiv").style.visibility = "hidden";
 
-    // load ATS-units and tactical messages
-    loadATSunits();
+    // load tactical messages
     loadMessagesSetup();
 
     // load greeting
@@ -456,42 +455,68 @@ function setupButton1() {
     document.getElementById("runwaySelection-container").style.display = "block";
     document.getElementById("setupContainer3").style.display = "none";
     document.getElementById("setupContainerMessages").style.display = "none";
+    // document.getElementById("setupContainerSup").style.display = "none";
 
     document.getElementById("setupButton1").style.backgroundColor = "#D8E5F3";
     document.getElementById("setupButton2").style.backgroundColor = "#E6E6E6";
     document.getElementById("setupButton3").style.backgroundColor = "#E6E6E6";
+    // document.getElementById("setupButton4").style.backgroundColor = "#E6E6E6";
 
     document.getElementById("setupButton1").style.pointerEvents = "none";
     document.getElementById("setupButton2").style.pointerEvents = "all";
-   document.getElementById("setupButton3").style.pointerEvents = "all";
+    document.getElementById("setupButton3").style.pointerEvents = "all";
+    // document.getElementById("setupButton4").style.pointerEvents = "all";
 }
 
 function setupButton2() {
     document.getElementById("runwaySelection-container").style.display = "none";
     document.getElementById("setupContainer3").style.display = "block";
     document.getElementById("setupContainerMessages").style.display = "none";
+    // document.getElementById("setupContainerSup").style.display = "none";
 
     document.getElementById("setupButton1").style.backgroundColor = "#E6E6E6";
     document.getElementById("setupButton2").style.backgroundColor = "#D8E5F3";
     document.getElementById("setupButton3").style.backgroundColor = "#E6E6E6";
+    //document.getElementById("setupButton4").style.backgroundColor = "#E6E6E6";
 
     document.getElementById("setupButton1").style.pointerEvents = "all";
     document.getElementById("setupButton2").style.pointerEvents = "none";
     document.getElementById("setupButton3").style.pointerEvents = "all";
+    // document.getElementById("setupButton4").style.pointerEvents = "all";
 }
 
 async function setupButton3() {
     document.getElementById("runwaySelection-container").style.display = "none";
     document.getElementById("setupContainer3").style.display = "none";
     document.getElementById("setupContainerMessages").style.display = "block";
+    // document.getElementById("setupContainerSup").style.display = "none";
 
     document.getElementById("setupButton1").style.backgroundColor = "#E6E6E6";
     document.getElementById("setupButton2").style.backgroundColor = "#E6E6E6";
     document.getElementById("setupButton3").style.backgroundColor = "#D8E5F3";
+    // document.getElementById("setupButton4").style.backgroundColor = "#E6E6E6";
 
     document.getElementById("setupButton1").style.pointerEvents = "all";
     document.getElementById("setupButton2").style.pointerEvents = "all";
     document.getElementById("setupButton3").style.pointerEvents = "none";
+    // document.getElementById("setupButton4").style.pointerEvents = "all";
+}
+
+async function setupButton4() {
+    document.getElementById("runwaySelection-container").style.display = "none";
+    document.getElementById("setupContainer3").style.display = "none";
+    document.getElementById("setupContainerMessages").style.display = "none";
+    // document.getElementById("setupContainerSup").style.display = "block";
+
+    document.getElementById("setupButton1").style.backgroundColor = "#E6E6E6";
+    document.getElementById("setupButton2").style.backgroundColor = "#E6E6E6";
+    document.getElementById("setupButton3").style.backgroundColor = "#E6E6E6";
+    // document.getElementById("setupButton4").style.backgroundColor = "#D8E5F3";
+
+    document.getElementById("setupButton1").style.pointerEvents = "all";
+    document.getElementById("setupButton2").style.pointerEvents = "all";
+    document.getElementById("setupButton3").style.pointerEvents = "all";
+    // document.getElementById("setupButton4").style.pointerEvents = "none";
 }
 
 function openDepATIS(){

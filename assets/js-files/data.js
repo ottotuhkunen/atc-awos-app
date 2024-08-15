@@ -28,6 +28,7 @@ async function loadFMI() {
       await setData(data);
       await loadConfig();
       await fetchRwyStatus();
+      await loadATSunits();
       console.log("FMI data loaded at", new Date().toLocaleTimeString());
     }
   } catch (error) {

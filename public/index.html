@@ -280,6 +280,12 @@
                         WIND DATA U/S UFN DUE SOURCE PROBLEMS
                     </text>
                 </g>
+                <g id="simul-app-warning" style="display: none;">
+                    <rect id="fmiProblemBox" x="4.59" y="654.35" class="st10" width="499.06" height="111.53"/>
+                    <text transform="matrix(1 0 0 1 14 680)" class="st12 warningColor">
+                        INSUFFICIENT STAFFING FOR SIMULTANEOUS APCHS
+                    </text>
+                </g>
 
                 <g id="missingMetar" style="display: none;">
                     <rect x="4.59" y="654.35" class="st10" width="499.06" height="111.53"/>
@@ -414,9 +420,10 @@
                     <button id="setupButton1" onclick="setupButton1();" class="metButtons" style="margin-left: 6px; background-color: #D8E5F3;">Runways</button>
                     <button id="setupButton2" onclick="setupButton2();" class="metButtons">ATS-units</button>
                     <button id="setupButton3" onclick="setupButton3();" class="metButtons">Messages</button>
+                    <!-- <button id="setupButton4" onclick="setupButton4();" class="metButtons">Super</button> -->
                 </div>
 
-                <div id="runwaySelection-container" style="position:absolute; width: 100%; top: 110px; bottom: 0; margin-top: 8px;"></div> <!-- code in config.js -->
+                <div id="runwaySelection-container" style="width: 100%; height: 100%; max-width:800px;"></div> <!-- code in config.js -->
 
                 <div id="setupContainer3" style="margin-right: 16pt; display: none;">
                     <svg id="atc-title" version="1.1" preserveAspectRatio="xMinYMin meet" x="0px" y="0px"
@@ -431,14 +438,14 @@
                     <table id="atsunitsTable" class="atsUnitsTable"></table> <!-- code in fetchInfo.js -->
                 </div>
 
-                <div id="setupContainerMessages" style="display: none; overflow: auto;">
+                <div id="setupContainerMessages" style="margin-right: 16pt; display: none; overflow: auto;">
                     <svg id="messages-title" version="1.1" preserveAspectRatio="xMinYMin meet" x="0px" y="0px"
                         viewBox="0 0 588 30" style="enable-background:new 0 0 588 30; width: 100%; max-width:800px;" xml:space="preserve">
-                        <linearGradient id="message-gradient" gradientUnits="userSpaceOnUse" x1="293" y1="26" x2="293" y2="3">
+                        <linearGradient id="title-gradient-messages" gradientUnits="userSpaceOnUse" x1="293" y1="26" x2="293" y2="3">
                             <stop  offset="0" class="rwySelGradient1"/>
                             <stop  offset="1" class="rwySelGradient2"/>
                         </linearGradient>
-                        <rect x="4" y="3" style="fill:url(#message-gradient);" width="578" height="23"/>
+                        <rect x="4" y="3" style="fill:url(#title-gradient-messages);" width="578" height="23"/>
                         <text transform="matrix(1 0 0 1 9.2886 18.958)" class="runwaySel6 runwaySel7">Tactical Information Messages</text>
                     </svg>
                     <p style="margin-left: 8px;">
@@ -465,9 +472,114 @@
                     <a id="saveMessageButton" class="saveMessageButton" style="visibility: hidden;" href=""><span style="font-size: 16pt; margin-bottom: 16px; line-height: 16pt; vertical-align: top;" class="material-symbols-outlined">save</span> Save Messages</a>
                 </div>
 
-
-
-                
+                <div id="setupContainerSup" style="margin-right: 16pt; display: none; overflow: auto;">
+                    <svg id="manual-rwy-cond-title" version="1.1" preserveAspectRatio="xMinYMin meet" x="0px" y="0px"
+                        viewBox="0 0 588 30" style="enable-background:new 0 0 588 30; width: 100%; max-width:800px;" xml:space="preserve">
+                        <linearGradient id="title-gradient-rwy-cond" gradientUnits="userSpaceOnUse" x1="293" y1="26" x2="293" y2="3">
+                            <stop  offset="0" class="rwySelGradient1"/>
+                            <stop  offset="1" class="rwySelGradient2"/>
+                        </linearGradient>
+                        <rect x="4" y="3" style="fill:url(#title-gradient-rwy-cond);" width="578" height="23"/>
+                        <text transform="matrix(1 0 0 1 9.2886 18.958)" class="runwaySel6 runwaySel7">Manual Runway Condition</text>
+                    </svg>
+                    <div style="margin-bottom: 14px; margin-left: 10px;">
+                        <select name="rwycc" id="rwycc" style="width: 56px;">
+                            <option value="off"></option>
+                            <option value="6">6</option>
+                            <option value="5">5</option>
+                            <option value="4">4</option>
+                            <option value="3">3</option>
+                            <option value="2">2</option>
+                            <option value="1">1</option>
+                        </select>
+                        <select name="upgr_dngr" id="upgr_dngr" style="width: 56px;">
+                            <option value="off"></option>
+                            <option value="•">•</option>
+                            <option value="↑">↑</option>
+                            <option value="↓">↓</option>
+                        </select>
+                        <select name="coverage" id="coverage" style="width: 56px;">
+                            <option value="off"></option>
+                            <option value="25%">25%</option>
+                            <option value="50%">50%</option>
+                            <option value="75%">75%</option>
+                            <option value="100%">100%</option>
+                        </select>
+                        <select name="depth" id="depth" style="width: 56px;">
+                            <option value="off"></option>
+                            <option value="0">0 mm</option>
+                            <option value="1">1 mm</option>
+                            <option value="2">2 mm</option>
+                            <option value="3">3 mm</option>
+                            <option value="4">4 mm</option>
+                            <option value="5">5 mm</option>
+                            <option value="6">6 mm</option>
+                            <option value="7">7 mm</option>
+                            <option value="8">8 mm</option>
+                            <option value="9">9 mm</option>
+                            <option value="10">10 mm</option>
+                        </select>
+                        <select name="contaminants" id="contaminants">
+                            <option value="off"></option>
+                            <option value="DRY">DRY</option>
+                            <option value="WET">WET</option>
+                            <option value="SLIPPERY WET">SLIPPERY WET</option>
+                            <option value="STANDING WATER">STANDING WATER</option>
+                            <option value="FROST">FROST</option>
+                            <option value="SLUSH">SLUSH</option>
+                            <option value="DRY SNOW">DRY SNOW</option>
+                            <option value="WET SNOW">WET SNOW</option>
+                            <option value="COMPACTED SNOW">COMPACTED SNOW</option>
+                            <option value="DRY SNOW ON TOP OF COMPACTED SNOW">DRY SNOW ON TOP OF COMPACTED SNOW</option>
+                            <option value="WET SNOW ON TOP OF COMPACTED SNOW">WET SNOW ON TOP OF COMPACTED SNOW</option>
+                            <option value="WATER ON TOP OF COMPACTED SNOW">WATER ON TOP OF COMPACTED SNOW</option>
+                            <option value="ICE">ICE</option>
+                            <option value="WET ICE">WET ICE</option>
+                            <option value="DRY SNOW ON TOP OF ICE">DRY SNOW ON TOP OF ICE</option>
+                            <option value="WET SNOW ON TOP OF ICE">WET SNOW ON TOP OF ICE</option>
+                        </select>
+                        
+                        <p>taxiway conditions </p>
+                        <select name="twyConditions" id="twyConditions" style="width: 160px;">
+                            <option value="N/A"></option>
+                            <option value="DRY">DRY</option>
+                            <option value="GOOD">GOOD</option>
+                            <option value="MEDIUM TO GOOD">MEDIUM TO GOOD</option>
+                            <option value="MEDIUM">MEDIUM</option>
+                            <option value="MEDIUM TO POOR">MEDIUM TO POOR</option>
+                            <option value="POOR">POOR</option>
+                        </select>
+                        <p>apron conditions </p>
+                        <select name="apnConditions" id="apnConditions" style="width: 160px;">
+                            <option value="N/A"></option>
+                            <option value="DRY">DRY</option>
+                            <option value="GOOD">GOOD</option>
+                            <option value="MEDIUM TO GOOD">MEDIUM TO GOOD</option>
+                            <option value="MEDIUM">MEDIUM</option>
+                            <option value="MEDIUM TO POOR">MEDIUM TO POOR</option>
+                            <option value="POOR">POOR</option>
+                        </select>
+                        <p>RWY cleared width</p>
+                        <input id="clearedWidth" style="width: 26px;">
+                    </div>
+                    <a id="saveSupButton" class="saveMessageButton" href=""><span style="font-size: 16pt; margin-bottom: 16px; line-height: 16pt; vertical-align: top;" class="material-symbols-outlined">save</span> Save</a>
+                    <br>
+                    <svg id="rwy-status-title" version="1.1" preserveAspectRatio="xMinYMin meet" x="0px" y="0px"
+                        viewBox="0 0 588 30" style="enable-background:new 0 0 588 30; width: 100%; max-width:800px;" xml:space="preserve">
+                        <linearGradient id="title-gradient-rwy-status" gradientUnits="userSpaceOnUse" x1="293" y1="26" x2="293" y2="3">
+                            <stop  offset="0" class="rwySelGradient1"/>
+                            <stop  offset="1" class="rwySelGradient2"/>
+                        </linearGradient>
+                        <rect x="4" y="3" style="fill:url(#title-gradient-rwy-status);" width="578" height="23"/>
+                        <text transform="matrix(1 0 0 1 9.2886 18.958)" class="runwaySel6 runwaySel7">Runway Status</text>
+                    </svg>
+                    <div id="runway-status-buttons">
+                        <span>15/33</span>
+                        <span>04L/22R</span>
+                        <span>04R/22L</span>
+                    </div>
+                    <a id="saveRwyStatusButton" class="saveMessageButton" href=""><span style="font-size: 16pt; margin-bottom: 16px; line-height: 16pt; vertical-align: top;" class="material-symbols-outlined">save</span> Save</a>
+                </div>
             </div>
 
             <div id="metrepDiv" class="metRepDivContainer">

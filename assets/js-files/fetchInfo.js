@@ -49,7 +49,6 @@ async function fetchInformation(){
                         RCRIndicators.style.display = "none";
                     }
 
-
                     // check if runway is closed --> RCC displayed as "0 dngr"
                     let matchClosedRunway = [];
                     try {
@@ -231,11 +230,31 @@ async function loadATSunits() {
     try {
         const response = await fetch('https://data.vatsim.net/v3/vatsim-data.json');
         const data = await response.json();
-    
+
+        // Define the priority order for callsigns
+        const priorityOrder = [
+            "EFIN_CTR", "EFIN_D_CTR", "EFIN_D__CTR", "EFIN_A_CTR",
+            "EFIN_C_CTR", "EFIN__C_CTR", "EFHK_E_APP", "EFHK_APP", "EFHK_E__APP", "EFHK_W_APP", 
+            "EFHK_W__APP", "EFHK_R_APP", "EFHK_A_APP", "EFHK_E_TWR", "EFHK_E__TWR", "EFHK_TWR", 
+            "EFHK_W_TWR", "EFHK_W__TWR", "EFHK_GND", "EFHK__GND", "EFHK_DEL", "EFHK__DEL", 
+            "EFHK_C_GND", "EFHK_D_GND"
+        ];
+
+        const primaryPositions = {
+            1: ["EFHK_E_APP", "EFHK_E__APP", "EFHK__E_APP", "EFHK_APP", "EFHK__APP"],
+            2: ["EFHK_W_APP", "EFHK_W__APP", "EFHK__W_APP"],
+            3: ["EFHK_R_APP", "EFHK_R__APP", "EFHK__R_APP"],
+            4: ["EFHK_A_APP", "EFHK_A__APP", "EFHK__A_APP"],
+            5: ["EFHK_E_TWR", "EFHK_E__TWR", "EFHK__E_TWR", "EFHK_TWR", "EFHK__TWR"],
+            6: ["EFHK_W_TWR", "EFHK_W__TWR", "EFHK__W_TWR"],
+            7: ["EFHK_GND", "EFHK__GND"]
+        };
+
+        // Creating table
         const table = document.createElement('table');
         table.id = 'atsunitsTable';
 
-        // creating table header
+        // Creating table header
         const headerRow = table.insertRow();
         const th1 = document.createElement('th');
         th1.textContent = 'ROLE';
@@ -246,47 +265,61 @@ async function loadATSunits() {
         headerRow.appendChild(th1);
         headerRow.appendChild(th2);
         headerRow.appendChild(th3);
-    
+
         // Function to add a row to the ATS-unit table
         function addRow(column1, column2, column3) {
             const row = table.insertRow();
             const cell1 = row.insertCell(0);
             const cell2 = row.insertCell(1);
             const cell3 = row.insertCell(2);
-    
+
             cell1.textContent = column1;
             cell2.textContent = column2;
             cell3.textContent = column3;
         }
 
-        // Sort ATS-units in correct order (priorityOrder)
-        data.controllers.sort((a, b) => getCallsignPriority(a.callsign) - getCallsignPriority(b.callsign));
-    
-        // Add ATS-units to list (displayed on Setup page)
-        for (let item of data.controllers) {
+        // Track online status of key positions
+        const onlinePositions = new Set();
+
+        // Sort controllers by priority order
+        const sortedControllers = data.controllers
+            .filter(controller => priorityOrder.includes(controller.callsign))
+            .sort((a, b) => getCallsignPriority(a.callsign) - getCallsignPriority(b.callsign));
+
+        // Add ATS-units to the table and track online positions
+        for (let item of sortedControllers) {
             const rowType = callsignMapping[item.callsign];
             if (rowType) {
                 addRow(rowType, item.frequency, item.name);
             }
+            // Check if the current callsign matches any variations
+            for (const [primary, variations] of Object.entries(primaryPositions)) {
+                if (variations.includes(item.callsign)) {
+                    onlinePositions.add(primary);
+                }
+            }
         }
 
+        // Check if all required primary positions are online
+        const requiredPrimaryPositions = Object.keys(primaryPositions).map(Number);
+        const allRequiredOnline = requiredPrimaryPositions.every(pos => onlinePositions.has(pos));
+
+        // Check the additional condition
+        const atisInfo = document.getElementById('atisInfoFieldArr')?.innerHTML || '';
+        if (!allRequiredOnline && (atisInfo.includes("ARR RWYS 04L AND 04R") || atisInfo.includes("ARR RWYS 22L AND 22R"))) {
+            document.getElementById('simul-app-warning').style.display = 'block';
+        } else {
+            document.getElementById('simul-app-warning').style.display = 'none';
+        }
+
+        // Update the table container
         const container = document.getElementById('atsunitsTable');
         container.innerHTML = '';
         container.appendChild(table);
+        
     } catch (error) {
         console.log('Error in loadATSunits function:', error);
     }    
-}
-
-function getCallsignPriority(callsign) {
-    // ATC list priority
-    const priorityOrder = ["EFIN_CTR", "EFIN_D_CTR", "EFIN_D__CTR", "EFIN_A_CTR",
-        "EFIN_C_CTR", "EFIN__C_CTR", "EFHK_E_APP", "EFHK_APP", "EFHK_E__APP", "EFHK_W_APP", 
-        "EFHK_W__APP", "EFHK_R_APP", "EFHK_A_APP", "EFHK_E_TWR", "EFHK_E__TWR", "EFHK_TWR", "EFHK_W_TWR",
-        "EFHK_W__TWR", "EFHK_GND", "EFHK__GND", "EFHK_DEL", "EFHK__DEL", "EFHK_C_GND", "EFHK_D_GND"];
-    
-    const index = priorityOrder.indexOf(callsign);
-    return index === -1 ? priorityOrder.length : index;
 }
 
 const callsignMapping = {

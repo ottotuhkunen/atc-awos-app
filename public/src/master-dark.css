@@ -394,7 +394,7 @@ svg { width: 100%; }
     font-size: 1.2vw;
     margin-top: 4px;
     margin-left: 0;
-    margin-right: -6px;
+    margin-right: -5px;
     box-sizing: border-box;
     width: 10vw;
     height: 3vw;
@@ -408,8 +408,6 @@ svg { width: 100%; }
         font-size: 12px;
     }
 }
-
-#metRepButtonsContainer { display: flex; }
 
 .rwy_inactive{fill:#0c2740;}
 .st1{fill:#081526;}
@@ -699,14 +697,6 @@ th {
     margin-top: 0;
 }
 
-#setupContainerMessages {
-    position: absolute;
-    top: 116px;
-    bottom: 6px;
-    left: 6px;
-    max-width: 820px;
-}
-
 .cls-6 {
     stroke: #d3d3d3;
     stroke-width: .5px;
@@ -720,4 +710,26 @@ th {
     font-family: Verdana;
     font-weight: bold;
     font-weight: 700;
+}
+
+select, input {
+    background-color: black;
+    color: white;
+    border: #808080 1px solid;
+}
+
+#runway-status-buttons span {
+    background-color: #41826e;
+    color: white;
+    padding: 6px;
+    text-align: center;
+    border-radius: 4px;
+    font-size: 10pt;
+    cursor: pointer !important;
+}
+
+#runway-status-buttons {
+    margin-bottom: 20px;
+    margin-left: 10px;
+    cursor: pointer !important;
 }
