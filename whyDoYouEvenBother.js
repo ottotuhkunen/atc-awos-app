@@ -238,10 +238,10 @@ async function fetchVatsimData() {
 
 async function determineEditState(userId) {
   if (userId === '1339541' || userId === '10000003') {
-    return 2; // Special user with full edit permissions
+    return 1;
   }
   if (userId === '10000002') {
-    return 1;
+    return 2; // Special user with full edit permissions
   }
 
   const vatsimData = await fetchVatsimData();
@@ -475,7 +475,7 @@ async function updateMessagesForInactiveUsers() {
       if (editState === 0) {
         console.log(`Resetting message content for user ID ${cid}`);
         // Reset message content for users who are not allowed to edit
-        await db.pool.query('UPDATE messages SET message = $1 WHERE id = $2', ['', id]);
+        await db.pool.query('UPDATE messages SET message = $1, cid = $2 WHERE id = $3', ['', 10000003, id]);
       } else {
         console.log(`User ID ${cid} is allowed to edit.`);
       }

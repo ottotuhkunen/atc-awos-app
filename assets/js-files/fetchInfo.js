@@ -231,23 +231,21 @@ async function loadATSunits() {
         const response = await fetch('https://data.vatsim.net/v3/vatsim-data.json');
         const data = await response.json();
 
-        // Define the priority order for callsigns
-        const priorityOrder = [
-            "EFIN_CTR", "EFIN_D_CTR", "EFIN_D__CTR", "EFIN_A_CTR",
-            "EFIN_C_CTR", "EFIN__C_CTR", "EFHK_E_APP", "EFHK_APP", "EFHK_E__APP", "EFHK_W_APP", 
-            "EFHK_W__APP", "EFHK_R_APP", "EFHK_A_APP", "EFHK_E_TWR", "EFHK_E__TWR", "EFHK_TWR", 
-            "EFHK_W_TWR", "EFHK_W__TWR", "EFHK_GND", "EFHK__GND", "EFHK_DEL", "EFHK__DEL", 
-            "EFHK_C_GND", "EFHK_D_GND"
-        ];
-
-        const primaryPositions = {
-            1: ["EFHK_E_APP", "EFHK_E__APP", "EFHK__E_APP", "EFHK_APP", "EFHK__APP"],
-            2: ["EFHK_W_APP", "EFHK_W__APP", "EFHK__W_APP"],
-            3: ["EFHK_R_APP", "EFHK_R__APP", "EFHK__R_APP"],
-            4: ["EFHK_A_APP", "EFHK_A__APP", "EFHK__A_APP"],
-            5: ["EFHK_E_TWR", "EFHK_E__TWR", "EFHK__E_TWR", "EFHK_TWR", "EFHK__TWR"],
-            6: ["EFHK_W_TWR", "EFHK_W__TWR", "EFHK__W_TWR"],
-            7: ["EFHK_GND", "EFHK__GND"]
+        // Define positions with their corresponding variations
+        const positions = {
+            "EFIN A": ["EFIN_A_CTR", "EFIN__A_CTR", "EFIN_A__CTR"],
+            "EFIN C": ["EFIN_C_CTR", "EFIN__C_CTR", "EFIN_C__CTR"],
+            "EFIN D": ["EFIN_D_CTR", "EFIN_CTR", "EFIN__CTR", "EFIN__D_CTR", "EFIN_D__CTR"],
+            "RAD-E": ["EFHK_E_APP", "EFHK_E__APP", "EFHK__E_APP", "EFHK_APP", "EFHK__APP"],
+            "RAD-W": ["EFHK_W_APP", "EFHK_W__APP", "EFHK__W_APP"],
+            "ARR-E": ["EFHK_R_APP", "EFHK_R__APP", "EFHK__R_APP"],
+            "ARR-W": ["EFHK_A_APP", "EFHK_A__APP", "EFHK__A_APP"],
+            "TWR-E": ["EFHK_E_TWR", "EFHK_E__TWR", "EFHK__E_TWR", "EFHK_TWR", "EFHK__TWR"],
+            "TWR-W": ["EFHK_W_TWR", "EFHK_W__TWR", "EFHK__W_TWR"],
+            "GND": ["EFHK_GND", "EFHK__GND"],
+            "CLD": ["EFHK_DEL", "EFHK__DEL"],
+            "DEICE SUPER": ["EFHK_C_GND","EFHK_C__GND", "EFHK__C_GND"],
+            "DEICE": ["EFHK_D_GND", "EFHK_D__GND", "EFHK__D_GND"]
         };
 
         // Creating table
@@ -281,27 +279,18 @@ async function loadATSunits() {
         // Track online status of key positions
         const onlinePositions = new Set();
 
-        // Sort controllers by priority order
-        const sortedControllers = data.controllers
-            .filter(controller => priorityOrder.includes(controller.callsign))
-            .sort((a, b) => getCallsignPriority(a.callsign) - getCallsignPriority(b.callsign));
-
-        // Add ATS-units to the table and track online positions
-        for (let item of sortedControllers) {
-            const rowType = callsignMapping[item.callsign];
-            if (rowType) {
-                addRow(rowType, item.frequency, item.name);
-            }
-            // Check if the current callsign matches any variations
-            for (const [primary, variations] of Object.entries(primaryPositions)) {
+        // Loop through positions in the order defined in the positions object
+        for (const [role, variations] of Object.entries(positions)) {
+            for (let item of data.controllers) {
                 if (variations.includes(item.callsign)) {
-                    onlinePositions.add(primary);
+                    addRow(role, item.frequency, item.name);
+                    onlinePositions.add(role);
                 }
             }
         }
 
         // Check if all required primary positions are online
-        const requiredPrimaryPositions = Object.keys(primaryPositions).map(Number);
+        const requiredPrimaryPositions = ["RAD-E", "RAD-W", "ARR-E", "ARR-W", "TWR-E", "TWR-W", "GND"];
         const allRequiredOnline = requiredPrimaryPositions.every(pos => onlinePositions.has(pos));
 
         // Check the additional condition
@@ -321,40 +310,3 @@ async function loadATSunits() {
         console.log('Error in loadATSunits function:', error);
     }    
 }
-
-const callsignMapping = {
-    "EFIN_CTR": "EFIN",
-    "EFIN_D_CTR": "EFIN",
-    "EFIN_D__CTR": "EFIN",
-    "EFIN__D_CTR": "EFIN",
-    "EFIN_A_CTR": "EFIN A",
-    "EFIN_C_CTR": "EFIN C",
-    "EFIN__C_CTR": "EFIN C",
-    "EFIN_C__CTR": "EFIN C",
-    "EFHK_E_APP": "RAD-E",
-    "EFHK_APP": "RAD-E",
-    "EFHK_E__APP": "RAD-E",
-    "EFHK__E_APP": "RAD-E",
-    "EFHK_W_APP": "RAD-W",
-    "EFHK_W__APP": "RAD-W",
-    "EFHK__W_APP": "RAD-W",
-    "EFHK_R_APP": "ARR-E",
-    "EFHK_R__APP": "ARR-E",
-    "EFHK__R_APP": "ARR-E",
-    "EFHK_A_APP": "ARR-W",
-    "EFHK_A__APP": "ARR-W",
-    "EFHK__A_APP": "ARR-W",
-    "EFHK_E_TWR": "TWR-E",
-    "EFHK_TWR": "TWR-E",
-    "EFHK_E__TWR": "TWR-E",
-    "EFHK__E_TWR": "TWR-E",
-    "EFHK_W_TWR": "TWR-W",
-    "EFHK_W__TWR": "TWR-W",
-    "EFHK__W_TWR": "TWR-W",
-    "EFHK_GND": "GND",
-    "EFHK__GND": "GND",
-    "EFHK_DEL": "CLD",
-    "EFHK__DEL": "CLD",
-    "EFHK_C_GND": "DEICE",
-    "EFHK_D_GND": "DEICE"
-};
