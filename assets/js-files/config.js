@@ -84,6 +84,10 @@ async function loadConfig() {
         dep04r = true;
         dep15 = true;
         break;
+      case atisText.includes("DEP RWY 04R AND 15"):
+        dep04r = true;
+        dep15 = true;
+        break;
       case atisText.includes("DEP RWY 22R"):
         dep22r = true;
         break;
